@@ -166,8 +166,8 @@ Esta es la fase que más se repite en la práctica diaria. No la tengas «termin
                            proyectos
 17-estrategias-de-git   → flujo de ramas, release,
                            hotfix
-18-github-profesional   → plantillas, plantillas,
-                           rendición de cuentas
+18-github-profesional   → estructura, plantillas,
+                           issues, gobernanza
 19-github-actions       → workflows, runners,
                            artefactos, despliegue
 20-github-security      → secretos, dependencias,
