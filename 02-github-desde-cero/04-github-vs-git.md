@@ -76,7 +76,7 @@ Es un programa de software que:
 * incluye herramientas para gestionar ramas (líneas de trabajo independiente);
 * proporciona mecanismos para detectar y resolver conflictos cuando los cambios entran en conflicto;
 * funciona completamente sin conexión a Internet;
-* fue creado originalmente por Linus Torvalds en 2005 para el desarrollo del noyau de Linux;
+* fue creado originalmente por Linus Torvalds en 2005 para el desarrollo del núcleo de Linux;
 * es software libre y de código abierto.
 
 Git se ocupa del **qué** y el **cómo** del control de versiones:
@@ -397,7 +397,7 @@ Para cada paso en el siguiente flujo de trabajo, identifica si estás utilizando
    * ¿Qué herramientas estás utilizando?
    * ¿Estás usando Git, GitHub, o ambos?
 
-5. **Verizas el historial de cambios locales**
+5. **Verifica el historial de cambios locales**
    * ¿Qué herramientas estás utilizando?
    * ¿Estás usando Git, GitHub, o ambos?
 
