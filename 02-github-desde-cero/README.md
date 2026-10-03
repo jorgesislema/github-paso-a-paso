@@ -19,6 +19,18 @@ Al finalizar esta sección, estarás listo para comenzar a utilizar GitHub desde
 
 ---
 
+## Objetivos de aprendizaje
+
+Al terminar esta sección serás capaz de:
+
+* explicar qué es GitHub y qué problema resuelve para un equipo de desarrollo;
+* diferenciar Git (sistema de control de versiones) de GitHub (plataforma);
+* identificar la estructura de un repositorio y decidir entre público y privado;
+* explicar el concepto de control de versiones y la relación entre historial, commits y ramas;
+* distinguir un repositorio local de un repositorio remoto.
+
+---
+
 ## ¿Qué aprenderás en esta sección?
 
 Cada capítulo de esta sección está diseñado para construir tu comprensión progresivamente:
@@ -47,6 +59,25 @@ Cada capítulo incluye:
 * Enlaces al siguiente capítulo para continuar tu aprendizaje.
 
 Recuerda: no se trata de memorizar definiciones, sino de comprender qué problema resuelve cada concepto y cómo se aplica en situaciones reales.
+
+---
+
+## Referencias
+
+* Chacon, S. y Straub, B. — *Pro Git* (cap. 1), disponible en git-scm.com/book/es/v2.
+* GitHub — Documentación oficial: «About GitHub» (docs.github.com).
+* Git — Documentación oficial (git-scm.com/doc).
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con los capítulos de la sección:
+
+1. ¿Qué hace Git que no hace GitHub, y viceversa?
+2. ¿En qué caso creas un repositorio privado en lugar de público?
+3. ¿Qué te da el control de versiones que «guardar copia final.docx» no te da?
+4. ¿Dónde vive el historial de un repositorio local y dónde el de un remoto?
 
 ---
 
