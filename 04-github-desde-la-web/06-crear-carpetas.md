@@ -482,7 +482,7 @@ Convenciones recomendadas
 
 **Opciones:** mover los archivos (pocos → editor; muchos → Git local).
 
-**Riesgos:** duplicados si se resuben sin borrar.
+**Riesgos:** duplicados si se suben sin borrar.
 
 **Solución:** mover + eliminar duplicados + commit limpio.
 
