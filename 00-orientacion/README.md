@@ -628,7 +628,7 @@ El repositorio comienza desde conceptos básicos.
 
 Si algún término resulta desconocido, puedes consultar:
 
-**[GLOSARIO.md](GLOSARIO.md)**
+**[GLOSARIO.md](../GLOSARIO.md)**
 
 También encontrarás explicaciones y ejemplos antes de introducir conceptos más complejos.
 
@@ -723,31 +723,31 @@ Si nunca has utilizado Git ni GitHub:
 
 **Comienza aquí:**
 
-➡️ [`EMPIEZA-AQUI.md`](EMPIEZA-AQUI.md)
+➡️ [`EMPIEZA-AQUI.md`](../EMPIEZA-AQUI.md)
 
 Si ya tienes experiencia con Git:
 
-➡️ Comienza por [`06-git-desde-cero`](06-git-desde-cero/)
+➡️ Comienza por [`06-git-desde-cero`](../06-git-desde-cero/)
 
 Si ya conoces Git y quieres mejorar tus prácticas profesionales:
 
-➡️ Comienza por [`15-pull-requests`](15-pull-requests/)
+➡️ Comienza por [`15-pull-requests`](../15-pull-requests/)
 
 Si quieres aprender automatización:
 
-➡️ Ve a [`19-github-actions`](19-github-actions/)
+➡️ Ve a [`19-github-actions`](../19-github-actions/)
 
 Si te interesa DevOps:
 
-➡️ Ve a [`23-devops`](23-devops/)
+➡️ Ve a [`23-devops`](../23-devops/)
 
 Si quieres profundizar en seguridad:
 
-➡️ Ve a [`20-github-security`](20-github-security/)
+➡️ Ve a [`20-github-security`](../20-github-security/)
 
 Si buscas conocimientos avanzados:
 
-➡️ Ve a [`26-nivel-senior`](26-nivel-senior/)
+➡️ Ve a [`26-nivel-senior`](../26-nivel-senior/)
 
 ---
 
@@ -795,7 +795,7 @@ Ese es el objetivo de **GitHub Paso a Paso**.
 
 Este material está destinado a fines educativos.
 
-Consulta el archivo [`LICENSE`](LICENSE) para conocer las condiciones completas de uso, modificación y distribución del contenido.
+Consulta el archivo [`LICENSE`](../LICENSE) para conocer las condiciones completas de uso, modificación y distribución del contenido.
 
 ---
 
@@ -810,7 +810,7 @@ Si encuentras:
 * Ejemplos incorrectos.
 * Información desactualizada.
 
-puedes consultar [`CONTRIBUTING.md`](CONTRIBUTING.md) para conocer cómo contribuir al proyecto.
+puedes consultar [`CONTRIBUTING.md`](../CONTRIBUTING.md) para conocer cómo contribuir al proyecto.
 
 ---
 
@@ -822,7 +822,7 @@ Encontrar un error también forma parte del proceso de aprendizaje y mejora del 
 
 Consulta:
 
-**[`comunidad/como-reportar-un-error.md`](comunidad/como-reportar-un-error.md)**
+**[`comunidad/como-reportar-un-error.md`](../comunidad/como-reportar-un-error.md)**
 
 ---
 
