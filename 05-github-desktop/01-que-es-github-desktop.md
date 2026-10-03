@@ -193,7 +193,7 @@ Cuando inicias sesión y abres un repositorio, la ventana principal tiene esta o
 │  │              │  │  Descripción: ____________________   │   │
 │  │  ▸ mi-repo   │  │  [ Commit to main ]                 │   │
 │  │  ▸ otro-repo │  │                                      │   │
-│  │              │  │  ☑ notas.txt  [Open in] [descartar]  │   │
+│  │              │  │  [x] notas.txt  [Open in] [descartar]  │   │
 │  │              │  │                                      │   │
 │  │  [Clone      │  │  Vista de diferencias (diff)        │   │
 │  │  repository] │  │  + línea añadida                    │   │
