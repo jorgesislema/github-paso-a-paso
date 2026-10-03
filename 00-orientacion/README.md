@@ -683,36 +683,36 @@ Ese principio será mucho más importante que memorizar comandos.
 Si estás comenzando completamente desde cero:
 
 ```text
-00 → Orientación
-01 → Computación desde cero
-02 → GitHub desde cero
-03 → Tu cuenta
-04 → GitHub desde la web
-05 → GitHub Desktop
-06 → Git desde cero
-07 → Cómo funciona Git
-08 → Ramas
-09 → Git remoto
-10 → Conflictos
-11 → Recuperación
-12 → Git avanzado
-13 → Configuración
-14 → Documentación
-15 → Pull Requests
-16 → Trabajo en equipo
-17 → Estrategias
-18 → GitHub profesional
-19 → GitHub Actions
-20 → Seguridad
-21 → Git aplicado
-22 → CI/CD
-23 → DevOps
-24 → DevSecOps
-25 → Arquitectura
-26 → Nivel senior
-27 → Proyectos
-28 → Proyecto final
-29 → Errores comunes
+00   Orientación
+01   Computación desde cero
+02   GitHub desde cero
+03   Tu cuenta
+04   GitHub desde la web
+05   GitHub Desktop
+06   Git desde cero
+07   Cómo funciona Git
+08   Ramas
+09   Git remoto
+10   Conflictos
+11   Recuperación
+12   Git avanzado
+13   Configuración
+14   Documentación
+15   Pull Requests
+16   Trabajo en equipo
+17   Estrategias
+18   GitHub profesional
+19   GitHub Actions
+20   Seguridad
+21   Git aplicado
+22   CI/CD
+23   DevOps
+24   DevSecOps
+25   Arquitectura
+26   Nivel senior
+27   Proyectos
+28   Proyecto final
+29   Errores comunes
 ```
 
 ---
@@ -723,31 +723,31 @@ Si nunca has utilizado Git ni GitHub:
 
 **Comienza aquí:**
 
-➡️ [`EMPIEZA-AQUI.md`](../EMPIEZA-AQUI.md)
+→ [`EMPIEZA-AQUI.md`](../EMPIEZA-AQUI.md)
 
 Si ya tienes experiencia con Git:
 
-➡️ Comienza por [`06-git-desde-cero`](../06-git-desde-cero/)
+→ Comienza por [`06-git-desde-cero`](../06-git-desde-cero/)
 
 Si ya conoces Git y quieres mejorar tus prácticas profesionales:
 
-➡️ Comienza por [`15-pull-requests`](../15-pull-requests/)
+→ Comienza por [`15-pull-requests`](../15-pull-requests/)
 
 Si quieres aprender automatización:
 
-➡️ Ve a [`19-github-actions`](../19-github-actions/)
+→ Ve a [`19-github-actions`](../19-github-actions/)
 
 Si te interesa DevOps:
 
-➡️ Ve a [`23-devops`](../23-devops/)
+→ Ve a [`23-devops`](../23-devops/)
 
 Si quieres profundizar en seguridad:
 
-➡️ Ve a [`20-github-security`](../20-github-security/)
+→ Ve a [`20-github-security`](../20-github-security/)
 
 Si buscas conocimientos avanzados:
 
-➡️ Ve a [`26-nivel-senior`](../26-nivel-senior/)
+→ Ve a [`26-nivel-senior`](../26-nivel-senior/)
 
 ---
 
@@ -826,6 +826,18 @@ Consulta:
 
 ---
 
+## Documentos de esta sección
+
+* [`01-que-vamos-a-aprender.md`](01-que-vamos-a-aprender.md) — el temario completo, sección por sección.
+* [`02-como-estudiar.md`](02-como-estudiar.md) — el método de estudio y sus variantes.
+* [`03-no-tengas-miedo-a-romper.md`](03-no-tengas-miedo-a-romper.md) — los errores que son recuperables.
+* [`04-como-pedir-ayuda.md`](04-como-pedir-ayuda.md) — cómo pedir ayuda sin desviar el problema.
+* [`05-como-leer-los-ejemplos.md`](05-como-leer-los-ejemplos.md) — cómo leer los ejemplos, los diagramas y la terminal.
+* [`06-ruta-de-aprendizaje.md`](06-ruta-de-aprendizaje.md) — el mapa de etapas y su criterio de avance.
+* [`07-como-fue-disenado-este-curso.md`](07-como-fue-disenado-este-curso.md) — el marco pedagógico del curso y sus decisiones.
+
+---
+
 # Bienvenido
 
 No necesitas saberlo todo para comenzar.
@@ -833,3 +845,36 @@ No necesitas saberlo todo para comenzar.
 Solo necesitas dar el primer paso.
 
 **Bienvenido a GitHub Paso a Paso.**
+
+
+---
+
+# Objetivos de aprendizaje de la sección
+
+Al terminar esta parte del recorrido serás capaz de:
+
+* identificar la estructura del curso y el papel de cada sección en la progresión;
+* elegir tu ruta de estudio según tu nivel actual (0–3) sin saltarte cimientos;
+* explicar la metodología del curso: cada capítulo sigue los mismos nueve pasos (qué es, para qué sirve, ejemplos, comando, qué ocurre, práctica, errores, resumen);
+* explicar por qué equivocarse es parte del proceso y qué familias de errores en Git son recuperables;
+* diferenciar Git (la herramienta local) de GitHub (la plataforma) con tus propias palabras.
+
+---
+
+# Referencias
+
+* Chacon, S. y Straub, B. — *Pro Git* (cap. 1), disponible en git-scm.com/book/es/v2.
+* Git — Documentación oficial (git-scm.com).
+* GitHub — Documentación oficial (docs.github.com).
+* Licencia del curso: CC BY-NC-SA 4.0 (creativecommons.org/licenses/by-nc-sa/4.0/).
+
+---
+
+# Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con los capítulos de esta sección:
+
+1. ¿Cuál es la diferencia entre Git y GitHub, explicada sin mirar el material?
+2. Un estudiante nunca ha abierto la terminal: ¿por qué sección empieza y por qué esa?
+3. ¿Cuáles son los nueve pasos que sigue cada capítulo del curso?
+4. ¿Qué familias de errores en Git son recuperables y qué hace posible esa recuperación?
