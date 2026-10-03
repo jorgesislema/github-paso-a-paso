@@ -855,7 +855,7 @@ O bien committear mis cambios locales primero, luego hacer pull.
 * Los PRs en GitHub pueden desencadenar GitHub Actions;
 * Si no se ejecutan verificaciones, quizás:
   * No hay workflows configurados en `.github/workflows/`;
-  * Los workflows no se déclencheur por eventos de PR;
+  * Los workflows no se disparan por eventos de PR;
   * Hay permisos insuficientes para ejecutar Actions;
   * El workflow tiene condiciones que no se cumplen.
 
