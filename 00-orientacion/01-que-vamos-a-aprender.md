@@ -969,33 +969,41 @@ Después:
 
 ```text
 Proyecto 3
-Página web
+Recetario
 ```
 
 Después:
 
 ```text
 Proyecto 4
-Proyecto Python
+Página web
 ```
 
 Después:
 
 ```text
 Proyecto 5
-Proyecto de datos
+Proyecto Python
 ```
 
 Después:
 
 ```text
 Proyecto 6
+Proyecto de datos
+```
+
+Después:
+
+```text
+Proyecto 7
 Proyecto de inteligencia artificial
 ```
 
 Y finalmente:
 
 ```text
+Proyecto 8
 Proyecto colaborativo
 ```
 
