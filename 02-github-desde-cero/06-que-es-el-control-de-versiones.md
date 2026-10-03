@@ -736,7 +736,7 @@ Con control de versions:
 ### 12.2. Prácticas de ramas
 
 * **Rama principal estable:** Mantén la rama principal (main/master) siempre en estado desplegable;
-* **Ramass de corta vida:** Características y correcciones en ramas que se fusionan rápidamente;
+* **Ramas de corta vida:** Características y correcciones en ramas que se fusionan rápidamente;
 * **Nombres descriptivos:** Usa nombres que indiquen el propósito de la rama (feature/login-fix, bugfix/typo-header);
 * **Actualización frecuente:** Integra cambios de la rama principal en tu rama de trabajo regularmente;
 * **Limpieza post-fusión:** Elimina ramas después de que se fusionen con éxito.
