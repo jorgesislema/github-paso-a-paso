@@ -278,7 +278,7 @@ Discard = borrar el cambio local SIN commitearlo
 
 > **Advertencia:** «Discard all changes» es una de las acciones más destructivas del flujo diario. Deshacer no existe. Antes de pulsarlo, lee la lista entera.
 
-### 4.4. Guardar trabajo ajeneno momento
+### 4.4. Guardar trabajo a un momento
 
 Si quieres conservar cambios sin commitearlos aún (por ejemplo, cambiando de tarea), la herramienta profesional es el **stash** (guardar temporal en un sitio aparte), que verás en la sección 11. Por ahora: si no quieres commitear, simplemente no lo hagas, pero no descartes.
 
