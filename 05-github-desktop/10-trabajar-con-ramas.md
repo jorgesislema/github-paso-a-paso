@@ -476,7 +476,7 @@ Vivir el ciclo básico de una rama: crear, trabajar, publicar y volver.
 ### Paso 7: pensar la fusión
 
 1. Busca en la interfaz la forma de proponer la fusión (Pull Request o merge).
-2. Si te atreves: ábrelo y ciérralo o fúnelo (si es tu repo de práctica). Si no: déjalo anotado para la sección 17.
+2. Si te atreves: ábrelo y ciérralo o fusionalo (si es tu repo de práctica). Si no: déjalo anotado para la sección 17.
 
 ### Resultado esperado
 
