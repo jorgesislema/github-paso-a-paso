@@ -1480,3 +1480,35 @@ Y vuelve a intentarlo.
 **Git se aprende utilizándolo y comprendiendo qué ocurre.**
 
 Bienvenido a **GitHub Paso a Paso — De cero a nivel profesional**.
+
+
+---
+
+# Objetivos de aprendizaje de la sección
+
+Al terminar esta parte del recorrido serás capaz de:
+
+* identificar y operar los elementos básicos de una computadora: archivos, carpetas, rutas y extensiones;
+* ejecutar operaciones de copiar, mover y eliminar y anticipar sus consecuencias;
+* explicar el problema que resuelve el control de versiones en el mundo de los archivos;
+* diferenciar un programa, una interfaz y la terminal;
+* explicar a nivel intuitivo qué son un repositorio, un commit y Git.
+
+---
+
+# Referencias
+
+* Chacon, S. y Straub, B. — *Pro Git* (cap. 1).
+* Git — «Git simple» (git-scm.com/doc/git-simple.html).
+* Documentación oficial de tu sistema operativo sobre archivos y carpetas (Windows: learn.microsoft.com).
+
+---
+
+# Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con los capítulos de esta sección:
+
+1. ¿Qué diferencia hay entre un archivo y una carpeta y puede una carpeta contener carpetas?
+2. Al mover un archivo de carpeta, ¿qué se puede romper y por qué?
+3. ¿Qué tiene de frágil el nombre «Informe_FINAL_ahora_si.docx» y qué propone Git en su lugar?
+4. ¿Qué te da un repositorio que no te da «guardar con otro nombre»?
