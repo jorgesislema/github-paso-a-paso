@@ -732,7 +732,7 @@ Remote Repository
 
 No debes leerlo solamente como una imagen.
 
-Interprétalo:
+Interpétalo:
 
 > “Un cambio comienza en mi directorio de trabajo, pasa al área de preparación, después se registra en un commit local y finalmente puede enviarse al repositorio remoto.”
 
@@ -785,9 +785,22 @@ representa:
 
 ```text
 Staging Area
-       ↓
+        ↓
 Local Repository
 ```
+
+### Diagramas y accesibilidad
+
+Todos los diagramas de este repositorio son **texto plano** (bloques con `│`, `├──` y flechas `→`/`↓`) dentro de bloques de código. No son imágenes: por eso se leen en cualquier visor, se copian, se editan y — si usas un lector de pantalla — se leen línea a línea.
+
+Para leer un diagrama sin apoyarte en la forma, sigue este orden:
+
+1. **Lee la línea de título o la oración que lo introduce:** dice qué se está mostrando (el capítulo, además, lo acompaña casi siempre con un «mapa conceptual de este capítulo» que es el índice del diagrama).
+2. **Enumera los bloques:** los nombres que aparecen en los recuadros o al inicio de cada rama son los conceptos; el orden vertical u horizontal es el orden de lectura.
+3. **Lee las flechas de izquierda a derecha y de arriba a abajo:** cada flecha es una transición (un comando, un paso, una consecuencia). Pregunta siempre «¿qué orden o qué estado produce esta flecha?» — la flecha es el verbo del diagrama.
+4. **Busca los marcadores:** `(1)`, `(2)` y los `───` suelen indicar etapas; léelos como una lista ordenada.
+
+Y una regla si vas a contribuir: **todo diagrama nuevo debe llevar una línea de texto antes que lo resuma** («este diagrama muestra X: bloques A y B unidos por el comando C»). Así el diagrama sigue siendo legible aunque su forma no se vea.
 
 ---
 
