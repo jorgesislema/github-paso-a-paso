@@ -20,6 +20,18 @@ Al finalizar esta sección dominarás el circuito completo local↔remoto, que e
 
 ---
 
+## Objetivos de aprendizaje
+
+Al terminar esta sección serás capaz de:
+
+* instalar GitHub Desktop y clonar un repositorio a tu equipo;
+* explicar por qué «guardar el archivo» no es «hacer commit»;
+* revisar los cambios con la lista y el diff antes de commitear;
+* ejecutar el ciclo completo: cambio local → commit → push → pull;
+* crear y publicar una rama y volver a la rama principal sin perder trabajo.
+
+---
+
 ## ¿Qué aprenderás en esta sección?
 
 Cada capítulo de esta sección está diseñado para construir tu comprensión progresivamente:
@@ -51,6 +63,25 @@ Cada capítulo incluye:
 * Enlaces al siguiente capítulo.
 
 La idea que recorre la sección: cada operación tiene un lugar —tu disco, tu historial local o el remoto— y el error más común es confundirlos. Guardar, commitear, subir y traer son cuatro actos distintos; entender cuál estás haciendo es entender Git.
+
+---
+
+## Referencias
+
+* GitHub Desktop — Documentación oficial (desktop.github.com).
+* Chacon, S. y Straub, B. — *Pro Git* (cap. 1).
+* GitHub — Documentación oficial: «About GitHub Desktop».
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con los capítulos de la sección:
+
+1. ¿Qué diferencia hay entre guardar un archivo en el editor y commitearlo en Desktop?
+2. ¿Qué hace `push` y qué hace `pull`?
+3. ¿Por qué un pull puede detenerse en un conflicto y cuál es tu primer paso?
+4. ¿Qué diferencia hay entre la rama principal y una rama de feature en la interfaz?
 
 ---
 
