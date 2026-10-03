@@ -19,6 +19,18 @@ Al finalizar esta sección, tendrás una cuenta endurecida y presente, lista par
 
 ---
 
+## Objetivos de aprendizaje
+
+Al terminar esta sección serás capaz de:
+
+* crear y configurar una cuenta de GitHub con las capas básicas de seguridad (contraseña, 2FA, códigos de recuperación);
+* configurar el perfil público y las preferencias esenciales (correos, notificaciones, privacidad);
+* explicar la diferencia entre contraseña, token de acceso personal y clave SSH y cuándo usar cada una;
+* recuperar el acceso a la cuenta con el procedimiento de recuperación del 2FA;
+* identificar los roles de una organización y aplicar el principio de mínimo privilegio.
+
+---
+
 ## ¿Qué aprenderás en esta sección?
 
 Cada capítulo de esta sección está diseñado para construir tu comprensión progresivamente:
@@ -48,6 +60,25 @@ Cada capítulo incluye:
 Una advertencia que se repite en toda la sección: las acciones de seguridad (revocar tokens, cerrar sesiones, eliminar claves) y las irreversibles (borrar cuenta, cambio de nombre) se leen dos veces antes de pulsar.
 
 Recuerda: no se trata de rellenar todos los campos disponibles, sino de entender qué protege tu cuenta, qué expone tu identidad y cómo se gestiona el acceso en equipo.
+
+---
+
+## Referencias
+
+* GitHub — Documentación oficial: «Managing your account» y «Keeping your account secure» (docs.github.com).
+* NIST SP 800-63B — Digital Identity Guidelines (autenticación multifactor).
+* OWASP — Authentication Cheatsheet (owasp.org).
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con los capítulos de la sección:
+
+1. ¿Cuándo usas un token de acceso personal en vez de tu contraseña?
+2. ¿Qué pasa si pierdes el teléfono con la app de 2FA y qué haces para que no te deje fuera?
+3. ¿Qué puede hacer un colaborador que no puede un solo lector (read)?
+4. ¿Por qué el 2FA se recomienda incluso para cuentas con poco movimiento?
 
 ---
 
