@@ -20,6 +20,18 @@ Al finalizar esta sección dominarás el flujo completo de trabajo en la web, qu
 
 ---
 
+## Objetivos de aprendizaje
+
+Al terminar esta sección serás capaz de:
+
+* crear repositorios y archivos con la interfaz web de GitHub;
+* redactar mensajes de commit que expliquen el qué y el porqué;
+* organizar un proyecto con carpetas y publicar archivos e imágenes desde Markdown;
+* leer el historial: lista de commits, autor por línea (blame) y comparación de versiones;
+* restaurar una versión antigua de un archivo sin perder la actual.
+
+---
+
 ## ¿Qué aprenderás en esta sección?
 
 Cada capítulo de esta sección está diseñado para construir tu comprensión progresivamente:
@@ -52,6 +64,25 @@ Cada capítulo incluye:
 Un hilo conductor recorre toda la sección: cada acción en la web escribe en el historial. Crear, editar, subir y restaurar son variaciones del mismo acto —hacer commits— y la disciplina del mensaje y de la revisión previa es lo que separa un historial útil de uno inutilizable.
 
 Recuerda: la web es la puerta rápida. Cuando esta sección termine, entenderás perfectamente qué ocurre por debajo cuando Git haga lo mismo desde tu terminal.
+
+---
+
+## Referencias
+
+* GitHub — Documentación oficial: «Creating a new repository» y «Writing on GitHub» (docs.github.com).
+* Chacon, S. y Straub, B. — *Pro Git* (cap. 1).
+* CBE — «How to write better git commit messages» (Google Engineering Practices).
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con los capítulos de la sección:
+
+1. ¿De qué dos partes consta un buen mensaje de commit?
+2. ¿Cómo ves quién escribió cada línea de un archivo?
+3. ¿Cómo restauras un archivo a una versión anterior sin borrar la nueva?
+4. ¿Qué diferencia hay entre «descartar cambios» y «restaurar versión anterior»?
 
 ---
 
