@@ -1,0 +1,399 @@
+# LICENCIA
+
+## Creative Commons Atribución-NoComercial-CompartirIgual 4.0 Internacional
+
+**CC BY-NC-SA 4.0**
+
+Copyright © 2026 Jorge Sislema
+
+**Proyecto:** GitHub Paso a Paso — De cero a nivel profesional
+
+---
+
+## 1. Alcance de esta licencia
+
+Este repositorio contiene material educativo original creado y organizado para el proyecto **GitHub Paso a Paso — De cero a nivel profesional**.
+
+Salvo que se indique expresamente lo contrario, esta licencia se aplica a los materiales originales creados para este proyecto, incluyendo, entre otros:
+
+* textos y explicaciones originales;
+* estructura pedagógica del repositorio;
+* organización de los contenidos;
+* ejemplos originales;
+* ejercicios;
+* actividades prácticas;
+* diagramas originales;
+* esquemas;
+* analogías;
+* tablas elaboradas para explicar conceptos;
+* material didáctico;
+* documentación original;
+* archivos de configuración creados específicamente para este proyecto;
+* demás obras originales incorporadas al repositorio por su autor.
+
+Estos materiales se distribuyen bajo:
+
+**Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0).**
+
+Licencia oficial:
+
+https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+Texto legal:
+
+https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
+
+---
+
+# 2. ¿Qué permite esta licencia?
+
+Siempre que se respeten las condiciones establecidas, puedes:
+
+### Estudiar
+
+Puedes utilizar gratuitamente el material para aprender.
+
+### Copiar
+
+Puedes realizar copias del material.
+
+### Compartir
+
+Puedes redistribuir el material gratuitamente.
+
+### Adaptar
+
+Puedes modificar, traducir, reorganizar o adaptar el material.
+
+### Utilizarlo para enseñanza gratuita
+
+Puedes utilizarlo como material educativo en actividades que no impliquen un uso comercial del contenido.
+
+---
+
+# 3. Condición de atribución
+
+Si compartes material de este proyecto, debes reconocer su procedencia.
+
+Como mínimo, cuando sea razonablemente posible, debes indicar:
+
+**Autor:** Jorge Sislema
+
+**Proyecto:** GitHub Paso a Paso — De cero a nivel profesional
+
+**Licencia:** CC BY-NC-SA 4.0
+
+**Fuente:** repositorio original de GitHub
+
+También debes proporcionar un enlace a la licencia y señalar si realizaste modificaciones.
+
+La atribución no debe realizarse de manera que pueda interpretarse que Jorge Sislema, este proyecto o sus autores respaldan, patrocinan o certifican tu proyecto, curso, organización o producto.
+
+La licencia oficial establece las obligaciones de atribución y la indicación de modificaciones.
+
+---
+
+# 4. Prohibición de apropiación de autoría
+
+No está permitido presentar como propio el material original de este proyecto.
+
+No puedes:
+
+* eliminar deliberadamente la atribución;
+* eliminar el aviso de copyright;
+* cambiar el nombre del autor para aparentar que el material fue creado por otra persona;
+* presentar capítulos completos como creación propia;
+* publicar una copia sustancial del repositorio atribuyéndola exclusivamente a otra persona;
+* utilizar el contenido para crear una falsa apariencia de autoría.
+
+Si modificas el material, debes indicar que se trata de una adaptación.
+
+Por ejemplo:
+
+> Basado en GitHub Paso a Paso — De cero a nivel profesional, de Jorge Sislema. Adaptado y modificado por [nombre].
+
+---
+
+# 5. Uso no comercial
+
+El material está disponible gratuitamente y no se concede mediante esta licencia permiso para utilizarlo con fines comerciales.
+
+No está permitido, sin autorización adicional del autor:
+
+* vender el repositorio;
+* vender copias del material;
+* cobrar por el acceso al contenido original;
+* incluir una parte sustancial del contenido en un curso de pago;
+* convertir el contenido en un libro comercial;
+* incorporar el contenido sustancialmente a una plataforma educativa comercial;
+* utilizar el contenido como parte sustancial de un producto comercial;
+* redistribuir el material como contenido principal de un servicio de pago;
+* monetizar sustancialmente una adaptación basada en este material.
+
+La licencia CC BY-NC-SA define **NonCommercial** como un uso que no esté principalmente destinado a una ventaja comercial o compensación monetaria.
+
+### Importante
+
+Esta cláusula no pretende prohibir toda actividad que ocurra dentro de una empresa, institución u organización.
+
+La cuestión es si el material se está utilizando de una manera que constituya un uso comercial de la obra licenciada.
+
+En caso de duda sobre un uso concreto, debe solicitarse autorización al autor.
+
+---
+
+# 6. Adaptaciones y ShareAlike
+
+Puedes modificar el material.
+
+Sin embargo, si distribuyes una adaptación que incorpore material sustancial de este proyecto, dicha adaptación deberá respetar las condiciones de **CompartirIgual (ShareAlike)** de CC BY-NC-SA 4.0.
+
+En términos prácticos:
+
+> Puedes mejorar el material, pero no puedes tomarlo, modificarlo y después convertir la parte derivada en un material comercial cerrado que elimine las libertades concedidas por esta licencia.
+
+Las adaptaciones distribuidas deben mantener una licencia compatible con las condiciones de ShareAlike establecidas por CC BY-NC-SA 4.0.
+
+---
+
+# 7. No puedes añadir restricciones adicionales
+
+No puedes utilizar medidas legales o tecnológicas para impedir que otros ejerzan los derechos que esta licencia les concede.
+
+Por ejemplo, si distribuyes una adaptación permitida bajo esta licencia, no debes añadir condiciones que contradigan los derechos concedidos por la licencia.
+
+---
+
+# 8. Materiales de terceros
+
+## Esta licencia NO convierte automáticamente todo el contenido del repositorio en propiedad de Jorge Sislema.
+
+El repositorio puede contener referencias, nombres, comandos, ejemplos, tecnologías, marcas, enlaces, documentación o materiales pertenecientes a terceros.
+
+Dichos elementos permanecen sujetos a sus respectivas condiciones legales y licencias.
+
+La presente licencia únicamente concede derechos sobre los materiales respecto de los cuales el autor tiene autoridad para concederlos.
+
+Creative Commons establece expresamente que una persona solo puede conceder mediante su licencia los derechos que tiene autoridad para licenciar.
+
+Cuando corresponda, los materiales de terceros deberán identificarse mediante avisos, referencias o archivos de atribución específicos.
+
+---
+
+# 9. Git, GitHub y otras tecnologías
+
+Este proyecto es un material educativo independiente.
+
+**GitHub Paso a Paso no es Git, GitHub ni Microsoft.**
+
+El proyecto explica tecnologías desarrolladas y mantenidas por terceros.
+
+La utilización de nombres de productos, servicios y tecnologías tiene únicamente una finalidad descriptiva, educativa o de compatibilidad.
+
+No se concede mediante esta licencia ningún derecho sobre:
+
+* marcas;
+* logotipos;
+* nombres comerciales;
+* iconos;
+* fotografías;
+* diseños;
+* interfaces;
+* documentación de terceros;
+* código de terceros;
+* otros derechos de propiedad intelectual pertenecientes a terceros.
+
+Microsoft establece que sus marcas y elementos de marca están sujetos a sus propias condiciones y que su uso no debe crear una falsa impresión de afiliación o respaldo.
+
+Por tanto:
+
+> **GitHub Paso a Paso no afirma estar afiliado, patrocinado, certificado ni respaldado por Microsoft, GitHub, Git ni por los propietarios de las demás tecnologías mencionadas.**
+
+---
+
+# 10. Código y comandos
+
+Los comandos utilizados como ejemplos educativos, como:
+
+```text
+git init
+git status
+git add
+git commit
+git push
+git pull
+git merge
+git rebase
+```
+
+se presentan para explicar el funcionamiento y utilización de Git.
+
+El hecho de que un comando aparezca en este repositorio **no significa que el proyecto reclame propiedad sobre el software, el comando o la tecnología correspondiente**.
+
+Lo que puede estar protegido por derechos de autor es la explicación, ejemplo, estructura, ejercicio o material pedagógico original creado alrededor de dicho concepto.
+
+---
+
+# 11. Documentación y referencias externas
+
+Cuando una explicación se base en documentación externa, se procurará:
+
+* identificar la fuente;
+* proporcionar el enlace correspondiente;
+* utilizar la documentación únicamente de acuerdo con sus condiciones;
+* evitar presentar material de terceros como material original de este proyecto.
+
+No se pretende sustituir la documentación oficial de las tecnologías explicadas.
+
+---
+
+# 12. No afiliación
+
+Este proyecto es independiente.
+
+Nada en este repositorio debe interpretarse como una relación de:
+
+* patrocinio;
+* asociación;
+* certificación;
+* representación;
+* afiliación;
+* aprobación oficial.
+
+con Microsoft, GitHub, Git u otra empresa, organización o proyecto de terceros, salvo que se indique expresamente lo contrario.
+
+---
+
+# 13. Sin garantía
+
+El material se proporciona **tal como está y con fines educativos**.
+
+Se realiza un esfuerzo razonable para mantener las explicaciones claras, correctas y actualizadas, pero no se garantiza que:
+
+* todos los comandos funcionen en todas las versiones futuras;
+* todas las interfaces sean idénticas a las descritas;
+* todas las instrucciones sean adecuadas para cualquier entorno;
+* el contenido esté libre de errores;
+* una determinada solución sea apropiada para un entorno de producción.
+
+Para operaciones importantes, especialmente aquellas relacionadas con eliminación de archivos, reescritura de historial, seguridad, despliegues o sistemas de producción, el usuario debe verificar la documentación oficial y evaluar las consecuencias antes de ejecutarlas.
+
+---
+
+# 14. Responsabilidad del usuario
+
+El material tiene finalidad educativa.
+
+El usuario es responsable de verificar los comandos antes de ejecutarlos y de realizar copias de seguridad cuando corresponda.
+
+Esto es especialmente importante para comandos potencialmente destructivos, como:
+
+```text
+git reset --hard
+git clean
+git push --force
+git rebase
+```
+
+El repositorio procura explicar los riesgos de estas operaciones, pero la ejecución de comandos en un sistema real queda bajo responsabilidad del usuario.
+
+---
+
+# 15. Autorizaciones comerciales
+
+La licencia CC BY-NC-SA 4.0 no concede autorización para los usos comerciales restringidos por sus términos.
+
+Si una persona, empresa, institución u organización desea utilizar sustancialmente este material con fines comerciales, puede solicitar una autorización independiente al autor.
+
+Una autorización comercial podrá establecer condiciones diferentes y deberá ser otorgada expresamente.
+
+El hecho de que el repositorio sea público no constituye autorización para utilizarlo comercialmente.
+
+---
+
+# 16. Conservación del aviso de licencia
+
+Cuando el material se redistribuya, debe conservarse la información razonablemente necesaria para identificar:
+
+* al autor;
+* la obra original;
+* la licencia;
+* la fuente;
+* las modificaciones realizadas, cuando corresponda.
+
+Esto facilita que las personas puedan localizar el proyecto original y conocer sus condiciones de uso.
+
+---
+
+# 17. Derechos reservados sobre elementos no licenciados
+
+Todos los derechos que no hayan sido expresamente concedidos mediante esta licencia permanecen reservados.
+
+Esta disposición no afecta los derechos que legalmente correspondan a terceros sobre sus propios materiales.
+
+---
+
+# 18. Resumen práctico
+
+| Uso                                              |                        ¿Permitido? |
+| ------------------------------------------------ | ---------------------------------: |
+| Leer el repositorio                              |                                 Sí |
+| Estudiarlo                                       |                                 Sí |
+| Descargarlo                                      |                                 Sí |
+| Compartirlo gratuitamente                        |                                 Sí |
+| Enlazar al repositorio                           |                                 Sí |
+| Utilizarlo para aprendizaje personal             |                                 Sí |
+| Utilizarlo en un grupo de estudio gratuito       |                                 Sí |
+| Adaptarlo                                        |                                 Sí |
+| Traducirlo                                       |                                 Sí |
+| Crear ejercicios derivados                       |                                 Sí |
+| Dar crédito a Jorge Sislema                      |    **Obligatorio al redistribuir** |
+| Indicar modificaciones                           | **Obligatorio cuando corresponda** |
+| Mantener ShareAlike en adaptaciones distribuidas |                    **Obligatorio** |
+| Vender una copia del repositorio                 |                             **No** |
+| Cobrar por el acceso al contenido original       |                             **No** |
+| Incorporarlo sustancialmente a un curso de pago  |         **No, salvo autorización** |
+| Convertirlo en un producto comercial             |         **No, salvo autorización** |
+| Quitar la autoría y presentarlo como propio      |                             **No** |
+| Cambiar el autor para apropiarse del trabajo     |                             **No** |
+| Reclamar propiedad sobre Git/GitHub              |                             **No** |
+| Reclamar propiedad sobre marcas de terceros      |                             **No** |
+| Crear una falsa afiliación con Microsoft/GitHub  |                             **No** |
+
+---
+
+# 19. Aviso de autoría
+
+**GitHub Paso a Paso — De cero a nivel profesional**
+
+Copyright © 2026 Jorge Sislema
+
+Material original del proyecto distribuido bajo:
+
+**CC BY-NC-SA 4.0**
+
+La licencia permite compartir y adaptar el material bajo sus condiciones, pero **no concede permiso para utilizarlo comercialmente**.
+
+La licencia oficial prevalece sobre este resumen.
+
+---
+
+## Licencia oficial
+
+**Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International**
+
+https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+Texto legal oficial:
+
+https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
+
+---
+
+## Autor
+
+**Jorge Sislema**
+
+**GitHub Paso a Paso — De cero a nivel profesional**
+
+Copyright © 2026 Jorge Sislema
