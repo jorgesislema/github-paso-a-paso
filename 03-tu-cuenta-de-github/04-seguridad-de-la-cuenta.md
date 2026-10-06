@@ -24,52 +24,43 @@ La autenticación en dos factores se trata en el capítulo siguiente (05) por su
 
 ## Mapa conceptual de este capítulo
 
-```text
-Seguridad de la cuenta
-       │
-       ├── 1. El modelo de amenazas
-       │        ├── Qué protege tu cuenta
-       │        ├── Quién te ataca y cómo
-       │        └── Qué se gana el atacante
-       │
-       ├── 2. Contraseñas
-       │        ├── Reglas de una contraseña fuerte
-       │        ├── Gestores de contraseñas
-       │        ├── Reutilización y sus riesgos
-       │        └── Cambio de contraseña
-       │
-       ├── 3. Sesiones y dispositivos
-       │        ├── Revisión de sesiones
-       │        ├── Cierre remoto
-       │        └── Sesiones en equipos compartidos
-       │
-       ├── 4. Tokens de acceso personal (PAT)
-       │        ├── Qué son y para qué sirven
-       │        ├── Alcance mínimo (principio de privilegio mínimo)
-       │        ├── Caducidad
-       │        └── Qué hacer si un token se filtra
-       │
-       ├── 5. Phishing y engaños dirigidos
-       │        ├── Correos falsos de GitHub
-       │        ├── Sitios falsos de inicio de sesión
-       │        ├── Enlaces sospechosos en issues y PRs
-       │        └── Cómo verificar auténticamente
-       │
-       ├── 6. Alertas y revisiones de seguridad
-       │        ├── Correo de nuevos inicios de sesión
-       │        ├── Log de auditoría (para organizaciones)
-       │        └── Revisiones periódicas
-       │
-       ├── 7. Errores comunes con diagnóstico completo
-       │
-       ├── 8. Práctica guiada
-       │
-       ├── 9. Nivel profesional
-       │        ├── Tokens en pipelines y secretos
-       │        ├── Cuentas de servicio
-       │        └── Respuesta ante incidentes
-       │
-       └── 10. Resumen y siguiente paso
+```mermaid
+mindmap
+  root((Seguridad de la cuenta))
+    1. El modelo de amenazas
+      Qué protege tu cuenta
+      Quién te ataca y cómo
+      Qué se gana el atacante
+    2. Contraseñas
+      Reglas de una contraseña fuerte
+      Gestores de contraseñas
+      Reutilización y sus riesgos
+      Cambio de contraseña
+    3. Sesiones y dispositivos
+      Revisión de sesiones
+      Cierre remoto
+      Sesiones en equipos compartidos
+    4. Tokens de acceso personal PAT
+      Qué son y para qué sirven
+      Alcance mínimo privilegio mínimo
+      Caducidad
+      Qué hacer si un token se filtra
+    5. Phishing y engaños dirigidos
+      Correos falsos de GitHub
+      Sitios falsos de inicio de sesión
+      Enlaces sospechosos en issues y PRs
+      Cómo verificar auténticamente
+    6. Alertas y revisiones de seguridad
+      Correo de nuevos inicios de sesión
+      Log de auditoría para organizaciones
+      Revisiones periódicas
+    7. Errores comunes con diagnóstico completo
+    8. Práctica guiada
+    9. Nivel profesional
+      Tokens en pipelines y secretos
+      Cuentas de servicio
+      Respuesta ante incidentes
+    10. Resumen y siguiente paso
 ```
 
 ---
@@ -307,6 +298,8 @@ Situaciones de riesgo
 
 Protocolo si sospechas acceso no autorizado:
 
+⚠️ **RIESGO:** cerrar todas las sesiones, eliminar claves SSH y revocar tokens no se puede deshacer: las integraciones que dependan de esas credenciales dejan de funcionar hasta que las renueves.
+
 ```text
 Respuesta inmediata (en orden)
 ──────────────────────────────────────────────
@@ -411,21 +404,18 @@ Una fecha de caducidad obliga a renovar y, de paso, a recordar que ese token exi
 
 **Escenario:** pegaste un token en un repositorio público, en un log o en un issue.
 
-```text
-Respuesta ante token filtrado (actúa en minutos)
-──────────────────────────────────────────────
-1. Ir a Developer settings → Tokens
-2. REVOCAR el token afectado de inmediato
-3. Crear uno nuevo si aún lo necesitas
-4. Revisar el registro de actividad de la cuenta
-   (¿qué hizo alguien con el token mientras estuvo vivo?)
-5. Si el token tenía amplios permisos, revisar repositorios
-   y organización: commits extraños, releases, secretos
-6. Corregir la fuga (borrar el commit NO basta: el token ya
-   es conocido; revocar es la solución, no limpiar el código)
+```mermaid
+flowchart TD
+    A["Token filtrado: actúa en minutos"] --> B["Revocar el token en Developer settings → Tokens"]
+    B --> C["Crear uno nuevo si aún lo necesitas"]
+    C --> D["Revisar la bitácora de actividad: qué hizo alguien con el token mientras estuvo vivo"]
+    D --> E["Revisar repositorios y organización: commits extraños, releases, secretos"]
+    E --> F["Corregir la fuga: borrar el commit no basta porque el token ya es conocido"]
 ```
 
 > **Advertencia:** borrar el archivo con el token filtrado no lo invalida. El token sigue siendo válido hasta que lo revoques. La revocación es la única solución real.
+
+⚠️ **RIESGO:** un `git push --force` sobre historial ya publicado puede borrar commits que otros ya clonaron y no siempre es recuperable; además no invalida el token filtrado.
 
 Y sobre «pero si hago force-push para borrarlo del historial»: la copia ya pudo ser clonada; además, reescribir historial en repositorios compartidos es dañino. **Revocar primero, siempre.**
 
@@ -527,16 +517,14 @@ El gestor de contraseñas es aquí un detector de phishing de primera categoría
 
 GitHub puede avisarte (correo) cuando se inicia sesión desde un dispositivo nuevo. Recomendado: **activado**.
 
-```text
-Flujo de alerta
-──────────────────────────────────────────────
-Dispositivo nuevo inicia sesión
-        │
-        ▼
-Correo de aviso «Nuevo inicio de sesión»
-        │
-        ├── ¿Eras tú?  →  nada más
-        └── ¿No?       →  protocolo de incidente (punto 3.4)
+Flujo de alerta:
+
+```mermaid
+flowchart TD
+    A["Dispositivo nuevo inicia sesión"] --> B["Correo de aviso: nuevo inicio de sesión"]
+    B --> C{"¿Eras tú?"}
+    C -->|"Sí"| D["Nada más"]
+    C -->|"No"| E["Protocolo de incidente del punto 3.4"]
 ```
 
 ### 6.2. Notificaciones de seguridad de la cuenta
@@ -770,6 +758,10 @@ La cuenta tiene defensa en profundidad: ni la contraseña sola basta para compro
 
 La seguridad no es un ajuste sino un hábito: credenciales únicas, privilegios mínimos, sesiones revisadas y desconfianza ante prisas y enlaces.
 
+### Ejercicio de transferencia
+
+En tu cuenta real, ejecuta el inventario de credenciales del capítulo: revisa Settings → Sessions, Developer settings → Personal access tokens y Settings → SSH and GPG keys. Entrega una lista de lo que encontraste y de lo que revocaste o cerraste (sesiones cerradas, tokens con caducidad, claves de equipos antiguos eliminadas) más una captura de la lista de tokens mostrando su fecha de caducidad y sus permisos.
+
 ---
 
 ## 9. Nivel profesional
@@ -880,6 +872,18 @@ La idea principal es:
 > **La seguridad de la cuenta no depende de una contraseña buena, sino de varias capas: credenciales únicas, segundo factor, privilegios mínimos y desconfianza ante la urgencia.**
 
 ---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué cambiar la contraseña no basta si crees que tu cuenta fue comprometida, y qué más debes revocar?
+2. ¿Qué diferencia hay entre un token y una contraseña, y por qué el token es más peligroso si se filtra con permisos amplios?
+3. Si borras el archivo donde pegaste un token por error, ¿sigue expuesto el token? ¿qué es lo único que lo invalida?
+4. ¿Por qué un gestor de contraseñas funciona como detector de phishing sin que hagas nada especial?
+5. ¿Qué te dice la revisión de sesiones activas y por qué una ubicación que nunca visitaste es una alerta y no una curiosidad?
+6. Si te llega un correo urgente de GitHub pidiéndote iniciar sesión, ¿qué dos comprobaciones haces antes de pulsar nada?
+7. ¿Por qué los tokens deben nacer con caducidad y no «para cuando haga falta»?
 
 ## Próximo paso
 
