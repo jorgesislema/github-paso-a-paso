@@ -23,6 +23,44 @@ En este capítulo aprenderás:
 
 Un pequeño aviso antes de empezar: los nombres de botones y menús se escriben en inglés («New repository», «Create repository») porque es la interfaz por defecto de GitHub. Si tu navegador traduce la interfaz a español verás equivalentes como «Nuevo repositorio» o «Crear repositorio».
 
+## Mapa conceptual de este capítulo
+
+```mermaid
+mindmap
+  root((Crear un repositorio desde la web))
+    1. El botón de la barra superior
+      menú de creación
+      New repository
+      otras vías al formulario
+    2. El formulario de creación
+      propietario y nombre único
+      descripción opcional
+      público o privado
+      README y primer commit
+      plantilla de gitignore
+      licencia opcional
+    3. Qué ocurre al pulsar Create repository
+      se reserva el nombre en tu cuenta
+      se crea el repositorio remoto
+      rama main y primer commit
+      te lleva a su página
+    4. La página del nuevo repositorio
+      pestaña Code
+      selector de rama y Add file
+      lista de archivos y README renderizado
+      panel About
+    5. Detalles útiles de la página
+      URL del repositorio
+      enlaces de licencia y privacidad
+      contador de commits junto a History
+    6. Nombres y descripciones que perduran
+      el nombre es cambiable pero rompe enlaces
+      la descripción se edita desde About
+    7. Errores comunes
+    8. Práctica guiada y buenas prácticas
+    9. Autopreguntas y resumen
+```
+
 ## 1. Dónde está el botón «+»
 
 Para crear un repositorio nuevo necesitas estar **logueado** en tu cuenta de GitHub. Si no lo estás, pulsa tu avatar en la esquina superior derecha y elige «Sign in».
@@ -153,27 +191,14 @@ Más adelante, cuando compartas un proyecto con el mundo, podrás añadir la lic
 
 Cuando has llenado el formulario y pulsas el botón **«Create repository»**, GitHub realiza varias cosas por detrás:
 
-```text
-Pulsas «Create repository»
-    │
-    ▼
-1. GitHub reserva el nombre del repositorio para tu cuenta
-    │
-    ▼
-2. Se crea el repositorio remoto en los servidores de GitHub
-    │
-    ▼
-3. Si marcaste la casilla del README:
-   - se crea el archivo README.md
-   - se crea la rama principal (normalmente «main»)
-   - se realiza el primer commit con ese archivo
-    │
-    ▼
-4. Si elegiste gitignore y/o licencia,
-   se añaden esos archivos al mismo primer commit
-    │
-    ▼
-5. GitHub te lleva a la página del repositorio recién creado
+```mermaid
+flowchart TD
+    A["Pulsas Create repository"] --> B["GitHub reserva el nombre del repositorio para tu cuenta"]
+    B --> C["Se crea el repositorio remoto en los servidores de GitHub"]
+    C --> D["Si marcaste el README se crea el archivo README.md"]
+    D --> E["Se crea la rama principal main y se realiza el primer commit"]
+    E --> F["Si elegiste gitignore o licencia se añaden a ese primer commit"]
+    F --> G["GitHub te lleva a la página del repositorio recién creado"]
 ```
 
 Fíjate en algo importante: el repositorio se crea en los **servidores de GitHub**, no en tu computadora.
@@ -287,6 +312,10 @@ Deberías tener un repositorio con tu nombre de usuario y con un solo archivo `R
 
 Al finalizar deberías ser capaz de crear un repositorio nuevo desde cero, elegir entre público y privado, y reconocer los elementos principales de su página.
 
+### Ejercicio de transferencia
+
+En un repositorio tuyo —o en uno de práctica con una segunda cuenta— crea desde el formulario web un repositorio privado con README inicial, escríbele una descripción y repasa todas sus pestañas. Entrega: la URL del repositorio y una línea escrita indicando en qué pestaña se lista el archivo `README.md` y en qué otra se listan los commits.
+
 ## Errores comunes
 
 ### Error 1: no estar logueado
@@ -315,6 +344,8 @@ Solución: marca «Initialize this repository with a README» si quieres trabaja
 
 ### Error 5: crear el repositorio como público sin querer
 
+⚠️ **RIESGO:** lo que se publica en un repositorio público puede copiarse o archivarse en cuanto alguien lo ve; cambiarlo a privado después no recupera esa privacidad, así que datos personales o credenciales expuestas así se pierden para siempre.
+
 Si tienes información personal y creaste el repositorio como «Public», cualquiera podrá verlo.
 
 Solución: si contiene algo que no quieres compartir, cámbialo a privado desde «Settings» → «General» → «Visibility».
@@ -335,20 +366,18 @@ Solución: haz clic en el nombre del repositorio para entrar en su página.
 * guarda la URL del repositorio en tus marcadores;
 * revisa la visibilidad después de crear el repositorio para confirmar que es la que esperabas.
 
-## Cómo saber si lo entendiste
+## Autopreguntas de cierre
 
-Deberías poder explicar con tus propias palabras:
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
 
-* dónde está el botón «+» y qué opción abre el formulario de creación;
-* qué campos pide el formulario y qué se escribe en cada uno;
-* qué reglas tiene el nombre de un repositorio;
-* qué diferencia hay entre un repositorio público y uno privado;
-* qué archivo se crea al marcar «Initialize this repository with a README»;
-* qué es un gitignore y para qué sirve una plantilla;
-* qué es una licencia y cuándo conviene añadirla;
-* qué ocurre por detrás al pulsar «Create repository»;
-* cuáles son las pestañas principales de la página de un repositorio;
-* cómo se ve la URL de un repositorio y qué partes la forman.
+1. ¿Dónde está el botón «+» de la barra superior y qué otras dos vías llevan al mismo formulario de creación?
+2. ¿Qué campos del formulario «Create a new repository» son imprescindibles y cuáles puedes dejar vacíos mientras practicas?
+3. ¿Por qué el nombre de un repositorio debe ser único y no puede contener espacios, y qué consecuencia tiene cambiarlo después de crearlo?
+4. ¿En qué situaciones conviene que un repositorio sea privado y cuándo merece ser público?
+5. ¿Qué cambia exactamente en tu repositorio al marcar «Initialize this repository with a README» y qué ves en pantalla si lo dejas sin marcar?
+6. ¿Para qué sirve una plantilla de gitignore y para qué una licencia, y por qué puedes prescindir de las dos en un repositorio de notas de práctica?
+7. ¿Qué ocurre en los servidores de GitHub y qué ocurre en tu computadora al pulsar «Create repository»?
+8. ¿Qué partes forman la URL de un repositorio, por qué conviene guardarla en marcadores y qué pestaña usarías para ver los archivos y cuál para ver los commits?
 
 Si alguna respuesta todavía no está clara, vuelve a la sección correspondiente y repite la práctica.
 
