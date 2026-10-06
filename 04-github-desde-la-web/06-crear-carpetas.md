@@ -20,42 +20,34 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-Crear carpetas
-       │
-       ├── 1. La carpeta en un repositorio
-       │        ├── Concepto: la ruta es la carpeta
-       │        └── Qué es una carpeta vacía (y por qué no)
-       │
-       ├── 2. Métodos de creación
-       │        ├── A. Método de la ruta (barra en el nombre)
-       │        ├── B. Interfaz "Create new directory"
-       │        └── C. Al subir archivos a una carpeta nueva
-       │
-       ├── 3. Estructuras de proyecto
-       │        ├── Convenciones comunes
-       │        ├── Ejemplos por tipo de proyecto
-       │        └── Cuándo crear cada carpeta
-       │
-       ├── 4. Carpetas y archivos especiales
-       │        ├── .github/
-       │        ├── Archivos de configuración con punto
-       │        └── Reglas de visibilidad
-       │
-       ├── 5. Mover y renombrar carpetas
-       │
-       ├── 6. Verificación y buenas prácticas
-       │
-       ├── 7. Errores comunes con diagnóstico completo
-       │
-       ├── 8. Práctica guiada
-       │
-       ├── 9. Nivel profesional
-       │        ├── Estructuras empresariales
-       │        ├── Monorepositorio vs. múltiples repos
-       │        └── Rutas y herramientas
-       │
-       └── 10. Resumen y siguiente paso
+```mermaid
+mindmap
+  root((Crear carpetas))
+    1. La carpeta en un repositorio
+      la ruta es la carpeta
+      qué es una carpeta vacía y por qué no existe
+    2. Métodos de creación
+      A. Método de la ruta con barra en el nombre
+      B. Interfaz Create new directory
+      C. Al subir archivos a una carpeta nueva
+    3. Estructuras de proyecto
+      convenciones comunes
+      ejemplos por tipo de proyecto
+      cuándo crear cada carpeta
+    4. Carpetas y archivos especiales
+      la carpeta github
+      archivos de configuración con punto
+      reglas de visibilidad
+      el marcador gitkeep
+    5. Mover y renombrar carpetas
+    6. Verificación y buenas prácticas
+    7. Errores comunes con diagnóstico completo
+    8. Práctica guiada
+    9. Nivel profesional
+      estructuras empresariales
+      monorepositorio frente a varios repos
+      rutas y herramientas
+    10. Resumen y siguiente paso
 ```
 
 ---
@@ -138,11 +130,13 @@ La carpeta docs/ nació porque un archivo vive dentro.
 
 Paso a paso:
 
-1. **Add file → Create new file**.
-2. En el campo de nombre, escribe `docs/leeme.md` (o la carpeta que necesites + un archivo).
-3. GitHub muestra la ruta como carpeta navegable.
-4. Escribe el contenido del archivo.
-5. Confirma el commit: carpeta y archivo quedan creados.
+```mermaid
+flowchart TD
+    A["Add file y luego Create new file"] --> B["En el campo de nombre escribes docs/leeme.md o la carpeta que necesites más un archivo"]
+    B --> C["GitHub muestra la ruta como carpeta navegable"]
+    C --> D["Escribes el contenido del archivo"]
+    D --> E["Confirmas el commit y quedan creados la carpeta y el archivo"]
+```
 
 ```text
 Variantes útiles del nombre
@@ -347,14 +341,11 @@ Alternativa: poner un `LEEME.md` explicando para qué servirá la carpeta (más 
 
 ### 5.1. Mover un archivo dentro de la web
 
-```text
-Procedimiento (editor web)
-   │
-   1. Abre el archivo → lápiz (editar)
-   2. En el campo de nombre, cambia la ruta
-      (docs/archivo.md → docs/nueva/archivo.md)
-   3. Commit con mensaje descriptivo:
-      "Mueve archivo.md a docs/nueva/"
+```mermaid
+flowchart TD
+    A["Abres el archivo y pulsas el lápiz para editar"] --> B["En el campo de nombre cambias la ruta"]
+    B --> C["docs/archivo.md pasa a docs/nueva/archivo.md"]
+    C --> D["Confirmas con un commit descriptivo: Mueve archivo.md a docs/nueva/"]
 ```
 
 ### 5.2. Mover una carpeta completa
@@ -423,6 +414,8 @@ Convenciones recomendadas
 **Por qué:** no escribiste la barra ni el nombre del archivo dentro.
 
 **Cómo comprobarlo:** el elemento no es navegable (al pulsarlo no entras, se muestra como archivo).
+
+⚠️ **RIESGO:** eliminar ese archivo desde la web lo borra del repositorio con un commit; si le habías metido contenido solo se recupera abriendo su historial, y en la papelera de tu equipo no aparece.
 
 **Opciones:**
 * eliminar el archivo y crear `docs/leeme.md` con la ruta correcta;
@@ -498,6 +491,8 @@ Convenciones recomendadas
 
 **Cómo comprobarlo:** listar su contenido; si está vacía, en Git no está versionada.
 
+⚠️ **RIESGO:** para borrar una carpeta hay que borrar sus archivos desde la web, y eso elimina de un commit a toda la carpeta; solo se recupera desde el historial, y los enlaces que apuntaran a esos archivos quedan rotos.
+
 **Opciones:** si tiene archivos, borrarlos (la carpeta desaparece); si es un artefacto local, simplemente no existe en el repo.
 
 **Riesgos:** pocos; solo confusión.
@@ -570,6 +565,10 @@ Una raíz ordenada con tres carpetas y sus archivos sostén; documentada.
 ### Conclusión esperada
 
 Crear carpetas es crear rutas para archivos: con la barra correcta en el nombre nace la estructura, y la estructura se mantiene con convención, no con suerte.
+
+### Ejercicio de transferencia
+
+En tu repositorio de práctica monta, solo desde la web, una estructura que no sea la del curso —por ejemplo `fotos/evento/` con un `.gitkeep` dentro y `notas/semana-01.md` con una frase— y mueve después ese archivo a otra ruta nueva usando el lápiz, lo que renombra su carpeta. Entrega: la URL de la raíz donde se ven las carpetas, el mensaje de cada commit y una línea indicando qué enlace podrías haber roto con el movimiento.
 
 ---
 
@@ -649,6 +648,20 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **La estructura del repositorio es una decisión que se escribe en las rutas: cada archivo que nace con una barra a la vez dibuja el mapa del proyecto.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué en Git una carpeta no es un objeto que se crea, y qué tienes que hacer para que una carpeta nueva aparezca en el repositorio?
+2. ¿Qué problema hay con una carpeta vacía y qué dos maneras tienes de resolverlo desde la web?
+3. Si escribes `docs` sin barra en el nombre de un archivo nuevo, ¿qué obtienes y cómo lo detectas en la lista del repositorio?
+4. ¿Por qué conviene crear carpetas cuando ya hay contenido que poner dentro, y qué ruido deja hacerlo al revés?
+5. ¿Qué riesgos tiene elegir mayúsculas y minúsculas sin convención y en qué sistemas se nota el problema?
+6. Cuando mueves o renombras una carpeta, ¿qué es lo que puede romperse y dónde buscas esas referencias?
+7. ¿Qué diferencia hay entre borrar una carpeta desde el explorador de tu equipo y borrar sus archivos desde la web?
 
 ---
 
