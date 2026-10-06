@@ -23,43 +23,34 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-Autenticación en dos pasos (2FA)
-       │
-       ├── 1. Fundamento
-       │        ├── Autenticación: ¿quién eres?
-       │        ├── Factores: saber / poseer / ser
-       │        ├── Qué es multifactor y qué no
-       │        └── Por qué la contraseña sola no basta
-       │
-       ├── 2. Métodos que ofrece GitHub
-       │        ├── Aplicación autenticadora (TOTP)
-       │        ├── Llave de seguridad (FIDO2/WebAuthn)
-       │        ├── Llaves de recuperación
-       │        └── Código por SMS (limitado / no recomendado)
-       │
-       ├── 3. Activación paso a paso
-       │        ├── Elegir método
-       │        ├── Escanear el código QR
-       │        ├── Verificar el primer código
-       │        └── Descargar llaves de recuperación
-       │
-       ├── 4. El inicio de sesión con 2FA
-       │
-       ├── 5. Llaves de recuperación y dispositivos perdidos
-       │
-       ├── 6. 2FA en dispositivos móviles y apps
-       │
-       ├── 7. Errores comunes con diagnóstico completo
-       │
-       ├── 8. Práctica guiada
-       │
-       ├── 9. Nivel profesional
-       │        ├── 2FA obligatoria en organizaciones
-       │        ├── Llaves de seguridad en equipos
-       │        └── Recuperación corporativa de cuentas
-       │
-       └── 10. Resumen y siguiente paso
+```mermaid
+mindmap
+  root((Autenticación en dos pasos))
+    1. Fundamento
+      Autenticación ¿quién eres
+      Factores saber poseer ser
+      Qué es multifactor y qué no
+      Por qué la contraseña sola no basta
+    2. Métodos que ofrece GitHub
+      Aplicación autenticadora TOTP
+      Llave de seguridad FIDO2 WebAuthn
+      Llaves de recuperación
+      Código por SMS limitado no recomendado
+    3. Activación paso a paso
+      Elegir método
+      Escanear el código QR
+      Verificar el primer código
+      Descargar llaves de recuperación
+    4. El inicio de sesión con 2FA
+    5. Llaves de recuperación y dispositivos perdidos
+    6. 2FA en dispositivos móviles y apps
+    7. Errores comunes con diagnóstico completo
+    8. Práctica guiada
+    9. Nivel profesional
+      2FA obligatoria en organizaciones
+      Llaves de seguridad en equipos
+      Recuperación corporativa de cuentas
+    10. Resumen y siguiente paso
 ```
 
 ---
@@ -294,18 +285,15 @@ Settings
 8. Confirma haberlas guardado (GitHub exige confirmación).
 9. La 2FA queda activa.
 
-```text
-Diagrama de la activación
-──────────────────────────────────────────────
-     GitHub (navegador)            App en el móvil
-            │                            │
-            │──── muestra QR ───────────►│ escanea
-            │                            │ genera código
-            │◄─── escribe el código ─────│
-            │ verificado                 │
-            │──── ofrece llaves de       │
-            │      recuperación ──► guardas FUERA del móvil
-            │ 2FA ACTIVA                 │
+Diagrama de la activación:
+
+```mermaid
+flowchart TD
+    A["GitHub en el navegador muestra el código QR"] --> B["La app en el móvil escanea el QR y genera el código"]
+    B --> C["Escribes el código en GitHub y queda verificado"]
+    C --> D["GitHub ofrece las llaves de recuperación"]
+    D --> E["Guardas las llaves de recuperación fuera del móvil"]
+    E --> F["2FA activa"]
 ```
 
 ### 3.3. Procedimiento con llave de seguridad
@@ -339,20 +327,15 @@ NO:
 
 ### 4.1. Flujo normal
 
-```text
-Inicio de sesión con 2FA
-──────────────────────────────────────────────
-1. Usuario + contraseña
-        │
-        ▼
-2. GitHub pide el segundo factor
-        │
-        ├── App TOTP: escribes el código de 6 dígitos
-        ├── Llave: presionas la llave
-        └── Emergencia: un código de recuperación (se agota)
-        │
-        ▼
-3. Sesión iniciada
+```mermaid
+flowchart TD
+    A["1. Usuario y contraseña"] --> B["2. GitHub pide el segundo factor"]
+    B --> C["App TOTP: escribes el código de 6 dígitos"]
+    B --> D["Llave: presionas la llave"]
+    B --> E["Emergencia: un código de recuperación que se agota"]
+    C --> F["3. Sesión iniciada"]
+    D --> F
+    E --> F
 ```
 
 ### 4.2. Dónde se pide (y dónde no)
@@ -431,6 +414,8 @@ y POR ESO se guardan fuera del móvil
 
 Migración ordenada (antes de dar de baja el antiguo):
 
+⚠️ **RIESGO:** si eliminas la app autenticadora del móvil antiguo antes de verificar la nueva, pierdes el segundo factor y solo te quedan los códigos de recuperación.
+
 ```text
 Migración de app TOTP
 ──────────────────────────────────────────────
@@ -484,6 +469,8 @@ Refuerzos
 **Por qué:** prisa; el archivo «después lo hago».
 
 **Cómo comprobarlo:** intentar localizar el archivo o impreso; si no existe, no están guardados.
+
+⚠️ **RIESGO:** generar un juego nuevo de códigos de recuperación invalida todos los anteriores: cualquier código que hubieras guardado deja de servir.
 
 **Opciones:**
 * Generar un juego nuevo desde la configuración de seguridad (los antiguos se invalidan).
@@ -657,6 +644,10 @@ Entrar a tu cuenta requiere dos factores, y tienes una vía de recuperación pro
 
 La 2FA no es un trámite: es la barrera que convierte una contraseña filtrada en un intento fallido. Y su valor depende por completo de tener la recuperación resuelta antes de necesitarla.
 
+### Ejercicio de transferencia
+
+Aplica en tu cuenta real lo aprendido: activa la 2FA con app TOTP o llave, descarga los códigos de recuperación y guárdalos fuera del equipo, y cierra sesión para comprobar que te piden el segundo factor. Entrega una captura de la sección de seguridad de tu cuenta con la 2FA activada (sin que se vea ningún código) y una lista con el método que elegiste, dónde guardaste los códigos de recuperación y la fecha de esa prueba de inicio de sesión.
+
 ---
 
 ## 9. Nivel profesional
@@ -664,6 +655,8 @@ La 2FA no es un trámite: es la barrera que convierte una contraseña filtrada e
 ### 9.1. 2FA obligatoria en organizaciones
 
 Las organizaciones pueden exigir 2FA a sus miembros:
+
+⚠️ **RIESGO:** desactivar la 2FA en una organización que la exige te hace perder el acceso a sus repositorios y equipos hasta que la vuelvas a activar.
 
 ```text
 2FA obligatoria en una organización
@@ -732,6 +725,18 @@ La idea principal es:
 > **La 2FA convierte la contraseña filtrada en un intento fallido. Su verdadero valor aparece cuando la pierdes: por eso la recuperación se prepara antes de necesitarla.**
 
 ---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué «contraseña + pregunta secreta» no es autenticación en dos factores aunque sean dos pasos?
+2. ¿Qué gana una llave FIDO2 frente a una app TOTP frente a un código por SMS?
+3. ¿Por qué una captura de pantalla del QR de activación equivale a regalar tu segundo factor?
+4. Si pierdes el móvil y tienes códigos de recuperación, ¿qué haces en orden y por qué no sirve para siempre cada código?
+5. ¿Qué NO protege la 2FA: una sesión ya abierta, un token ya emitido o una clave SSH ya registrada? ¿y por qué?
+6. ¿Por qué los códigos TOTP dejan de funcionar si el reloj del teléfono está mal ajustado?
+7. ¿Qué tienen que ver las llaves de recuperación con un viaje al extranjero sin cobertura?
 
 ## Próximo paso
 
