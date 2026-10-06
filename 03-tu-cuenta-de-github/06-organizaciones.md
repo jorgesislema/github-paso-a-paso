@@ -23,51 +23,40 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-Organizaciones
-       │
-       ├── 1. Qué es una organización
-       │        ├── Definición
-       │        ├── Cuenta personal vs. organización
-       │        └── Para qué sirve
-       │
-       ├── 2. Conceptos fundamentales
-       │        ├── Miembro vs. colaborador
-       │        ├── Propietario vs. miembro
-       │        ├── Equipos
-       │        └── Repositorios de la organización
-       │
-       ├── 3. Crear una organización
-       │
-       ├── 4. Invitar personas y aceptar invitaciones
-       │
-       ├── 5. Equipos
-       │        ├── Qué son
-       │        ├── Permisos de equipo
-       │        └── Ejemplos de estructura
-       │
-       ├── 6. Roles y permisos
-       │        ├── Mapa de permisos
-       │        ├── El principio de mínimo privilegio
-       │        └── Colaboradores externos
-       │
-       ├── 7. Organizaciones de código abierto
-       │        ├── Comunidad y gobernanza
-       │        └── Cómo colaborar con una org ajena
-       │
-       ├── 8. La organización en tu día a día
-       │
-       ├── 9. Errores comunes con diagnóstico completo
-       │
-       ├── 10. Práctica guiada
-       │
-       ├── 11. Nivel profesional
-       │        ├── Organizaciones de empresa
-       │        ├── SSO y políticas
-       │        ├── Bitácora de auditoría
-       │        └── Facturación y planes
-       │
-       └── 12. Resumen y siguiente paso
+```mermaid
+mindmap
+  root((Organizaciones))
+    1. Qué es una organización
+      Definición
+      Cuenta personal vs. organización
+      Para qué sirve
+    2. Conceptos fundamentales
+      Miembro vs. colaborador
+      Propietario vs. miembro
+      Equipos
+      Repositorios de la organización
+    3. Crear una organización
+    4. Invitar personas y aceptar invitaciones
+    5. Equipos
+      Qué son
+      Permisos de equipo
+      Ejemplos de estructura
+    6. Roles y permisos
+      Mapa de permisos
+      El principio de mínimo privilegio
+      Colaboradores externos
+    7. Organizaciones de código abierto
+      Comunidad y gobernanza
+      Cómo colaborar con una org ajena
+    8. La organización en tu día a día
+    9. Errores comunes con diagnóstico completo
+    10. Práctica guiada
+    11. Nivel profesional
+      Organizaciones de empresa
+      SSO y políticas
+      Bitácora de auditoría
+      Facturación y planes
+    12. Resumen y siguiente paso
 ```
 
 ---
@@ -148,18 +137,12 @@ Usos típicos de una organización
 
 ### 1.4. Dónde empieza la diferencia práctica
 
-```text
-Si trabajas solo:
-   cuenta personal = suficiente
-
-Si otra persona:
-   necesita acceso a TU repositorio
-   →  puede ser COLABORADOR en tu cuenta
-   →  o puede estar en una ORGANIZACIÓN con el repo dentro
-
-Si sois varios:
-   compartiendo varios repos y permisos
-   →  organización casi siempre es la mejor opción
+```mermaid
+flowchart TD
+    A{"¿Cómo trabajas?"}
+    A -->|"Solo"| B["Cuenta personal: suficiente"]
+    A -->|"Otra persona necesita acceso a TU repositorio"| C["Puede ser colaborador en tu cuenta, o estar en una organización con el repo dentro"]
+    A -->|"Sois varios compartiendo varios repos y permisos"| D["Organización casi siempre es la mejor opción"]
 ```
 
 ---
@@ -290,27 +273,14 @@ Decisiones iniciales
 
 ### 4.1. Flujo de invitación
 
-```text
-Invitación a una organización
-──────────────────────────────────────────────
-Propietario/administrador
-   │
-   1. Invita por nombre de usuario o correo
-   │
-   2. El invitado recibe notificación (correo + plataforma)
-   │
-   3. El invitado ACEPTA
-   │         │
-   │         ├── Acepta con su cuenta personal existente
-   │         └── o crea cuenta si no tiene
-   │
-   4. Pasa a ser miembro
-   │         │
-   │         └── y se le asigna a equipos
-   │             (o queda sin equipos = sin acceso útil)
-   │
-   ▼
-Resultado: miembro con permisos según sus equipos
+```mermaid
+flowchart TD
+    A["Propietario o administrador invita por nombre de usuario o correo"] --> B["El invitado recibe notificación en el correo y en la plataforma"]
+    B --> C["El invitado acepta con su cuenta existente o crea una si no tiene"]
+    C --> D["Pasa a ser miembro"]
+    D --> E{"¿Se le asigna a equipos?"}
+    E -->|"Sí"| F["Resultado: miembro con permisos según sus equipos"]
+    E -->|"No"| G["Queda sin equipos, sin acceso útil"]
 ```
 
 ### 4.2. Puntos importantes
@@ -321,6 +291,8 @@ Resultado: miembro con permisos según sus equipos
 * **Verifica que el invitado es la persona correcta:** invitar al usuario equivocado da acceso a alguien que no debía tenerlo (y se revoca desde la gestión de miembros).
 
 ### 4.3. Dar de baja a un miembro
+
+⚠️ **RIESGO:** eliminar a un miembro le quita de inmediato el acceso a todos los repositorios privados de la organización; se recupera reinvitándole, pero sus tokens y claves de la organización deben revisarse.
 
 ```text
 Baja de un miembro
@@ -730,6 +702,8 @@ Desde la cuenta invitada:
 
 ### Paso 5: Simulacro de baja
 
+⚠️ **RIESGO:** si haces esta prueba en una organización real y no en la de práctica, la persona afectada pierde el acceso a los repositorios privados en ese instante; se recupera reinvitándola.
+
 1. Retira al miembro (o baja el permiso).
 2. Comprueba que pierde el acceso.
 3. Reintegra: invita de nuevo y reasigna el equipo.
@@ -755,6 +729,10 @@ Una organización funcional con estructura de equipos y un ciclo completo de inc
 ### Conclusión esperada
 
 La organización es el mecanismo que separa el proyecto de las personas: los repos viven en la entidad, los permisos se dan por equipo y las altas/bajas son gestiones, no terremotos.
+
+### Ejercicio de transferencia
+
+Aplica el principio de mínimo privilegio en un contexto distinto del ejemplo guiado: en una organización real a la que pertenezcas (o en tu organización de práctica con la segunda cuenta), revisa los permisos de un equipo y comprueba si hay alguien con un nivel más alto del que necesita. Entrega el nombre de la organización, el equipo revisado, el nivel actual y el nivel que propones, más una captura de la página de equipos con sus permisos.
 
 ---
 
@@ -872,6 +850,18 @@ La idea principal es:
 > **La organización separa el proyecto de las personas: los repositorios viven en la entidad, los permisos se dan por equipo y las personas entran y salen sin llevarse el trabajo.**
 
 ---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué los repositorios de una organización sobreviven a la salida de la persona que los creó, y qué pasaría si estuvieran en su cuenta personal?
+2. ¿En qué se diferencia un colaborador de un repositorio de un miembro de la organización, y por qué conviene no mezclarlos?
+3. ¿Por qué el número de propietarios debe ser el mínimo imprescindible?
+4. Si un equipo necesita hacer push pero nunca cambiar ajustes del repositorio, ¿qué nivel de acceso le das y por qué no Admin?
+5. ¿Qué haces distinto al invitar a alguien con intención de que solo lea, frente a alguien que va a desarrollar durante meses?
+6. ¿Qué revisas antes de dar de baja a un miembro que trabajó en un proyecto privado?
+7. Al crear un repositorio, ¿cómo decides si va a tu cuenta personal o a una organización?
 
 ## Próximo paso
 
