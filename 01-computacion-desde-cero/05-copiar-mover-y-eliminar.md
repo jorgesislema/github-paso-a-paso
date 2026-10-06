@@ -21,6 +21,60 @@ En este capítulo aprenderás:
 
 ---
 
+## Mapa conceptual
+
+```mermaid
+mindmap
+  root((Copiar, mover y eliminar))
+    1. Una primera explicación
+      cuatro intenciones distintas
+      copiar, mover, renombrar, eliminar
+    2. Copiar
+      crea un duplicado
+      el original permanece
+    3. Mover
+      cambia la ubicación
+      la carpeta arrastra su contenido
+    4. Renombrar
+      solo cambia el nombre
+      puede romper referencias
+    5. Eliminar
+      pasa por la papelera o es permanente
+      la papelera tiene límites
+    6. La importancia de la copia de seguridad
+      comprobar antes de actuar
+      Git recupera solo lo registrado
+    7. Cómo se relacionan estas operaciones con Git
+      Git registra estructura y contenido
+      detecta borrados, cambios y renombres
+    8. Operaciones destructivas
+      vaciar la papelera o sobrescribir
+      mover carpetas con lo importante
+    9. Errores comunes
+      confundir copiar con mover
+      asumir que todo es reversible
+    10. Buenas prácticas
+      revisar antes de eliminar
+      verificar la carpeta de destino
+    11. Práctica guiada
+      copiar, renombrar y mover
+      comprobar la independencia
+    12. Experimento controlado
+      eliminación recuperable y permanente
+      qué protege además de la papelera
+    13. Ejercicio de análisis
+      deducir la estructura final
+      identificar la operación destructiva
+    14. Cómo saber si lo entendiste
+      explicar con tus propias palabras
+      repetir la práctica si algo falla
+    15. Resumen
+      operaciones simples con consecuencias
+      Git frente a la copia de seguridad
+```
+
+---
+
 ## 1. Una primera explicación
 
 Imagina que tienes una carpeta con documentos importantes.
@@ -288,15 +342,11 @@ Los archivos internos se eliminan junto con la carpeta.
 
 En muchos sistemas, al eliminar un archivo este pasa a una **papelera de reciclaje**, desde donde puede restaurarse durante un tiempo.
 
-```text
-Archivo
-   │
-   │ eliminar
-   ▼
-Papelera
-   │
-   ├── restaurar  →  el archivo vuelve
-   └── vaciar     →  el archivo se elimina de forma permanente
+```mermaid
+flowchart TD
+    A["Archivo"] -->|eliminar| B["Papelera"]
+    B -->|restaurar| C["El archivo vuelve a su ubicación"]
+    B -->|vaciar| D["El archivo se elimina de forma permanente"]
 ```
 
 ### Limitaciones de la papelera
@@ -594,6 +644,10 @@ practica-operaciones/
 
 Comprueba que `destino/` quedó vacía y que el archivo se encuentra ahora en `origen/`.
 
+### Ejercicio de transferencia
+
+Dentro de `practica-operaciones` crea la carpeta `recetas` con dos archivos de texto: `ensalada.txt` y `sopa.txt`. Copia `ensalada.txt` a `destino/`, renombra `sopa.txt` como `sopa-fria.txt`, mueve la carpeta `recetas` completa a `destino/` y elimina después el `ensalada.txt` que quedó en `origen/` (restaurándolo desde la papelera si tu sistema lo permite). Entrega una lista de cuatro líneas con las operaciones realizadas y qué pudo recuperarse y qué no.
+
 ---
 
 ## 12. Experimento controlado
@@ -689,6 +743,21 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **Copiar, mover y eliminar parecen operaciones simples, pero modifican la estructura del proyecto y pueden tener consecuencias difíciles de revertir si no se comprenden.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. Copiaste un archivo con **Cortar** esperando conservar el original: ¿qué ha pasado y en qué se diferencia copiar de mover?
+2. Eliminaste una carpeta entera: ¿qué se perdió con ella y en qué momento deja de ser recuperable?
+3. ¿Por qué la papelera no equivale a una copia de seguridad y qué situaciones pueden dejarla inútil?
+4. Renombras `notas.txt` como `apuntes.txt` dentro de un repositorio: ¿qué debería registrar Git y por qué puede reconocerlo como renombrado?
+5. ¿Qué puede romperse al renombrar la carpeta raíz de un proyecto aunque los archivos internos sigan intactos?
+6. ¿Por qué Git puede devolverte un archivo que eliminaste solo si ese archivo estaba registrado antes?
+7. Antes de ejecutar un comando de Git que descarta cambios, ¿qué tres comprobaciones harías?
+8. ¿Qué ganas y qué pierdes al guardar copias con nombres como `informe-final-2.txt` en lugar de registrar un historial?
 
 ---
 
