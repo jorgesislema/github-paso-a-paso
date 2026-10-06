@@ -24,49 +24,40 @@ No necesitas instalar nada. Todo ocurre en el navegador.
 
 ## Mapa conceptual de este capítulo
 
-```text
-Configuración básica de GitHub
-       │
-       ├── 1. Mapa de Settings
-       │        ├── Dónde está
-       │        ├── Secciones principales
-       │        └── Qué se configura en cada una
-       │
-       ├── 2. Correos electrónicos
-       │        ├── Correos vinculados y verificados
-       │        ├── Correo principal
-       │        ├── Añadir y verificar un correo
-       │        ├── Notificaciones por correo
-       │        └── DIRECCIÓN NO-REPLY (clave para privacidad)
-       │
-       ├── 3. Idioma, zona horaria y apariencia
-       │
-       ├── 4. Notificaciones
-       │        ├── Tipos de notificación
-       │        ├── Por canal (correo, web, móvil)
-       │        ├── Suscripciones automáticas
-       │        └── Estrategia recomendada
-       │
-       ├── 5. Visibilidad y privacidad
-       │        ├── Actividad pública
-       │        ├── Correo en commits
-       │        └── Datos del perfil
-       │
-       ├── 6. Preferencias de cuenta
-       │        ├── Teclado
-       │        ├── Fecha y formato
-       │        └── Límites y borrado de datos
-       │
-       ├── 7. Errores comunes
-       │
-       ├── 8. Práctica guiada
-       │
-       ├── 9. Nivel profesional
-       │        ├── Cuentas de empresa
-       │        ├── Múltiples identidades
-       │        └── Políticas de configuración
-       │
-       └── 10. Resumen y siguiente paso
+```mermaid
+mindmap
+  root((Configuración básica))
+    1. Mapa de Settings
+      Dónde está
+      Secciones principales
+      Qué se configura en cada una
+    2. Correos electrónicos
+      Correos vinculados y verificados
+      Correo principal
+      Añadir y verificar un correo
+      Notificaciones por correo
+      Dirección noreply clave para privacidad
+    3. Idioma zona horaria y apariencia
+    4. Notificaciones
+      Tipos de notificación
+      Por canal correo web móvil
+      Suscripciones automáticas
+      Estrategia recomendada
+    5. Visibilidad y privacidad
+      Actividad pública
+      Correo en commits
+      Datos del perfil
+    6. Preferencias de cuenta
+      Teclado
+      Fecha y formato
+      Límites y borrado de datos
+    7. Errores comunes
+    8. Práctica guiada
+    9. Nivel profesional
+      Cuentas de empresa
+      Múltiples identidades
+      Políticas de configuración
+    10. Resumen y siguiente paso
 ```
 
 ---
@@ -75,17 +66,11 @@ Configuración básica de GitHub
 
 ### 1.1. Cómo llegar
 
-```text
-Cualquier página de GitHub
-       │
-       │ pulsa tu avatar (esquina superior derecha)
-       ▼
-Menú desplegable
-       │
-       └── Settings
-              │
-              ▼
-       Página de configuración con menú lateral
+```mermaid
+flowchart TD
+    A["Cualquier página de GitHub"] -->|"pulsa tu avatar en la esquina superior derecha"| B["Menú desplegable"]
+    B --> C["Settings"]
+    C --> D["Página de configuración con menú lateral"]
 ```
 
 ### 1.2. Estructura del menú lateral
@@ -193,24 +178,14 @@ Conceptos de correo en GitHub
 
 ### 2.2. Diagrama: qué correo usa cada acción
 
-```text
-                    ┌────────────────────────┐
-                    │   TU CUENTA EN GITHUB  │
-                    └───────────┬────────────┘
-                                │
-        ┌───────────────────────┼───────────────────────┐
-        │                       │                       │
-        ▼                       ▼                       ▼
-  Notificaciones          Identidad pública         Tus commits
-  (avisos de la           (perfil, actividad)       (escritos con Git)
-   plataforma)                                       │
-        │                       │                    │
-        ▼                       ▼                    ▼
-  Correo principal        El correo público      El correo que
-  o de notificaciones     que decidiste mostrar   configuraste en
-  (tú eliges)             o ninguno               git config
-                                                   (tú eliges,
-                                                   ver sección 6)
+```mermaid
+flowchart TD
+    A["Tu cuenta en GitHub"] --> B["Notificaciones: avisos de la plataforma"]
+    A --> C["Identidad pública: perfil y actividad"]
+    A --> D["Tus commits: escritos con Git"]
+    B --> B1["Correo principal o de notificaciones, tú eliges"]
+    C --> C1["El correo público que decidiste mostrar, o ninguno"]
+    D --> D1["El correo que configuraste en git config, tú eliges, ver sección 6"]
 ```
 
 La separación es crucial: **puedes recibir avisos en un correo, mostrar otro en el perfil y firmar commits con un tercero** (o con la noreply). Muchos problemas de privacidad vienen de mezclar los tres.
@@ -581,6 +556,8 @@ Qué revisar en sesiones
 
 ### 6.4. Zona peligrosa: desactivar y borrar
 
+⚠️ **RIESGO:** borrar la cuenta elimina de forma irreversible tu usuario, tus correos vinculados, las claves SSH y PGP, las claves de API y todos los tokens; no se puede deshacer.
+
 ```text
 DESACTIVAR cuenta
    │
@@ -703,6 +680,10 @@ Una cuenta que recibe solo las notificaciones que importan, con privacidad de co
 
 La configuración básica no se nota cuando está bien hecha: simplemente recibes solo lo que necesitas y nada se escapa por accidente.
 
+### Ejercicio de transferencia
+
+Aplica en tu cuenta real los ajustes del capítulo: activa la privacidad del correo y copia tu dirección noreply, fija tu zona horaria y deja el correo solo para menciones, asignaciones, respuestas y seguridad. Entrega una lista de los ajustes que cambiaste (noreply copiada, casillas de notificaciones activadas y desactivadas, zona horaria) más una captura de Settings → Notifications con la configuración final.
+
 ---
 
 ## 9. Nivel profesional
@@ -800,6 +781,18 @@ La idea principal es:
 > **La configuración básica determina el flujo diario de información y la exposición de tus datos. Una hora de ajustes bien hecha evita meses de ruido y un problema de privacidad.**
 
 ---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué conviene no mezclar el correo de notificaciones, el correo público del perfil y el correo de tus commits?
+2. ¿Qué problema concreto resuelve la dirección noreply y qué seguiría pasando si solo cambias el correo en GitHub sin tocar `git config`?
+3. ¿Por qué te llegan tantos correos de GitHub tras comentar una vez en un hilo, y qué haces para cortarlos?
+4. ¿Qué límites reales tiene la configuración de privacidad después de que algo ya se ha publicado?
+5. Si cambias el correo principal de la cuenta hoy, ¿qué ocurre con los commits que ya firmaste con tu correo anterior?
+6. ¿Por qué la zona horaria debe configurarse pronto y no «cuando moleste»?
+7. ¿Qué diferencia hay entre desactivar y borrar la cuenta, y cuál de las dos puedes deshacer?
 
 ## Próximo paso
 
