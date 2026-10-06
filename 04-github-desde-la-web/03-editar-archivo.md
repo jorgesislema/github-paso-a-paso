@@ -20,6 +20,45 @@ En este capítulo aprenderás:
 
 Recuerda que cada guardado es un commit, y cada commit es un registro en el historial del proyecto.
 
+## Mapa conceptual de este capítulo
+
+```mermaid
+mindmap
+  root((Editar un archivo))
+    1. Abrir el archivo y localizar el lápiz
+      botón Edit
+      Blame y History
+      ver sin formato
+    2. El editor web de modificación
+      nombre ya completado
+      contenido actual cargado
+      bloque de commit
+    3. Editar el contenido
+      cambiar añadir o borrar líneas
+      números de línea
+    4. El mensaje de commit de la edición
+      qué se cambió y por qué
+      sustituir la sugerencia
+    5. Guardar con Commit changes
+      se envía el archivo completo
+      se crea una versión nueva
+      la versión anterior sigue viva
+    6. Ver el historial del archivo
+      lista de commits del archivo
+      autor fecha y SHA
+    7. Ver un commit en detalle
+      diff en rojo y verde
+      archivos afectados
+    8. Cada guardado es un registro nuevo
+      pila de fotografías
+      carpeta común frente a repositorio
+    9. Renombrar un archivo
+      el nombre se cambia en el editor
+      el historial se conserva
+    10. Práctica guiada y errores comunes
+    11. Autopreguntas y resumen
+```
+
 ## 1. Abrir el archivo y localizar el lápiz
 
 Entra en tu repositorio y asegúrate de estar en la pestaña **«Code»**.
@@ -111,28 +150,13 @@ El mensaje de un commit de edición debería indicar **qué se cambió y por qu�
 
 Cuando el contenido y el mensaje están listos, pulsa el botón **«Commit changes»**.
 
-```text
-Pulsas «Commit changes» sobre un archivo existente
-    │
-    ▼
-1. El navegador envía el nuevo contenido completo del archivo
-    │
-    ▼
-2. GitHub guarda ese contenido como una versión nueva del archivo
-    │
-    ▼
-3. Se crea un commit que contiene:
-   - la nueva versión del archivo
-   - tu nombre y tu correo como autor
-   - la fecha y hora
-   - el mensaje de commit
-   - la referencia al commit anterior
-    │
-    ▼
-4. La rama main avanza un paso
-    │
-    ▼
-5. GitHub te lleva de vuelta a la página del archivo, ya con el contenido nuevo
+```mermaid
+flowchart TD
+    A["Pulsas Commit changes sobre un archivo existente"] --> B["El navegador envía el nuevo contenido completo del archivo"]
+    B --> C["GitHub guarda ese contenido como una versión nueva del archivo"]
+    C --> D["Se crea un commit con la versión nueva tu nombre y correo la fecha el mensaje y la referencia al commit anterior"]
+    D --> E["La rama main avanza un paso"]
+    E --> F["GitHub te lleva de vuelta a la página del archivo con el contenido nuevo"]
 ```
 
 Es importante notar algo: no se modifica la versión anterior.
@@ -256,6 +280,10 @@ El archivo debe mostrar el contenido nuevo, y su historial debe tener al menos d
 
 Al terminar deberías saber editar un archivo desde la web, guardar el cambio con un commit, y leer el historial del archivo para ver cada versión y cada diferencia.
 
+### Ejercicio de transferencia
+
+Sobre el `README.md` de tu repositorio de práctica, haz dos ediciones separadas —una que añada una frase y otra que corrija un párrafo— y abre la pestaña «History» del archivo. Entrega: el enlace al archivo con su historial, el número de versiones listadas y el mensaje exacto de cada una de las dos ediciones.
+
 ## Errores comunes
 
 ### Error 1: confundir «Edit» con «View raw file»
@@ -265,6 +293,8 @@ Al terminar deberías saber editar un archivo desde la web, guardar el cambio co
 Solución: para editar, pulsa el botón «Edit» con el icono del lápiz.
 
 ### Error 2: perder el cambio porque no se pulsó «Commit changes»
+
+⚠️ **RIESGO:** lo que está en el editor sin confirmar no está en ningún commit: si cierras la pestaña o pierdes la conexión se pierde para siempre y no hay forma de recuperarlo desde el repositorio.
 
 Si cierras el navegador o navegas fuera sin pulsar «Commit changes», el cambio **no se guarda**.
 
@@ -304,20 +334,18 @@ Solución: asocia el SHA con el commit que lo produce, no con el archivo.
 * lee el diff del commit para asegurarte de que las líneas que cambiaste son las esperadas;
 * recuerda que cada guardado crea una versión nueva y no borra las anteriores.
 
-## Cómo saber si lo entendiste
+## Autopreguntas de cierre
 
-Deberías poder explicar con tus propias palabras:
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
 
-* dónde está el botón «Edit» en la página de un archivo;
-* qué carga el editor al pulsar «Edit»;
-* cómo se modifica el contenido y cómo se añade o quitan líneas;
-* qué es el mensaje de commit de una edición y por qué importa;
-* qué hace exactamente el botón «Commit changes»;
-* qué pasa con la versión anterior del archivo después de editar;
-* cómo se abre el historial de un archivo con el botón «History»;
-* qué información muestra cada entrada del historial;
-* cómo se ven las diferencias (diff) de un commit;
-* qué es un SHA y a qué corresponde.
+1. ¿Qué botón abre el editor sobre un archivo existente y qué te encuentras ya cargado cuando se abre?
+2. ¿Por qué el cambio que ves en el editor todavía no es una versión del archivo y qué tienes que hacer para que lo sea?
+3. ¿Qué debería decir el mensaje de commit de una edición para que te sea útil dentro de seis meses?
+4. ¿Qué le ocurre a la versión anterior del archivo cuando guardas una edición, y por qué no se «sobrescribe»?
+5. ¿Cómo llegas al historial de un solo archivo y qué información muestra cada entrada?
+6. ¿Qué te dice un diff con líneas en rojo y en verde y por qué conviene leerlo antes de dar por bueno un commit?
+7. ¿Qué es el SHA de un commit, con qué se relaciona y por qué no es el nombre de un archivo?
+8. ¿Qué ganas respecto a una carpeta común sin control de versiones cuando cada guardado deja constancia del estado anterior?
 
 Si alguna respuesta todavía no está clara, vuelve a la sección correspondiente y repite la práctica.
 
