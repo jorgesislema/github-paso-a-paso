@@ -21,6 +21,84 @@ No necesitas saber programar ni utilizar la terminal.
 
 ---
 
+## Mapa conceptual
+
+```mermaid
+mindmap
+  root((¿Qué es un archivo?))
+    1. Una primera explicación
+      unidad de información guardada
+      textos, imágenes, datos
+    2. Una analogía útil
+      documento en un archivador
+      nombre, contenido, ubicación
+    3. Definición técnica
+      sistema de archivos
+      carpetas y archivos
+    4. Nombre, contenido, tipo y ubicación
+      el nombre identifica
+      el contenido informa
+      el tipo indica el formato
+      la ubicación sitúa
+    5. ¿Dónde se guardan los archivos
+      discos, USB, servidores, nube
+      guardar no es publicar
+    6. Crear, abrir, modificar y guardar
+      guardar escribe los cambios
+      guardar como crea otro archivo
+    7. Guardar no conserva todas las versiones
+      las copias manuales se descontrolan
+      Git ofrece un historial estructurado
+    8. Guardar un archivo no crea un commit
+      Git detecta el cambio
+      el usuario decide cuándo registrarlo
+    9. Archivos de texto y archivos binarios
+      texto editable línea a línea
+      binario con programa específico
+      Git compara mejor los textos
+    10. Los archivos dentro de un proyecto
+      cada archivo cumple una función
+      README, LICENSE, datos y código
+    11. Metadatos de un archivo
+      tamaño, fechas, permisos
+      información sobre el archivo
+    12. Archivos visibles y archivos ocultos
+      .gitignore, .gitattributes, .env
+      no elimines lo que no entiendes
+    13. Nombres de archivo recomendables
+      nombres descriptivos y consistentes
+      evita nuevo, cosas o final
+    14. Mayúsculas y minúsculas
+      algunos sistemas distinguen mayúsculas
+      elige una convención y respétala
+    15. Un archivo puede cambiar aunque conserve su nombre
+      mismo nombre y distinto contenido
+      base del control de versiones
+    16. Errores comunes
+      renombrar no cambia el contenido
+      guardar no crea un commit
+    17. Seguridad básica
+      nunca publicar credenciales reales
+      oculto no significa protegido
+    18. Práctica guiada
+      crear y guardar un archivo
+      guardar como genera una copia
+    19. Experimento controlado
+      modificar la copia
+      comprobar que son independientes
+    20. Ejercicio de análisis
+      límites de las copias numeradas
+      necesidad de un historial
+    21. Cómo saber si lo entendiste
+      explicar con tus propias palabras
+      repetir la práctica si algo falla
+    22. Resumen
+      un archivo es información viva
+      guardar no equivale a hacer commit
+```
+
+---
+
 ## 1. Una primera explicación
 
 Un archivo es una unidad de información guardada en un dispositivo o sistema de almacenamiento.
@@ -331,20 +409,12 @@ Cuando guardas un archivo, el sistema conserva su contenido actual en el almacen
 
 Cuando creas un **commit** con Git, registras un punto del historial del proyecto a partir de cambios seleccionados.
 
-```text
-Editar un archivo
-        │
-        ▼
-Guardar el archivo
-        │
-        ▼
-El contenido cambia en la carpeta de trabajo
-        │
-        ▼
-Git puede detectar el cambio
-        │
-        ▼
-El usuario decide si desea prepararlo y registrarlo
+```mermaid
+flowchart TD
+    A["Editar un archivo"] --> B["Guardar el archivo"]
+    B --> C["El contenido cambia en la carpeta de trabajo"]
+    C --> D["Git puede detectar el cambio"]
+    D --> E["El usuario decide si desea prepararlo y registrarlo"]
 ```
 
 Por lo tanto:
@@ -731,6 +801,10 @@ mi-primer-archivo-copia.txt
 
 Ábrelos y comprueba su contenido. Dependiendo del momento en que utilizaste **Guardar como**, ambos podrían comenzar con el mismo contenido, pero ahora son archivos independientes.
 
+### Ejercicio de transferencia
+
+En una carpeta nueva de tu escritorio llamada `practica-transferencia-01`, crea con el editor de texto un archivo `lista-de-la-compra.txt` con tres productos y guárdalo. Después usa **Guardar como** para crear `lista-de-la-compra-domingo.txt` con un producto distinto y modifica solo ese segundo archivo. Entrega los dos archivos y una explicación escrita de tres líneas: qué cambió en cada uno y si modificar uno afecta al otro.
+
 ---
 
 ## 19. Experimento controlado
@@ -812,6 +886,21 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **Un archivo no es solamente un nombre visible: es información almacenada, ubicada dentro de un sistema y capaz de cambiar con el tiempo.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. Si dos personas guardan un archivo llamado `informe.txt` en carpetas diferentes, ¿pueden pisarse? ¿Qué hace que un archivo sea único?
+2. Renombras `fotografia.jpg` como `fotografia.pdf`: ¿ya tienes un PDF? ¿Qué haría falta para conseguirlo de verdad?
+3. Modificaste un documento y cerraste el programa sin guardar: ¿qué se perdió y por qué «guardar» no basta para conservar versiones anteriores?
+4. Guardaste un archivo en una carpeta sincronizada con la nube: ¿está ya en GitHub? Explica por qué son operaciones distintas.
+5. ¿Por qué Git compara mejor los cambios de un `README.md` que los de un `cancion.mp3` y qué decisión de proyecto sugiere esa diferencia?
+6. ¿Qué podría ocurrir si publicas sin revisar un archivo cuyo contenido no conoces?
+7. Acabas de guardar un archivo dentro de un repositorio: ¿ha creado Git un commit? ¿Qué paso falta para que el cambio quede registrado?
+8. Si mañana borras `informe-final-definitivo.txt` por error, ¿qué información recuperarías con el nombre y qué perderías para siempre?
 
 ---
 
