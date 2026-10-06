@@ -29,6 +29,53 @@ No necesitas utilizar la terminal en este capítulo. Continuaremos enfocándonos
 
 ---
 
+## Mapa conceptual de este capítulo
+
+```mermaid
+mindmap
+  root((Qué es el control de versiones))
+    1 y 2. Qué es y por qué existe
+      la carta con muchas versiones
+      registrar y recuperar cambios
+      orden frente a caos
+    3. Problemas que resuelve
+      problemas individuales
+      problemas de equipo
+      problemas de proyecto
+    4. Tipos de sistemas
+      sistemas locales
+      centralizados con servidor único
+      distribuidos con copia completa
+    5. Cómo funciona
+      snapshots y deltas
+      historial cronológico
+      ramas y fusión
+    6. Beneficios
+      recuperación y comparación
+      colaboración estructurada
+      menos miedo a romper algo
+    7. Ejemplos concretos
+      recuperar un archivo borrado
+      hallar el commit que rompió todo
+    8. Flujo de trabajo típico
+      rama y commit
+      push y revisión con PR
+      fusión y pull
+    9. Centralizado frente a distribuido
+      punto único de fallo
+      red opcional en cada equipo
+    10. Trabajo en equipo
+      transparencia y autoría
+      revisión y trabajo asincrónico
+    11 y 12. Errores y prácticas
+      commits pequeños y claros
+      nunca force push sin consenso
+    13. Conclusión
+      una forma de pensar el trabajo
+```
+
+---
+
 ## 1. Una primera explicación
 
 Imagina que estás escribiendo una carta importante.
@@ -430,65 +477,28 @@ Esto combina los cambios de ambas líneas de desarrollo en un nuevo estado que i
 
 Un flujo de trabajo típico se ve así:
 
-```text
-1. Trabajo inicial
-    │
-    ▼
-Clonas un repositorio existente (o creas uno nuevo)
-    │
-    ▼
-2. Desarrollo
-    │
-    ▼
-Creas una rama para tu trabajo
-    │
-    ▼
-Haces cambios en archivos
-    │
-    ▼
-Preparas los cambios para commit (staging)
-    │
-    ▼
-Haces commit de tus cambios con un mensaje descriptivo
-    │
-    ▼
-Repetir pasos 3-5 según necesites
-    │
-    ▼
-3. Compartir y colaborar
-    │
-    ▼
-Push: envías tus commits al repositorio remoto
-    │
-    ▼
-4. Revisión (opcional pero recomendado)
-    │
-    ▼
-Abres un Pull Request para proponer tus cambios
-    │
-    ▼
-Tus compañeros revisan tu código y dejan comentarios
-    │
-    ▼
-Haces los cambios necesarios y actualizas tu Pull Request
-    │
-    ▼
-5. Integración
-    │
-    ▼
-Tu Pull Request es aprobado y se mergea a la rama principal
-    │
-    ▼
-Se elimina tu rama temporal (opcional)
-    │
-    ▼
-6. Sincronización
-    │
-    ▼
-Pull: obtienes los últimos cambios del repositorio remoto
-    │
-    ▼
-Continuar con el ciclo desde el paso 2
+```mermaid
+flowchart TD
+    A["1. Trabajo inicial"] --> B["Clonas un repositorio existente o creas uno nuevo"]
+    B --> C["2. Desarrollo"]
+    C --> D["Creas una rama para tu trabajo"]
+    D --> E["Haces cambios en archivos"]
+    E --> F["Preparas los cambios para commit (staging)"]
+    F --> G["Haces commit con un mensaje descriptivo"]
+    G --> H{"¿Necesitas seguir trabajando?"}
+    H -->|Sí| E
+    H -->|No| I["3. Compartir y colaborar"]
+    I --> J["Push: envías tus commits al repositorio remoto"]
+    J --> K["4. Revisión (opcional pero recomendado)"]
+    K --> L["Abres un Pull Request para proponer tus cambios"]
+    L --> M["Tus compañeros revisan tu código y dejan comentarios"]
+    M --> N["Haces los cambios necesarios y actualizas tu Pull Request"]
+    N --> O["5. Integración"]
+    O --> P["Tu Pull Request es aprobado y se fusiona a la rama principal"]
+    P --> Q["Se elimina tu rama temporal (opcional)"]
+    Q --> R["6. Sincronización"]
+    R --> S["Pull: obtienes los últimos cambios del repositorio remoto"]
+    S --> D
 ```
 
 Este flujo de trabajo proporciona:
@@ -773,6 +783,14 @@ Con control de versions:
 
 ---
 
+### Ejercicio de transferencia
+
+Elige un documento que modifiques con frecuencia (un guion, un presupuesto o la lista de la compra de un evento) y simula el flujo de este capítulo sin instalar nada: escribe cómo quedaría su historial en seis pasos numerados, imitando el patrón rama → commit → push → revisión → fusión → pull.
+
+Entregable: esos seis pasos aplicados a tu documento con nombres reales de archivos y mensajes de commit de una línea; al final, dos líneas que expliquen qué ganarías al volver a la versión del paso 2 si el paso 5 sale mal.
+
+---
+
 ## 13. Conclusión
 
 El control de versions no es solo una herramienta técnica: es una **práctica fundamental** que transforma cómo trabajamos con información que cambia con el tiempo.
@@ -789,6 +807,20 @@ Git, como implementación moderna y distribuida de control de versions, lleva es
 Pero recuerda: las herramientas son solo parte de la ecuación. Los verdaderos beneficios del control de versions vienen de adoptar las **prácticas y mentalidad** que lo acompañan: commits pequeños y significativos, ramas para trabajo en progreso, revisión antes de integración, historial claro y descriptivo, y una actitud de experimentación segura respaldada por la capacidad de siempre volver atrás.
 
 Cuando internalizas estas prácticas, el control de versions deja de ser una herramienta que usas y se convierte en una forma de pensar sobre tu trabajo: **trabajo que es reproducible, colaborativo, seguro y continuamente mejorable.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Qué problema de «final-v2-real» resuelve el control de versiones que no resuelve guardar copias con nombres distintos?
+2. ¿Por qué un sistema centralizado se queda sin punto de trabajo si cae el servidor y un sistema distribuido no?
+3. ¿Qué es un snapshot y en qué se diferencia de guardar solo las líneas que cambiaron?
+4. ¿Por qué una rama te permite experimentar sin miedo y qué debe pasar antes de mezclarla con la principal?
+5. ¿Qué ganas con un commit pequeño y bien escrito frente a uno gigante llamado «cambios»?
+6. ¿Por qué hacer commit localmente no comparte nada con nadie y qué paso falta?
+7. ¿Qué se rompe en el equipo si alguien hace force push sobre la rama principal sin avisar?
 
 ---
 
