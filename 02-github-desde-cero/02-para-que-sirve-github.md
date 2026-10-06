@@ -21,6 +21,43 @@ No necesitas utilizar la terminal en este capítulo. Continuaremos enfocándonos
 
 ---
 
+## Mapa conceptual de este capítulo
+
+```mermaid
+mindmap
+  root((¿Para qué sirve GitHub?))
+    1 y 2. Propósitos
+      el acrónimo ACGPS
+      qué problema resuelve cada uno
+    3. Alojamiento
+      copia remota de tu trabajo
+      acceso desde cualquier equipo
+    4. Colaboración
+      Pull Requests e Issues
+      revisión y aprobación
+    5. Gestión
+      Projects y Milestones
+      labels e insights
+    6. Publicación
+      perfil y repositorios públicos
+      GitHub Pages
+    7. Seguridad
+      secret scanning y Dependabot
+      permisos y protección de ramas
+    8. Cómo se relacionan
+      flujo típico de un proyecto
+      los cinco propósitos se refuerzan
+    9 y 10. Errores y prácticas
+      no usarlo solo como copia de seguridad
+      añadir herramientas poco a poco
+    11 a 14. Práctica y cierre
+      identificar los cinco propósitos
+      caso práctico de una tesis
+      resumen del capítulo
+```
+
+---
+
 ## 1. Una primera explicación
 
 Imagina que tienes una herramienta multifunción que puede hacer muchas cosas diferentes, pero cada una está diseñada para resolver un problema específico.
@@ -296,47 +333,21 @@ Los cinco propósitos de GitHub no funcionan de forma aislada. Se complementan y
 
 ### Ejemplo de flujo típico
 
-```text
-Tienes una idea
-    │
-    ▼
-Creas un repositorio (Alojamiento)
-    │
-    ▼
-Añades un README describiendo el proyecto (Publicación)
-    │
-    ▼
-Invitas a colaboradores (Colaboración)
-    │
-    ▼
-Creas un tablero de Project para planificar el trabajo (Gestión)
-    │
-    ▼
-Activas Dependabot para mantener seguras las dependencias (Seguridad)
-    │
-    ▼
-Comienzas a trabajar en la primera tarea
-    │
-    ▼
-Creas una rama para tu trabajo (Colaboración/Gestión)
-    │
-    ▼
-Haces cambios y haces commit (Alojamiento)
-    │
-    ▼
-Abres un Pull Request para revisión (Colaboración)
-    │
-    ▼
-Recibes feedback y haces ajustes (Colaboración)
-    │
-    ▼
-Se aprueba y se mergea el Pull Request (Colaboración/Gestión)
-    │
-    ▼
-Se despliega automáticamente mediante GitHub Actions (Publicación/Gestión)
-    │
-    ▼
-Se celebra el logro y se planea la siguiente tarea (Gestión/Publicación)
+```mermaid
+flowchart TD
+    A["Tienes una idea"] --> B["Creas un repositorio (Alojamiento)"]
+    B --> C["Añades un README que describe el proyecto (Publicación)"]
+    C --> D["Invitas a colaboradores (Colaboración)"]
+    D --> E["Creas un tablero de Project para planificar el trabajo (Gestión)"]
+    E --> F["Activas Dependabot para mantener seguras las dependencias (Seguridad)"]
+    F --> G["Comienzas a trabajar en la primera tarea"]
+    G --> H["Creas una rama para tu trabajo (Colaboración y Gestión)"]
+    H --> I["Haces cambios y haces commit (Alojamiento)"]
+    I --> J["Abres un Pull Request para revisión (Colaboración)"]
+    J --> K["Recibes comentarios y haces ajustes (Colaboración)"]
+    K --> L["Se aprueba y se fusiona el Pull Request (Colaboración y Gestión)"]
+    L --> M["GitHub Actions despliega automáticamente (Publicación y Gestión)"]
+    M --> N["Se planea la siguiente tarea (Gestión y Publicación)"]
 ```
 
 ### Visualización de la relación
@@ -462,6 +473,14 @@ Deberías poder identificar al menos un ejemplo claro de cada uno de los cinco p
 
 ---
 
+### Ejercicio de transferencia
+
+Elige un proyecto real de tu vida que todavía no está en GitHub (los apuntes de un curso, el inventario de un negocio familiar, el guion de una boda) y aplica los cinco propósitos A.C.G.P.S. por escrito.
+
+Entregable: cinco bullets, uno por propósito, donde cada bullet diga exactamente qué harías en GitHub para ese proyecto (por ejemplo: «Gestión: tablero de 12 tareas con las fechas de cada trámite»). Si un propósito no le aplica, explica en una línea por qué.
+
+---
+
 ## 12. Ejercicio de análisis
 
 Observa esta situación:
@@ -523,6 +542,20 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **GitHub no es solo un lugar para guardar código; es una plataforma completa que resuelve problemas específicos de acceso, colaboración, gestión, publicación y seguridad en el trabajo con proyectos digitales.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Qué cuatro propósitos estás dejando sin aprovechar si usas GitHub solo para guardar archivos?
+2. ¿Por qué un Pull Request resuelve mejor la revisión de cambios que un hilo de correos con archivos adjuntos?
+3. ¿Qué problema concreto evita un Issue bien escrito que no evita una reunión de estado?
+4. ¿Cuándo un tablero de Project aporta más que una lista de tareas en papel?
+5. ¿Por qué la seguridad conviene activarla al principio y no cuando el proyecto ya está publicado?
+6. ¿En qué se diferencia un proyecto donde los cinco propósitos funcionan juntos de uno donde solo hay alojamiento?
+7. Si trabajas solo, ¿qué de los cinco propósitos sigue siendo útil y por qué?
 
 ---
 
