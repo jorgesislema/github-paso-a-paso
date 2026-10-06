@@ -27,54 +27,43 @@ No necesitas instalar nada. Todo ocurre en el navegador.
 
 ## Mapa conceptual de este capítulo
 
-```text
-Tu perfil de GitHub
-       │
-       ├── 1. Qué es el perfil y para qué sirve
-       │        ├── Identidad pública
-       │        ├── Carta de presentación
-       │        └── Huella profesional
-       │
-       ├── 2. Elementos del perfil
-       │        ├── Avatar (foto)
-       │        ├── Nombre real
-       │        ├── Nombre de usuario (URL)
-       │        ├── Biografía
-       │        ├── Ubicación
-       │        ├── Sitio web
-       │        ├── Organizaciones visibles
-       │        ├── Actividad pública
-       │        ├── Estrellas y «following»
-       │        └── README del perfil
-       │
-       ├── 3. Qué es público y qué es privado
-       │
-       ├── 4. Editar el perfil paso a paso
-       │
-       ├── 5. La foto de perfil
-       │        ├── Técnica
-       │        ├── Profesional
-       │        └── Accesibilidad
-       │
-       ├── 6. La biografía
-       │        ├── Qué escribir
-       │        ├── Qué evitar
-       │        └── Ejemplos
-       │
-       ├── 7. El README del perfil
-       │
-       ├── 8. Actividad y visibilidad
-       │
-       ├── 9. Errores comunes
-       │
-       ├── 10. Práctica guiada
-       │
-       ├── 11. Nivel profesional
-       │        ├── Marca personal
-       │        ├── Perfil y reclutamiento
-       │        └── Perfil en organizaciones
-       │
-       └── 12. Resumen y siguiente paso
+```mermaid
+mindmap
+  root((Configurar tu perfil))
+    1. Qué es el perfil y para qué sirve
+      Identidad pública
+      Carta de presentación
+      Huella profesional
+    2. Elementos del perfil
+      Avatar foto
+      Nombre real
+      Nombre de usuario URL
+      Biografía
+      Ubicación
+      Sitio web
+      Organizaciones visibles
+      Actividad pública
+      Estrellas y following
+      README del perfil
+    3. Qué es público y qué es privado
+    4. Editar el perfil paso a paso
+    5. La foto de perfil
+      Técnica
+      Profesional
+      Accesibilidad
+    6. La biografía
+      Qué escribir
+      Qué evitar
+      Ejemplos
+    7. El README del perfil
+    8. Actividad y visibilidad
+    9. Errores comunes
+    10. Práctica guiada
+    11. Nivel profesional
+      Marca personal
+      Perfil y reclutamiento
+      Perfil en organizaciones
+    12. Resumen y siguiente paso
 ```
 
 ---
@@ -193,22 +182,11 @@ Elementos del perfil
 
 ### 2.1. Relación entre elementos
 
-```text
-                    ┌──────────────────────────────┐
-                    │        TU PERFIL             │
-                    └──────────────┬───────────────┘
-                                   │
-        ┌──────────────────────────┼──────────────────────────┐
-        │                          │                          │
-        ▼                          ▼                          ▼
-  IDENTIDAD                    TRABAJO                     RELACIONES
-        │                          │                          │
-  · Avatar                   · Repositorios            · Organizaciones
-  · Nombre real              · Commits                 · Seguidores
-  · Biografía                · Pull Requests           · Seguidos
-  · Ubicación                · Estrellas               · Contribuciones
-  · Sitio web                · README del perfil
-  · Nombre de usuario        · Pines destacados
+```mermaid
+flowchart TD
+    P["Tu perfil"] --> I["Identidad: avatar, nombre real, biografía, ubicación, sitio web, nombre de usuario"]
+    P --> T["Trabajo: repositorios, commits, pull requests, estrellas, README del perfil, pines destacados"]
+    P --> R["Relaciones: organizaciones, seguidores, seguidos, contribuciones"]
 ```
 
 Los tres bloques se complementan: identidad sin trabajo es una ficha vacía, trabajo sin identidad es anónimo, relaciones sin identidad no construyen red.
@@ -259,28 +237,16 @@ Regla sencilla:
 
 ### 4.1. Diagrama de acceso
 
-```text
-Página principal de GitHub
-       │
-       │ pulsa tu avatar (esquina superior derecha)
-       ▼
-Menú desplegable
-       │
-       ├── Tu perfil      →  ver cómo se ve a los demás
-       │
-       └── Settings       →  editar todo
-                │
-                ▼
-        Página de configuración
-                │
-                ├── Public profile   →  nombre, bio, foto, ubicación,
-                │                      sitio web, organizaciones
-                │
-                ├── Account          →  usuario, correo, contraseña
-                │
-                ├── Security         →  2FA, sesiones (capítulo 05)
-                │
-                └── Emails, Billing, Notificaciones, etc.
+```mermaid
+flowchart TD
+    A["Página principal de GitHub"] -->|"pulsa tu avatar en la esquina superior derecha"| B["Menú desplegable"]
+    B --> C["Tu perfil: ver cómo se ve a los demás"]
+    B --> D["Settings: editar todo"]
+    D --> E["Página de configuración"]
+    E --> F["Public profile: nombre, biografía, foto, ubicación, sitio web, organizaciones"]
+    E --> G["Account: usuario, correo, contraseña"]
+    E --> H["Security: 2FA y sesiones, capítulo 05"]
+    E --> I["Emails, Billing, Notificaciones, etc."]
 ```
 
 ### 4.2. Procedimiento de edición
@@ -589,6 +555,8 @@ Lectura profesional del cuadro de contribuciones
 
 ### Error 5: Cambiar el nombre de usuario pensando en «mejorar el perfil»
 
+⚠️ **RIESGO:** el cambio de nombre de usuario rompe enlaces antiguos a tu perfil y a tus repositorios y deja sin actualizar las referencias en commits antiguos y en otras plataformas.
+
 **Qué ocurre:** se cambia el usuario sin evaluar consecuencias.
 
 **Consecuencia:** enlaces rotos, referencias en commits antiguos y en otras plataformas.
@@ -653,6 +621,10 @@ Tu perfil público muestra una identidad clara y coherente: nombre, biografía �
 ### Conclusión esperada
 
 El perfil es la traducción de tu identidad profesional a la plataforma. Con cinco minutos de configuración dejas de ser «un usuario más» y pasas a ser una persona identificable detrás de tu trabajo.
+
+### Ejercicio de transferencia
+
+Configura tu perfil real como si un mantenedor de código abierto o un reclutador abriera tu página hoy: nombre real, biografía de una frase, ubicación y foto (o iniciales). Entrega la URL de tu perfil público, una captura de Settings → Public profile con esos campos rellenados y una frase escrita explicando qué decisión de privacidad tomaste con el correo público (visible u oculto).
 
 ---
 
@@ -743,6 +715,17 @@ La idea principal es:
 > **El perfil no se decora: se alinea con tu trabajo. Su función es dar contexto a quien llega a tu código, y su calidad depende de la honestidad y la constancia, no del diseño.**
 
 ---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué un perfil con biografía impecable y cero actividad transmite menos que un perfil discreto con actividad constante?
+2. ¿Qué datos de tu perfil son públicos para siempre aunque luego los cambies, y por qué eso condiciona lo que escribes?
+3. Si tuvieras que elegir entre dos fotos de perfil, ¿qué criterios aplicas según el contexto profesional en el que te mueves?
+4. ¿Cuándo merece la pena crear el README del perfil y cuándo es mejor posponerlo?
+5. ¿Qué se infiere de tu perfil cuando alguien revisa el cuadro de contribuciones, y qué no se puede concluir de él?
+6. Si quieres exponer menos datos personales sin dejar de ser identificable, ¿qué campos priorizas y cuáles vacías?
 
 ## Próximo paso
 
