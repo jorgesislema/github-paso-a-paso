@@ -28,6 +28,69 @@ En este capítulo aprenderás:
 
 ---
 
+## Mapa conceptual
+
+```mermaid
+mindmap
+  root((Archivos y extensiones))
+    1. Una primera explicación
+      punto y letras al final del nombre
+      etiqueta del tipo de contenido
+    2. Definición técnica
+      nombre base y extensión
+      la extensión no garantiza el contenido
+    3. Extensión, tipo y formato
+      extensión sugiere el tipo
+      el contenido define el formato
+    4. Estructura completa del nombre
+      la extensión va tras el último punto
+      existen nombres sin extensión
+    5. Extensiones comunes
+      texto, oficina, imágenes, datos
+      código y comprimidos
+    6. Extensiones importantes para Git y GitHub
+      .md para documentación
+      .gitignore y archivos sin extensión
+    7. La extensión no garantiza el contenido
+      renombrar no convierte
+      la conversión necesita una herramienta
+    8. Extensiones ocultas en Windows
+      nombres duplicados como .txt.txt
+      activar la visualización de extensiones
+    9. Archivos de texto y binarios según la extensión
+      texto comparable línea por línea
+      binarios con programas propios
+    10. La extensión no siempre determina la aplicación
+      se puede cambiar la asociación
+      GitHub interpreta el .md
+    11. Nombres especiales que conviene reconocer
+      README, LICENSE, CHANGELOG
+      .env con posibles secretos
+    12. Errores comunes
+      extensión mal escrita o eliminada
+      archivo disfrazado con doble extensión
+    13. Buenas prácticas
+      mostrar siempre las extensiones
+      no forzar conversiones cambiando el nombre
+    14. Práctica guiada
+      crear .txt, .md y .csv
+      observar el programa asociado
+    15. Experimento controlado
+      renombrar .txt a .pdf
+      el contenido no cambia
+    16. Ejercicio de análisis
+      clasificar archivos por tipo
+      reconocer cuál puede ser sensible
+    17. Cómo saber si lo entendiste
+      explicar con tus propias palabras
+      repetir la práctica si algo falla
+    18. Resumen
+      la extensión describe la intención
+      el contenido define la naturaleza
+```
+
+---
+
 ## 1. Una primera explicación
 
 Observa estos nombres:
@@ -133,15 +196,10 @@ Ambos son imágenes, pero su estructura interna es distinta.
 
 ### Relación general
 
-```text
-Extensión
-    ↓
-sugiere
-    ↓
-tipo y formato
-    ↓
-que el sistema y los programas utilizan
-para decidir cómo tratarlo
+```mermaid
+flowchart TD
+    A["Extensión"] --> B["Sugiere el tipo y el formato"]
+    B --> C["El sistema y los programas deciden cómo tratar el archivo"]
 ```
 
 La extensión es una convención. El contenido real es lo que determina el formato.
@@ -398,6 +456,15 @@ Ejemplos de conversión real:
 * convertir un archivo de audio de WAV a MP3 con un programa especializado.
 
 En todos estos casos, el programa **reinterpreta el contenido** y genera un archivo nuevo con la estructura correcta.
+
+```mermaid
+flowchart TD
+    A["Archivo paisaje.jpg"] --> B["Se renombra a paisaje.txt"]
+    B --> C["El contenido sigue siendo una imagen"]
+    C --> D["El programa equivocado muestra un error"]
+    A --> E["Se usa una herramienta de conversión"]
+    E --> F["Se genera un archivo nuevo con la estructura correcta"]
+```
 
 ---
 
@@ -714,6 +781,10 @@ Observa qué programa utiliza tu sistema para abrirlos.
 
 Deberías ver tres archivos con extensiones diferentes, cada uno con su contenido correspondiente.
 
+### Ejercicio de transferencia
+
+En la carpeta `practica-extensiones` (o en una nueva llamada `practica-transferencia-04`) crea un archivo `correo.txt` con dos líneas de texto y activa la visualización de extensiones si no la tenías. Copia el archivo como `correo.pdf` e intenta abrirlo con un lector de PDF. Entrega el archivo `correo.pdf` y una explicación escrita de tres líneas: qué ocurrió al abrirlo, qué contenía realmente y qué haría falta para obtener un PDF de verdad.
+
 ---
 
 ## 15. Experimento controlado
@@ -813,6 +884,21 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **La extensión describe la intención del archivo, pero el contenido real es lo que define su verdadera naturaleza.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. Renombras `notas.txt` como `notas.pdf`: ¿puede abrirse ya como PDF? ¿Qué sigue conteniendo el archivo y qué se modificó?
+2. ¿Por qué Windows oculta extensiones por defecto y qué errores concretos provoca, como el caso de `informe.txt.txt`?
+3. Un archivo se llama `documento.pdf.exe`: ¿cuál es su extensión real y por qué es una trampa frecuente?
+4. GitHub muestra tu `README.md` con títulos y tablas: ¿guarda el archivo ese formato visual o solo texto con símbolos?
+5. ¿Por qué un archivo `.env` no debería subirse a un repositorio público aunque su nombre parezca inocente?
+6. Archivos como `LICENSE` o `Makefile` no tienen extensión: ¿están dañados y cómo los identifica Git?
+7. Quieres convertir un `.txt` en un PDF real: ¿qué debes hacer y quién reescribe el contenido del archivo?
+8. Si la extensión y el contenido real no coinciden, ¿qué decide realmente cómo se comporta el archivo?
 
 ---
 
