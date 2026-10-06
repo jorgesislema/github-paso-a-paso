@@ -21,6 +21,46 @@ En este capítulo aprenderás:
 
 Si recuerdas lo que es un commit (un registro de un estado del proyecto), este capítulo te resultará muy natural.
 
+## Mapa conceptual de este capítulo
+
+```mermaid
+mindmap
+  root((Crear un archivo))
+    1. El botón Add file
+      selector de rama y Clone
+      Create new file
+      Upload files
+    2. La página Create new file
+      campo de nombre
+      editor de texto
+      bloque de commit
+    3. El nombre del archivo y la extensión
+      extensión md o txt
+      sin espacios ni acentos
+      renderizado según extensión
+    4. Escribir el contenido
+      números de línea
+      corregir con retroceso
+    5. El mensaje de commit
+      qué cambia y por qué
+      sustituir el mensaje sugerido
+    6. Dónde se guarda
+      commit directo en main
+      crear una rama nueva
+    7. Pulsar Commit changes
+      se envía el contenido
+      se crea el commit con autor y fecha
+      main avanza un paso
+    8. Cómo se ve el archivo en el repositorio
+      botones Edit Blame History
+      contenido renderizado o raw
+    9. Nombres y ubicaciones
+      archivos en la raíz por ahora
+      convenciones de nombres
+    10. Práctica guiada y errores comunes
+    11. Autopreguntas y resumen
+```
+
 ## 1. El botón «Add file»
 
 Entra en tu repositorio y asegúrate de estar en la pestaña **«Code»**.
@@ -143,28 +183,13 @@ Las ramas se estudian en las secciones de Git y en el capítulo de GitHub Deskto
 
 Cuando el nombre, el contenido y el mensaje están listos, pulsa el botón **«Commit changes»**.
 
-```text
-Pulsas «Commit changes»
-    │
-    ▼
-1. El navegador envía el contenido del archivo a los servidores de GitHub
-    │
-    ▼
-2. GitHub guarda el contenido completo del archivo (un objeto nuevo)
-    │
-    ▼
-3. Se crea un commit que contiene:
-   - el archivo nuevo con su contenido
-   - tu nombre de usuario y tu correo como autor
-   - la fecha y hora
-   - el mensaje de commit que escribiste
-   - la referencia al commit anterior (tu README inicial)
-    │
-    ▼
-4. La rama main avanza un paso: ahora apunta a este commit nuevo
-    │
-    ▼
-5. GitHub te lleva de vuelta a la página del repositorio
+```mermaid
+flowchart TD
+    A["Pulsas Commit changes"] --> B["El navegador envía el contenido del archivo a los servidores de GitHub"]
+    B --> C["GitHub guarda el contenido completo del archivo como objeto nuevo"]
+    C --> D["Se crea un commit con el archivo nuevo tu nombre la fecha el mensaje y la referencia al commit anterior"]
+    D --> E["La rama main avanza un paso y apunta al commit nuevo"]
+    E --> F["GitHub te lleva de vuelta a la página del repositorio"]
 ```
 
 De vuelta en el repositorio, verás el archivo nuevo en la lista de archivos, junto al `README.md`.
@@ -237,6 +262,10 @@ Tu repositorio debería mostrar tres archivos y, al abrir cualquiera de ellos, v
 
 Al terminar deberías saber crear archivos desde la web, escribir contenido en el editor, redactar un mensaje de commit y verificar el resultado en la lista de archivos.
 
+### Ejercicio de transferencia
+
+En tu repositorio de práctica, crea desde «Add file → Create new file» un archivo `lista-de-la-compra.md` con cinco líneas y un mensaje de commit escrito por ti (nada del sugerido), y después créale una segunda versión editándolo. Entrega: los dos enlaces a sus commits y el texto exacto de los dos mensajes.
+
 ## Errores comunes
 
 ### Error 1: olvidar el nombre del archivo
@@ -248,6 +277,8 @@ Solución: escribe el nombre en el campo de arriba del editor y vuelve a pulsar 
 ### Error 2: repetir el nombre de un archivo existente
 
 Si intentas crear `saludo.md` cuando ya existe, GitHub te avisará al pulsar «Commit changes» que el archivo ya existe.
+
+⚠️ **RIESGO:** borrar el archivo anterior desde la web lo elimina del repositorio con un nuevo commit; su contenido solo se recupera después abriendo el historial, no desde la papelera de tu equipo.
 
 Solución: elige un nombre distinto o borra el archivo anterior si de verdad quieres reemplazarlo.
 
@@ -285,20 +316,18 @@ Solución: el contenido va en el editor grande; el mensaje va abajo.
 * después de cada commit, verifica el archivo en la lista y ábrelo para confirmar el contenido;
 * revisa el mensaje en el historial («History») para asegurarte de que quedó claro.
 
-## Cómo saber si lo entendiste
+## Autopreguntas de cierre
 
-Deberías poder explicar con tus propias palabras:
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
 
-* dónde está el botón «Add file» y qué opciones contiene;
-* qué partes tiene la página «Create new file»;
-* cómo se escribe el nombre del archivo y qué reglas se aplican;
-* cuál es la diferencia entre un archivo `.md` y un `.txt`;
-* para qué sirve el mensaje de commit;
-* qué significa «Commit directly to the main branch.»;
-* qué ocurre por detrás cuando pulsas «Commit changes»;
-* cómo se ve un archivo creado en la lista del repositorio;
-* cómo se abre un archivo y qué botones tiene su página;
-* cómo se diferencia el contenido renderizado del contenido sin formato.
+1. ¿Qué dos opciones ofrece el menú «Add file» y en qué situaciones usarías cada una?
+2. ¿Qué tres zonas tiene la página «Create new file» y qué debes completar antes de pulsar el botón?
+3. ¿Por qué un nombre de archivo con espacios o acentos te va a dar problemas más adelante, aunque en la web funcione?
+4. ¿Qué ganas y qué arriesgas al elegir `.md` frente a `.txt` para un mismo contenido?
+5. ¿Qué información debería llevar el mensaje de commit de un archivo nuevo y por qué el sugerido por GitHub casi nunca sirve?
+6. ¿Qué significa «Commit directly to the main branch» y qué cambiaría si eligieras crear una rama nueva?
+7. ¿Qué ocurre por detrás cuando pulsas «Commit changes» y por qué el archivo no se «guarda» hasta ese momento?
+8. ¿Qué botones encuentras en la página de un archivo y cuál usarías para ver su contenido sin formato o para revisar quién lo cambió?
 
 Si alguna respuesta todavía no está clara, vuelve a la sección correspondiente y repite la práctica.
 
