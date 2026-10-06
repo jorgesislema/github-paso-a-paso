@@ -30,6 +30,66 @@ No necesitas memorizar comandos en este capítulo. El objetivo es comprender el 
 
 ---
 
+## Mapa conceptual
+
+```mermaid
+mindmap
+  root((¿Qué es la terminal?))
+    1. Una primera explicación
+      escribir frente a hacer clic
+      instrucciones precisas
+    2. Definición técnica
+      interfaz de texto
+      intermediaria con el sistema
+    3. Terminal, consola y línea de comandos
+      shell interpreta los comandos
+      Bash, Zsh, PowerShell
+    4. El indicador de la terminal
+      usuario, equipo y carpeta actual
+      comprueba dónde estás
+    5. ¿Qué es un comando?
+      instrucción que ejecuta el sistema
+      dir o ls muestran el contenido
+    6. Estructura de un comando
+      comando, opciones y argumentos
+      git commit -m con mensaje
+    7. Ejecutar un comando
+      escribir y pulsar Enter
+      el error no significa daño
+    8. Comandos que solo muestran información y comandos que modifican
+      los de consulta son seguros
+      los que modifican requieren atención
+    9. Errores frecuentes al comenzar
+      saber en qué carpeta estás
+      no copiar sin comprender
+    10. ¿Por qué la terminal es útil?
+      precisión y velocidad
+      automatización y documentación
+    11. Relación con Git
+      la terminal ejecuta Git
+      también hay interfaces gráficas
+    12. Buenas prácticas
+      comprende antes de ejecutar
+      practica en carpetas de prueba
+    13. Práctica guiada
+      abrir terminal y leer el indicador
+      ejecutar dir o ls
+    14. Experimento controlado
+      comando inexistente holamundo
+      mensaje informativo sin cambios
+    15. Ejercicio de análisis
+      sobre qué carpeta actúa cada comando
+      consulta frente a modificación
+    16. Cómo saber si lo entendiste
+      explicar con tus propias palabras
+      repetir la práctica si algo falla
+    17. Resumen
+      un medio para dar instrucciones
+      herramienta que se aprende paso a paso
+```
+
+---
+
 ## 1. Una primera explicación
 
 Cuando utilizas una computadora, normalmente interactúas mediante una **interfaz gráfica**:
@@ -70,24 +130,12 @@ La **terminal** es una interfaz que permite interactuar con el sistema operativo
 
 En lugar de hacer clic en botones, se escriben instrucciones llamadas **comandos**.
 
-```text
-Usuario
-   │
-   │ escribe un comando
-   ▼
-Terminal
-   │
-   │ envía la instrucción
-   ▼
-Sistema operativo
-   │
-   │ ejecuta
-   ▼
-Resultado
-   │
-   │ se muestra
-   ▼
-Usuario
+```mermaid
+flowchart TD
+    A["Usuario escribe un comando"] --> B["Terminal envía la instrucción"]
+    B --> C["Sistema operativo ejecuta"]
+    C --> D["Resultado"]
+    D --> E["La terminal muestra el resultado al usuario"]
 ```
 
 La terminal no ejecuta los comandos por sí misma.
@@ -282,17 +330,11 @@ La sintaxis exacta depende del comando y de la herramienta. Por eso cada comando
 
 Escribir un comando y presionar la tecla de confirmación —normalmente `Enter`— indica al sistema que lo ejecute.
 
-```text
-Escribes el comando
-        │
-        ▼
-Presionas Enter
-        │
-        ▼
-El sistema lo interpreta
-        │
-        ▼
-Se produce un resultado
+```mermaid
+flowchart TD
+    A["Escribes el comando"] --> B["Presionas Enter"]
+    B --> C["El sistema interpreta la instrucción"]
+    C --> D["Se produce un resultado"]
 ```
 
 El resultado puede ser:
@@ -543,6 +585,10 @@ Deberías poder identificar:
 * qué ocurre al ejecutar un comando de consulta;
 * que la terminal responde a lo que escribes.
 
+### Ejercicio de transferencia
+
+Abre la terminal en una carpeta distinta de la que usaste en la práctica (por ejemplo, en tu carpeta de Documentos), ejecuta `dir` en Windows o `ls` en macOS o Linux y copia literalmente el texto del indicador. Entrega un archivo `mi-indicador.txt` con tres apartados: el indicador copiado, la carpeta actual que indica y una frase que explique qué podría pasar si allí ejecutaras un comando que elimina archivos.
+
 ---
 
 ## 14. Experimento controlado
@@ -637,6 +683,21 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **La terminal es un medio para dar instrucciones precisas al sistema; no es un obstáculo, sino una herramienta que se aprende paso a paso.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Qué información te da el indicador y por qué importa antes de ejecutar cualquier comando que modifique archivos?
+2. Escribes `holamundo` y aparece un mensaje de error: ¿has dañado algo? ¿Qué te está diciendo el sistema?
+3. ¿Qué diferencia hay entre la terminal, la shell y Git, y cuál de los tres escribe el usuario?
+4. Antes de pulsar `Enter`, ¿cómo puedes saber si el comando que vas a ejecutar solo consulta o realmente modifica algo?
+5. En Windows el comando es `dir` y en macOS o Linux es `ls`: ¿por qué hacen lo mismo si no son la misma palabra?
+6. ¿Qué podría ocurrir si copias y pegas de Internet un comando que no entiendes?
+7. ¿Por qué la documentación de Git casi siempre te pide escribir comandos en la terminal y no hacer clics?
+8. Si el indicador marca `C:\Users\Ana>` y ejecutas un comando que borra la carpeta actual, ¿sobre qué carpeta actúa y qué comprobarías antes?
 
 ---
 
