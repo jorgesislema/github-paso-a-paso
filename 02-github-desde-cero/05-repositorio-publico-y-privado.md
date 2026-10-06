@@ -26,6 +26,41 @@ No necesitas utilizar la terminal en este capítulo. Continuaremos enfocándonos
 
 ---
 
+## Mapa conceptual de este capítulo
+
+```mermaid
+mindmap
+  root((Repositorios públicos y privados))
+    1. Una primera explicación
+      el cuaderno y la caja de seguridad
+      quién puede ver tu trabajo
+    2. Definiciones técnicas
+      público cualquiera lo ve
+      privado solo los autorizados
+      la distinción es el acceso
+    3 y 4. Beneficios de cada uno
+      visibilidad y portafolio
+      privacidad y experimentación
+      separar trabajo personal
+    5. Cuándo utilizar cada tipo
+      proyectos abiertos y educativos
+      información sensible o de cliente
+    6. Cambiar la visibilidad
+      el historial completo se expone
+      revisar antes de publicar
+    7. Seguridad y privacidad
+      nunca secretos en el repo
+      alternativas para credenciales
+    8 y 9. Errores y prácticas
+      privado no es infalible
+      decidir con criterio
+    10 a 13. Práctica y cierre
+      decisión por escenario
+      resumen del capítulo
+```
+
+---
+
 ## 1. Una primera explicación
 
 Imagina que tienes un cuaderno de trabajo donde anotas tus ideas, dibujos y cálculos.
@@ -199,6 +234,20 @@ Esta distinción afecta directamente quién puede ver tu trabajo, quién puede c
 * Estás en un entorno corporativo con políticas que restringen el compartimiento de ciertos tipos de trabajo;
 * Necesitas cumplir con requisitos regulatorios que exijan mantener ciertos trabajos privados;
 * Estás en una etapa temprana de aprendizaje y prefieres praticar en privado antes de compartir públicamente.
+
+### 5.3. El árbol de decisión en una imagen
+
+```mermaid
+flowchart TD
+    A["Vas a crear un repositorio"] --> B{"¿Contiene datos personales, credenciales o trabajo de un cliente?"}
+    B -->|Sí| C["Repositorio privado"]
+    B -->|No| D{"¿Quieres que otros lo vean, lo usen o contribuyan?"}
+    D -->|Sí| E["Repositorio público"]
+    D -->|No| F["Empieza en privado y publícalo cuando esté listo"]
+    C --> G{"¿Piensas pasarlo a público algún día?"}
+    G -->|Sí| H["Revisa todo el historial antes de cambiar la visibilidad"]
+    G -->|No| I["Mantén privado y revisa los colaboradores"]
+```
 
 ---
 
@@ -398,6 +447,14 @@ Deberías poder explicar claramente tu decisión y las razones detrás de ella, 
 
 ---
 
+### Ejercicio de transferencia
+
+Abre el explorador de archivos de tu equipo y elige tres carpetas o archivos reales (por ejemplo: fotos familiares, apuntes de un curso y un presupuesto). Decide para cada uno su visibilidad futura en GitHub, aunque todavía no lo crees.
+
+Entregable: una tabla de tres filas con la ruta del elemento, «público» o «privado», y el motivo en una línea; además de la frase que diga qué revisarías antes de pulsar «hacer público» en el caso más delicado de los tres.
+
+---
+
 ## 11. Ejercicio de análisis
 
 Observa estos escenarios y determina si sería más apropiado utilizar un repositorio público o privado para cada uno:
@@ -470,6 +527,20 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **La elección entre repositorios públicos y privados no es solo técnica; es una decisión que afecta directamente quién puede ver tu trabajo, quién puede contribuir a él y qué información estás compartiendo con el mundo. Tomar esta decisión de manera informada requiere equilibrar tus necesidades de colaboración, visibilidad, control de acceso, privacidad y seguridad.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Qué diferencia real hay entre privado y público si nadie conoce la dirección del repositorio?
+2. ¿Por qué borrar un archivo hoy no garantiza que deje de ser visible si el repositorio fue público?
+3. ¿Qué se expone exactamente al pasar de privado a público y por qué hay que revisar el historial completo?
+4. ¿Qué puede hacer cualquiera con un repositorio público y qué NO puede hacer sin ser colaborador?
+5. ¿Por qué un repositorio privado no te libra de guardar credenciales fuera del repositorio?
+6. ¿En qué casos empezarías en privado aunque el proyecto acabe siendo público?
+7. ¿Qué pierde tu equipo si cada quien decide la visibilidad sin acordar criterios?
 
 ---
 
