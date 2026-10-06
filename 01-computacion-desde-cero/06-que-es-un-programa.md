@@ -29,6 +29,75 @@ No necesitas aprender a programar en este capítulo. El objetivo es comprender l
 
 ---
 
+## Mapa conceptual
+
+```mermaid
+mindmap
+  root((¿Qué es un programa?))
+    1. Una primera explicación
+      instrucciones ordenadas
+      analogía con la receta
+    2. Definición técnica
+      la computadora ejecuta las instrucciones
+      navegadores, editores, Git
+    3. Programa y datos
+      programa instrucciones y datos información
+      los dos producen un resultado
+    4. ¿Qué es un lenguaje de programación?
+      símbolos y reglas
+      Python, JavaScript, Java
+    5. Código fuente
+      texto escrito por personas
+      legible y registrado en Git
+    6. Programa ejecutable
+      traducción a binario
+      no suele registrarse en Git
+    7. Intérpretes y compiladores
+      intérprete ejecuta paso a paso
+      compilador genera el ejecutable
+    8. Dónde se ejecutan los programas
+      equipos, servidores, nube
+      móviles y sistemas embebidos
+    9. Herramientas de desarrollo
+      editor, terminal, Git, GitHub
+      pruebas y automatización
+    10. Bibliotecas y dependencias
+      código reutilizable
+      se declaran y no se incluyen
+    11. Errores en los programas
+      sintaxis, lógica y ejecución
+      errores de dependencia
+    12. Relación con Git y GitHub
+      Git registra fuente y configuración
+      se evitan binarios y secretos
+    13. Git también es un programa
+      se ejecuta desde la terminal
+      la terminal no es Git
+    14. Errores comunes
+      confundir fuente y ejecutable
+      creer que hay que programar para Git
+    15. Buenas prácticas
+      versionar el código fuente
+      documentar las dependencias
+    16. Práctica guiada
+      comparar datos.txt y saludo.py
+      reconocer instrucciones y datos
+    17. Experimento controlado
+      renombrar .py a .txt
+      la herramienta deja de reconocerlo
+    18. Ejercicio de análisis
+      clasificar programa o dato
+      decidir qué se versiona
+    19. Cómo saber si lo entendiste
+      explicar con tus propias palabras
+      repetir la práctica si algo falla
+    20. Resumen
+      el programa ejecuta y el repo registra
+      Git también es un programa
+```
+
+---
+
 ## 1. Una primera explicación
 
 Imagina una receta de cocina.
@@ -283,14 +352,10 @@ Existen dos enfoques principales.
 
 Un **intérprete** lee el código fuente y lo ejecuta instrucción por instrucción.
 
-```text
-Código fuente
-      │
-      ▼
-Intérprete
-      │
-      ▼
-Ejecución
+```mermaid
+flowchart TD
+    A["Código fuente"] --> B["Intérprete"]
+    B --> C["Ejecución instrucción por instrucción"]
 ```
 
 Lenguajes como Python suelen funcionar de esta manera.
@@ -304,17 +369,11 @@ Ventajas:
 
 Un **compilador** traduce el código fuente completo a un programa ejecutable.
 
-```text
-Código fuente
-      │
-      ▼
-Compilador
-      │
-      ▼
-Programa ejecutable
-      │
-      ▼
-Ejecución
+```mermaid
+flowchart TD
+    A["Código fuente"] --> B["Compilador"]
+    B --> C["Programa ejecutable"]
+    C --> D["Ejecución"]
 ```
 
 Lenguajes como C y C++ suelen utilizar compiladores.
@@ -667,6 +726,10 @@ Deberías reconocer que:
 * `saludo.py` contiene instrucciones escritas en un lenguaje de programación;
 * ambos son archivos de texto plano, pero cumplen funciones diferentes.
 
+### Ejercicio de transferencia
+
+En una carpeta nueva llamada `practica-transferencia-06`, crea `recetas.txt` con dos ingredientes y `contador.py` con esta única línea: `print("Hola desde mi primer script")`. Entrega una tabla de dos filas que clasifique cada archivo como **instrucciones** o **dato**, y una frase que explique qué le ocurriría a `contador.py` si lo renombraras como `contador.txt`.
+
 ---
 
 ## 17. Experimento controlado
@@ -756,6 +819,21 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **Un programa es un conjunto de instrucciones; un repositorio es el lugar donde se registra y colabora sobre el código fuente de esos programas, junto con su documentación y configuración.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. `datos.txt` y `saludo.py` son ambos texto plano: ¿qué los diferencia y por qué solo uno describe instrucciones?
+2. Renombras `saludo.py` como `saludo.txt`: ¿por qué el intérprete de Python ya no lo trata igual aunque el contenido no cambió?
+3. ¿Por qué Git guarda normalmente el código fuente y deja fuera el programa ejecutable generado?
+4. ¿Qué es una dependencia y por qué no se suele copiar entera dentro del repositorio?
+5. Git es un programa y la terminal no lo es: ¿qué papel juega cada uno cuando escribes `git status`?
+6. Tu script falla al ejecutarse: ¿significa eso que Git está roto? Razona la respuesta.
+7. ¿Qué ganas al registrar los cambios con Git frente a mantener `informe-v1`, `informe-v2` y `informe-final`?
+8. ¿Por qué el código fuente es legible y modificable y el ejecutable no lo es en la práctica?
 
 ---
 
