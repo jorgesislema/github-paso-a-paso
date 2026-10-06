@@ -19,43 +19,34 @@ Al final aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-Subir imágenes
-       │
-       ├── 1. Imágenes en un repositorio
-       │        ├── Dos roles: archivo y contenido
-       │        └── Dónde viven las imágenes
-       │
-       ├── 2. Formatos
-       │        ├── PNG, JPG, SVG, GIF, WebP
-       │        ├── Cuándo usar cada uno
-       │        └── Tamaño y peso
-       │
-       ├── 3. Subir imágenes
-       │        ├── Por el botón y por arrastre
-       │        └── Organización de carpetas de imágenes
-       │
-       │
-       ├── 4. Mostrar imágenes en Markdown
-       │        ├── Sintaxis
-       │        ├── Rutas relativas
-       │        ├── Imágenes externas
-       │        └── Texto alternativo
-       │
-       ├── 5. El truco del arrastre en el editor
-       │
-       ├── 6. Imágenes en README, issues y Pull Requests
-       │
-       ├── 7. Errores comunes con diagnóstico completo
-       │
-       ├── 8. Práctica guiada
-       │
-       ├── 9. Nivel profesional
-       │        ├── Optimización de imágenes
-       │        ├── Assets y diagramas como código
-       │        └── Reglas de equipo
-       │
-       └── 10. Resumen y siguiente paso
+```mermaid
+mindmap
+  root((Subir imágenes))
+    1. Imágenes en un repositorio
+      dos roles archivo y contenido
+      dónde viven las imágenes
+      qué gana el versionarlas
+    2. Formatos
+      PNG JPG SVG GIF WebP
+      cuándo usar cada uno
+      tamaño y peso
+    3. Subir imágenes
+      por el botón y por arrastre
+      organización de carpetas de imágenes
+    4. Mostrar imágenes en Markdown
+      sintaxis
+      rutas relativas
+      imágenes externas
+      texto alternativo
+    5. El truco del arrastre en el editor
+    6. Imágenes en README issues y Pull Requests
+    7. Errores comunes con diagnóstico completo
+    8. Práctica guiada
+    9. Nivel profesional
+      optimización de imágenes
+      assets y diagramas como código
+      reglas de equipo
+    10. Resumen y siguiente paso
 ```
 
 ---
@@ -284,14 +275,12 @@ La ruta se resuelve desde la CARPETA DEL ARCHIVO .md
 
 ### 4.3. Error clásico de ruta
 
-```text
-Situación: guia.md en docs/ referencia assets/diagrama.png
-
-RUTA MAL:    ![x](assets/diagrama.png)
-   →  busca docs/assets/diagrama.png  →  NO EXISTE
-
-RUTA BIEN:   ![x](../assets/diagrama.png)
-   →  sube a la raíz y busca assets/diagrama.png  →  OK
+```mermaid
+flowchart TD
+    A["En docs/guia.md escribes la ruta assets/diagrama.png"] --> B["GitHub busca docs/assets/diagrama.png"]
+    B --> C["No existe: la imagen sale rota con icono de cadena"]
+    D["En docs/guia.md escribes la ruta ../assets/diagrama.png"] --> E["Sube un nivel a la raíz y busca assets/diagrama.png"]
+    E --> F["Existe: la imagen se muestra en el documento"]
 ```
 
 ### 4.4. Imagen externa (URL absoluta)
@@ -339,17 +328,17 @@ Buen texto alternativo:
 
 GitHub tiene una característica muy práctica: cuando estás escribiendo en el editor web (README, issue, comentario, archivo `.md`), puedes **arrastrar una imagen directamente sobre el cuadro de texto**.
 
-```text
-Qué ocurre al arrastrar la imagen al editor
-──────────────────────────────────────────────
-1. Suelta la imagen sobre el cuadro de texto
-2. GitHub la SUBE automáticamente como un archivo
-   (generalmente a la raíz o a la carpeta del archivo
-   si el editor lo permite en ese contexto)
-3. e inserta la sintaxis Markdown con la ruta generada
+```mermaid
+flowchart TD
+    A["Suelta la imagen sobre el cuadro de texto del editor"] --> B["GitHub la sube automáticamente como un archivo"]
+    B --> C["La coloca en la raíz o en la carpeta del archivo cuando el contexto lo permite"]
+    C --> D["Inserta la sintaxis Markdown con la ruta generada"]
+```
 
 Resultado en el texto:
-   ![Mi captura](https://github.com/usuario/repo/blob/.../captura.png)
+
+```markdown
+![Mi captura](https://github.com/usuario/repo/blob/.../captura.png)
 ```
 
 ```text
@@ -481,6 +470,8 @@ Archivos que muestran imágenes
 
 **Cómo comprobarlo:** buscar la ruta en todos los `.md` (búsqueda en el repo); abrir el render.
 
+⚠️ **RIESGO:** borrar la imagen desde la web la elimina del repositorio y rompe cualquier enlace que apuntara a ella; solo se recupera abriendo el historial del archivo, y los lectores de esa página verán la imagen rota hasta que la vuelvas a subir.
+
 **Opciones:** añadir la referencia o borrar la imagen huérfana si ya no sirve.
 
 **Riesgos:** repositorio con imágenes «fantasma» que solo ensucian.
@@ -602,6 +593,10 @@ Un README con imágenes visibles desde la raíz, imágenes organizadas en `asset
 
 Las imágenes se suben como archivos y se muestran con una regla sencilla: ruta relativa desde el archivo que las referencia, texto alternativo siempre.
 
+### Ejercicio de transferencia
+
+Sube una imagen nueva a `docs/img/` de tu repositorio de práctica, crea si hace falta un archivo `.md` dentro de `docs/` y referénciala desde ahí escribiendo la ruta relativa a mano. Entrega: la URL del archivo `.md` renderizado donde se ve la imagen, la ruta exacta que escribiste y una línea explicando por qué no funcionaría si la escribieras igual que desde el README.
+
 ---
 
 ## 9. Nivel profesional
@@ -682,6 +677,20 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **Una imagen en un repositorio se gobierna como cualquier archivo: nombre correcto, carpeta ordenada, peso razonable y una ruta relativa que la conecta con el documento que la muestra.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Qué diferencia hay entre tratar una imagen como archivo del repositorio y tratarla como contenido visual de un `.md`, y por qué una misma imagen puede cumplir las dos cosas?
+2. ¿Cómo decides entre PNG, JPG y SVG para una imagen concreta y qué pierdes si eliges mal?
+3. ¿Por qué la ruta de una imagen se resuelve desde la carpeta del archivo que la muestra y no desde la raíz del repositorio?
+4. Si una imagen del README sale con el icono de cadena roto, ¿qué dos comparaciones haces y cuál es el fallo más frecuente?
+5. ¿Qué consecuencias tiene subir una captura de 5 MB «solo una vez» y por qué no se arregla borrándola después?
+6. ¿Cuándo conviene arrastrar la imagen al editor y cuándo subirla con su carpeta y su mensaje?
+7. ¿Qué ganas con un texto alternativo bien escrito y qué pasa si lo dejas vacío sin ser decorativa?
 
 ---
 
