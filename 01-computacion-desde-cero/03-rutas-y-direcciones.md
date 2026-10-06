@@ -24,6 +24,75 @@ No necesitas utilizar la terminal para comprender este capítulo, aunque algunas
 
 ---
 
+## Mapa conceptual
+
+```mermaid
+mindmap
+  root((Rutas y direcciones))
+    1. Una primera explicación
+      recorrido hasta el archivo
+      el nombre solo no basta
+    2. Definición técnica
+      cadena de carpetas y destino
+      cada elemento está dentro del anterior
+    3. La raíz
+      la unidad C en Windows
+      la barra en Linux y macOS
+    4. Separadores de ruta
+      contrabarra en Windows
+      barra inclinada en Unix
+    5. Ruta absoluta
+      empieza siempre en la raíz
+      válida solo en tu equipo
+    6. Ruta relativa
+      parte de la carpeta actual
+      la que se usa en proyectos Git
+    7. La carpeta actual y el símbolo «.»
+      significa aquí mismo
+      .notas.txt equivale al archivo local
+    8. La carpeta superior y el símbolo «..»
+      sube un nivel
+      repitiendo se suben varios
+    9. La carpeta personal del usuario y el símbolo «~»
+      carpeta personal del usuario
+      cambia si cambia la persona
+    10. Cómo leer una ruta paso a paso
+      leer de izquierda a derecha
+      preguntas antes de usarla
+    11. Rutas con espacios
+      requieren comillas en terminal
+      en proyectos se evitan
+    12. Rutas largas
+      los sistemas imponen límites
+      evita niveles innecesarios
+    13. Por qué las rutas importan en Git
+      git add con ruta relativa
+      raíz del repositorio
+    14. Errores comunes
+      olvidar la carpeta actual
+      rutas absolutas al compartir
+    15. Buenas prácticas
+      rutas relativas dentro del proyecto
+      revisa la ruta antes de darla por mala
+    16. Práctica guiada
+      identificar la ruta de notas.txt
+      escribir la ruta relativa
+    17. Experimento controlado
+      la misma ruta desde dos sitios
+      papel de los puntos
+    18. Ejercicio de análisis
+      distinguir absolutas y relativas
+      detectar rutas problemáticas
+    19. Cómo saber si lo entendiste
+      explicar con tus propias palabras
+      repetir la práctica si algo falla
+    20. Resumen
+      la ruta dice dónde vive el archivo
+      base para no equivocarse de lugar
+```
+
+---
+
 ## 1. Una primera explicación
 
 Imagina que quieres enviar una carta a una persona.
@@ -431,6 +500,15 @@ notas.txt                  →  archivo final
 
 Cada segmento es un nivel de la jerarquía.
 
+```mermaid
+flowchart TD
+    A["Empezar en la raíz de la unidad"] --> B["Recorrer los segmentos de izquierda a derecha"]
+    B --> C["Cada segmento es una carpeta que contiene a la siguiente"]
+    C --> D["Identificar la carpeta final"]
+    D --> E["Identificar el archivo al final de la ruta"]
+    E --> F["Contar los niveles antes de usar la ruta en un comando"]
+```
+
 ### Preguntas útiles al leer una ruta
 
 1. ¿Dónde comienza?
@@ -681,6 +759,10 @@ Deberías poder explicar:
 * cuál es su ruta relativa desde `practica-carpetas`;
 * qué representan la raíz y cada nivel intermedio.
 
+### Ejercicio de transferencia
+
+Crea (o reutiliza) la carpeta `practica-transferencia-03/` con una subcarpeta `informes` dentro de la cual guardas un archivo `gastos.txt`. Abre esa carpeta en el explorador, copia la ruta completa que muestra la barra de dirección y pégala en un archivo `mis-rutas.txt`. En la segunda línea escribe la ruta relativa desde `practica-transferencia-03/` hasta `informes/gastos.txt` y añade una frase indicando cuál de las dos funcionaría en el ordenador de otra persona.
+
 ---
 
 ## 17. Experimento controlado
@@ -775,6 +857,21 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **Una ruta es la forma de expresar dónde vive un archivo o una carpeta, y comprenderla es indispensable para trabajar con Git sin equivocarse de lugar.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. `git add documentos/notas.txt` usa una ruta relativa: ¿desde dónde se interpreta y qué pasaría si tu compañero usara tu ruta absoluta?
+2. Estás dentro de la carpeta `pruebas` y escribes `resultado.txt`: ¿a qué archivo te refieres exactamente y qué cambia si te olvidas de tu ubicación actual?
+3. ¿Qué significan `.` y `..` y por qué confundirlos puede hacer que un comando actúe sobre la carpeta equivocada?
+4. ¿Por qué la misma carpeta tiene una ruta absoluta y varias relativas, y en qué situación conviene usar cada una?
+5. ¿Qué problema puede causar un espacio en el nombre de una carpeta cuando ejecutas un comando en la terminal?
+6. Un enlace que empieza por `C:\Usuarios\Jorge\` no abre nada en el ordenador de otra persona: ¿por qué y cómo se evita?
+7. ¿Qué separador encontrarás en la documentación de Git para Windows y por qué aparece aunque tu sistema use contrabarra?
+8. Si una ruta «no funciona», ¿qué revisarías en orden antes de concluir que el archivo no existe?
 
 ---
 
