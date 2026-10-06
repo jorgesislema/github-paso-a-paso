@@ -23,6 +23,44 @@ No necesitas utilizar la terminal en este capítulo. Nos enfocaremos en comprend
 
 ---
 
+## Mapa conceptual de este capítulo
+
+```mermaid
+mindmap
+  root((¿Qué es GitHub?))
+    1. Una primera explicación
+      el cuaderno y la biblioteca
+      guardar compartir colaborar
+    2. Definición técnica
+      plataforma web con Git
+      GitHub no es Git
+      alojamiento más herramientas
+    3. Para qué sirve GitHub
+      alojamiento de repositorios
+      colaboración con PRs e Issues
+      automatización con Actions
+      gestión e identidad profesional
+    4. Qué no es GitHub
+      no es el control de versiones
+      no es un lenguaje
+      no es solo para programadores
+    5. Relación con lo que ya sabes
+      archivos y carpetas
+      programas y terminal
+    6 y 7. Errores y buenas prácticas
+      Git funciona sin GitHub
+      revisar antes de publicar
+    8 a 10. Práctica y análisis
+      explorar GitHub sin cuenta
+      clonar frente a descargar ZIP
+      un proyecto escolar en GitHub
+    11 y 12. Comprobación
+      cómo saber si lo entendiste
+      resumen del capítulo
+```
+
+---
+
 ## 1. Una primera explicación
 
 Imagina que tienes un cuaderno de trabajo donde anotas tus ideas, dibujos y cálculos.
@@ -297,6 +335,18 @@ Este experimento te ayudará a comprender la diferencia entre ver un repositorio
    * Abrir con GitHub Desktop
 3. No necesitas descargar nada todavía; solo observa qué opciones están disponibles.
 
+Lo que acabas de ver se resume así:
+
+```mermaid
+flowchart TD
+    A["Abres un repositorio público en GitHub"] --> B["Haces clic en el botón Code"]
+    B --> C{"¿Qué opción eliges?"}
+    C --> D["Descargar ZIP"]
+    C --> E["Clonar con HTTPS o SSH"]
+    D --> F["Solo los archivos en su estado actual, sin historial"]
+    E --> G["Copia completa del repositorio con todo el historial de Git"]
+```
+
 ### Preguntas
 
 * ¿Qué significa "clonar" un repositorio?
@@ -307,6 +357,14 @@ Este experimento te ayudará a comprender la diferencia entre ver un repositorio
 ### Conclusión esperada
 
 Clonar obtiene una copia completa del repositorio con su historial de Git, mientras que descargar un ZIP solo obtiene los archivos en su estado actual, sin el historial de Git.
+
+---
+
+### Ejercicio de transferencia
+
+Sin crear cuenta y sin instalar nada: abre github.com, busca un repositorio público sobre cualquier tema que te interese y completa una ficha de cinco líneas.
+
+Entregable: nombre del repositorio, tres archivos o carpetas que contiene, qué problema resuelve el proyecto, qué botón usa para obtener una copia y una frase explícita que compare «clonar» con «descargar ZIP».
 
 ---
 
@@ -362,6 +420,19 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **GitHub es una plataforma que mejora la forma en que trabajamos con Git al añadir herramientas para colaboración, desarrollo y gestión, pero sin reemplazar el sistema de control de versiones subyacente.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué GitHub necesita a Git para funcionar y Git no necesita a GitHub?
+2. Si mañana GitHub desapareciera, ¿qué seguirías pudiendo hacer con tus proyectos y qué perderías?
+3. ¿Qué ganas al proponer cambios con un Pull Request frente a enviar archivos por correo electrónico?
+4. ¿Cuándo tiene sentido usar GitHub para un proyecto que no es de programación?
+5. ¿Por qué confiar solo en GitHub como copia de seguridad es un error?
+6. ¿Qué diferencia práctica hay entre clonar un repositorio y descargar su ZIP?
 
 ---
 
