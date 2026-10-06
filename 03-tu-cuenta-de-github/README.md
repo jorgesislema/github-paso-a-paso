@@ -29,6 +29,43 @@ Al terminar esta sección serás capaz de:
 * recuperar el acceso a la cuenta con el procedimiento de recuperación del 2FA;
 * identificar los roles de una organización y aplicar el principio de mínimo privilegio.
 
+## Mapa conceptual
+
+```mermaid
+mindmap
+  root((03 · Tu cuenta de GitHub))
+    01 Crear tu cuenta
+      correo permanente
+      nombre de usuario estable
+      verificación de correo
+      seguridad del día cero
+    02 Configurar tu perfil
+      identidad pública
+      biografía y foto
+      README de perfil
+      actividad y visibilidad
+    03 Configuración básica
+      correos y noreply
+      idioma y zona horaria
+      notificaciones sin ruido
+      visibilidad y privacidad
+    04 Seguridad de la cuenta
+      contraseñas y gestor
+      sesiones y tokens
+      phishing y dominios
+      alertas y bitácora
+    05 Autenticación en dos pasos
+      factores saber poseer ser
+      app TOTP y llaves FIDO2
+      códigos de recuperación
+      pérdida del dispositivo
+    06 Organizaciones
+      miembros y colaboradores
+      equipos y permisos
+      roles y mínimo privilegio
+      propietarios y continuidad
+```
+
 ---
 
 ## ¿Qué aprenderás en esta sección?
@@ -71,6 +108,19 @@ Recuerda: no se trata de rellenar todos los campos disponibles, sino de entender
 
 ---
 
+## Checkpoint 03 — Comprobación obligatoria
+
+Antes de avanzar a `04-github-desde-la-web/`, demuestra que puedes (en tu cuenta de GitHub real, no en teoría):
+
+1. **Abrir** tu perfil en una pestaña anónima (`github.com/tu-usuario`) y comprobar que nombre, biografía y foto se ven como esperas.
+2. **Activar** la autenticación en dos pasos con app o llave, **descargar** los códigos de recuperación y **guardarlos** fuera del equipo.
+3. **Configurar** la dirección noreply en Settings → Emails y **copiarla** para usarla como correo de Git.
+4. **Revisar** Settings → Sessions y **cerrar** una sesión antigua o que no reconozcas.
+5. **Crear** una organización de prueba con dos equipos, **invitar** a una segunda cuenta y **comprobar** que un miembro sin equipo no ve los repositorios privados.
+6. **Explicar** con tus palabras por qué cambiar la contraseña no invalida los tokens ni las claves SSH, y qué tendrías que revocar además.
+
+Si puedes hacerlo **sin mirar instrucciones**, el checkpoint está cerrado.
+
 ## Autopreguntas de cierre
 
 Sin mirar el material, responde mentalmente y luego compruébalo con los capítulos de la sección:
@@ -79,6 +129,9 @@ Sin mirar el material, responde mentalmente y luego compruébalo con los capítu
 2. ¿Qué pasa si pierdes el teléfono con la app de 2FA y qué haces para que no te deje fuera?
 3. ¿Qué puede hacer un colaborador que no puede un solo lector (read)?
 4. ¿Por qué el 2FA se recomienda incluso para cuentas con poco movimiento?
+5. ¿Por qué un repositorio que vive en una organización sobrevive a la salida de la persona que lo creó?
+6. Si alguien filtra un token tuyo pegado en un repositorio público, ¿qué haces primero y por qué borrar el archivo no sirve?
+7. ¿Por qué GitHub exige verificar el correo antes de dejarte usar la cuenta con normalidad, y qué perderías si ese correo caduca?
 
 ---
 
