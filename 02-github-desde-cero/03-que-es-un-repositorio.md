@@ -23,6 +23,45 @@ No necesitas utilizar la terminal en este capítulo. Nos enfocaremos en comprend
 
 ---
 
+## Mapa conceptual de este capítulo
+
+```mermaid
+mindmap
+  root((¿Qué es un repositorio?))
+    1 y 2. Qué es un repositorio
+      historial completo de cambios
+      la carpeta .git
+      carpeta común frente a repo
+    3. Qué contiene
+      objetos blobs trees commits
+      referencias ramas y HEAD
+      configuración e índice
+    4 y 5. Diferencias y creación
+      la carpeta común pierde versiones
+      git init convierte el directorio
+    6 y 7. Repositorio vacío y estructura
+      aún sin commits al inicio
+      README LICENSE y gitignore
+      variaciones según el proyecto
+    8. Repositorios locales y remotos
+      clone fetch pull push
+      flujo típico de sincronización
+    9. Relación con lo que ya sabes
+      rutas desde la raíz
+      terminal más adelante
+    10 y 11. Errores y prácticas
+      no editar .git a mano
+      excluir archivos con gitignore
+    12 a 14. Práctica y análisis
+      experimento con copias manuales
+      anatomía de un repositorio
+    15 y 16. Comprobación
+      cómo saber si lo entendiste
+      resumen del capítulo
+```
+
+---
+
 ## 1. Una primera explicación
 
 Imagina que tienes una caja de herramientas especial que no solo guarda tus herramientas, sino que también recuerda exactamente cómo las has organizado en cada momento del tiempo.
@@ -306,26 +345,13 @@ El repositorio local y el remoto están conectados mediante operaciones como:
 
 El flujo típico de trabajo con repositorios locales y remotos es:
 
-```text
-Trabajo local
-    │
-    ▼
-Haces cambios y commits en tu repositorio local
-    │
-    ▼
-Cuando estás listo para compartir:
-    │
-    ▼
-Push: envías tus commits al repositorio remoto
-    │
-    ▼
-Tus compañeros pueden:
-    │
-    ▼
-Pull: obtener tus cambios desde el remoto
-    │
-    ▼
-Continuar trabajando desde el punto donde lo dejaste
+```mermaid
+flowchart TD
+    A["Trabajo local"] --> B["Haces cambios y commits en tu repositorio local"]
+    B --> C["Cuando estás listo para compartir"]
+    C --> D["Push: envías tus commits al repositorio remoto"]
+    D --> E["Tus compañeros pueden hacer Pull de tus cambios"]
+    E --> F["Continuar trabajando desde el punto donde lo dejaste"]
 ```
 
 Este flujo permite que múltiples personas trabajen en el mismo proyecto manteniendo sus copias locales sincronizadas con una versión centralizada.
@@ -532,6 +558,14 @@ El enfoque de repositorio Git (aunque lo estemos imaginando) resulta superior pa
 
 ---
 
+### Ejercicio de transferencia
+
+En tu equipo de trabajo o de estudio, elige una carpeta que edites con frecuencia (Documentos, una carpeta de fotos o la de este curso) y haz un inventario con el explorador de archivos.
+
+Entregable: la ruta absoluta de esa carpeta, dos archivos que cambian a menudo, el nombre de una copia confusa que encuentres (algo tipo informe-v2-final) o la afirmación de que no hay ninguna, y una línea que diga qué información se perdería si sobrescribes un archivo sin historial. Termina indicando que ahí es donde iría la carpeta `.git`.
+
+---
+
 ## 14. Ejercicio de análisis
 
 Observa esta estructura de archivos:
@@ -612,6 +646,20 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **Un repositorio no es solo un lugar para guardar archivos; es un sistema que recuerda exactamente cómo han cambiado esos archivos a lo largo del tiempo, lo que nos permite trabajar con confianza, recuperar errores y colaborar de manera efectiva.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué una carpeta con archivos no es un repositorio aunque tenga toda la documentación del proyecto?
+2. ¿Qué hay dentro de `.git` y por qué Git no te deja editarla a mano?
+3. ¿Qué cambia en un directorio cuando ejecutas `git init` y qué no cambia en sus archivos?
+4. ¿Qué diferencia hay entre un recién creado repositorio vacío y uno con cien commits?
+5. ¿Por qué `git init` no sube nada a GitHub y qué pasos faltarían después?
+6. ¿Qué operaciones conectan un repositorio local con uno remoto y en qué dirección va cada una?
+7. ¿Qué ganas teniendo el historial en tu equipo aunque no tengas conexión a internet?
 
 ---
 
