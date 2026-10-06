@@ -20,46 +20,36 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-Subir archivos
-       │
-       ├── 1. Por qué subir archivos
-       │        ├── Crear vs. subir
-       │        └── Cuándo usar cada camino
-       │
-       ├── 2. Métodos de subida
-       │        ├── A. Botón "Add file → Upload files"
-       │        └── B. Arrastrar y soltar en la página del repo
-       │
-       ├── 3. El diálogo de subida
-       │        ├── Selección de archivos
-       │        ├── Carpeta de destino
-       │        └── Confirmación intermedia
-       │
-       ├── 4. El commit de la subida
-       │        ├── Mensaje
-       │        ├── Descripción
-       │        └── Rama destino
-       │
-       ├── 5. Subir varios archivos a la vez
-       │
-       ├── 6. Qué archivos subir (y cuáles no)
-       │        ├── Tamaños y formatos
-       │        ├── Archivos que no deben entrar
-       │        └── La cuestión de los binarios
-       │
-       ├── 7. Verificar la subida
-       │
-       ├── 8. Errores comunes con diagnóstico completo
-       │
-       ├── 9. Práctica guiada
-       │
-       ├── 10. Nivel profesional
-       │        ├── Git LFS para archivos grandes
-       │        ├── Subidas iniciales de proyectos
-       │        └── Reglas de equipo
-       │
-       └── 11. Resumen y siguiente paso
+```mermaid
+mindmap
+  root((Subir archivos))
+    1. Por qué subir archivos
+      crear frente a subir
+      cuándo usar cada camino
+    2. Métodos de subida
+      A. Botón Add file y Upload files
+      B. Arrastrar y soltar en la página del repo
+    3. El diálogo de subida
+      selección de archivos
+      carpeta de destino
+      confirmación intermedia
+    4. El commit de la subida
+      mensaje
+      descripción
+      rama destino
+    5. Subir varios archivos a la vez
+    6. Qué archivos subir y cuáles no
+      tamaños y formatos
+      archivos que no deben entrar
+      la cuestión de los binarios
+    7. Verificar la subida
+    8. Errores comunes con diagnóstico completo
+    9. Práctica guiada
+    10. Nivel profesional
+      Git LFS para archivos grandes
+      subidas iniciales de proyectos
+      reglas de equipo
+    11. Resumen y siguiente paso
 ```
 
 ---
@@ -103,34 +93,25 @@ Trabajar a diario con el proyecto            Git local (sección 06+)
 
 ### 2.1. Método A: el botón «Add file»
 
-```text
-Página del repositorio
-       │
-       │ pulsa "Add file" (zona superior derecha del listado)
-       ▼
-Menú desplegable
-       │
-       ├── Create new file        →  (ya visto: escribir aquí)
-       ├── Upload files           →  SUBIR ARCHIVOS  ◄ este
-       └── Find a file            →  buscar en el repo
-              │
-              ▼
-       Página de subida (punto 3)
+```mermaid
+flowchart TD
+    A["Página del repositorio"] --> B["Pulsas Add file en la zona superior derecha del listado"]
+    B --> C["Se abre el menú desplegable"]
+    C --> D["Create new file — escribir el archivo aquí"]
+    C --> E["Upload files — subir archivos desde tu equipo"]
+    C --> F["Find a file — buscar en el repo"]
+    E --> G["Página de subida descrita en el punto 3"]
 ```
 
 ### 2.2. Método B: arrastrar y soltar
 
-```text
-Arrastre sobre la página del repositorio
-──────────────────────────────────────────────
-1. Abre la carpeta de destino en el navegador
-   (si quieres subir dentro de una carpeta, entra en ella)
-2. Con otra ventana del explorador (o el escritorio),
-   arrastra los archivos sobre el listado de archivos
-3. GitHub resalta la zona de soltado
-4. Suelta: los archivos aparecen en la lista de pendientes
-5. Pulsa "Add N files to main" (o el botón equivalente)
-6. Completa el diálogo de commit
+```mermaid
+flowchart TD
+    A["Abre la carpeta de destino en el navegador"] --> B["Arrastra los archivos desde otra ventana del explorador sobre el listado"]
+    B --> C["GitHub resalta la zona de soltado"]
+    C --> D["Suelta: los archivos aparecen en la lista de pendientes"]
+    D --> E["Pulsas Add N files to main"]
+    E --> F["Completas el diálogo de commit"]
 ```
 
 ```text
@@ -469,6 +450,8 @@ Verificación de contenido
 
 **Cómo comprobarlo:** mira la ruta mostrada antes de confirmar (o los archivos listados ahora en la raíz).
 
+⚠️ **RIESGO:** eliminar los duplicados desde la web borra esos archivos del repositorio con un commit nuevo; su contenido solo se recupera después abriendo el historial, y si otro colaborador ya los enlazó esos enlaces quedan rotos.
+
 **Opciones:**
 * usar la opción de renombrar/mover de GitHub (menos cómoda);
 * subirlos de nuevo en la carpeta correcta y borrar los de la raíz (en repos con poca gente).
@@ -488,6 +471,8 @@ Verificación de contenido
 **Por qué:** falta de revisión previa.
 
 **Cómo comprobarlo:** abrir el archivo subido y revisar su contenido; buscar palabras clave (contraseñas, teléfonos, DNI).
+
+⚠️ **RIESGO:** lo que ya entró en un commit se conserva para siempre en el historial y en cualquier clon; borrar el archivo ahora retira el contenido visible, pero no borra las credenciales ni los datos, que hay que considerar filtrados y rotarlos.
 
 **Opciones:**
 * Si es privado y poca gente lo vio: borrar el archivo y revisar quién tenía acceso.
@@ -530,6 +515,8 @@ Verificación de contenido
 **Por qué:** nombres confusos en origen.
 
 **Cómo comprobarlo:** abrir el archivo subido y comparar.
+
+⚠️ **RIESGO:** subir un archivo sobre un nombre que ya existe lo sobrescribe en la rama: la versión que estaba deja de ser la visible de inmediato; se recupera abriendo el «History» del archivo, pero el commit de la subida queda en el historial con esa sustitución.
 
 **Opciones:**
 * subir la correcta encima (la subida sobre un nombre existente crea un commit que lo reemplaza);
@@ -639,6 +626,12 @@ Tres commits con mensajes claros; los archivos en sus carpetas correctos; el rep
 
 Subir archivos es el mismo acto que crearlos, solo que el origen es tu equipo: el control está en la revisión previa (ruta, nombre, contenido, rama) y en el mensaje.
 
+### Ejercicio de transferencia
+
+En tu repositorio de práctica, arrastra desde tu explorador tres archivos de un asunto que no sea el curso —por ejemplo fotos o documentos de un evento— dentro de la carpeta `docs/evento/`, entrando en la carpeta antes de soltarlos. Entrega: el enlace al commit único que los agrupa, la ruta exacta donde quedaron y el mensaje que escribiste.
+
+⚠️ **RIESGO:** todo lo que subas queda guardado para siempre en el historial, así que revisa antes de confirmar que ninguno de los tres archivos contiene datos personales de terceros o credenciales.
+
 ---
 
 ## 10. Nivel profesional
@@ -729,6 +722,19 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **Subir es crear con origen externo: el acto es simple, la responsabilidad está en revisar qué, dónde, en qué rama y con qué mensaje llega.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué la carpeta destino de una subida por arrastre es donde estás parado en el navegador y cómo evitas que los archivos caigan en la raíz cuando querías otra?
+2. Si arrastras diez archivos de golpe, ¿cuántos commits se crean y qué mensaje conviene escribir para que el historial siga siendo legible?
+3. ¿Qué tipos de archivo no deberían entrar nunca en un repositorio y por qué borrarlos después no deja de dejar rastro en el historial?
+4. ¿Qué límites de tamaño te obligan a plantear Git LFS o un almacenamiento externo, y qué carga deja en el equipo subir un binario gigante «mientras tanto»?
+5. ¿Cómo compruebas que una subida se hizo bien más allá de ver los nombres en la lista, y qué errores tontos detecta esa revisión?
+6. ¿Qué diferencia hay entre subir un archivo nuevo y subirlo sobre un nombre que ya existe, y dónde miras si necesitas la versión anterior?
 
 ---
 
