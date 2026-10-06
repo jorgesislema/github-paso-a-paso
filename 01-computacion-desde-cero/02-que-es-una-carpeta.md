@@ -25,6 +25,69 @@ No necesitas utilizar la terminal.
 
 ---
 
+## Mapa conceptual
+
+```mermaid
+mindmap
+  root((¿Qué es una carpeta?))
+    1. Una primera explicación
+      contenedor de archivos y carpetas
+      analogía del archivador
+    2. Definición técnica
+      carpeta y directorio son lo mismo
+      agrupa y organiza
+    3. ¿Por qué existen las carpetas?
+      agrupar por tema y evitar conflictos
+      facilita la búsqueda
+    4. Jerarquía de carpetas dentro de carpetas
+      niveles y carpeta raíz
+      ni exceso ni falta de niveles
+    5. Carpeta frente a archivo
+      el archivo guarda información
+      la carpeta organiza
+    6. Nombres de carpetas
+      nombres descriptivos y consistentes
+      evita espacios en proyectos técnicos
+    7. Carpetas comunes en un proyecto
+      docs, imagenes, datos, codigo
+      convenciones en español o inglés
+    8. La carpeta del proyecto
+      raíz del proyecto
+      contiene archivos y carpetas
+    9. Operaciones básicas con carpetas
+      crear, entrar y renombrar
+      mover arrastra todo el contenido
+    10. Carpetas vacías
+      Git no registra carpetas vacías
+      convención .gitkeep o README
+    11. Carpetas ocultas
+      la carpeta .git guarda el repositorio
+      no debe borrarse sin comprenderla
+    12. Errores comunes
+      eliminar sin revisar el contenido
+      romper referencias al mover
+    13. Buenas prácticas
+      estructura clara desde el inicio
+      revisar antes de mover o borrar
+    14. Práctica guiada
+      crear practica-carpetas con subcarpetas
+      archivo dentro de documentos
+    15. Experimento controlado
+      dos notas.txt en carpetas distintas
+      no hay conflicto de nombres
+    16. Ejercicio de análisis
+      proponer carpetas para un proyecto
+      justificar la estructura elegida
+    17. Cómo saber si lo entendiste
+      explicar con tus propias palabras
+      repetir la práctica si algo falla
+    18. Resumen
+      la carpeta organiza dónde vive la información
+      Git, carpetas vacías y .git
+```
+
+---
+
 ## 1. Una primera explicación
 
 Una carpeta es un contenedor que agrupa archivos y otras carpetas.
@@ -412,6 +475,15 @@ Si una carpeta no contiene ningún archivo registrado,
 no aparecerá al compartir el proyecto mediante Git.
 ```
 
+```mermaid
+flowchart TD
+    A["Carpetas del proyecto"] --> B{"¿Contiene algún archivo registrado?"}
+    B -->|Sí| C["Git la conserva y la comparte"]
+    B -->|No| D["Git no la registra y no aparece al clonar"]
+    D --> E["Añadir un .gitkeep o un README.md dentro"]
+    E --> C
+```
+
 Por eso, cuando alguien clona un repositorio, las carpetas que estaban vacías en el equipo original pueden no aparecer.
 
 ### La convención de `.gitkeep`
@@ -588,6 +660,10 @@ practica-carpetas/
 
 Comprueba que puedes navegar entre los niveles: entra y sal de cada carpeta y observa cómo cambia el contenido que se muestra.
 
+### Ejercicio de transferencia
+
+En tu carpeta de Documentos (o en el escritorio) crea `practica-transferencia-02/` con tres subcarpetas: `trabajo`, `fotos` y `musica`. Dentro de `trabajo` crea un archivo `pendientes.txt` con dos tareas y dentro de `musica` crea otro archivo también llamado `pendientes.txt` con dos canciones. Entrega la estructura completa escrita en un archivo `estructura.txt` (o una captura) mostrando que los dos `pendientes.txt` conviven sin chocar.
+
 ---
 
 ## 15. Experimento controlado
@@ -687,6 +763,21 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **Una carpeta no guarda información por sí misma: organiza el lugar donde esa información vive.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué pueden coexistir dos archivos llamados `notas.txt` y qué información hace que cada uno sea distinto?
+2. Mueves la carpeta `documentos/` fuera del proyecto: ¿qué puede romperse y quién o qué podría seguir esperándola en su sitio?
+3. ¿Qué le ocurre a una carpeta vacía cuando compartes el proyecto con Git y qué solución convencional existe?
+4. Si borras la carpeta `.git`, ¿qué pierde el proyecto aunque los archivos sigan ahí? ¿Por qué no deberías tocarla?
+5. Un proyecto con siete niveles de carpetas dentro de carpetas y otro con todos los archivos sueltos en la raíz: ¿qué problemas distintos tiene cada uno?
+6. ¿Por qué importa el nombre de la carpeta raíz del proyecto para la persona que clonará el repositorio?
+7. ¿En qué se diferencia un archivo `proyecto.zip` de una carpeta `proyecto/` y por qué confundirlos cambia cómo se comparte el trabajo?
+8. Al mover una carpeta completa, ¿qué ocurre con sus archivos internos y qué cabría esperar que pasara si estuvieran en un repositorio Git?
 
 ---
 
