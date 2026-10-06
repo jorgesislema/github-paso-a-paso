@@ -26,53 +26,44 @@ No necesitas instalar nada. Solo necesitas un navegador web, un correo electrón
 
 Antes de entrar en detalle, este es el mapa que recorre el contenido:
 
-```text
-Tu cuenta de GitHub
-       │
-       ├── 1. Qué es una cuenta en GitHub
-       │        ├── Identidad pública
-       │        ├── Correo de recuperación
-       │        ├── Credenciales de acceso
-       │        └── Relación con repositorios y organizaciones
-       │
-       ├── 2. Planes de GitHub
-       │        ├── Gratuito (Free)
-       │        ├── Pro
-       │        ├── Team
-       │        └── Enterprise
-       │
-       ├── 3. Preparativos antes de registrarte
-       │        ├── Elegir el correo
-       │        ├── Elegir el nombre de usuario
-       │        ├── Preparar una contraseña fuerte
-       │        └── Tener a mano un administrador de contraseñas
-       │
-       ├── 4. El registro paso a paso
-       │        ├── Formulario inicial
-       │        ├── Verificación anti-robot
-       │        ├── Confirmación de correo
-       │        └── Verificación de que todo quedó activo
-       │
-       ├── 5. Primeros pasos post-registro
-       │        ├── Perfil vacío
-       │        ├── Tablero de inicio
-       │        └── Búsqueda y exploración
-       │
-       ├── 6. Seguridad del día cero
-       │        ├── Contraseña única y fuerte
-       │        ├── Autenticación en dos pasos (capítulo 05)
-       │        └── Códigos de recuperación
-       │
-       ├── 7. Errores comunes y cómo evitarlos
-       │
-       ├── 8. Práctica guiada
-       │
-       ├── 9. Nivel profesional
-       │        ├── Cuentas separadas (personal / trabajo)
-       │        ├── Gestión de identidad
-       │        └── Políticas de organizaciones
-       │
-       └── 10. Resumen y siguiente paso
+```mermaid
+mindmap
+  root((Crear tu cuenta de GitHub))
+    1. Qué es una cuenta en GitHub
+      Identidad pública
+      Correo de recuperación
+      Credenciales de acceso
+      Relación con repositorios y organizaciones
+    2. Planes de GitHub
+      Gratuito Free
+      Pro
+      Team
+      Enterprise
+    3. Preparativos antes de registrarte
+      Elegir el correo
+      Elegir el nombre de usuario
+      Preparar una contraseña fuerte
+      Tener a mano un administrador de contraseñas
+    4. El registro paso a paso
+      Formulario inicial
+      Verificación anti-robot
+      Confirmación de correo
+      Verificación de que todo quedó activo
+    5. Primeros pasos post-registro
+      Perfil vacío
+      Tablero de inicio
+      Búsqueda y exploración
+    6. Seguridad del día cero
+      Contraseña única y fuerte
+      Autenticación en dos pasos capítulo 05
+      Códigos de recuperación
+    7. Errores comunes y cómo evitarlos
+    8. Práctica guiada
+    9. Nivel profesional
+      Cuentas separadas personal y trabajo
+      Gestión de identidad
+      Políticas de organizaciones
+    10. Resumen y siguiente paso
 ```
 
 Recorre los diez bloques en orden. Cada uno depende del anterior.
@@ -151,25 +142,15 @@ Distinguir estos dos planos es fundamental para el resto del curso, porque en la
 
 Un punto que muchos principiantes pasan por alto: tu cuenta no es tu código. Es tu relación con la plataforma.
 
-```text
-Tu cuenta (identidad)
-       │
-       │ posee / crea
-       ▼
-Repositorios  ──────────►  Contienen tu código y su historial
-       │
-       │ participa en
-       ▼
-Organizaciones  ─────────►  Espacios de trabajo compartidos
-       │
-       │ genera
-       ▼
-Actividad  ──────────────►  Commits, Issues, Pull Requests, estrellas
-       │
-       │ recibe
-       ▼
-Notificaciones  ─────────►  Avisos de lo que te interesa
+```mermaid
+flowchart TD
+    A["Tu cuenta: identidad en la plataforma"] -->|"posee y crea"| B["Repositorios: contienen tu código y su historial"]
+    A -->|"participa en"| C["Organizaciones: espacios de trabajo compartidos"]
+    A -->|"genera"| D["Actividad: commits, issues, pull requests, estrellas"]
+    A -->|"recibe"| E["Notificaciones: avisos de lo que te interesa"]
 ```
+
+⚠️ **RIESGO:** eliminar tu cuenta de GitHub borra de forma irreversible tus repositorios públicos, tu identidad y las organizaciones donde seas el único propietario; no existe «deshacer».
 
 Si algún día eliminas tu cuenta (algo que GitHub permite), desaparecen los repositorios públicos que tú posees y las organizaciones donde seas el único propietario. Por eso conviene crearla bien desde el principio.
 
@@ -383,64 +364,18 @@ Lista de preparativos
 
 Este es el recorrido completo desde que abres el navegador hasta que tu cuenta está plenamente activa:
 
-```text
-         ┌──────────────────────────────┐
-         │  Abrir github.com            │
-         │  y pulsar "Sign up"          │
-         └───────────────┬──────────────┘
-                         │
-                         ▼
-         ┌──────────────────────────────┐
-         │  Formulario de registro      │
-         │  · Correo                     │
-         │  · Nombre de usuario          │
-         │  · Contraseña                 │
-         └───────────────┬──────────────┘
-                         │
-                         ▼
-         ┌──────────────────────────────┐
-         │  Verificación anti-robot     │
-         │  (prueba de puzzle o similar) │
-         └───────────────┬──────────────┘
-                         │
-                         ▼
-         ┌──────────────────────────────┐
-         │  GitHub envía un correo de   │
-         │  confirmación a tu dirección │
-         └───────────────┬──────────────┘
-                         │
-            ┌────────────┴────────────┐
-            │                         │
-            ▼                         ▼
-   ┌─────────────────┐      ┌──────────────────────┐
-   │ Abres el correo │      │ Si NO llega:         │
-   │ y pulsas el     │      │ · Revisa spam        │
-   │ botón de        │      │ · Espera unos minutos│
-   │ confirmación    │      │ · Pide reenvío       │
-   └────────┬────────┘      └──────────┬───────────┘
-            │                          │
-            └────────────┬─────────────┘
-                         │
-                         ▼
-         ┌──────────────────────────────┐
-         │  Vuelves a GitHub y accedes  │
-         │  con tu usuario y contraseña │
-         └───────────────┬──────────────┘
-                         │
-                         ▼
-         ┌──────────────────────────────┐
-         │  Cuenta ACTIVA               │
-         │  (verificada por correo)     │
-         └───────────────┬──────────────┘
-                         │
-                         ▼
-         ┌──────────────────────────────┐
-         │  Configuración mínima        │
-         │  (siguientes capítulos)      │
-         │  · Perfil                    │
-         │  · Seguridad                 │
-         │  · Notificaciones            │
-         └──────────────────────────────┘
+```mermaid
+flowchart TD
+    A["Abrir github.com y pulsar Sign up"] --> B["Formulario de registro: correo, nombre de usuario y contraseña"]
+    B --> C["Verificación anti-robot con prueba de puzzle o similar"]
+    C --> D["GitHub envía un correo de confirmación a tu dirección"]
+    D --> E{"¿Llega el correo?"}
+    E -->|"Sí"| F["Abres el correo y pulsas el botón de confirmación"]
+    E -->|"No"| G["Revisa spam, espera unos minutos y pide reenvío"]
+    G --> F
+    F --> H["Vuelves a GitHub e inicias sesión con tu usuario y contraseña"]
+    H --> I["Cuenta activa y verificada por correo"]
+    I --> J["Configuración mínima de los siguientes capítulos: perfil, seguridad y notificaciones"]
 ```
 
 ### 4.2. Formulario de registro
@@ -659,6 +594,8 @@ En este bloque se reúnen los errores de registro y posregistro, con diagnóstic
 
 ### Error 1: Nombre de usuario impulsivo
 
+⚠️ **RIESGO:** cambiar el nombre de usuario rompe los enlaces antiguos a tu perfil y a tus repositorios y deja huérfanas las referencias en commits de terceros; el nombre anterior puede ser reclamado por otra persona.
+
 **Qué ocurrió:** se eligió un nombre de forma rápida (un apodo, un número, algo temporal).
 
 **Por qué ocurre:** la interfaz pide el nombre de inmediato y la prisa invita a rellenarlo sin pensar.
@@ -769,6 +706,10 @@ Cuenta activa, correo verificado, credenciales guardadas en un administrador y p
 
 El registro dura pocos minutos, pero las decisiones de correo, usuario y contraseña son de largo aliento. Cada una tiene consecuencias prácticas: recuperación de acceso, identidad pública y barrera de seguridad.
 
+### Ejercicio de transferencia
+
+Aplica los preparativos de este capítulo a tu cuenta real: comprueba en Settings → Emails que tu correo principal es permanente y está verificado, y revisa que tu URL `github.com/tu-usuario` cumple los criterios del punto 3.2 para los próximos cinco años. Entrega una lista escrita de los cuatro preparativos (correo, nombre de usuario con su justificación, frase de paso en el gestor, gestor abierto) más una captura de Settings → Emails con el correo marcado como verificado.
+
 ---
 
 ## 9. Nivel profesional
@@ -854,6 +795,18 @@ La idea principal es:
 > **Crear la cuenta no es un trámite de dos minutos: es la primera decisión técnica del curso, porque fija tu identidad pública, tu llave de recuperación y tu barrera de seguridad inicial.**
 
 ---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué un correo temporal o de una institución que caduca deja tu cuenta permanentemente huérfana?
+2. Si el nombre que querías está tomado, ¿qué criterios aplicas para elegir la variante y por qué no tomas la primera sugerencia?
+3. ¿Qué consecuencias prácticas tiene no confirmar el correo en las primeras 24 horas?
+4. Si reutilizas la contraseña de otra plataforma y esa plataforma se filtra, ¿qué camino sigue el atacante hasta tu cuenta?
+5. ¿Por qué la contraseña sola no es suficiente el día cero, aunque sea larga y única?
+6. Cuando eliminas una cuenta de GitHub, ¿qué desaparece contigo y qué queda en manos de otras personas?
+7. Si dentro de cinco años cambias de trabajo, ¿qué decisiones de este capítulo se mantienen intactas y cuáles se resienten?
 
 ## Próximo paso
 
