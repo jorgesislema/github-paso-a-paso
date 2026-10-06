@@ -25,6 +25,42 @@ No necesitas utilizar la terminal en este capítulo. Continuaremos enfocándonos
 
 ---
 
+## Mapa conceptual de este capítulo
+
+```mermaid
+mindmap
+  root((GitHub vs Git))
+    1. Una primera explicación
+      el taladro y sus accesorios
+      el motor y el vehículo
+    2. Definiciones técnicas
+      Git control de versiones distribuido
+      GitHub plataforma web
+      relación de dependencia y extensión
+    3. Qué puedes hacer con cada uno
+      Git solo funciona sin conexión
+      GitHub web sin Git local
+    4. Cómo trabajan juntos
+      flujo básico con push y pull
+      colaboración con Pull Request
+      automatización con Actions
+    5. Visualizando la relación
+      analogía del automóvil
+      analogía de la construcción
+      flujo de información
+    6. Errores comunes
+      no son intercambiables
+      usar cada término con precisión
+    8 y 9. Buenas prácticas y práctica
+      lenguaje preciso al hablar
+      identificar Git o GitHub paso a paso
+    10 a 12. Análisis y cierre
+      clasificar diez afirmaciones
+      resumen del capítulo
+```
+
+---
+
 ## 1. Una primera explicación
 
 Imagina que tienes una herramienta eléctrica potente, como un taladro.
@@ -166,59 +202,28 @@ Cuando usas Git y GitHub juntos, obtienes lo mejor de ambos worlds.
 
 ### 4.1. Flujo básico de trabajo
 
-```text
-Trabajo local con Git
-    │
-    ▼
-Haces cambios y commits en tu repositorio local
-    │
-    ▼
-Cuando estás listo para compartir:
-    │
-    ▼
-Push: envías tus commits al repositorio remoto en GitHub
-    │
-    ▼
-Tus compañeros pueden:
-    │
-    ▼
-Pull: obtener tus cambios desde el remoto
-    │
-    ▼
-Continuar trabajando desde el punto donde lo dejaste
+```mermaid
+flowchart TD
+    A["Trabajo local con Git"] --> B["Haces cambios y commits en tu repositorio local"]
+    B --> C["Cuando estás listo para compartir"]
+    C --> D["Push: envías tus commits al repositorio remoto en GitHub"]
+    D --> E["Tus compañeros hacen Pull de tus cambios"]
+    E --> F["Continuar trabajando desde el punto donde lo dejaste"]
 ```
 
 ### 4.2. Flujo de colaboración típico
 
-```text
-Tienes una idea o identificas un problema
-    │
-    ▼
-Creas una rama para trabajar en esa característica o corrección
-    │
-    ▼
-Haces tus cambios y haces commit(s) en tu rama local
-    │
-    ▼
-Push: envías tu rama al repositorio remoto en GitHub
-    │
-    ▼
-Abres un Pull Request proponiendo que se integren tus cambios
-    │
-    ▼
-Tus compañeros revisan tu código, dejan comentarios y sugieren mejoras
-    │
-    ▼
-Haces los cambios necesarios y actualizas tu Pull Request
-    │
-    ▼
-Se aprueba el Pull Request y se mergea a la rama principal
-    │
-    ▼
-Se elimina tu rama temporal (opcional)
-    │
-    ▼
-Se celebra el logro y se continúa con el siguiente trabajo
+```mermaid
+flowchart TD
+    A["Tienes una idea o identificas un problema"] --> B["Creas una rama para trabajar en esa corrección"]
+    B --> C["Haces tus cambios y haces commit en tu rama local"]
+    C --> D["Push: envías tu rama al repositorio remoto en GitHub"]
+    D --> E["Abres un Pull Request proponiendo integrar tus cambios"]
+    E --> F["Tus compañeros revisan, comentan y sugieren mejoras"]
+    F --> G["Haces los cambios necesarios y actualizas tu Pull Request"]
+    G --> H["Se aprueba el Pull Request y se fusiona en la rama principal"]
+    H --> I["Se elimina tu rama temporal (opcional)"]
+    I --> J["Se continúa con el siguiente trabajo"]
 ```
 
 ### 4.3. Flujo de automatización
@@ -433,6 +438,14 @@ Deberías reconocer que:
 
 ---
 
+### Ejercicio de transferencia
+
+Toma una tarea de tu vida real que tenga varias etapas (organizar un viaje familiar, preparar la mudanza o montar un menú semanal) y desglosa sus pasos en seis acciones concretas.
+
+Entregable: esa lista de seis pasos en la que marcas cada uno con «Git», «GitHub» o «ambos», más dos líneas que justifiquen los dos primeros marcados. Si ningún paso necesita GitHub, explícalo: también es una respuesta válida.
+
+---
+
 ## 10. Ejercicio de análisis
 
 Observa esta situación:
@@ -498,6 +511,19 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **Git y GitHub son herramientas distintas pero complementarias: Git hace el trabajo real de control de versiones, mientras que GitHub lo hace más útil, seguro y fácil de usar al agregar herramientas para colaboración, desarrollo y gestión. Confundirlos conduce a malentendidos, mientras que comprender su relación te permite aprovechar lo mejor de ambos.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. Si GitHub dejara de existir mañana, ¿qué seguirías haciendo con Git y qué dejarías de poder hacer?
+2. ¿Qué puedes hacer en la web de GitHub sin tener Git instalado y qué te es imposible hacer desde ahí?
+3. ¿Por qué decir «voy a subir esto a Git» es impreciso y qué palabra te correspondería usar?
+4. ¿Qué pasa en tu equipo si alguien solo conoce GitHub y nunca ha abierto una terminal?
+5. ¿Por qué algunos comandos de Git se comportan distinto o están restringidos cuando trabajas contra GitHub?
+6. ¿Qué ganas al distinguir ambos términos a la hora de buscar ayuda o diagnosticar un problema?
 
 ---
 
