@@ -18,38 +18,30 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-git log
-       │
-       ├── 1. La salida básica
-   │        ├── Cada campo
-   │        └── Orden y alcance (rama actual)
-   │
-       ├── 2. El paginador (salir sin pánico)
-   │
-       ├── 3. Formas compactas
-   │        ├── --oneline
-   │        ├── --graph
-   │        └── git log -n
-   │
-       ├── 4. Filtros
-   │        ├── --author
-   │        ├── --grep
-   │        ├── --since / --until
-   │        └── archivo concreto
-   │
-       ├── 5. Ver el contenido de un commit (mención)
-   │
-       ├── 6. Errores comunes con diagnóstico completo
-   │
-       ├── 7. Práctica guiada
-   │
-       ├── 8. Nivel profesional
-   │        ├── Auditoría y trazabilidad
-   │        ├── git log en guiones
-   │        └── Encontrar el culpable (bisect)
-   │
-       └── 9. Resumen y siguiente paso
+```mermaid
+mindmap
+  root((git log))
+    1. La salida básica
+      Cada campo
+      Orden y alcance en la rama actual
+    2. El paginador salir sin pánico
+    3. Formas compactas
+      vista --oneline
+      vista --graph
+      límite con git log -n
+    4. Filtros
+      --author
+      --grep
+      --since y --until
+      archivo concreto
+    5. Ver el contenido de un commit
+    6. Errores comunes con diagnóstico completo
+    7. Práctica guiada
+    8. Nivel profesional
+      Auditoría y trazabilidad
+      git log en guiones
+      Encontrar el culpable con bisect
+    9. Resumen y siguiente paso
 ```
 
 ---
@@ -255,6 +247,18 @@ git log --stat      →  el log con archivos afectados
 
 (Detalle de `git show` en el capítulo 12; aquí queda la conexión.)
 
+El flujo completo para localizar y abrir un commit queda así:
+
+```mermaid
+flowchart TD
+    A["git log --oneline -n 10"] --> B{"¿Aparece el commit?"}
+    B -->|Sí| C["Copia el hash corto"]
+    B -->|No| D["Quita filtros o añade --all"]
+    D --> E["Comprueba la rama con git branch"]
+    E --> A
+    C --> F["git show hash para leer cabecera y diff"]
+```
+
 ---
 
 ## 6. Errores comunes con diagnóstico completo
@@ -448,6 +452,10 @@ Capacidad de responder «¿qué pasó, cuándo, quién y dónde está el commit?
 
 `git log` es la memoria consultable del proyecto: con formato compacto para mirar de un vistazo y filtros para buscar con precisión.
 
+### Ejercicio de transferencia
+
+En un repositorio con historia (el de práctica o el de este curso), localiza el commit correspondiente a un día o semana concreta usando filtros de fecha y ábrelo después con `git show`. Entrega la salida de `git log --oneline --since="1 week ago"` (o la ventana que uses), el hash que elegiste y la salida de `git show <hash> --stat`. Explica en dos líneas cómo llegaste a ese commit sin recorrer el historial entero.
+
 ---
 
 ## 8. Nivel profesional
@@ -524,6 +532,21 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **`git log` es la memoria del proyecto en forma de lista: compacta para mirar, filtrada para buscar y completa para entender cada decisión que el historial registra.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Qué campos muestra cada entrada de `git log` y en qué orden aparecen los commits?
+2. ¿Por qué la salida se queda «colgada» y qué te dice eso de dónde está tu terminal?
+3. ¿Qué alcance tiene `git log` sin opciones y por qué un commit recién hecho puede no aparecer?
+4. ¿Cómo encuentras rápidamente los cinco últimos commits y los que tocaron un archivo concreto?
+5. ¿Qué diferencia hay entre buscar por `--author`, por `--grep` y por fechas, y cuándo usarías cada filtro?
+6. Si `git log` no muestra el commit que buscas, ¿qué tres comprobaciones haces antes de concluir que se borró?
+7. ¿Qué te aporta `git log --oneline --graph` que no te da la lista normal?
+8. ¿En qué se diferencia consultar el historial con `git log` de abrir un commit concreto con `git show`?
 
 ---
 
