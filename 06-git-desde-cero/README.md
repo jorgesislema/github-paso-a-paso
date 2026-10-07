@@ -32,6 +32,64 @@ Al terminar esta sección serás capaz de:
 * elegir entre `git diff` y `git show` según la comparación que necesites;
 * resolver tus dudas con `git help` sin depender de terceros.
 
+## Mapa conceptual
+
+```mermaid
+mindmap
+  root((06 · Git desde cero))
+    01 Qué es Git
+      control de versiones distribuido
+      commits e historial
+      local y en tu equipo
+    02 Por qué existe Git
+      CVS y el kernel de Linux
+      crisis de 2005
+      cuatro necesidades de diseño
+    03 Instalar Git
+      Windows macOS y Linux
+      verificación con git --version
+      abrir la terminal y usar cd
+    04 Configurar Git
+      user.name y user.email
+      niveles global y local
+      editor por defecto
+    05 Crear un repositorio
+      git init y git clone
+      la carpeta .git
+    06 git init
+      estructura de .git
+      objects refs HEAD config
+      rama inicial con -b
+    07 git status
+      la brújula del flujo
+      los tres estados del archivo
+      rama remoto y cambios
+    08 git add
+      el área de preparación
+      staging selectivo
+      deshacer con restore --staged
+    09 git commit
+      la instantánea y su autoría
+      editor de mensajes
+      opciones -a y --amend
+    10 git log
+      el paginador less
+      vistas --oneline y --graph
+      filtros de búsqueda
+    11 git diff
+      carpeta staging e historial
+      lectura de marcas
+      comparar commits y ramas
+    12 git show
+      cabecera mensaje y diff
+      HEAD y hashes
+      show hash dos puntos ruta
+    13 git help
+      manuales y guías
+      ayuda rápida con -h
+      documentación en la web
+```
+
 ---
 
 ## ¿Qué aprenderás en esta sección?
@@ -82,6 +140,21 @@ Recuerda: los manuales son referencia, no tutorial. Usa `git help` para detalles
 
 ---
 
+## Checkpoint 06 — Comprobación obligatoria
+
+Antes de avanzar a `07-como-funciona-git/`, demuestra que puedes (en un repositorio de práctica real):
+
+1. **Instalar y verificar** Git con `git --version`, abrir la terminal en la carpeta del proyecto y entrar en ella con `cd`.
+2. **Configurar** tu identidad con `git config --global user.name` y `git config --global user.email` y comprobarla con `git config --list`.
+3. **Crear** un repositorio con `git init` en una carpeta nueva, confirmar que existe `.git` y que `git status` lo reconoce.
+4. **Registrar** tres cambios reales con la cadena completa `git status` → `git add` → `git diff --staged` → `git commit -m`.
+5. **Romper y recuperar**: meter un archivo de más en el área de preparación con `git add` y sacarlo con `git restore --staged` sin perder el archivo en tu carpeta.
+6. **Leer el historial** con `git log --oneline -5`, copiar un hash y abrirlo con `git show <hash>`; después explicar la diferencia entre `git diff` y `git diff --staged`.
+
+Si puedes hacerlo **sin mirar instrucciones**, el checkpoint está cerrado.
+
+---
+
 ## Autopreguntas de cierre
 
 Sin mirar el material, responde mentalmente y luego compruébalo con los capítulos de la sección:
@@ -90,6 +163,10 @@ Sin mirar el material, responde mentalmente y luego compruébalo con los capítu
 2. ¿Qué diferencia hay entre `git add` y `git commit`?
 3. ¿Cómo ves los cambios exactos de un commit concreto?
 4. ¿Qué muestra `git log --oneline -5`?
+5. Si haces `git add` y cierras el equipo sin llegar a `git commit`, ¿se pierde ese cambio o solo sale del área de preparación?
+6. ¿Por qué Git te deja trabajar sin internet pero no te deja publicar sin él?
+7. ¿Qué miras antes de commitear, `git diff` o `git diff --staged`, y por qué en ese orden?
+8. ¿Qué perderías exactamente si borras la carpeta `.git` de un proyecto con trabajo importante y se podría recuperar de alguna manera?
 
 ---
 
