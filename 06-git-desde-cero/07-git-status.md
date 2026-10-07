@@ -19,39 +19,30 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-git status
-       │
-       ├── 1. La terminal y el prompt
-   │        ├── Dónde escribir
-   │        ├── Comando = programa + Enter
-   │        └── Errores de tipeo
-   │
-       ├── 2. Ejecutar git status
-   │        ├── El comando
-   │        └── Dónde ejecutarlo (hay que estar en el repo)
-   │
-       ├── 3. Leer la salida
-   │        ├── Rama y remoto
-   │        ├── Sección de cambios sin preparar
-   │        └── Sección de cambios preparados
-   │
-       ├── 4. Los tres estados de un archivo
-   │
-       ├── 5. Status limpio (nothing to commit)
-   │
-       ├── 6. El hábito: antes y después
-   │
-       ├── 7. Errores comunes con diagnóstico completo
-   │
-       ├── 8. Práctica guiada
-   │
-       ├── 9. Nivel profesional
-   │        ├── Status en guiones
-   │        ├── Atajos visuales
-   │        └── Status como diagnóstico
-   │
-       └── 10. Resumen y siguiente paso
+```mermaid
+mindmap
+  root((git status))
+    1. La terminal y el prompt
+      Dónde escribir
+      Comando igual a programa más Enter
+      Errores de tipeo
+    2. Ejecutar git status
+      El comando
+      Dónde ejecutarlo hay que estar en el repo
+    3. Leer la salida
+      Rama y remoto
+      Sección de cambios sin preparar
+      Sección de cambios preparados
+    4. Los tres estados de un archivo
+    5. Status limpio con nothing to commit
+    6. El hábito antes y después
+    7. Errores comunes con diagnóstico completo
+    8. Práctica guiada
+    9. Nivel profesional
+      Status en guiones
+      Atajos visuales
+      Status como diagnóstico
+    10. Resumen y siguiente paso
 ```
 
 ---
@@ -217,25 +208,10 @@ En la lista aparecen estados:
 
 Este es el mapa conceptual que gobierna todo Git:
 
-```text
-ESTADO 1: WORKING DIRECTORY (tu carpeta)
-   │
-   ├── el archivo como está en el disco
-   ├── status lo muestra como "modified" o "untracked"
-   │   en la sección "not staged"
-   │
-   ▼  git add
-ESTADO 2: STAGING AREA (área de preparación)
-   │
-   ├── has elegido este cambio para el próximo commit
-   ├── status lo muestra en "Changes to be committed"
-   │
-   ▼  git commit
-ESTADO 3: REPOSITORIO (historial)
-   │
-   ├── el cambio es parte de un commit
-   ├── status vuelve a mostrar solo lo pendiente
-   └── y remoto: hasta git push
+```mermaid
+flowchart TD
+    A["ESTADO 1 WORKING DIRECTORY tu carpeta<br/>el archivo como está en el disco<br/>status lo muestra como modified o untracked en la sección not staged"] -->|git add| B["ESTADO 2 STAGING AREA área de preparación<br/>has elegido este cambio para el próximo commit<br/>status lo muestra en Changes to be committed"]
+    B -->|git commit| C["ESTADO 3 REPOSITORIO historial<br/>el cambio es parte de un commit<br/>status vuelve a mostrar solo lo pendiente<br/>y en el remoto hasta git push"]
 ```
 
 ```text
@@ -477,6 +453,10 @@ Capacidad de traducir cada línea de la salida a un estado concreto del flujo.
 
 `git status` no es un comando más: es la lectura del tablero. Quien lo lee bien, nunca trabaja a ciegas.
 
+### Ejercicio de transferencia
+
+En un repositorio con varios archivos (el de práctica o uno propio), modifica dos archivos, borra uno y crea otro nuevo, sin ejecutar `git add` todavía. Entrega la salida de `git status` junto a una tabla de dos columnas donde cada archivo aparezca traducido a su estado (not staged, untracked o deleted) y a la acción que te corresponde tomar. El entregable es la salida pegada y la tabla completada.
+
 ---
 
 ## 9. Nivel profesional
@@ -559,6 +539,21 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **Status es la brújula del flujo de Git: no cambia nada, pero hace que cada cambio que hagas sea una decisión consciente y no una suposición.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Qué tres preguntas responde `git status` y qué información NO te da?
+2. ¿Qué significan «not staged» y «to be committed» y qué harías con cada uno de los dos?
+3. ¿Por qué `untracked` no es un error y qué decisión te toca a ti en ese momento?
+4. ¿Qué diferencia hay entre «working tree clean» y «up to date with origin»?
+5. Si status dice «behind by 2» justo antes de un push, ¿qué harías y por qué?
+6. ¿En qué momentos del día deberías ejecutar status y qué problemas evitas si te lo saltas?
+7. ¿Qué harías si la salida lista cientos de archivos modificados y no sabes por dónde empezar?
+8. ¿Qué significa cada estado de la lista de archivos (modified, new file, deleted, untracked)?
 
 ---
 
