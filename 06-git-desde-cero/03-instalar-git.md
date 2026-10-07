@@ -22,6 +22,42 @@ Este capítulo sí usa la terminal, pero solo para verificar que la instalación
 
 ---
 
+## Mapa conceptual de este capítulo
+
+```mermaid
+mindmap
+  root((Instalar Git))
+    1. Antes de empezar
+      el programa Git no es GitHub
+      versión más reciente
+      sitio oficial git-scm.com
+    2. Instalar en Windows
+      instalador oficial
+      opciones por defecto
+      terminal Git Bash
+      alternativas WSL y MSYS2
+    3. Instalar en macOS
+      xcode-select --install
+      Homebrew
+    4. Instalar en Linux
+      apt en Debian y Ubuntu
+      dnf o yum en RPM
+      permisos con sudo
+    5. Verificar la instalación
+      git --version
+      comando de solo lectura
+    6. Dónde abrir la terminal
+      PowerShell Git Bash o Terminal
+      moverte con cd
+    7. Errores típicos al instalar
+      comando no reconocido
+      versión demasiado antigua
+    8. Una comprobación final
+      versión visible desde cualquier carpeta
+```
+
+---
+
 ## 1. Antes de empezar
 
 Antes de instalar, aclaremos dos cosas.
@@ -189,6 +225,16 @@ No vas a necesitar `sudo` cuando uses Git para trabajar en tus proyectos, solo p
 ## 5. Verificar la instalación
 
 Una vez instalado, lo primero es comprobar que el sistema reconoce el comando `git`.
+
+```mermaid
+flowchart TD
+    A["Instala Git en tu sistema"] --> B["Abre la terminal"]
+    B --> C["Escribe git --version"]
+    C --> D{"¿Aparece git version?"}
+    D -->|Sí| E["Entra en tu proyecto con cd"]
+    D -->|No| F["Reinicia la terminal o revisa la instalación"]
+    F --> C
+```
 
 ### 5.1. Sintaxis básica
 
@@ -381,6 +427,10 @@ Deberías poder:
 * verificar la versión instalada;
 * moverte dentro de carpetas usando `cd`.
 
+### Ejercicio de transferencia
+
+Instala Git en el equipo que uses a diario con el método de tu sistema (Windows, macOS o Linux) y comprueba la versión. Entrega una captura de la terminal que muestre a la vez la salida de `git --version` y el prompt dentro de la carpeta donde practicaste, tras entrar en ella con `cd`. Si todavía no puedes instalarlo, escribe cinco líneas explicando qué paso falta y qué mensaje exacto verías al ejecutar `git` en una terminal abierta antes de instalar.
+
 ---
 
 ## Errores comunes
@@ -418,17 +468,17 @@ Antes de ejecutar comandos de Git, confirma con el indicador que estás en la ca
 
 ---
 
-## Cómo saber si lo entendiste
+## Autopreguntas de cierre
 
-Deberías poder explicar con tus propias palabras:
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
 
-* qué vas a instalar exactamente y por qué;
-* cómo se instala Git en Windows, macOS y Linux;
-* qué opciones importantes ofrece el instalador de Windows;
-* qué alternativas existen en Windows (WSL y MSYS2);
-* cómo verificar la instalación con `git --version`;
-* dónde abrir la terminal y cómo moverte entre carpetas;
-* qué hacer si el comando `git` no se reconoce.
+1. ¿Qué instalas exactamente en tu equipo y en qué se diferencia de tener una cuenta de GitHub?
+2. ¿Por qué conviene instalar la versión más reciente y qué harías con una versión muy antigua?
+3. ¿Qué opciones del instalador de Windows te parecen más relevantes y por qué podrías dejar las demás en sus valores por defecto?
+4. ¿Qué alternativas existen en Windows, macOS y Linux, y en qué caso elegirías cada una?
+5. ¿Qué te demuestra la salida de `git --version` y qué significaría que el comando no se reconociera?
+6. ¿Por qué hay que reiniciar la terminal después de instalar y qué papel juega la ruta del sistema (`PATH`)?
+7. ¿Cómo confirmas que estás en la carpeta correcta antes de ejecutar cualquier comando de Git?
 
 Si alguna respuesta no está clara, vuelve a la sección correspondiente y repite la práctica.
 
