@@ -18,35 +18,27 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-git diff
-       │
-       ├── 1. Qué compara cada variante
-   │        ├── diff (carpeta vs. staging)
-   │        ├── diff --staged (staging vs. historial)
-   │        └── diff entre commits
-   │
-       ├── 2. Leer la salida
-   │        ├── Cabeceras
-   │        ├── Marcas + y -
-   │        └── Contexto y numeração
-   │
-       ├── 3. Diff de un archivo
-   │
-       ├── 4. Diff entre commits y ramas
-   │
-       ├── 5. Resúmenes (--stat, --name-only)
-   │
-       ├── 6. Errores comunes con diagnóstico completo
-   │
-       ├── 7. Práctica guiada
-   │
-       ├── 8. Nivel profesional
-   │        ├── Revisión con diff
-   │        ├── Diff para sistemas
-   │        └── Herramientas visuales
-   │
-       └── 9. Resumen y siguiente paso
+```mermaid
+mindmap
+  root((git diff))
+    1. Qué compara cada variante
+      diff de carpeta contra staging
+      diff --staged de staging contra historial
+      diff entre commits
+    2. Leer la salida
+      Cabeceras
+      las marcas + y -
+      Contexto y numéricas
+    3. Diff de un archivo
+    4. Diff entre commits y ramas
+    5. Resúmenes con --stat y --name-only
+    6. Errores comunes con diagnóstico completo
+    7. Práctica guiada
+    8. Nivel profesional
+      Revisión con diff
+      Diff para sistemas
+      Herramientas visuales
+    9. Resumen y siguiente paso
 ```
 
 ---
@@ -55,19 +47,11 @@ git diff
 
 ### 1.1. El mapa mental (imprescindible)
 
-```text
-Los tres puntos de comparación
-──────────────────────────────────────────────
-Carpeta (working)   Staging (add)    Historial (commit)
-       │                │                  │
-       └─── git diff ───┘                  │
-                │                          │
-                └── git diff --staged ─────┘
-
-git diff              →  ¿qué cambié y AÚN NO he preparado?
-git diff --staged     →  ¿qué he preparado (lo próximo
-                          que commitearé)?
-git diff A..B         →  ¿qué difieren dos commits/ramas?
+```mermaid
+flowchart TD
+    A["Carpeta working<br/>qué cambié y aún no he preparado"] -->|git diff| B["Staging add<br/>lo que se commiteará a continuación"]
+    B -->|git diff --staged| C["Historial commit"]
+    C --- D["git diff A..B<br/>qué difieren dos commits o ramas"]
 ```
 
 ### 1.2. Escenarios cotidianos
@@ -419,6 +403,10 @@ Capacidad de elegir la variante de diff correcta para cada pregunta y leerla con
 
 `diff` es la lupa de Git: donde status señala el mapa, diff abre el detalle. Revisar con él es la garantía de que lo que guardas es lo que quieres guardar.
 
+### Ejercicio de transferencia
+
+En tu repositorio de práctica, cambia dos archivos y añade solo uno de ellos al área de preparación con `git add`. Entrega las salidas de `git diff` y de `git diff --staged` y explica en dos líneas por qué un archivo aparece en una y no en la otra. Cierra con la salida de `git diff --stat` y una frase sobre qué te aporta el resumen que no te da el diff completo.
+
 ---
 
 ## 8. Nivel profesional
@@ -488,6 +476,20 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **`diff` es la certeza: donde status dice «hay cambios», diff te demuestra exactamente cuáles, para que la decisión de commitear sea conocimiento y no esperanza.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Qué compara `git diff` sin opciones y qué compara `git diff --staged`?
+2. ¿Por qué el diff sale vacío justo después de `git add` y qué comando te falta ejecutar para verlo?
+3. ¿Qué significan las marcas `+`, `-` y el espacio al inicio de cada línea de un diff?
+4. ¿Qué diferencia hay entre `git diff A..B` y `git diff A...B` y en qué situaciones usarías cada uno?
+5. ¿Por qué un archivo recién creado no aparece en `git diff` y cómo sí puedes verlo?
+6. ¿Qué te aportan `--stat` y `--name-only` que el diff completo no te da, y cuándo los usarías?
+7. ¿Qué preguntas te haces (y con qué comandos) antes de pulsar `git commit`?
 
 ---
 
