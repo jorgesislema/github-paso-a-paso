@@ -18,28 +18,22 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-Seguimiento de ramas (upstream)
-       │
-       ├── 1. Qué es y dónde se guarda
-   │
-       ├── 2. Cómo se establece
-   │        ├── -u en el primer push
-   │        ├── --track / --set-upstream-to
-   │        └── autodetección (switch moderno)
-   │
-       ├── 3. Efectos en el día a día
-   │        ├── push/pull sin argumentos
-   │        ├── status ahead/behind
-   │        └── -vv
-   │
-       ├── 4. Cambiar, quitar y diagnosticar
-   │
-       ├── 5. Errores comunes con diagnóstico completo
-   │
-       ├── 6. Práctica guiada
-   │
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Seguimiento de ramas upstream))
+    1. Qué es y dónde se guarda
+    2. Cómo se establece
+      -u en el primer push
+      track y set-upstream-to
+      autodetección de switch
+    3. Efectos en el día a día
+      push y pull sin argumentos
+      status con ahead y behind
+      lectura con -vv
+    4. Cambiar quitar y diagnosticar
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional y resumen
 ```
 
 ---
@@ -178,6 +172,16 @@ git log HEAD..@{upstream} --oneline     # lo ajeno sin bajar
 ```text
 @{upstream} = «la pareja de la rama actual»: atajo
 que evita teclear origin/…
+```
+
+```mermaid
+flowchart TD
+    A["git push sin argumentos"] --> B{"¿La rama tiene upstream configurado?"}
+    B -- "no" --> C["Error: no upstream branch, con la sugerencia de Git"]
+    C --> D["git push -u origin rama: publica y enlaza la pareja"]
+    B -- "sí" --> E["Sube los commits a la pareja configurada"]
+    D --> E
+    E --> F["git status reporta up to date, ahead, behind o diverged"]
 ```
 
 ---
@@ -378,6 +382,8 @@ git push -u origin seg-libre           # re-enlaza
 
 ### Paso 6: limpieza
 
+⚠️ **RIESGO:** `git push origin --delete seg-libre` borra la rama en el servidor de tu remoto y rompe el enlace de seguimiento de todo el que la trackeara. Hazlo solo con ramas tuyas ya integradas.
+
 ```bash
 git switch main
 git branch -d seg-libre
@@ -394,11 +400,17 @@ Cero misterio alrededor de `@{upstream}`, `ahead/behind` y las columnas de `-vv`
 
 El seguimiento es solo config que enlaza dos nombres; cuando lo entiendes, los mensajes de Git dejan de ser adivinanzas y se vuelven instrucciones.
 
+### Ejercicio de transferencia
+
+Rompe y repara un seguimiento en tu repositorio de práctica: `git branch --unset-upstream`, observa el error de `git push`, vuelve a enlazarlo con `-u` y luego redirígelo a otra pareja con `-u`. Entrega los tres `git status` y las tres salidas de `git branch -vv` (sin pareja, con la pareja correcta y con la pareja distinta), con una frase de explicación para cada una.
+
 ---
 
 ## 7. Nivel profesional + resumen
 
 ### 7.1. Renombrar publicada con checklist
+
+⚠️ **RIESGO:** el `git push origin --delete vieja` de este checklist retira la rama remota original para todo el mundo; si alguien seguía trabajando en ella, su push fallará. Ejecútalo solo tras confirmar que la nueva rama publicada es la buena.
 
 ```text
 git branch -m vieja nueva
@@ -439,6 +451,20 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **El seguimiento es un nombre pegado a otro nombre: una vez entendido, cada mensaje de Git sobre adelante/atrás es una instrucción, no un enigma.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Dónde se guarda el seguimiento y qué pasaría si alteraras esa entrada a mano sin saber lo que hace?
+2. Si `git pull` baja cosas de una rama que no esperabas, ¿qué dos comprobaciones haces antes de culpar a Git?
+3. ¿Qué diferencia hay entre que tu rama esté «adelante» y que esté «divergida», y qué comando corresponde a cada caso?
+4. ¿Por qué el seguimiento no actualiza tu foto del remoto aunque esté perfectamente configurado?
+5. Si renombras una rama ya publicada, ¿qué tres copias tienes que actualizar y cuál se olvida con más facilidad?
+6. ¿Qué haces si tu `main` trackea tu propio fork cuando querías mirar el upstream oficial?
+7. ¿Por qué en CI conviene especificar refs explícitas en lugar de confiar en tu upstream local?
 
 ---
 
