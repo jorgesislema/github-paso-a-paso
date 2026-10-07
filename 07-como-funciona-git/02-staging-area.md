@@ -21,38 +21,31 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-Staging Area (área de preparación / index)
-       │
-       ├── 1. Qué es y dónde vive
-   │        ├── la mesada intermedia
-   │        ├── dentro de .git (índice)
-   │        └── ¿por qué no saltar directo a commit?
-   │
-       ├── 2. git add escribe aquí
-   │        ├── lo que add captura
-   │        ├── adiciones, cambios y borrados
-   │        └── cambios parciales (add -p)
-   │
-       ├── 3. El mapa de tres lugares (refuerzo)
-   │        ├── carpeta → staging → historial
-   │        ├── cada paso se congela
-   │        └── status como brújula
-   │
-       ├── 4. Estado del staging
-   │        ├── qué ve status
-   │        ├── quitar del staging (restore --staged)
-   │        └── staging vacío
-   │
-       ├── 5. Errores comunes con diagnóstico completo
-   │
-       ├── 6. Práctica guiada
-   │
-       ├── 7. Nivel profesional
-   │        ├── commits quirúrgicos
-   │        └── staging y flujos de revisión
-   │
-       └── 8. Resumen y siguiente paso
+```mermaid
+mindmap
+  root((Staging Area - área de preparación))
+    1. Qué es y dónde vive
+      la mesada intermedia
+      dentro de .git como índice
+      ¿por qué no saltar directo a commit?
+    2. git add escribe aquí
+      lo que add captura
+      adiciones cambios y borrados
+      cambios parciales con add -p
+    3. El mapa de tres lugares - refuerzo
+      carpeta staging e historial
+      cada paso se congela
+      status como brújula
+    4. Estado del staging
+      qué ve status
+      quitar del staging con restore --staged
+      staging vacío
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional
+      commits quirúrgicos
+      staging y flujos de revisión
+    8. Resumen y siguiente paso
 ```
 
 ---
@@ -61,18 +54,12 @@ Staging Area (área de preparación / index)
 
 ### 1.1. La mesada intermedia
 
-```text
-Tres lugares, tres roles
-──────────────────────────────────────────────
-[ Directorio de trabajo ]  → editas aquí (tu día a día)
-         │
-         │ git add
-         ▼
-[ Staging Area / index ]   → COMpones el próximo commit
-         │
-         │ git commit
-         ▼
-[ Repositorio (historial) ]→ queda guardado para siempre
+Tres lugares, tres roles:
+
+```mermaid
+flowchart TD
+    WD["Directorio de trabajo - editas aquí - tu día a día"] -->|"git add"| ST["Staging Area o index - compones el próximo commit"]
+    ST -->|"git commit"| REPO["Repositorio - historial - queda guardado para siempre"]
 ```
 
 ### 1.2. Dónde vive físicamente
@@ -442,6 +429,10 @@ Dos commits ordenados por tema; dominio de `add` / `restore --staged`; comprensi
 
 El staging es tu mesa de trabajo: añades, quitas y afinas hasta que la selección es exacta. El commit solo «imprime» lo que decidiste allí.
 
+### Ejercicio de transferencia
+
+En un repositorio donde ya tengas varios cambios sin preparar (o simulado con tres archivos tocados), prepara solo los dos que pertenecen al mismo tema usando `git add` por archivo, deja fuera el tercero y separa además un único bloque de un archivo con `git add -p`. Entrega la salida de `git diff --staged --stat` justo antes del commit y el mensaje del commit resultante.
+
 ---
 
 ## 7. Nivel profesional
@@ -507,6 +498,20 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **El staging es la mesa donde conviertes trabajo en decisión: Git guardará exactamente lo que selecciones allí, ni más ni menos.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. Si `git add` copia la versión actual del archivo al índice, ¿por qué puedes preparar solo la mitad de un archivo con `git add -p`?
+2. Cierras el equipo justo después de un `git add` sin llegar a `git commit`: ¿dónde queda tu trabajo y qué haría falta para que otra persona lo viera?
+3. ¿Qué diferencia hay entre `git restore --staged archivo` y `git restore archivo`, y qué pierdes exactamente en cada caso?
+4. ¿Por qué tu compañero no ve el archivo que tú tienes en «Changes to be committed»?
+5. ¿Qué problema concreto tendría el historial si Git no tuviera staging y cada commit recogiera todo lo cambiado a la vez?
+6. Si haces `git add .` en un proyecto con archivos generados y notas sueltas, ¿qué falla y en qué momento te enteras?
+7. ¿Por qué `git commit` con el índice vacío se niega o exige `--allow-empty`, y qué estarías registrando en ese caso?
 
 ---
 
