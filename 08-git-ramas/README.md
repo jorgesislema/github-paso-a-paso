@@ -34,6 +34,63 @@ Al terminar esta sección serás capaz de:
 * eliminar ramas con criterio (`-d` vs. `-D`), incluidas las remotas;
 * explicar las tres copias de una rama: local, de seguimiento y en el remoto.
 
+## Mapa conceptual
+
+```mermaid
+mindmap
+  root((08 · Ramas))
+    01 Qué es una rama
+      puntero de 41 bytes
+      rama no es copia
+      familias de ramas
+      un patrón por tarea
+    02 Crear una rama
+      git branch solo crea
+      switch -c y checkout -b
+      crear desde cualquier punto
+      publicar con push -u
+    03 Cambiar de rama
+      reescribe archivos y mueve HEAD
+      regla de la carpeta sucia
+      cambios que se arrastran
+      los commits viven en su rama
+    04 git switch
+      sintaxis y opciones
+      la rama anterior con switch -
+      crear desde remota
+      flags peligrosos -f y -C
+    05 git checkout
+      tres roles en una orden
+      restaurar con checkout y doble guion
+      equivalencias con restore
+      forzar con -f
+    06 Fusionar ramas
+      ancestro común
+      fast-forward o commit de merge
+      resolución automática
+      conflictos y flujos con PR
+    07 git merge
+      semántica de la orden
+      no-ff y ff-only
+      flujo de conflicto
+      lo que merge no hace
+    08 Eliminar ramas
+      borrado seguro -d
+      borrado forzado -D
+      borrar en el remoto
+      pruner y limpieza
+    09 Ramas remotas
+      referencias de origin
+      tres copias del mismo nombre
+      branch -a y branch -r
+      fotos que refresca fetch
+    10 Seguimiento de ramas
+      upstream en la config
+      -u en el primer push
+      ahead y behind
+      atajo de la pareja remota
+```
+
 ---
 
 ## ¿Qué aprenderás en esta sección?
@@ -78,6 +135,21 @@ Hilo conductor: **el grafo con puntas** (sección 07). Si dudas, vuelve a dibuja
 
 ---
 
+## Checkpoint 08 — Comprobación obligatoria
+
+Antes de avanzar a `../09-git-remoto/`, demuestra que puedes (en un repositorio de práctica real):
+
+1. **Crear y publicar** una rama desde `main` actualizado (`git pull` primero), con `git switch -c`, dos commits y `git push -u origin <rama>`, verificando con `git branch -vv` la pareja `[origin/<rama>]`.
+2. **Provocar y cancelar** un conflicto de merge real (ediciones en las mismas líneas de un mismo archivo), leer `git status` en «Unmerged paths» y volver al estado previo con `git merge --abort`.
+3. **Resolver** ese mismo conflicto con el método completo: borrar marcadores, `git diff --check` limpio, `git add` y `git commit`, y ver el commit de merge con dos padres en `git log --graph --oneline`.
+4. **Diagnosticar** con `git status` y `git branch -vv` si estás adelante, atrás o divergido respecto a tu pareja remota, y decir qué comando ejecutarías en cada caso.
+5. **Limpiar con criterio**: comprobar `git log main..rama --oneline` vacío, borrar la rama local con `-d`, borrar la remota con `git push origin --delete <rama>` y refrescar con `git fetch --prune`.
+6. **Explicar** la diferencia entre `main`, `origin/main` y tu `main` local con seguimiento, señalando en qué carpeta vive cada una (`refs/heads/` y `refs/remotes/`) y quién la actualiza.
+
+Si puedes hacerlo **sin mirar instrucciones**, el checkpoint está cerrado.
+
+---
+
 ## Autopreguntas de cierre
 
 Sin mirar el material, responde mentalmente y luego compruébalo con los capítulos de la sección:
@@ -86,6 +158,9 @@ Sin mirar el material, responde mentalmente y luego compruébalo con los capítu
 2. ¿Cuándo un merge produce fast-forward en vez de un commit de merge?
 3. ¿Por qué `git branch -d` es más seguro que `-D`?
 4. ¿Qué diferencia hay entre `main` y `origin/main`?
+5. ¿Por qué crear una rama no copia archivos ni consume tiempo, y qué cambiaría en tu forma de trabajar si lo entendieras de verdad?
+6. ¿En qué se diferencia un fast-forward de un commit de merge para quien lee el historial tres meses después?
+7. Si `git log main..tu-rama` muestra commits justo antes de borrar la rama, ¿qué dos caminos tienes y qué implica cada uno?
 
 ---
 
