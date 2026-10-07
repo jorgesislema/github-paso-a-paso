@@ -21,39 +21,37 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-Modificar archivos
-       │
-       ├── 1. El nuevo contexto: tu equipo
-   │        ├── Editar con tus herramientas
-   │        └── Git mira, no interrumpe
-   │
-       ├── 2. Guardar ≠ commit
-   │        ├── Los dos niveles del guardado
-   │        └── Flujo completo (visión)
-   │
-       ├── 3. Cómo se ven los cambios en GitHub Desktop
-   │        ├── Lista de cambios
-   │        ├── Tipos de cambio
-   │        └── Vista previa del diff
-   │
-       ├── 4. Qué modificar (y qué no)
-   │        ├── Archivos normales
-   │        ├── .git y archivos generados
-   │        └── Secretos y configuraciones
-   │
-       ├── 5. Crear y borrar archivos localmente
-   │
-       ├── 6. Errores comunes con diagnóstico completo
-   │
-       ├── 7. Práctica guiada
-   │
-       ├── 8. Nivel profesional
-   │        ├── Editores y configuración
-   │        ├── Saltos de línea
-   │        └── Trabajo en equipo sin pisarse
-   │
-       └── 9. Resumen y siguiente paso
+```mermaid
+mindmap
+  root((Modificar archivos))
+    1. El nuevo contexto, tu equipo
+      editar con tus herramientas
+      Git mira, no interrumpe
+      el disco es la fuente de verdad
+    2. Guardar ≠ commit
+      los dos niveles del guardado
+      flujo completo en cinco pasos
+      por qué importa la distinción
+    3. Cómo se ven los cambios en GitHub Desktop
+      la lista de cambios
+      tipos de cambio
+      vista previa del diff
+      los cambios no están en GitHub
+    4. Qué modificar y qué no
+      archivos normales
+      la carpeta .git y archivos generados
+      secretos y configuraciones
+    5. Crear y borrar archivos localmente
+      crear
+      borrar
+      renombrar
+    6. Errores comunes con diagnóstico completo
+    7. Práctica guiada
+    8. Nivel profesional
+      editores y configuración
+      saltos de línea
+      trabajo en equipo sin pisarse
+    9. Resumen y siguiente paso
 ```
 
 ---
@@ -116,19 +114,17 @@ Nivel 2: COMMIT en Git
 
 ### 2.2. El flujo completo (visión anticipada)
 
-```text
-Flujo de trabajo local (los detalles vienen después)
-──────────────────────────────────────────────
-1. MODIFICAR archivo      (editor)      ← este capítulo
-2. REVISAR cambios        (Desktop)     ← capítulo 06
-3. COMMIT                 (Desktop)     ← capítulo 07
-4. PUSH a GitHub          (Desktop)     ← capítulo 08
-5. (otros) PULL           (Desktop)     ← capítulo 09
+```mermaid
+flowchart TD
+    A["1. Modificar archivo en el editor, capítulo 05"] --> B["2. Revisar cambios en GitHub Desktop, capítulo 06"]
+    B --> C["3. Commit desde GitHub Desktop, capítulo 07"]
+    C --> D["4. Push a GitHub, capítulo 08"]
+    D --> E["5. Pull desde GitHub Desktop, capítulo 09"]
+```
 
 Cada paso es distinto y reversible a su manera;
 el salto de riesgo está en entender qué estás haciendo
 en cada uno.
-```
 
 ### 2.3. Por qué importa la distinción
 
@@ -274,6 +270,8 @@ Crear archivo local
 
 ### 5.2. Borrar
 
+⚠️ **RIESGO:** si borras un archivo que todavía no tiene ningún commit, su contenido desaparece de tu disco sin que Git lo guarde en ningún sitio; los archivos ya commiteados sí se recuperan desde el historial.
+
 ```text
 Borrar archivo local
    │
@@ -404,6 +402,8 @@ Renombrar
 
 **Cómo comprobarlo:** la pestaña de cambios está llena.
 
+⚠️ **RIESGO:** descartar esos cambios borra del disco el trabajo que no está en ningún commit; Git no guarda una copia y no existe deshacer.
+
 **Opciones:**
 * revisar y dividir en commits coherentes (si es posible);
 * o descartar lo que no sirva (con cuidado, punto siguiente).
@@ -467,6 +467,10 @@ Tres tipos de cambio (Modified, Added, Deleted) visibles en Desktop y ninguno en
 ### Conclusión esperada
 
 Modificar es fácil; lo importante es entender dónde vive el cambio (tu disco) y cuánto falta para que sea historial (commit) y para que sea público (push).
+
+### Ejercicio de transferencia
+
+En un repositorio de práctica distinto al de la práctica guiada (por ejemplo, uno que clonaste para seguir otro bloque), edita un archivo con un editor que no uses habitualmente, crea otro nuevo y borra un tercero, y deja los tres estados visibles en la lista de cambios sin commitear. Entrega: una captura de GitHub Desktop donde se lean a la vez Modified, Added y Deleted, y dos líneas escritas explicando por qué al abrir la misma URL en GitHub el contenido sigue antiguo.
 
 ---
 
@@ -536,6 +540,21 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **Editar es solo la primera mitad del acto: el cambio vive en tu disco hasta que lo revisas, lo nombras con un commit y lo publicas con un push.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Qué dos cosas ocurren cuando guardas un archivo en tu editor y cuál de las dos sigue sin haber pasado hasta que haces commit?
+2. ¿Cómo sabe Git que un archivo ha cambiado si tú no le has dicho nada y por qué aparece o desaparece solo de la lista de cambios?
+3. ¿Por qué abrir la URL del repositorio en GitHub justo después de guardar te muestra el contenido antiguo, y qué haría falta para que cambie?
+4. ¿Qué tres tipos de cambio puede mostrar la lista de GitHub Desktop y qué significa cada letra?
+5. ¿Qué archivos no deberías editar nunca desde el explorador y qué ocurre con el proyecto si los editas por curiosidad?
+6. Si un diff de 200 líneas te aparece por un cambio de dos, ¿cuál es la sospecha más probable y cómo lo compruebas?
+7. ¿Qué diferencia hay entre borrar un archivo que ya tiene commits y borrar un archivo recién creado sin commitear?
+8. ¿Por qué se considera un error dejar doce archivos modificados acumulados durante semanas y qué hábito lo evita?
 
 ---
 
