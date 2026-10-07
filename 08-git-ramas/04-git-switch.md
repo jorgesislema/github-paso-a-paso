@@ -16,29 +16,23 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-git switch
-       │
-       ├── 1. Sintaxis básica
-   │        ├── switch <rama>
-   │        ├── switch -c <rama>
-   │        └── switch - (anterior)
-   │
-       ├── 2. Opciones clave
-   │        ├── -c/-C (crear / crear y pisar)
-   │        ├── --track y creación desde remota
-   │        ├── -f / --discard-changes
-   │        └── -d (borrar al salir)
-   │
-       ├── 3. La rama anterior: switch -
-   │
-       ├── 4. Crear desde remota sin querer duplicar
-   │
-       ├── 5. Errores comunes con diagnóstico completo
-   │
-       ├── 6. Práctica guiada
-   │
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((git switch))
+    1. Sintaxis básica
+      cambiar de rama con switch
+      crear con -c
+      la rama anterior con switch -
+    2. Opciones clave
+      -c crear y -C pisar
+      --track y creación desde remota
+      -f descarta cambios sucios
+      -d para borrar al salir
+    3. La rama anterior con switch -
+    4. Crear desde remota sin querer duplicar
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional y resumen
 ```
 
 ---
@@ -102,6 +96,8 @@ Cuidado con -C:
 ```
 
 ### 2.2. `-f` / `--discard-changes`
+
+⚠️ **RIESGO:** `git switch -f` cambia de rama descartando los cambios sucios que se interpondrían: lo no commiteado ni stashado se pierde sin registro en el reflog.
 
 ```bash
 git switch -f otra-rama
@@ -185,6 +181,16 @@ Peligro clásico:
    │
    └── prevención: si dudas de si existe, branch -a;
        si existe remota, switch la usa (4.1) o track
+```
+
+```mermaid
+flowchart TD
+    A["git switch nombre"] --> B{"¿Existe la rama localmente?"}
+    B -- "sí" --> C["Cambia a la rama local"]
+    B -- "no" --> D{"¿Existe origin/nombre tras fetch?"}
+    D -- "sí" --> E["Git la crea y configura el seguimiento"]
+    E --> C
+    D -- "no" --> F["Error: invalid reference"]
 ```
 
 ---
@@ -326,6 +332,8 @@ git log --graph --oneline --decorate --all -n 8
 
 ### Paso 3: falla segura (sin -f)
 
+⚠️ **RIESGO:** `git restore <archivo>` descarta a propósito el contenido sin preparar de ese archivo: no hay reflog para un cambio que nunca se commiteó.
+
 ```bash
 # edita un archivo que difiere entre ramas
 git switch otra                # ¿error?
@@ -372,11 +380,17 @@ Uso fluido y seguro de switch, con capacidad de explicar cada flag que usas (y d
 
 `switch` es la navegación de Git: rápido, semántico y, cuando lo sabes, imposible de pillar a contrapié.
 
+### Ejercicio de transferencia
+
+En un repositorio con ramas remotas publicadas por otra persona, ejecuta la rutina completa de un día de trabajo: `git fetch`, detecta una rama que no tienes localmente, créala con `git switch` (sin `-c`), verifica el seguimiento con `branch -vv`, haz un commit, publica y vuelve a `main`. Entrega la secuencia de comandas usada y la salida final de `git branch -vv`.
+
 ---
 
 ## 7. Nivel profesional + resumen
 
 ### 7.1. switch en rutinas
+
+⚠️ **RIESGO:** `git branch -D vieja` borra la rama aunque tenga commits sin integrar: esos commits quedan huérfanos y solo el reflog los conserva un tiempo.
 
 ```text
 Patrones típicos
@@ -420,6 +434,19 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **`switch` es tu alt-tab por el historial: rápido y barato —la disciplina está en llegar con la carpeta limpia y volver con lo commiteado.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Qué hace `git switch -` por dentro y por qué puede llevarte a una rama que no esperabas?
+2. Si solo existe `origin/feature`, ¿qué hace `git switch feature` y en qué se diferencia de crearla a mano con `-c`?
+3. ¿Por qué `-C` y `-f` se consideran cirugía y no rutina, y qué se pierde en cada caso?
+4. ¿Qué diferencias prácticas hay entre `switch` y `checkout` para la misma tarea?
+5. Como `git switch` no hace pull, ¿qué rutina completa seguirías para empezar una tarea sobre el trabajo más reciente del equipo?
+6. ¿Por qué un guion automático debe evitar `git switch -` y los flags `-f`?
 
 ---
 
