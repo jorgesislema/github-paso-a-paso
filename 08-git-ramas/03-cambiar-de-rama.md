@@ -18,29 +18,24 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-Cambiar de rama
-       │
-       ├── 1. Qué hace por dentro
-   │        ├── archivos que difieren se reescriben
-   │        ├── HEAD → nueva rama
-   │        └── índice se alinea con el destino
-   │
-       ├── 2. La regla de la carpeta sucia
-   │        ├── cambios compatibles (arrastra)
-   │        ├── cambios en conflicto (Git se niega)
-   │        └── no commiteado = no tiene rama
-   │
-       ├── 3. Formas de cambiar (vista general)
-   │        ├── switch (moderno)
-   │        ├── checkout (clásico)
-   │        └── restore/otras alternativas
-   │
-       ├── 4. Errores comunes con diagnóstico completo
-   │
-       ├── 5. Práctica guiada
-   │
-       └── 6. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Cambiar de rama))
+    1. Qué hace por dentro
+      archivos que difieren se reescriben
+      HEAD apunta a la nueva rama
+      el índice se alinea con el destino
+    2. La regla de la carpeta sucia
+      cambios compatibles se arrastran
+      cambios en conflicto Git se niega
+      lo no commiteado no tiene rama
+    3. Formas de cambiar en vista general
+      switch moderno
+      checkout clásico
+      restore y otras alternativas
+    4. Errores comunes con diagnóstico completo
+    5. Práctica guiada
+    6. Nivel profesional y resumen
 ```
 
 ---
@@ -106,8 +101,18 @@ cambios en archivos QUE NO       Git los ARRASTRA a la
 afectan al destino               nueva rama (siguen como
                                  «sin preparar» allí)
 cambios en archivos que SÍ       Git se NIEGA: «Your
-difieren entre ramas             local changes would be
-                                 overwritten»
+diferieren entre ramas             local changes would be
+                                  overwritten»
+```
+
+```mermaid
+flowchart TD
+    A["git switch otra-rama"] --> B{"¿Hay cambios sin commitear?"}
+    B -- "ninguno: carpeta limpia" --> C["Cambia sin más"]
+    B -- "sí, en archivos IGUAL en ambas ramas" --> D["Git los arrastra a la rama destino"]
+    D --> E["Siguen como sin preparar en la rama nueva"]
+    B -- "sí, en archivos que DIFIEREN" --> F["Git se niega: local changes would be overwritten"]
+    F --> G["Tú decides: commit, stash o restore"]
 ```
 
 ### 2.2. Qué NO arriesgas
@@ -152,6 +157,8 @@ Antes de cambiar de rama:
 ---
 
 ## 3. Formas de cambiar (vista general)
+
+⚠️ **RIESGO:** `git checkout -- archivo` y `git restore archivo` descartan tus cambios sin preparar en ese archivo: lo que no esté commiteado ni guardado con stash no se recupera con reflog.
 
 ```bash
 git switch otra            # moderno: solo ramas
@@ -333,6 +340,8 @@ git switch rama-b           # ¿error «would be overwritten»?
 git status                  # revisa qué impide el cambio
 ```
 
+⚠️ **RIESGO:** `git restore main.md` borra el contenido sin preparar de ese archivo: es un descarte deliberado, no un deshacer. Solo hazlo si pierdes el cambio a propósito.
+
 Decide:
 * conservar: `git add main.md; git commit -m "…"` (queda en main);
 * tirar: `git restore main.md` (solo si lo pierdes a propósito).
@@ -362,6 +371,10 @@ Capacidad de predecir si Git te dejará cambiar, y de saber en qué estado queda
 ### Conclusión esperada
 
 Cambiar de rama es seguro cuando tu carpeta está limpia o tu trabajo está commiteado; el peligro solo existe en la zona gris de los cambios sin decidir.
+
+### Ejercicio de transferencia
+
+En un repositorio con dos ramas de prueba, deja a la vez un cambio en un archivo idéntico en ambas ramas y otro en un archivo distinto, y provoca los tres desenlaces (arrastre, negativa de Git y commit previo). Entrega el `git status` de cada caso y una frase que explique por qué el trabajo commiteado nunca se mueve de rama.
 
 ---
 
@@ -409,6 +422,19 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **Moverte entre ramas mueve tu vista del proyecto, no tu trabajo: lo commiteado queda donde estaba, y lo sucio solo viaja si tú lo dejas.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. Si cambias de rama con la carpeta limpia y vuelves, ¿qué garantiza que tu trabajo de la otra rama siga ahí?
+2. ¿Por qué Git arrastra unos cambios sin más y se niega con otros, y qué información usa para decidirlo?
+3. ¿Qué tiene de peligroso creer que «cambiar de rama actualiza mi trabajo en el remoto»?
+4. Si encuentras un cambio que dejaste en una rama a la que ya no estás, ¿cómo lo localizas y qué haces con él?
+5. ¿Qué diferencia hay entre lo que viven los commits y lo que vive la carpeta, y por qué eso explica casi todos los sustos?
+6. ¿Cuándo usarías `git stash` en vez de un commit temporal antes de cambiar de rama?
 
 ---
 
