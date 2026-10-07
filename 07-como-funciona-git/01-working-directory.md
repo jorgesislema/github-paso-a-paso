@@ -23,6 +23,73 @@ No necesitas conocimientos nuevos: solo lo que ya sabes de la sección 06.
 
 ---
 
+## Mapa conceptual de este capítulo
+
+```mermaid
+mindmap
+  root((Working Directory - directorio de trabajo))
+    1. Una primera explicación
+      la carpeta de tu proyecto
+      editas con herramientas normales
+      Git entra en acción cuando se lo pides
+    2. Definición técnica
+      copia completa de tus archivos
+      la primera de las tres áreas
+      la raíz es donde está .git
+    3. Los estados de los archivos
+      no rastreado
+      sin cambios
+      modificado
+    4. Las operaciones que haces aquí
+      crear editar borrar mover
+      Git detecta qué cambió
+      tú decides qué hacer
+    5. La relación con la carpeta .git
+      historial junto a tus archivos
+      presente y memoria del proyecto
+      carpeta oculta
+    6. git status como espejo del directorio de trabajo
+      compara carpeta índice e historial
+      las tres secciones de la salida
+      nothing to commit working tree clean
+    7. Archivos no rastreados
+      sin historial y sin rastro
+      casos habituales de borradores
+      decidir si registrarlos
+    8. Archivos modificados
+      disco contra versión registrada
+      git diff como apoyo
+    9. Archivos borrados
+      el historial sigue en .git
+      recuperar con git restore
+    10. El primero de tres áreas
+      carpeta índice e historial
+      add commit y restore como puentes
+    11. Qué no pasa con tu directorio de trabajo al hacer commit
+      los archivos no entran en .git
+      se registra una versión del momento
+    12. Dos personas dos directorios de trabajo
+      cada quien su carpeta y su .git
+      hace falta un repositorio remoto
+    Práctica guiada
+      observar los tres estados
+      un borrador que no deja rastro
+    Errores comunes
+      confundir carpeta con .git
+      guardar no es commitear
+    Buenas prácticas
+      status con frecuencia
+      leer la salida por secciones
+    Autopreguntas de cierre
+      explicar con tus propias palabras
+      repetir la práctica si algo falla
+    Resumen
+      el directorio de trabajo es donde trabajas
+      el historial solo avanza cuando registras
+```
+
+---
+
 ## 1. Una primera explicación
 
 Tu proyecto vive en una carpeta.
@@ -195,14 +262,10 @@ documentos/notas.txt
 
 En todos los casos vale la misma idea:
 
-```text
-Tú trabajas con herramientas normales
-        │
-        ▼
-Git puede detectar qué cambió
-        │
-        ▼
-Tú decides qué hacer con esos cambios
+```mermaid
+flowchart TD
+    A["Tú trabajas con herramientas normales"] --> B["Git puede detectar qué cambió"]
+    B --> C["Tú decides qué hacer con esos cambios"]
 ```
 
 ---
@@ -389,13 +452,10 @@ Borrar un archivo rastreado no borra su pasado.
 
 Para situar el directorio de trabajo en el panorama completo, conviene ver las tres áreas.
 
-```text
-Directorio de trabajo       Área de preparación     Repositorio local
-mi-proyecto/                .git/index              .git/objects
- (tus archivos)            (el index)              (historial y objetos)
-      │                          │                       │
-      │  git add                 │  git commit           │
-      └─────────────────────────►└──────────────────────►│
+```mermaid
+flowchart TD
+    WD["Directorio de trabajo - mi-proyecto - tus archivos"] -->|"git add"| IDX["Área de preparación - .git/index"]
+    IDX -->|"git commit"| REPO["Repositorio local - .git/objects - historial y objetos"]
 ```
 
 Cada área responde a una pregunta diferente:
@@ -567,6 +627,10 @@ Changes not staged for commit:
 * ¿Qué estado tiene después?
 * ¿Por qué `borrador.txt` no deja rastro cuando se borra?
 
+### Ejercicio de transferencia
+
+En una carpeta de práctica nueva (o en un proyecto real sin registrar), crea un archivo, modifícalo y bórralo sin hacer ningún `git add`; después registra solo el archivo que sí interesa con `git add` y `git commit`. Entrega la salida de `git status` en tres momentos —antes del `add`, justo después y después del `commit`— con una línea por estado explicando por qué aparece así.
+
 ---
 
 ## Errores comunes
@@ -607,17 +671,17 @@ Sin revisar el estado puedes registrar cambios que no conocías. Hábito básico
 
 ---
 
-## Cómo saber si lo entendiste
+## Autopreguntas de cierre
 
-Deberías poder explicar con tus propias palabras:
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
 
-* qué es el directorio de trabajo y dónde vive;
-* la diferencia entre un archivo no rastreado, uno modificado y uno sincronizado;
-* qué operaciones haces en esta área y con qué herramientas;
-* qué papel juega `.git` respecto a los archivos que ves;
-* qué te dice `git status` sobre cada uno de los tres estados;
-* por qué borrar un archivo no rastreado no deja rastro;
-* por qué al hacer un commit los archivos no «se meten» dentro de `.git`.
+1. ¿Qué es el directorio de trabajo y dónde vive exactamente?
+2. ¿Qué diferencia hay entre un archivo no rastreado, uno modificado y uno sincronizado?
+3. ¿Qué operaciones haces en esta área y con qué herramientas lo haces?
+4. ¿Qué papel juega `.git` respecto a los archivos que ves en la carpeta?
+5. ¿Qué te dice `git status` sobre cada uno de los tres estados?
+6. ¿Por qué borrar un archivo no rastreado no deja rastro, mientras que un archivo rastreado siempre conserva una versión a la que volver?
+7. ¿Por qué al hacer un commit los archivos no «se meten» dentro de `.git` y qué queda registrado entonces?
 
 Si alguna respuesta no te sale clara, vuelve a la sección correspondiente y repite la práctica.
 
