@@ -25,6 +25,55 @@ En este capítulo no necesitas instalar nada todavía: solo vamos a comprender q
 
 ---
 
+## Mapa conceptual de este capítulo
+
+```mermaid
+mindmap
+  root((Qué es GitHub Desktop))
+    1. Una primera explicación
+      programa de escritorio
+      tres caminos al mismo objetivo
+      la interfaz es lo que cambia
+    2. Qué es GitHub Desktop
+      aplicación oficial de GitHub
+      gratuita para Windows y macOS
+      incluye Git en su interior
+      no es un servicio de nube
+    3. Para quién sirve
+      perfiles que la eligen
+      perfiles que no encajan
+      puente entre web y terminal
+    4. La alternativa visual a la terminal
+      cada botón es un comando
+      ventajas de la interfaz
+      limitaciones de la interfaz
+    5. En qué se diferencia de la web
+      la web administra la cuenta
+      la aplicación trabaja en local
+      flujo típico combinado
+    6. Cómo se ve la ventana principal
+      lista de repositorios
+      Local Changes y History
+      Current Branch y botones de flujo
+    7. El ciclo de trabajo diario
+      clonar, modificar y revisar
+      commit, push y pull
+      se repite cada jornada
+    8. Qué incluye GitHub Desktop
+      copia de Git integrada
+      autenticación guardada
+      ajustes del programa
+    9. Botones, comandos y resultados
+      tabla de equivalencias
+      la interfaz es la capa de encima
+    10. Limitaciones de la herramienta
+      no edita ni ejecuta tu código
+      no es nube de archivos
+      no sustituye a Git avanzado
+```
+
+---
+
 ## 1. Una primera explicación
 
 GitHub Desktop es un programa gratuito que se instala en tu computadora, igual que un procesador de textos o un navegador.
@@ -221,25 +270,14 @@ No necesitas memorizar este esquema ahora. Lo iremos recorriendo capítulo a cap
 
 Con GitHub Desktop, el trabajo habitual sigue siempre el mismo ciclo.
 
-```text
-Clonar el repositorio
-        │
-        ▼
-Modificar archivos
-        │
-        ▼
-Ver los cambios en "Local Changes"
-        │
-        ▼
-Escribir el resumen y hacer commit
-        │
-        ▼
-Hacer push a GitHub
-        │
-        ▼
-Hacer pull antes de seguir trabajando
-        │
-        └──────────────────────────────► (se repite el ciclo)
+```mermaid
+flowchart TD
+    A["Clonar el repositorio"] --> B["Modificar archivos"]
+    B --> C["Ver los cambios en Local Changes"]
+    C --> D["Escribir el resumen y hacer commit"]
+    D --> E["Hacer push a GitHub"]
+    E --> F["Hacer pull antes de seguir trabajando"]
+    F --> B
 ```
 
 Cada paso corresponde a un capítulo de esta sección:
@@ -375,6 +413,10 @@ Deberías poder señalar en la página oficial:
 * qué versiones existen;
 * qué botones y paneles se distinguen en las capturas.
 
+### Ejercicio de transferencia
+
+En tu repositorio de práctica crea un archivo `equivalencias.md` con tres filas botón → comando tomadas del capítulo (Commit to main, Push origin, Pull origin) y, debajo, dos líneas que expliquen por qué la web de GitHub y GitHub Desktop se complementan en vez de sustituirse. Entrega: el archivo dentro del repositorio y una captura de la ventana principal de Desktop señalando Current Branch y Local Changes.
+
 ---
 
 ## Errores comunes
@@ -416,17 +458,18 @@ Si un commit está mal, la aplicación no lo deshace sola. Más adelante, en la 
 
 ---
 
-## Cómo saber si lo entendiste
+## Autopreguntas de cierre
 
-Deberías poder explicar con tus propias palabras:
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
 
-* qué es GitHub Desktop y quién lo desarrolla;
-* para qué perfiles de usuario resulta útil y para cuáles no;
-* en qué se diferencia de la web de GitHub;
-* en qué se diferencia de Git por línea de comandos;
-* qué significa que incluya una copia de Git en su interior;
-* qué botones principales tiene y qué comando ejecuta cada uno;
-* por qué la aplicación y la web se complementan.
+1. ¿Qué es GitHub Desktop, quién lo desarrolla y por qué eso importa cuando buscas dónde descargarlo?
+2. ¿Para qué perfiles de usuario resulta útil y para cuáles no, y qué alternativa le queda a quien trabaja en teléfono o necesita operaciones avanzadas?
+3. ¿En qué se diferencia la web de GitHub de la aplicación, y por qué necesitas las dos para trabajar cómodamente?
+4. ¿Por qué la aplicación y Git por línea de comandos son equivalentes en cuanto a lo que permiten hacer si la interfaz es distinta?
+5. ¿Qué significa que GitHub Desktop incluya una copia de Git en su interior y qué te ahorra eso en Windows?
+6. Si pulsas «Commit to main» y después «Push origin», ¿qué comandos de Git se ejecutan por detrás y en qué orden?
+7. ¿Por qué confundir la aplicación con un sincronizador de archivos como OneDrive te llevaría a esperar comportamientos que nunca ocurrirán?
+8. Si un commit sale mal, ¿por qué la aplicación no lo deshace sola y qué sección del curso tendrías que esperar para corregir el historial?
 
 Si alguna respuesta todavía no está clara, vuelve a la sección correspondiente y repite la práctica.
 
