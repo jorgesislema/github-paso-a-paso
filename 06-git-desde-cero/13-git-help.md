@@ -18,34 +18,26 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-git help
-       │
-       ├── 1. Las tres formas
-   │        ├── git help <comando>
-   │        ├── git help -a / -g (listas)
-   │        └── git help --guide (guías)
-   │
-       ├── 2. Anatomía de un manual
-   │        ├── SYNOPSIS (sintaxis)
-   │        ├── DESCRIPTION
-   │        └── OPTIONS
-   │
-       ├── 3. Ayuda rápida: --help y -h
-   │
-       ├── 4. La ayuda en la web
-   │
-       ├── 5. Otras fuentes de ayuda
-   │
-       ├── 6. Errores comunes y malentendidos
-   │
-       ├── 7. Práctica guiada
-   │
-       ├── 8. Nivel profesional
-   │        ├── Leer manuales con estrategia
-   │        └── Autoayuda como habilidad
-   │
-       └── 9. Resumen y siguiente paso
+```mermaid
+mindmap
+  root((git help))
+    1. Las tres formas
+      git help de un comando
+      listas con -a y -g
+      guías temáticas
+    2. Anatomía de un manual
+      SINOPSIS con la sintaxis
+      DESCRIPCIÓN
+      OPCIONES
+    3. Ayuda rápida con --help y -h
+    4. La ayuda en la web
+    5. Otras fuentes de ayuda
+    6. Errores comunes y malentendidos
+    7. Práctica guiada
+    8. Nivel profesional
+      Leer manuales con estrategia
+      Autoayuda como habilidad
+    9. Resumen y siguiente paso
 ```
 
 ---
@@ -192,6 +184,17 @@ cero (completo)
 Ver todos los comandos       git help -a
 
 Entrar a un tema de flujo    git help -g
+```
+
+```mermaid
+flowchart TD
+    A["Tienes una duda con Git"] --> B{"¿Es de sintaxis o de concepto?"}
+    B -->|Sintaxis| C["git comando -h"]
+    C --> D{"¿Suficiente?"}
+    D -->|No| E["git help comando o la web oficial"]
+    B -->|Concepto| F["guías con git help -g o el libro Pro Git"]
+    E --> G["Vuelves a la terminal y pruebas el comando"]
+    F --> G
 ```
 
 ---
@@ -409,6 +412,10 @@ Capacidad de resolver una duda de sintaxis SIN salir de la terminal, en menos de
 
 La ayuda integrada convierte a Git en un sistema autoexplicativo: el manual, la lista de comandos y las guías están siempre a un comando de distancia.
 
+### Ejercicio de transferencia
+
+Resuelve sin salir de la terminal una duda real que aún no sepas (por ejemplo, cómo limitar el log a N commits o cómo ver solo los archivos de un commit). Entrega el comando exacto que te llevó a la respuesta (por ejemplo `git log -h` o `git help log`), el fragmento de la ayuda donde aparece esa opción y la salida de aplicarla en tu repositorio. Añade una línea explicando por qué no buscaste primero en un buscador.
+
 ---
 
 ## 8. Nivel profesional
@@ -466,6 +473,21 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **No memorices Git: aprende a preguntarle. El manual integrado es tu documentación siempre encendida, y saber leerlo es la última pieza para trabajar con autonomía.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Qué tres formas tiene `git help` y cuál usarías para cada tipo de duda?
+2. ¿Cómo lees la SINOPSIS de un manual y qué significan `[]`, `<>`, `|` y `...`?
+3. ¿En qué se diferencian `git comando -h` y `git help comando` y cuál te conviene en caliente?
+4. ¿Por qué los manuales son referencia y no tutorial, y a dónde acudes para aprender un concepto?
+5. ¿Qué haces cuando el manual se queda abierto y la terminal «no responde»?
+6. ¿Qué riesgo tiene copiar un comando del manual sin haber leído su sinopsis?
+7. ¿Qué fuentes combinarías si el manual está en inglés y tú piensas en español?
+8. ¿Cómo demuestras que sabes resolver una duda de Git por tu cuenta antes de preguntar a otra persona?
 
 ---
 
