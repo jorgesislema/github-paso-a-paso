@@ -24,6 +24,49 @@ Al terminar, tu cuenta de GitHub estará conectada a la aplicación y verás tus
 
 ---
 
+## Mapa conceptual de este capítulo
+
+```mermaid
+mindmap
+  root((Iniciar sesión en GitHub Desktop))
+    1. Por qué hay que iniciar sesión
+      mostrar tus repositorios
+      enviar y recibir commits
+      sin sesión solo repos públicos
+    2. El botón Sign in to GitHub.com
+      pantalla de bienvenida
+      el navegador hace el trabajo
+      enlace manual si no abre
+    3. La redirección al navegador
+      autorizar el acceso
+      la contraseña se escribe en la web
+      vuelta a la aplicación
+    4. Qué permisos pide la aplicación
+      token de autenticación
+      leer y escribir repositorios
+      lo que no puede tocar
+    5. La pantalla inicial
+      campo de búsqueda
+      lista agrupada por cuenta
+      botón Clone repository
+    6. Si no ves ningún repositorio
+      aún no hay repos creados
+      filtro de organización
+      sesión a medias
+    7. Varias cuentas en la misma aplicación
+      añadir otra cuenta
+      cuenta activa antes de operar
+    8. Cerrar la sesión
+      se corta el acceso remoto
+      los clonados siguen en disco
+    9. Errores habituales en el inicio de sesión
+      el navegador no se abre
+      la autorización no se refleja
+      contraseña o cuenta equivocadas
+```
+
+---
+
 ## 1. Por qué hay que iniciar sesión
 
 GitHub Desktop necesita saber quién eres para dos cosas:
@@ -98,20 +141,13 @@ Puedes cerrar esa pestaña o esa ventana.
 
 Al volver a GitHub Desktop, la autenticación ya está completada y la aplicación muestra tu lista de repositorios.
 
-```text
-GitHub Desktop            Navegador
-──────────────            ─────────
-[Sign in to GitHub.com] ─► github.com
-                              │
-                              ▼
-                        (tú inicias sesión y
-                         autorizas el acceso)
-                              │
-                              ▼
-                     "Puedes cerrar esta ventana"
-                              │
-                              ▼
-     Se muestra tu lista ◄──── (la aplicación recibe el permiso)
+```mermaid
+flowchart TD
+    A["Pulsas Sign in to GitHub.com en GitHub Desktop"] --> B["Se abre tu navegador en github.com"]
+    B --> C["Escribes usuario y contraseña en la página de GitHub"]
+    C --> D["Autorizas el acceso de GitHub Desktop"]
+    D --> E["GitHub te indica que puedes cerrar la ventana"]
+    E --> F["La aplicación recibe el permiso y muestra tu lista de repositorios"]
 ```
 
 El punto importante: la contraseña nunca se toca dentro de la aplicación.
@@ -274,6 +310,10 @@ Cierra la sesión desde el menú de usuario y vuelve a iniciarla para comprobar 
 
 Deberías ver tu cuenta conectada, tus repositorios listados y capacidad para seleccionar cualquiera de ellos en el panel derecho.
 
+### Ejercicio de transferencia
+
+Con una segunda cuenta de GitHub (o simulando el proceso con la tuya en un equipo de casa), inicia sesión en Desktop, filtra la lista hasta dejar solo un repositorio concreto y después cierra y vuelve a abrir la sesión para comprobar que el proceso se repite igual. Entrega: una captura con la lista filtrada mostrando ese repositorio y una línea escrita con el nombre exacto del botón que vuelve a aparecer cuando cierras sesión.
+
 ---
 
 ## Errores comunes
@@ -315,17 +355,18 @@ Cerrar sesión solo corta el acceso remoto. Los repositorios clonados siguen en 
 
 ---
 
-## Cómo saber si lo entendiste
+## Autopreguntas de cierre
 
-Deberías poder explicar con tus propias palabras:
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
 
-* por qué la aplicación necesita que inicies sesión;
-* cómo funciona el proceso de redirección al navegador;
-* qué permisos se le están concediendo a la aplicación;
-* dónde se guarda el token y quién lo controla;
-* qué se ve en la pantalla inicial después de autorizar;
-* cómo añadir y cambiar de cuenta;
-* cómo cerrar la sesión y qué consecuencias tiene.
+1. ¿Por qué la aplicación necesita que inicies sesión y qué deja de funcionar si no lo haces?
+2. ¿Qué ocurre exactamente entre el momento en que pulsas el botón y el momento en que ves tu lista de repositorios?
+3. ¿Por qué es importante que la contraseña se escriba en el navegador y nunca dentro de la aplicación?
+4. ¿Qué permisos se le están concediendo a la aplicación, qué no puede hacer con ellos y dónde se guarda el token que los representa?
+5. Si tras autorizar en el navegador la aplicación no cambia de pantalla, ¿qué haces antes de culpar a la red?
+6. ¿Cómo añades y cambias de cuenta en la interfaz y qué debes comprobar antes de clonar o enviar commits?
+7. ¿Qué se pierde y qué se conserva en tu equipo al cerrar la sesión, y por qué eso no es lo mismo que borrar un repositorio clonado?
+8. ¿Qué harías si la lista de repositorios aparece vacía y cómo descartas en dos comprobaciones las causas más probables?
 
 Si alguna respuesta todavía no está clara, vuelve a la sección correspondiente y repite la práctica.
 
