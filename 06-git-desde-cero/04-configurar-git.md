@@ -22,6 +22,39 @@ Este capítulo sí usa la terminal. Vas a ejecutar varios comandos de Git por pr
 
 ---
 
+## Mapa conceptual de este capítulo
+
+```mermaid
+mindmap
+  root((Configurar Git))
+    1. Por qué Git pide tu nombre y tu correo
+      autoría de cada commit
+      aviso si falta la identidad
+    2. git config sintaxis básica
+      nivel clave y valor
+      niveles system global y local
+    3. Configurar tu identidad
+      user.name
+      user.email
+      se guarda en .gitconfig
+    4. Verificar la configuración
+      git config --list
+      valor individual
+    5. Cambiar una configuración
+      sobrescribe el valor
+      solo afecta a commits futuros
+    6. Elegir el editor por defecto
+      core.editor
+      nano vim o VS Code
+    7. Para qué sirve todo esto
+      identidad en cada commit
+      ajustes por proyecto
+    8. Una nota sobre el correo que usas
+      correo de GitHub o noreply
+```
+
+---
+
 ## 1. Por qué Git pide tu nombre y tu correo
 
 Cada commit que hagas lleva un registro de quién lo hizo y cuándo.
@@ -92,6 +125,15 @@ Eso significa que puedes tener una identidad general y otra específica para un 
 ## 3. Configurar tu identidad
 
 Ahora vas a configurar tu nombre y tu correo a nivel global.
+
+```mermaid
+flowchart TD
+    A["git config --global user.name"] --> B["git config --global user.email"]
+    B --> C["Verifica con git config --list"]
+    C --> D{"¿Aparecen tus datos?"}
+    D -->|Sí| E["Identidad lista para el primer commit"]
+    D -->|No| A
+```
 
 ### 3.1. El nombre
 
@@ -349,6 +391,10 @@ Deberías poder:
 * ver un valor individual;
 * distinguir configuración global de local.
 
+### Ejercicio de transferencia
+
+Usa una identidad distinta a la habitual: configura un nombre de uso personal o profesional (por ejemplo, tu nombre y apellido en el formato que usarías en tu empresa) y un correo que no sea el habitual con `git config --global`. Entrega la salida de `git config --list` donde se vean los valores nuevos; después devuelve tu identidad original y repite la comprobación con `git config --global user.name` para demostrar que quedó restaurada.
+
 ---
 
 ## Errores comunes
@@ -386,18 +432,17 @@ Ejecutar `git config` sin valor muestra el valor actual. Verifica siempre que se
 
 ---
 
-## Cómo saber si lo entendiste
+## Autopreguntas de cierre
 
-Deberías poder explicar con tus propias palabras:
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
 
-* por qué Git pide tu nombre y tu correo;
-* cuál es la sintaxis básica de `git config`;
-* qué diferencia hay entre configuración global y local;
-* dónde se guarda cada tipo de configuración;
-* cómo verificar la configuración con `git config --list` y con un valor individual;
-* cómo cambiar un valor ya configurado;
-* cómo elegir el editor por defecto;
-* qué revisar después de ejecutar cada comando de configuración.
+1. ¿Para qué necesita Git tu nombre y tu correo, y qué fallaría si no los configuras?
+2. ¿Qué diferencia hay entre los niveles `--global`, `--system` y el nivel local, y en cuál conviene poner tu identidad?
+3. ¿Dónde se guarda tu identidad global y dónde la configuración de un proyecto concreto, y cuál manda si coinciden?
+4. ¿Qué harías si te has equivocado escribiendo el correo y qué commits quedan afectados?
+5. ¿Qué consecuencia tiene cambiar tu identidad hoy sobre los commits que ya hiciste?
+6. ¿Por qué te conviene usar el mismo correo en Git y en GitHub, y qué alternativa existe si no quieres exponer tu correo?
+7. ¿Qué ocurre cuando ejecutas `git commit` sin haber configurado la identidad y cómo evitarías ese bloqueo?
 
 Si alguna respuesta no está clara, vuelve a la sección correspondiente y repite la práctica.
 
