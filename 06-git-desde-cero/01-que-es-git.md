@@ -23,6 +23,42 @@ No abrirás la terminal en este capítulo. Es un repaso conceptual que servirá 
 
 ---
 
+## Mapa conceptual de este capítulo
+
+```mermaid
+mindmap
+  root((Qué es Git))
+    1. Un repaso del control de versiones
+      archivos con nombres duplicados
+      versiones perdidas sin querer
+    2. Qué hace exactamente Git
+      registrar versiones con commit
+      historial encadenado
+      ramas paralelas
+      recuperar estados
+    3. Git es local
+      sin internet ni servidor
+      rápido y privado
+    4. Git es distribuido
+      cada copia es completa
+      intercambio de commits
+    5. Cómo se relaciona con lo que ya viste
+      conceptos de la sección 02
+      comandos que los cubren
+    6. La estructura de un repositorio Git
+      la carpeta oculta .git
+      historial y configuración
+    7. Términos que verás repetidos
+      commit hash y rama
+      HEAD y área de preparación
+      directorio de trabajo
+    8. Qué veremos en el resto de esta sección
+      instalar configurar y crear
+      comandos esenciales
+```
+
+---
+
 ## 1. Un repaso del control de versiones
 
 Imagina que trabajas en un documento durante semanas.
@@ -71,14 +107,10 @@ Cada commit queda guardado en una cadena de commits.
 
 Esa cadena es el historial de tu proyecto:
 
-```text
-commit 1: "Añadir el primer borrador"
-   │
-   ▼
-commit 2: "Corregir typos en la introducción"
-   │
-   ▼
-commit 3: "Añadir la sección de ejemplos"
+```mermaid
+flowchart TD
+    A["commit 1: Añadir el primer borrador"] --> B["commit 2: Corregir typos en la introducción"]
+    B --> C["commit 3: Añadir la sección de ejemplos"]
 ```
 
 El historial te permite ver:
@@ -314,6 +346,10 @@ Deberías poder explicar:
 * qué significa que sea local y distribuido;
 * cómo se relaciona con el control de versiones ya estudiado.
 
+### Ejercicio de transferencia
+
+Elige un documento personal que hayas editado muchas veces (un acta, una receta, un informe) y crea a mano en tu escritorio tres copias con nombres tipo `documento.txt`, `documento-v2.txt` y `documento-v2-final.txt`. Escribe un párrafo de cinco líneas explicando qué información NO puedes recuperar con esas copias (quién cambió qué y cuándo) y cómo la obtendrías si ese documento viviera en un repositorio Git. Entrega el párrafo junto al listado de las tres copias.
+
 ---
 
 ## Errores comunes
@@ -351,17 +387,17 @@ Las ramas son referencias ligeras. No duplican el historial.
 
 ---
 
-## Cómo saber si lo entendiste
+## Autopreguntas de cierre
 
-Deberías poder explicar con tus propias palabras:
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
 
-* qué es Git y qué es un sistema de control de versiones distribuido;
-* qué hace exactamente Git (registrar, historial, ramas, recuperar);
-* qué significa que Git sea local;
-* qué significa que Git sea distribuido;
-* qué es la carpeta `.git` y por qué es importante;
-* qué diferencia existe entre Git y GitHub;
-* cómo se conectan los conceptos de la sección 02 con los comandos de Git.
+1. ¿Qué información pierdes cuando guardas `informe-final-v2-copia.txt` a mano y cómo la recupera Git?
+2. ¿Qué hace exactamente Git con tus archivos (registrar, historial, ramas, recuperar) y qué ganas con cada acción?
+3. ¿Por qué Git funciona sin internet y qué operaciones quedan pendientes hasta que hay conexión?
+4. ¿Qué riesgo elimina que Git sea distribuido y qué pasaría si el servidor central desapareciera?
+5. ¿Qué contiene la carpeta `.git` y qué le ocurriría a tu proyecto si la borras?
+6. ¿Qué diferencia hay entre Git y GitHub y en qué momentos del curso te afecta esa diferencia?
+7. ¿Cómo se traduce cada concepto de la sección 02 (registrar, historial, preparar, comparar) en un comando concreto de Git?
 
 Si alguna respuesta no está clara, vuelve a la sección correspondiente y repite la práctica.
 
