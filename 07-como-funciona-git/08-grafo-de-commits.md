@@ -18,35 +18,28 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-Grafo de commits
-       │
-       ├── 1. Estructura: DAG
-   │        ├── nodos = commits
-   │        ├── aristas = padres
-   │        └── acíclico: nunca hay bucles
-   │
-       ├── 2. Leer el grafo (log --graph)
-   │        ├── la sintaxis de la salida
-   │        ├── --all: todas las puntas
-   │        └── orden del tiempo vs. estructura
-   │
-       ├── 3. Ramas como etiquetas
-   │        ├── no copias: post-its sobre nodos
-   │        └── qué pasa al avanzar una
-   │
-       ├── 4. Merge commits (dos padres)
-   │        └── la punta «unida»
-   │
-       ├── 5. Errores comunes con diagnóstico completo
-   │
-       ├── 6. Práctica guiada
-   │
-       ├── 7. Nivel profesional
-   │        ├── linealidad, merges y rebase
-   │        └── leer historias ajenas
-   │
-       └── 8. Resumen y siguiente paso
+```mermaid
+mindmap
+  root((Grafo de commits))
+    1. Estructura DAG
+      nodos = commits
+      aristas = padres
+      acíclico sin bucles
+    2. Leer el grafo con log --graph
+      la sintaxis de la salida
+      --all muestra todas las puntas
+      orden del tiempo vs. estructura
+    3. Ramas como etiquetas
+      no copias sino post-its sobre nodos
+      qué pasa al avanzar una
+    4. Merge commits con dos padres
+      la punta unida
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional
+      linealidad merges y rebase
+      leer historias ajenas
+    8. Resumen y siguiente paso
 ```
 
 ---
@@ -55,12 +48,17 @@ Grafo de commits
 
 ### 1.1. Nodos y aristas
 
-```text
-   A ← B ← C
-          ↖
-            E   (raíz A; padres indicados con flecha
-   D ← F      «hacia atrás»)
+```mermaid
+flowchart TD
+    E["E"] --> C["C"]
+    C --> B["B"]
+    B --> A["A - raíz"]
+    F["F"] --> D["D"]
+```
 
+Cada flecha va de un commit a su padre (raíz A; padres indicados con flecha hacia atrás).
+
+```text
 Más formal:
    cada commit NODO tiene 1..N padres ARISTA hacia atrás
    la raíz tiene 0 padres
@@ -196,20 +194,29 @@ Al commitear en feature:
 
 ### 4.1. La unión
 
-```text
-Antes del merge:
-   A ← B ← C  (main)
-          ↖
-            E ← F  (feature)
-
-git merge feature (con HEAD en C):
-
-   A ← B ← C ← M (main)
-          ↖     ↑
-            E ← F (feature)
-
-   M = merge commit, padres: C y F
+```mermaid
+flowchart TD
+    subgraph ANTES["Antes del merge"]
+        M1["rama main"] -.->|"apunta a"| C1["C"]
+        F1["rama feature"] -.->|"apunta a"| F1T["F"]
+        C1 --> B1["B"]
+        B1 --> A1["A"]
+        F1T --> E1["E"]
+        E1 --> C1
+    end
+    subgraph DESPUES["Después de git merge feature con HEAD en C"]
+        M2["rama main"] -.->|"apunta a"| M2T["M"]
+        F2["rama feature"] -.->|"apunta a"| F2T["F"]
+        M2T --> C2["C"]
+        M2T --> F2T
+        C2 --> B2["B"]
+        B2 --> A2["A"]
+        F2T --> E2["E"]
+        E2 --> C2
+    end
 ```
+
+M es el commit de merge y sus padres son C y F: de M se llega a las dos líneas. Las flechas de la cadena van de cada commit a su padre; las punteadas son punteros de rama.
 
 ### 4.2. Qué «recuerda» M
 
@@ -417,6 +424,10 @@ Capacidad de traducir entre el dibujo del log y la estructura real, y de anticip
 
 El grafo es el mapa del territorio: ramas son nombres, merges son puentes y el orden lo mandan los padres, no las fechas.
 
+### Ejercicio de transferencia
+
+En un repositorio con dos ramas reales (la tuya y otra de un compañero, o dos simuladas), ejecuta `git log --graph --oneline --decorate --all` y dibuja en papel el grafo resultante marcando raíz, puntas, ramas y merges; después localiza con `git log --pretty=format:"%h %p %s" -n 6` los padres de cada nodo. Entrega el dibujo comparado con la salida real y una frase explicando qué manda: las filas del log o las flechas.
+
 ---
 
 ## 7. Nivel profesional
@@ -475,6 +486,21 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **Git no guarda archivos: guarda una red de decisiones. Quien lee el grafo entiende el proyecto; quien solo mira archivos, solo ve el presente.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. Si una rama es solo un nombre de 41 bytes, ¿qué implica borrarla y por qué no se pierde ningún commit con ella?
+2. ¿Por qué el orden de las filas de `git log --graph` puede mentirte y qué debes seguir para saber la verdad?
+3. ¿Qué permite recuperar o explicar un commit con dos padres que uno con un solo padre no puede?
+4. ¿Por qué crear ramas es gratis pero mantener ramas gigantes sin fusionar sí cuesta al equipo?
+5. Si un commit hecho en detached HEAD «no aparece» en ninguna rama, ¿por qué existe y cómo lo encuentras?
+6. ¿Qué diferencia hay entre que tu rama esté al día en local y que el remoto la tenga, y con qué comando miras cada cosa?
+7. ¿Por qué una historia lineal por rebase y otra con merges pueden representar exactamente el mismo trabajo?
+8. Alguien formatea su equipo sin haber empujado nunca: ¿qué parte de su grafo desaparece y cuál sobrevive?
 
 ---
 
