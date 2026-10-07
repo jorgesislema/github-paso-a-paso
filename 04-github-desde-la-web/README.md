@@ -30,6 +30,49 @@ Al terminar esta sección serás capaz de:
 * leer el historial: lista de commits, autor por línea (blame) y comparación de versiones;
 * restaurar una versión antigua de un archivo sin perder la actual.
 
+## Mapa conceptual
+
+```mermaid
+mindmap
+  root((04 · GitHub desde la web))
+    01 Crear un repositorio
+      formulario web y campos
+      público o privado
+      README y primer commit
+    02 Crear un archivo
+      botón Add file
+      editor web y extensión
+      mensaje de commit
+    03 Editar un archivo
+      lápiz y ciclo editar guardar
+      cada guardado crea versión
+      historial y diff
+    04 Subir archivos
+      botón y arrastre
+      carpeta de destino
+      qué archivos no subir
+    05 Subir imágenes
+      formatos PNG JPG SVG
+      rutas relativas en Markdown
+      arrastre en el editor
+    06 Crear carpetas
+      la ruta crea la carpeta
+      carpeta vacía y marcador
+      estructura del proyecto
+    07 Hacer un commit
+      instantánea del proyecto
+      título y descripción
+      commit frente a push
+    08 Ver el historial
+      lista de commits y diff
+      blame de cada línea
+      comparar versiones
+    09 Restaurar versiones
+      copiar revertir restore
+      árbol de decisión
+      nunca reescribir el pasado
+```
+
 ---
 
 ## ¿Qué aprenderás en esta sección?
@@ -75,6 +118,21 @@ Recuerda: la web es la puerta rápida. Cuando esta sección termine, entenderás
 
 ---
 
+## Checkpoint 04 — Comprobación obligatoria
+
+Antes de avanzar a `05-github-desktop/`, demuestra que puedes (en un repositorio de práctica real, solo con el navegador):
+
+1. **Crear** un repositorio privado desde el formulario web con su README inicial y abrirlo por su URL.
+2. **Crear y editar** archivos con el editor web y dejar dos commits con mensajes que expliquen el qué y el porqué.
+3. **Subir** dos archivos desde tu equipo —uno por «Upload files» y otro por arrastre— dentro de la carpeta correcta.
+4. **Mostrar** una imagen dentro de un archivo `.md` con ruta relativa y comprobar que se ve renderizada en el README.
+5. **Leer** el historial: abrir un commit, leer su diff y localizar con «Blame» quién escribió una línea concreta y en qué commit.
+6. **Restaurar** la versión anterior de un archivo y explicar, en dos frases, qué pasó con el trabajo que había encima.
+
+Si puedes hacerlo **sin mirar instrucciones**, el checkpoint está cerrado.
+
+---
+
 ## Autopreguntas de cierre
 
 Sin mirar el material, responde mentalmente y luego compruébalo con los capítulos de la sección:
@@ -83,6 +141,10 @@ Sin mirar el material, responde mentalmente y luego compruébalo con los capítu
 2. ¿Cómo ves quién escribió cada línea de un archivo?
 3. ¿Cómo restauras un archivo a una versión anterior sin borrar la nueva?
 4. ¿Qué diferencia hay entre «descartar cambios» y «restaurar versión anterior»?
+5. ¿Por qué todas las acciones de esta sección —crear, editar, subir, restaurar— terminan en un commit, y qué se pierde para siempre si cierras la pestaña antes de confirmarlo?
+6. Si subes por error un archivo con datos personales a un repositorio público y después lo borras, ¿por qué sigue expuesto y qué debería haber hecho antes de pulsar «Commit»?
+7. Antes de volver a una versión antigua, ¿qué debes comparar con el contenido actual y por qué suele ser mejor revertir con un commit nuevo que volver atrás entero?
+8. ¿En qué se diferencia la pestaña «Commits» de la pestaña de actividad del repositorio y qué conclusiones erróneas sacas si los confundes?
 
 ---
 
