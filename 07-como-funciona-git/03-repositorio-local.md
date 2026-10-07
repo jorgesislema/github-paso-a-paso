@@ -18,34 +18,27 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-Repositorio local
-       │
-       ├── 1. Qué es
-   │        ├── historial completo en tu disco
-   │        ├── la carpeta .git
-   │        └── directorio de trabajo vs. repositorio
-   │
-       ├── 2. Cómo nace un repositorio local
-   │        ├── git init (nuevo)
-   │        └── git clone (desde uno remoto)
-   │
-       ├── 3. El esquema local ↔ remoto
-   │        ├── un remoto, muchos locales
-   │        ├── fetch/pull (bajar) y push (subir)
-   │        └── local autónomo
-   │
-       ├── 4. Qué hay dentro de .git (visión general)
-   │
-       ├── 5. Errores comunes con diagnóstico completo
-   │
-       ├── 6. Práctica guiada
-   │
-       ├── 7. Nivel profesional
-   │        ├── respaldo y salud
-   │        └── repositorios grandes
-   │
-       └── 8. Resumen y siguiente paso
+```mermaid
+mindmap
+  root((Repositorio local))
+    1. Qué es
+      historial completo en tu disco
+      la carpeta .git
+      directorio de trabajo frente a repositorio
+    2. Cómo nace un repositorio local
+      git init para un proyecto nuevo
+      git clone desde uno remoto
+    3. El esquema local y remoto
+      un remoto y muchos locales
+      fetch y pull para bajar y push para subir
+      local autónomo
+    4. Qué hay dentro de .git - visión general
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional
+      respaldo y salud
+      repositorios grandes
+    8. Resumen y siguiente paso
 ```
 
 ---
@@ -156,14 +149,15 @@ init vs. clone
 
 ### 3.1. Un remoto, muchos locales
 
-```text
-                GitHub / servidor
-              [ Repositorio remoto ]
-              ╱        │         ╲
-        clone/push  fetch/pull  clone/push
-           ╱          │           ╲
-   [ repo local ] [ repo local ] [ repo local ]
-    (tú)           (compañero)    (compañera)
+```mermaid
+flowchart TD
+    REM["Repositorio remoto - GitHub o servidor"]
+    REM -->|"clone, fetch o pull"| L1["Repositorio local - tú"]
+    L1 -->|"push"| REM
+    REM -->|"clone, fetch o pull"| L2["Repositorio local - compañero"]
+    L2 -->|"push"| REM
+    REM -->|"clone, fetch o pull"| L3["Repositorio local - compañera"]
+    L3 -->|"push"| REM
 ```
 
 ```text
@@ -403,6 +397,10 @@ Mapeo mental completo: dónde vive el historial, cómo se crea un repositorio lo
 
 El repositorio local es tu copia soberana del proyecto. Comprendes ahora por qué Git es distribuido y por qué `.git` es el archivo más preciado de tu carpeta.
 
+### Ejercicio de transferencia
+
+En un proyecto tuyo real (o simulado con una segunda carpeta), crea un repositorio con `git init`, añade dos commits, clona después ese mismo repositorio en otra carpeta con `git clone` y comprueba con `git remote -v` que el clon habla con el original. Entrega una lista de cuatro líneas indicando dónde vive el historial en cada carpeta y qué operaciones funcionan con el equipo desconectado.
+
 ---
 
 ## 7. Nivel profesional
@@ -462,6 +460,20 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **Tu clon es el proyecto completo: `.git` es la caja fuerte donde Git guarda cada decisión del pasado, y por eso trabajas sin permisos de nadie y sin conexión.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. Estás en un avión con el portátil: ¿qué operaciones de Git funcionan y cuáles se te bloquean, y por qué?
+2. ¿Qué diferencia práctica hay entre descargar el ZIP de GitHub y clonar el repositorio, y en qué momento te das cuenta del error?
+3. Si borras la carpeta `.git` sin haber hecho nunca push, ¿qué se pierde y qué queda? ¿Y si sí habías empujado?
+4. ¿Por qué `git init` en una carpeta con archivos antiguos no te devuelve el historial de ese proyecto?
+5. ¿Qué pasaría con el equipo si cada persona trabajara en su clon sin un repositorio remoto común?
+6. ¿Por qué el remoto no es el «dueño» de tu historial local aunque todos empujen hacia él?
+7. `git status` falla en una carpeta que sabes que era un proyecto: ¿qué comprobación haces y qué dos escenarios distintos lo explican?
 
 ---
 
