@@ -18,37 +18,30 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-Repositorio remoto
-       │
-       ├── 1. Qué es y para qué sirve
-   │        ├── bóveda compartida
-   │        ├── respaldo e integración
-   │        └── no es el «dueño» del historial local
-   │
-       ├── 2. origin y los remotos configurados
-   │        ├── git remote add / -v
-   │        ├── URL https vs SSH
-   │        └── varios remotos
-   │
-       ├── 3. La conexión: fetch, pull, push
-   │        ├── qué sube y qué baja
-   │        ├── qué ve cada quien
-   │        └── el ciclo completo
-   │
-       ├── 4. Autoridad e integración
-   │        ├── rama protegida
-   │        └── forks y upstream
-   │
-       ├── 5. Errores comunes con diagnóstico completo
-   │
-       ├── 6. Práctica guiada
-   │
-       ├── 7. Nivel profesional
-   │        ├── flujos con varios remotos
-   │        └── seguridad y accesos
-   │
-       └── 8. Resumen y siguiente paso
+```mermaid
+mindmap
+  root((Repositorio remoto))
+    1. Qué es y para qué sirve
+      bóveda compartida
+      respaldo e integración
+      no es el dueño del historial local
+    2. origin y los remotos configurados
+      git remote add y remote -v
+      URL con HTTPS o SSH
+      varios remotos
+    3. La conexión con fetch pull y push
+      qué sube y qué baja
+      qué ve cada quien
+      el ciclo completo
+    4. Autoridad e integración
+      rama protegida
+      forks y upstream
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional
+      flujos con varios remotos
+      seguridad y accesos
+    8. Resumen y siguiente paso
 ```
 
 ---
@@ -172,13 +165,13 @@ subir      local→remoto  git push       no (sube tu rama)
 
 ### 3.2. El ciclo completo
 
-```text
-Un día típico
-──────────────────────────────────────────────
-1. git pull      →  bajas lo que subieron los demás
-2. trabajas      →  editas, add, commit (local)
-3. git push      →  publicas tu rama/commits
-4. (en GitHub)   →  Pull Request si el flujo lo pide
+Un día típico:
+
+```mermaid
+flowchart TD
+    A["1. git pull - bajas lo que subieron los demás"] --> B["2. trabajas - editas, add y commit en local"]
+    B --> C["3. git push - publicas tu rama y sus commits"]
+    C --> D["4. en GitHub - Pull Request si el flujo lo pide"]
 ```
 
 ### 3.3. Qué ve cada quien tras cada paso
@@ -426,6 +419,10 @@ Capacidad de explicar, para TU repositorio, a qué remoto hablas, con qué esque
 
 El remoto no es magia: es una dirección configurada en tu clon y un protocolo de intercambio. Quien controla `remote -v` y el ciclo fetch/pull/push, controla su integración con el equipo.
 
+### Ejercicio de transferencia
+
+En un repositorio real donde colaboras (o simulado con un segundo clon), ejecuta el ciclo completo: `git pull`, un commit propio, `git push`, y después `git fetch` seguido de `git log HEAD..origin/main`. Entrega la salida de `git remote -v` y de ese `git log`, con dos frases explicando qué había en el remoto que tú no tenías.
+
 ---
 
 ## 7. Nivel profesional
@@ -490,6 +487,20 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **El remoto es una dirección y un acuerdo: tú decides a dónde hablas y cuándo sincronizas; Git se encarga del resto sin milagros ni magia.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué `git fetch` es seguro con trabajo sin preparar y `git pull` puede llevarte por delante ese trabajo?
+2. Haces push y tu commit no aparece en GitHub: ¿qué tres comprobaciones haces en orden y qué significa cada resultado?
+3. ¿Qué diferencia hay entre tener `origin` configurado y tener el remoto actualizado, y con qué comando compruebas cada cosa?
+4. En un fork abres un PR hacia tu propio repositorio: ¿qué remotos están confundidos y cómo lo verificas antes de rehacerlo?
+5. ¿Qué gana un equipo con SSH frente a HTTPS y qué configuración exige cada esquema?
+6. Si tu push se rechaza con non-fast-forward, ¿por qué `push --force` no es la solución y qué harías en su lugar?
+7. ¿En qué momento tu trabajo deja de ser «solo tuyo», y por qué un commit sin push no lo logra?
 
 ---
 
