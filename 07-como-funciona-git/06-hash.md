@@ -18,41 +18,34 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-Hash
-       │
-       ├── 1. Qué es
-   │        ├── función resumen (digest)
-   │        ├── SHA-1 en Git; mención SHA-256
-   │        └── longitud fija: 40 hex (8 con -short)
-   │
-       ├── 2. Qué calcula Git
-   │        ├── blob: contenido
-   │        ├── árbol: nombres + modos + hashes
-   │        └── commit: árbol + padre + autor + mensaje
-   │
-       ├── 3. Propiedades
-   │        ├── determinista
-   │        ├── sensible al cambio (avalancha)
-   │        ├── no invertible
-   │        └── longitud fija
-   │
-       ├── 4. Consecuencias prácticas
-   │        ├── identidad y equivalencia
-   │        ├── integridad (fsck, push)
-   │        ├── deduplicación
-   │        └── seguridad de la red
-   │
-       ├── 5. Errores comunes con diagnóstico completo
-   │
-       ├── 6. Práctica guiada
-   │
-       ├── 7. Nivel profesional
-   │        ├── corrupción y detección
-   │        ├── hashes cortos y colisiones
-   │        └── futuro SHA-256
-   │
-       └── 8. Resumen y siguiente paso
+```mermaid
+mindmap
+  root((Hash))
+    1. Qué es
+      función resumen o digest
+      SHA-1 en Git y mención a SHA-256
+      longitud fija de 40 hex y 8 con -short
+    2. Qué calcula Git
+      blob con contenido
+      árbol con nombres modos y hashes
+      commit con árbol padre autor y mensaje
+    3. Propiedades
+      determinista
+      sensible al cambio o avalancha
+      no invertible
+      longitud fija
+    4. Consecuencias prácticas
+      identidad y equivalencia
+      integridad con fsck y push
+      deduplicación
+      seguridad de la red
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional
+      corrupción y detección
+      hashes cortos y colisiones
+      futuro SHA-256
+    8. Resumen y siguiente paso
 ```
 
 ---
@@ -61,10 +54,13 @@ Hash
 
 ### 1.1. Función resumen (digest)
 
-```text
-entrada (cualquier tamaño)  →  función  →  salida fija
-"El Quijote entero..."      →  SHA-1  →  40 caracteres hex
+```mermaid
+flowchart TD
+    A["entrada de cualquier tamaño - El Quijote entero"] --> B["función resumen - SHA-1"]
+    B --> C["salida fija - 40 caracteres hexadecimales"]
+```
 
+```text
    │
    ├── la salida es un RESUMEN: representa al contenido
    ├── misma entrada → misma salida (siempre)
@@ -435,6 +431,10 @@ Intuición directa: hash = huella de información completa; cambia con todo; ide
 
 El hash es lo que convierte al historial en una cadena verificable: nadie cambia «por debajo» sin que las huellas lo delaten.
 
+### Ejercicio de transferencia
+
+En un repositorio de práctica, crea dos archivos con contenido idéntico en rutas distintas, regístralos y localiza con `git ls-files -s` que comparten hash; después cambia un solo carácter de uno y repite. Entrega ambas salidas de `ls-files -s`, el resultado de `git fsck --no-progress` y dos frases explicando qué demostró cada prueba sobre identidad e integridad.
+
 ---
 
 ## 7. Nivel profesional
@@ -496,6 +496,20 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **En Git la identidad se demuestra, no se asigna: el hash es la huella matemática de la información, y esa huella sostiene todo —historial, distribución e integridad—.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. Si dos personas hacen exactamente el mismo cambio en ordenadores distintos, ¿por qué sus commits no comparten hash y qué más entra en el cálculo?
+2. ¿Por qué deduplicación e integridad son consecuencias de la misma propiedad y no dos características independientes?
+3. Si alguien altera a mano un commit antiguo, ¿qué cadena de consecuencias se produce y cómo te das cuenta?
+4. ¿Por qué el hash no protege un secreto subido al repositorio aunque nadie pueda «descifrar» el hash?
+5. Un archivo de 10 GB se modifica en una sola línea: ¿qué ocurre con los blobs y por qué el repositorio no duplica esos 10 GB?
+6. ¿Qué comprobarías antes de confiar en un objeto que te llega por una red que no controlas?
+7. Si Git se traslada completamente a SHA-256, ¿qué parte de lo aprendido sigue valiendo igual y cuál habría que ajustar?
 
 ---
 
