@@ -22,40 +22,42 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-Restaurar versiones
-       │
-       ├── 1. Fundamento: nada se pierde
-       │        ├── El historial conserva todo
-       │        └── Ver ≠ recuperar
-       │
-       ├── 2. Cuatro vías de recuperación
-       │        ├── A. Copiar contenido antiguo
-       │        ├── B. Revertir un commit
-   │        ├── C. Restaurar archivo (restore)
-   │        └── D. Rehacer a mano (edición)
-   │
-   │
-       ├── 3. Vía A: copiar desde el pasado
-       │
-       ├── 4. Vía B: revertir con un commit nuevo
-   │
-       ├── 5. Vía C: restaurar un archivo completo
-   │
-       ├── 6. Qué vía elegir (árbol de decisión)
-   │
-       ├── 7. Qué NO hacer (force-push, borrado)
-   │
-       ├── 8. Errores comunes con diagnóstico completo
-   │
-       ├── 9. Práctica guiada
-   │
-       ├── 10. Nivel profesional
-   │        ├── Recuperación tras un mal commit
-   │        ├── Respaldo del repositorio
-   │        └── Restore vs. revert en Git local
-   │
-       └── 11. Resumen y siguiente paso
+```mermaid
+mindmap
+  root((Restaurar versiones))
+    1. Fundamento nada se pierde
+      el historial conserva todo
+      ver frente a recuperar
+      la ética del historial compartido
+    2. Cuatro vías de recuperación
+      A. Copiar contenido antiguo
+      B. Revertir un commit
+      C. Restaurar archivo con restore
+      D. Rehacer a mano con edición
+      diferencia clave entre revert y restore
+    3. Vía A copiar desde el pasado
+      procedimiento paso a paso
+      control fino trozo a trozo
+      el enlace a la versión original
+    4. Vía B revertir con un commit nuevo
+      qué es un revert
+      cómo se hace en la web
+      cuándo usarlo y sus límites
+    5. Vía C restaurar un archivo completo
+      qué hace y cómo se hace en la web
+      cuándo usarla
+    6. Qué vía elegir con árbol de decisión
+    7. Qué NO hacer con force-push y borrado
+      el error de intentar borrar el pasado
+      restaurar sin mirar qué hay después
+    8. Errores comunes con diagnóstico completo
+    9. Práctica guiada
+    10. Nivel profesional
+      recuperación tras un mal commit
+      respaldo del repositorio
+      restore frente a revert en Git local
+      restauración y auditoría
+    11. Resumen y siguiente paso
 ```
 
 ---
@@ -171,19 +173,14 @@ con un commit nuevo             a una versión vieja
 
 ### 3.1. Procedimiento
 
-```text
-Copiar contenido de una versión antigua
-──────────────────────────────────────────────
-1. Abre la pestaña Commits (o el History del archivo)
-2. Entra al commit donde el contenido era bueno
-3. Abre el archivo en ESE commit
-4. Copia lo que necesites
-   (botón "Copy raw contents" si existe, o selecciona
-    y copia del renderizado/raw)
-5. Vuelve al archivo ACTUAL → lápiz (editar)
-6. Pega donde corresponda
-7. Guarda con un commit descriptivo:
-   "Recupera la sección de ejemplos del commit abc1234"
+```mermaid
+flowchart TD
+    A["Abres la pestaña Commits o el History del archivo"] --> B["Entras al commit donde el contenido era bueno"]
+    B --> C["Abres el archivo en ese commit"]
+    C --> D["Copias lo que necesites con Copy raw contents o seleccionando del renderizado"]
+    D --> E["Vuelves al archivo actual con el lápiz de editar"]
+    E --> F["Pegas donde corresponda"]
+    F --> G["Guardas con un commit descriptivo que cite el commit de origen"]
 ```
 
 ### 3.2. Cuándo brilla esta vía
@@ -272,18 +269,11 @@ Lo que revert no hace
 
 Devolver el CONTENIDO ACTUAL de un archivo a como estaba en un commit anterior, dejándolo como cambio pendiente de confirmación (commit):
 
-```text
-Restore de archivo
-──────────────────────────────────────────────
-archivo actual (roto)
-        │
-        │  restaurar a v2
-        ▼
-archivo con contenido de v2 (como cambio nuevo)
-        │
-        │  commit
-        ▼
-commit: "Restaura informe.md al estado del commit abc1234"
+```mermaid
+flowchart TD
+    A["Archivo actual roto"] --> B["Restauras a v2 con Restore file o Revert changes"]
+    B --> C["El archivo queda con el contenido de v2 como cambio nuevo"]
+    C --> D["Confirmas con un commit descriptivo"]
 ```
 
 ### 5.2. Cómo se hace en la web
@@ -346,6 +336,8 @@ NUNCA como primera opción:
 
 ### 7.1. El error grave: intentar «borrar» el pasado
 
+⚠️ **RIESGO:** el force-push borra commits ya publicados de la rama; en una rama compartida los demás quedan con clones descoordinados y en ramas protegidas GitHub lo rechazará, pero donde no haya protección solo se recupera si alguien conserva la rama anterior.
+
 ```text
 Conductas peligrosas (y por qué)
    │
@@ -365,6 +357,8 @@ Regla:
 > **En lugar de borrar el pasado, añade el presente: un commit de revert o de restauración deja el código correcto Y el relato honesto de lo ocurrido.**
 
 ### 7.2. Restaurar sin mirar qué hay después
+
+⚠️ **RIESGO:** restaurar un archivo entero a una versión antigua sin comparar qué cambió después deshace los arreglos posteriores de ese archivo, y el contenido nuevo se pierde en cuanto confirmas el commit de restauración.
 
 ```text
 Riesgo del restore ciego
@@ -534,6 +528,8 @@ En un repositorio de práctica, crea este guion:
 
 ### Paso 4: Vía C o D (restaurar/rehacer)
 
+⚠️ **RIESGO:** sobrescribir `informe.md` a propósito borra su contenido actual; hazlo solo en el repositorio de práctica y comprueba antes en la pestaña Commits que ya está guardado en un commit.
+
 1. Arruina `informe.md` entero a propósito (sobre-escribe con contenido malo) y confirma.
 2. Restáuralo: si hay botón de restore, úsalo; si no, copia la última buena versión y guarda.
 3. Mensaje: `Restaura informe.md a su última versión buena`.
@@ -550,6 +546,10 @@ Un historial honesto donde el código actual es correcto y el pasado sigue compl
 ### Conclusión esperada
 
 Restaurar no es reescribir: es avanzar con la corrección encima. El historial guarda tanto los errores como sus arreglos, y esa transparencia es una virtud.
+
+### Ejercicio de transferencia
+
+En tu repositorio de práctica, arruina por completo un archivo que ya tenga historia y recupéralo con una sola de las cuatro vías, sin tocar el resto del repositorio. Entrega: el enlace al commit de recuperación, el mensaje completo que escribiste y una línea comparando la vía que usaste con la alternativa que descartaste, explicando cuál elegirías si solo hubieras dañado un párrafo.
 
 ---
 
@@ -638,6 +638,20 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **Restaurar no es borrar: es añadir la corrección encima. El pasado se consulta, no se manipula; el presente se arregla con commits que dejan rastro.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué nada de lo que ya está en un commit puede perderse de verdad y qué haría falta para que desapareciera?
+2. ¿Qué diferencia hay entre «ver» una versión antigua y «recuperar» su contenido, y en qué situaciones toca copiarlo a mano?
+3. ¿Qué hace exactamente un revert y por qué deja el error visible en el historial en lugar de borrarlo?
+4. ¿Qué hace el restore de un archivo completo y qué queda siempre pendiente de confirmar justo después?
+5. ¿Cómo decides entre copiar solo un trozo, revertir un commit y restaurar el archivo entero?
+6. ¿Qué puedes perder si restauras a una versión vieja sin mirar qué commits posteriores tocaron ese mismo archivo?
+7. ¿Qué haces cuando la versión buena ya no está en ningún commit y por qué el respaldo externo es la última red de seguridad?
 
 ---
 
