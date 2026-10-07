@@ -19,39 +19,36 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-Hacer un commit (GitHub Desktop)
-       │
-       ├── 1. El diálogo de commit
-   │        ├── Campo de resumen
-   │        ├── Descripción
-   │        └── Rama destino
-   │
-       ├── 2. Redactar el mensaje
-   │        ├── Repaso: imperativo y concreto
-   │        ├── Título + descripción
-   │        └── Ejemplos
-   │
-       ├── 3. El acto de commitear
-   │        ├── Qué ocurre por debajo
-   │        └── Estado tras el commit
-   │
-       ├── 4. Commits locales: todavía sin publicar
-   │
-       ├── 5. Corregir un commit local
-   │        ├── Opción A: commit nuevo encima
-   │        └── Opción B: rehacer (si no se publicó)
-   │
-       ├── 6. Errores comunes con diagnóstico completo
-   │
-       ├── 7. Práctica guiada
-   │
-       ├── 8. Nivel profesional
-   │        ├── Commits atómicos en la práctica
-   │        ├── Plantillas y convenciones
-   │        └── Firmas
-   │
-       └── 9. Resumen y siguiente paso
+```mermaid
+mindmap
+  root((Hacer un commit con GitHub Desktop))
+    1. El diálogo de commit
+      campo de resumen obligatorio
+      descripción opcional
+      rama destino en el botón
+    2. Redactar el mensaje
+      repaso, imperativo y concreto
+      título y descripción en acción
+      mensajes para cambios múltiples
+    3. El acto de commitear
+      procedimiento en siete pasos
+      qué ocurre por debajo
+      estado tras el commit
+    4. Commits locales, todavía sin publicar
+      el estado del mundo tras commitear
+      ventajas de local primero
+      la pregunta del push olvidado
+    5. Corregir un commit local
+      opción A, commit nuevo encima
+      opción B, rehacer solo sin publicar
+      qué hacer si ya se publicó
+    6. Errores comunes con diagnóstico completo
+    7. Práctica guiada
+    8. Nivel profesional
+      commits atómicos en la práctica
+      plantillas y convenciones
+      firmas y verificación
+    9. Resumen y siguiente paso
 ```
 
 ---
@@ -169,16 +166,14 @@ Ante cambios mezclados
 
 ### 3.1. Procedimiento
 
-```text
-Pasos
-──────────────────────────────────────────────
-1. Comprueba lista de cambios (revisión hecha)
-2. Escribe el resumen
-3. Escribe la descripción si aporta
-4. Mira la rama en el botón
-5. Pulsa "Commit to [rama]"
-6. La lista de cambios se vacía
-7. La pestaña History muestra el commit arriba
+```mermaid
+flowchart TD
+    A["Comprueba que la lista de cambios está revisada"] --> B["Escribes el resumen"]
+    B --> C["Escribes la descripción si aporta"]
+    C --> D["Miras la rama en el botón"]
+    D --> E["Pulsas Commit to rama"]
+    E --> F["La lista de cambios se vacía"]
+    F --> G["La pestaña History muestra el commit arriba"]
 ```
 
 ### 3.2. Qué ocurre por debajo
@@ -214,15 +209,11 @@ Ese último indicador es clave para no perder el hilo: te recuerda que hay traba
 
 ### 4.1. El estado del mundo tras commitear
 
-```text
-TU EQUIPO                          GITHUB
-   │                                 │
-   ├── nuevo commit (y quizá otros)  ├── sigue con el
-   ├── main local actualizado        │   commit anterior
-   └── cambios vacíos                └── nadie lo ve
-            │
-            │  falta: push (capítulo 08)
-            ▼
+```mermaid
+flowchart TD
+    A["Tu equipo: tienes el nuevo commit y quizá otros"] --> B["Tu main local está actualizado y la lista de cambios queda vacía"]
+    B --> C["GitHub sigue con el commit anterior y nadie lo ve todavía"]
+    C --> D["Falta el push del capítulo 08"]
 ```
 
 ### 4.2. Ventajas de local primero
@@ -246,6 +237,8 @@ TU EQUIPO                          GITHUB
 ## 5. Corregir un commit local
 
 ### 5.1. Los dos caminos
+
+⚠️ **RIESGO:** rehacer un commit que ya se publicó reescribe el historial compartido; en el remoto solo podría imponerse con un force push que borra de allí los commits que otros ya habían descargado.
 
 ```text
 Situación: el commit ya existe LOCALMENTE y NO se ha hecho push
@@ -442,6 +435,10 @@ Historial local con tres mensajes claros y comprensión de que nada ha llegado a
 
 Committer desde el equipo es el mismo acto que en la web, con una gran diferencia de contexto: ahora el historial es tuyo y local, y publicarlo es una decisión aparte.
 
+### Ejercicio de transferencia
+
+En un repositorio de práctica con al menos dos temas de contenido distintos, prepara una sola tanda de cambios que mezcle documentación y notas y divídela en dos commits con mensajes que expliquen cada tema por separado. Entrega: la pestaña History capturada con los dos commits locales en el orden correcto y una línea escrita indicando en qué rama dice el botón que se hizo cada uno.
+
 ---
 
 ## 8. Nivel profesional
@@ -504,6 +501,21 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **El commit local es tu espacio de decisión: nombras el cambio, eliges la rama y aún puedes corregir sin dar explicaciones a nadie. La responsabilidad pública empieza con el push.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Qué campos tiene el diálogo de commit de GitHub Desktop, cuál es obligatorio y dónde miras la rama antes de pulsar?
+2. ¿Qué diferencia hay entre el resumen y la descripción y qué información suele reservarse para la segunda?
+3. ¿Qué hace Git exactamente al pulsar «Commit to main» y qué NO hace todavía en ese momento?
+4. ¿Cómo compruebas, en tres sitios distintos, que tu commit existe solo en tu equipo y no en GitHub?
+5. ¿Cuándo puedes rehacer un commit y cuándo ya solo puedes añadir otro encima, y por qué esa línea es tan estricta?
+6. Si la lista de cambios queda vacía tras el commit pero aún ves un archivo pendiente, ¿qué ha ocurrido y cómo lo resuelves?
+7. ¿Por qué conviene separar en varios commits los cambios que mezclan temas distintos y qué se pierde si no lo haces?
+8. ¿Qué indica el contador de commits locales pendientes de la aplicación y qué error de equipo evita leerlo cada día?
 
 ---
 
