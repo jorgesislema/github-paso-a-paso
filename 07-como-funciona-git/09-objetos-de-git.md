@@ -18,34 +18,27 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-Objetos de Git
-       │
-       ├── 1. Los cuatro tipos
-   │        ├── blob: contenido puro
-   │        ├── tree: directorio (metadatos + hijas)
-   │        ├── commit: instante (árbol+padres+…)
-   │        └── tag: referencia anotada y firmada
-   │
-       ├── 2. Cómo se enlazan
-   │        └── commit → tree → {blob | tree}
-   │
-       ├── 3. Inmutabilidad y almacenamiento
-   │        ├── .git/objects
-   │        ├── packs (compresión)
-   │        └── huérfanos y gc
-   │
-       ├── 4. Inspección: cat-file / ls-files -s
-   │
-       ├── 5. Errores comunes con diagnóstico completo
-   │
-       ├── 6. Práctica guiada
-   │
-       ├── 7. Nivel profesional
-   │        ├── la base de datos «content-addressable»
-   │        └── mantenimiento (gc, repack)
-   │
-       └── 8. Resumen y siguiente paso
+```mermaid
+mindmap
+  root((Objetos de Git))
+    1. Los cuatro tipos
+      blob con contenido puro
+      tree directorio con metadatos y ramas hijas
+      commit instante con árbol y padres
+      tag referencia anotada y firmada
+    2. Cómo se enlazan
+      commit apunta a tree y el tree a blobs y trees
+    3. Inmutabilidad y almacenamiento
+      .git/objects
+      packs con compresión
+      huérfanos y gc
+    4. Inspección con cat-file y ls-files -s
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional
+      base de datos dirigida por contenido
+      mantenimiento con gc y repack
+    8. Resumen y siguiente paso
 ```
 
 ---
@@ -123,17 +116,17 @@ Qué guarda:
 
 ### 2.1. La pirámide
 
-```text
-commit
-  └── tree (raíz del proyecto en ese instante)
-        ├── blob
-        ├── blob
-        └── tree
-              ├── blob
-              └── … (recursivo)
-
-commit ←padre→ commit ←padre→ … (cadena/grafo)
-tag ─────────→ commit (u otro objeto)
+```mermaid
+flowchart TD
+    TAG["tag"] -->|"apunta a"| COMMIT["commit"]
+    COMMIT -->|"tree"| TREE["tree raíz del proyecto en ese instante"]
+    TREE --> B1["blob"]
+    TREE --> B2["blob"]
+    TREE --> SUB["tree"]
+    SUB --> B3["blob"]
+    SUB --> REC["… entradas recursivas"]
+    COMMIT -->|"parent"| PADRE["commit anterior"]
+    PADRE -->|"parent"| ELLIPSIS["… cadena o grafo de commits"]
 ```
 
 ### 2.2. Ejemplo mínimo
@@ -435,6 +428,10 @@ Habilidad para recorrer commit → tree → blob a mano y explicar qué vive en 
 
 Git no es «una carpeta con versiones»: es una base de datos de objetos inmutables con referencias. Todo lo demás es azúcar sobre eso.
 
+### Ejercicio de transferencia
+
+En un repositorio con varios commits, recorre a mano con `git cat-file -p` el último commit, su árbol raíz y al menos un blob, y anota el tipo, el tamaño y el contenido de cada uno; después crea dos archivos con el mismo contenido, regístralos y comprueba con `git ls-files -s` que comparten blob. Entrega la ruta recorrida (commit → tree → blob) con los hashes y la salida de `ls-files -s`.
+
 ---
 
 ## 7. Nivel profesional
@@ -493,6 +490,20 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **Cuatro tipos de objetos inmutables + referencias = todo Git; entender esa frase es entender el techo del misterio.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. Si un blob no guarda nombre ni ruta, ¿dónde vive la ruta de cada archivo y por qué dos archivos iguales en carpetas distintas comparten blob?
+2. Si el commit no repite el contenido de los archivos, ¿qué contiene exactamente y qué ocurriría con el tamaño del historial si lo repitiera?
+3. ¿Por qué `git ls-files -s` y `git ls-tree -r HEAD` pueden mostrar hashes distintos para el mismo archivo?
+4. ¿Qué diferencia hay entre una etiqueta ligera y una anotada a nivel de objetos y por qué importa al verificar una release?
+5. ¿Qué es un objeto huérfano, cómo se crea uno sin darte cuenta y cuánto tiempo puede sobrevivir en el repositorio?
+6. Si alguien edita un archivo dentro de `.git/objects`, ¿qué comando delata el daño y por qué no sirve «arreglar» el texto a mano?
+7. Los packs guardan deltas por compresión: ¿por qué eso no contradice que el modelo de objetos sea de contenido completo?
 
 ---
 
