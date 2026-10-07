@@ -18,27 +18,22 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-Eliminar ramas
-       │
-       ├── 1. Borrado local
-   │        ├── -d (seguro, con salvaguarda)
-   │        ├── -D (forzado, cuidado)
-   │        └── verificar antes: log a..b
-   │
-       ├── 2. Borrado remoto
-   │        ├── push --delete / :rama
-   │        └── limpiar referencias locales tras
-   │
-       ├── 3. Limpieza de ramas obsoletas
-   │        ├── remotas ya borradas (fetch --prune)
-   │        └── ramas locales integradas
-   │
-       ├── 4. Errores comunes con diagnóstico completo
-   │
-       ├── 5. Práctica guiada
-   │
-       └── 6. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Eliminar ramas))
+    1. Borrado local
+      -d seguro con salvaguarda
+      -D forzado con cuidado
+      verificar antes con log a..b
+    2. Borrado remoto
+      push --delete y su forma corta
+      limpiar referencias locales tras borrar
+    3. Limpieza de ramas obsoletas
+      remotas borradas con fetch --prune
+      ramas locales integradas
+    4. Errores comunes con diagnóstico completo
+    5. Práctica guiada
+    6. Nivel profesional y resumen
 ```
 
 ---
@@ -79,6 +74,8 @@ git log main..feature-login --oneline
 
 ### 1.3. `-D`: forzado
 
+⚠️ **RIESGO:** `git branch -D` borra la rama aunque tenga commits no integrados: esos commits quedan sin nombre (huérfanos) y solo el reflog los conserva un tiempo. Revisa `git log main..rama` antes de forzar.
+
 ```bash
 git branch -D feature-login
 ```
@@ -110,11 +107,24 @@ Si quieres borrar la que tienes puesta:
    └── (con -D igual: primero sal de ella)
 ```
 
+```mermaid
+flowchart TD
+    A["git log destino..rama --oneline"] --> B{"¿La salida está vacía?"}
+    B -- "sí: todo integrado" --> C["git branch -d rama: Git lo borra sin resistencia"]
+    B -- "no: la rama aporta commits" --> D{"¿Quieres conservar esos commits?"}
+    D -- "sí" --> E["Integra primero: merge, PR o cherry-pick"]
+    E --> C
+    D -- "no" --> F["git branch -D rama: fuerza el borrado"]
+    F --> G["Commits huérfanos: solo el reflog los guarda un tiempo"]
+```
+
 ---
 
 ## 2. Borrado remoto
 
 ### 2.1. La orden
+
+⚠️ **RIESGO:** `git push origin --delete <rama>` borra la rama en el SERVIDOR para todo el mundo: el trabajo no integrado deja de estar publicado (cualquiera con una copia local puede volver a subirlo, pero el enlace, los PRs abiertos y las ramas que dependían de ella se rompen). Coordina antes si no es rama tuya.
 
 ```bash
 git push origin --delete feature-login
@@ -327,6 +337,8 @@ git branch -d borrable              # ¡fuera!
 
 ### Paso 2: rama NO integrada (-d se niega)
 
+⚠️ **RIESGO:** el `git branch -D resistente` de este paso borra una rama con un commit propio: ese commit queda huérfano y solo aparece en `git reflog` un tiempo. Es el precio del ejercicio y es deliberado.
+
 ```bash
 git switch -c resistente main
 # un commit
@@ -362,6 +374,8 @@ git branch -vv
 
 ### Paso 5: remoto (si tienes repositorio propio)
 
+⚠️ **RIESGO:** `git push origin --delete remota-borrable` borra la rama en el servidor de tu remoto. Úsalo solo con ramas de prueba tuyas; en un remoto compartido es un acto de equipo.
+
 ```bash
 # crea y publica una rama de prueba
 git switch -c remota-borrable
@@ -386,6 +400,10 @@ Criterio para borrar sin perder trabajo y rutina de limpieza local + remota con 
 ### Conclusión esperada
 
 Borrar rama es cerrar la tarea: seguro por defecto (`-d`), forzado con conocimiento (`-D`), remoto con coordinación y pruner como mantenimiento automático.
+
+### Ejercicio de transferencia
+
+Cierra dos tareas reales en tu repositorio de práctica: integra una con merge y bórrala con `-d`; deja otra sin integrar y decide, con `git log main..rama` delante, si la integras o la tiras con `-D`. Entrega la salida del log previo, los comandos usados y un tramo de `git reflog` que demuestre que la rama borrada sigue recuperable.
 
 ---
 
@@ -436,6 +454,19 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **Integrada: bórrala sin miedo (−d). No integrada: decide con el log en la mano — o −D con los ojos abiertos.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Qué comprueba `git branch -d` antes de borrar y para qué existe `-D` si `-d` ya protege?
+2. Si `git log main..rama` sale vacío, ¿qué garantiza eso exactamente y qué no garantiza?
+3. ¿Por qué borrar la rama remota no limpia tu `git branch -a` hasta que ejecutas otro comando?
+4. ¿Qué pierdes y qué conservas al borrar con `-D` una rama con commits propios?
+5. ¿Por qué automatizar `-d` en un guion es aceptable y automatizar `-D` no, aunque el guion filtre ramas?
+6. ¿Cuándo borrar la rama remota puede afectar a otra persona y qué deberías hacer antes?
 
 ---
 
