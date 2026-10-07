@@ -21,39 +21,40 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-Clonar un repositorio
-       │
-       ├── 1. Qué es clonar
-       │        ├── Definición
-       │        ├── Qué contiene el clon
-       │        └── Clon vs. descarga simple
-       │
-       ├── 2. Arquitectura: local y remoto
-       │        ├── Las dos copias
-       │        └── origin (el remoto por defecto)
-       │
-       ├── 3. Clonar desde GitHub Desktop
-   │        ├── Localizar el repositorio
-   │        ├── Elegir carpeta destino
-   │        └── Qué queda configurado
-   │
-       ├── 4. Clonar desde la web (alternativa)
-   │
-       ├── 5. Qué hay dentro de la carpeta clonada
-   │
-       ├── 6. Qué NO cambia al clonar
-   │
-       ├── 7. Errores comunes con diagnóstico completo
-   │
-       ├── 8. Práctica guiada
-   │
-       ├── 9. Nivel profesional
-   │        ├── Elección de ubicación
-   │        ├── Trabajo sin conexión
-   │        └── Clones pesados y profundidad
-   │
-       └── 10. Resumen y siguiente paso
+```mermaid
+mindmap
+  root((Clonar un repositorio))
+    1. Qué es clonar
+      definición
+      qué contiene el clon
+      clon frente a descarga simple
+      para quién es
+    2. Arquitectura local y remoto
+      las dos copias
+      origin, el remoto por defecto
+      la rama por defecto
+    3. Clonar desde GitHub Desktop
+      localizar el repositorio
+      elegir carpeta destino
+      qué ocurre durante el clon
+      qué queda configurado
+    4. Clonar desde la web, alternativa
+      la URL que termina en .git
+    5. Qué hay dentro de la carpeta clonada
+      exploración inicial
+      la carpeta .git
+      estado inicial limpio
+    6. Qué NO cambia al clonar
+      GitHub sigue intacto
+      clonar no da permisos de edición
+    7. Errores comunes con diagnóstico completo
+    8. Práctica guiada
+    9. Nivel profesional
+      elección de ubicación
+      trabajo sin conexión
+      clones pesados y profundidad
+      varios remotos
+    10. Resumen y siguiente paso
 ```
 
 ---
@@ -217,16 +218,13 @@ Local path (destino):
 
 ### 3.3. Qué ocurre durante el clon
 
-```text
-Proceso
-──────────────────────────────────────────────
-1. GitHub Desktop descarga los datos del remoto
-2. Crea la carpeta destino con todos los archivos
-3. Crea la carpeta oculta .git (historial completo)
-4. Registra el remoto origin → URL del repositorio
-5. Deja la rama main activa y lista
-6. La aplicación abre el repositorio: aparece en la
-   lista de repos locales
+```mermaid
+flowchart TD
+    A["GitHub Desktop descarga los datos del remoto"] --> B["Crea la carpeta destino con todos los archivos"]
+    B --> C["Crea la carpeta oculta .git con el historial completo"]
+    C --> D["Registra el remoto origin con la URL del repositorio"]
+    D --> E["Deja la rama main activa y lista"]
+    E --> F["La aplicación abre el repositorio y aparece en la lista de repos locales"]
 ```
 
 ### 3.4. Qué queda configurado
@@ -282,6 +280,8 @@ mi-proyecto/
 ```
 
 ### 5.2. La carpeta .git
+
+⚠️ **RIESGO:** borrar la carpeta `.git` elimina el historial local entero: la carpeta deja de ser un repositorio y los commits que no hayas subido no se pueden recuperar de ningún sitio.
 
 ```text
 .git (oculta)
@@ -421,6 +421,8 @@ Y lo importante: **clonar no da permisos de edición**. Puedes clonar un reposit
 
 **Cómo comprobarlo:** el diálogo avisa de carpeta no vacía, o el resultado es una mezcla extraña.
 
+⚠️ **RIESGO:** eliminar el clon antiguo borra de tu disco su carpeta `.git` con él; los commits locales que no se hayan subido a GitHub se pierden para siempre.
+
 **Opciones:**
 * elegir otra ruta;
 * si la carpeta era el clon antiguo: eliminar el clon antiguo (con cuidado: si tiene commits locales sin subir, se pierden) o abrirlo desde «Add → Add existing repository».
@@ -499,6 +501,10 @@ Un clon limpio en una carpeta ordenada, con la conexión `origin` verificada y e
 
 Clonar es el nacimiento del repositorio en tu equipo: a partir de ahí, trabajarás en local y sincronizarás con GitHub. El error conceptual más grande sería tratar ambas copias como si fueran la misma.
 
+### Ejercicio de transferencia
+
+En un repositorio que aún no hayas clonado (uno propio o de código abierto), haz la prueba contraria a la guiada: descarga primero el ZIP desde el botón «Code → Download ZIP», comprueba que esa carpeta no tiene `.git` y que Desktop no la reconoce, y clona después el mismo repositorio en una carpeta ordenada. Entrega: dos capturas (la carpeta ZIP sin `.git` y el clon abierto en Desktop con «No local changes») y una línea escrita con la URL del remoto `origin` que muestra tu clon.
+
 ---
 
 ## 9. Nivel profesional
@@ -570,6 +576,21 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **Clonar trae el proyecto a tu casa con toda su memoria: a partir de ahí trabajas en tu copia y sincronizas con GitHub cuando lo decidas.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Qué tres cosas contiene un clon y por qué una carpeta descargada como ZIP no sirve para trabajar con Git?
+2. ¿Qué cambia en tu equipo y qué no cambia en GitHub cuando pulsas «Clone»?
+3. ¿Para qué sirve el nombre `origin`, quién lo crea y qué pasaría si lo borras?
+4. ¿Cómo sabes, sin salir de GitHub Desktop, que el clon apunta al repositorio que tú querías?
+5. Si clonas un repositorio público en el que no tienes permisos, ¿qué podrás hacer con él y qué no, y por qué?
+6. ¿Qué te dice el estado «No local changes» justo después de clonar y qué deberías hacer para que siga así?
+7. ¿Por qué conviene decidir la carpeta destino antes de pulsar «Clone» y qué problemas concretos aparecen si clonas dentro de una nube de sincronización?
+8. Tras clonar, ¿dónde está el historial completo, qué parte de tu configuración personal viaja con él y cuál se queda fuera?
 
 ---
 
