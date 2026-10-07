@@ -22,6 +22,46 @@ Este capítulo usa la terminal. Vas a crear repositorios y examinar su estructur
 
 ---
 
+## Mapa conceptual de este capítulo
+
+```mermaid
+mindmap
+  root((git init))
+    1. Qué hace este comando
+      crea la estructura .git
+      no toca tus archivos
+      carpeta convertida en repositorio
+    2. Sintaxis básica
+      git init en el directorio actual
+      git init nombre-carpeta
+      opciones -b -q y --bare
+    3. Ejemplo paso a paso
+      mkdir y cd
+      inicializar y leer la salida
+      rama inicial con -b
+    4. Qué crea exactamente
+      objects con los objetos de Git
+      refs con ramas y referencias
+      HEAD tu posición actual
+      config configuración local
+      description y hooks
+    5. Inicializar una carpeta que ya tiene contenido
+      añade .git sin tocar archivos
+      se puede versionar ya
+    6. Borrar o modificar el init
+      borrar .git elimina el historial
+      cambiar la rama con git branch -m
+    7. Qué revisar después de ejecutarlo
+      mensaje de confirmación
+      carpeta .git y git status
+    8. Errores típicos de git init
+      lugar equivocado
+      creer que sube a internet
+      confundir con git clone
+```
+
+---
+
 ## 1. Qué hace este comando
 
 `git init` **inicializa un nuevo repositorio Git** en una carpeta.
@@ -107,6 +147,14 @@ Es un concepto avanzado que verás más adelante. Por ahora, ignóralo.
 ## 3. Ejemplo paso a paso
 
 Vamos a crear un repositorio desde cero.
+
+```mermaid
+flowchart TD
+    A["mkdir repo-prueba"] --> B["cd repo-prueba"]
+    B --> C["git init"]
+    C --> D["Aparece la carpeta .git"]
+    D --> E["git status confirma el repositorio"]
+```
 
 Paso 1: crea una carpeta de práctica.
 
@@ -263,6 +311,8 @@ Tus archivos propios se conservan.
 
 En Windows:
 
+⚠️ **RIESGO:** borra la carpeta `.git` completa: pierdes todo el historial, los commits y las ramas de ese repositorio de forma irreversible (tus archivos normales quedan en la carpeta, pero Git ya no podrá recuperarte ningún estado anterior). Hazlo únicamente en repositorios de práctica vacíos.
+
 ```bash
 rmdir /s /q .git
 ```
@@ -270,6 +320,8 @@ rmdir /s /q .git
 o borra la carpeta desde el explorador.
 
 En entornos de tipo Unix:
+
+⚠️ **RIESGO:** idéntico alcance al comando anterior: `rm -rf .git` elimina el historial entero sin confirmación ni papelera; solo es recuperable si tienes una copia previa del repositorio.
 
 ```bash
 rm -rf .git
@@ -403,6 +455,10 @@ Deberías poder:
 * crear una rama inicial personalizada;
 * saber cómo deshacer la inicialización.
 
+### Ejercicio de transferencia
+
+Crea un repositorio con `git init -b main` dentro de una carpeta que ya tenga archivos tuyos (un trabajo, unas notas o un presupuesto) sin tocar su contenido. Entrega la salida de `ls .git` (o `dir .git`) donde se vean `objects`, `refs` y `HEAD`, más la salida de `git status` dentro de esa carpeta. Añade una explicación de dos líneas sobre qué se perdería si ejecutaras `rm -rf .git` allí: descríbelo sin ejecutarlo.
+
 ---
 
 ## Errores comunes
@@ -440,17 +496,17 @@ Las carpetas ocultas no se ven por defecto en Windows. Activa la opción de most
 
 ---
 
-## Cómo saber si lo entendiste
+## Autopreguntas de cierre
 
-Deberías poder explicar con tus propias palabras:
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
 
-* qué hace exactamente `git init`;
-* cuál es su sintaxis y sus opciones (`-b`, `-q`, `--bare`);
-* qué estructura crea dentro de `.git`;
-* qué son `objects`, `refs`, `HEAD` y `config`;
-* qué pasa si inicializas una carpeta con archivos;
-* cómo deshacer la inicialización y sus riesgos;
-* qué revisar después de ejecutar el comando.
+1. ¿Qué hace exactamente `git init` y qué NO hace con los archivos que ya tienes en la carpeta?
+2. ¿En qué situaciones usarías `-b`, `-q` o `--bare`, y cuál de ellos evitarías mientras aprendes?
+3. ¿Qué estructura aparece dentro de `.git` y para qué sirve cada pieza (`objects`, `refs`, `HEAD`, `config`)?
+4. ¿Qué cambiaría en tu flujo de trabajo si `HEAD` apuntara a otra rama?
+5. ¿Qué ocurre cuando inicializas una carpeta que ya tiene contenido y qué debes comprobar después?
+6. ¿Qué pierdes exactamente al borrar `.git` y en qué casos merecería la pena hacerlo?
+7. ¿Qué señal te dice que `git init` se ejecutó en la carpeta equivocada y cómo la detectarías a tiempo?
 
 Si alguna respuesta no está clara, vuelve a la sección correspondiente y repite la práctica.
 
