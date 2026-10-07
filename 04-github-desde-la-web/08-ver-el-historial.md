@@ -20,43 +20,42 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-Ver el historial
-       │
-       ├── 1. Qué es el historial
-       │        ├── La cadena de commits
-       │        └── Dónde vive
-       │
-       ├── 2. La lista de commits
-       │        ├── Dónde está
-       │        ├── Anatomía de cada entrada
-       │        └── Elegir rama y rango de fechas
-       │
-       ├── 3. El detalle de un commit
-       │        ├── Metadatos
-       │        ├── Diff
-       │        └── Navegar a versiones anteriores
-       │
-       ├── 4. Historial de un archivo
-       │        ├── Historial del archivo
-       │        └── Quién escribió cada línea (blame)
-       │
-       ├── 5. Comparar
-   │        ├── Dos commits
-   │        └── Rama vs. rama
-       │
-       ├── 6. Buscar en el historial
-       │
-       ├── 7. Errores comunes con diagnóstico completo
-   │
-       ├── 8. Práctica guiada
-   │
-       ├── 9. Nivel profesional
-   │        ├── Análisis del historial
-   │        ├── Responsable de cambios
-   │        └── Auditoría y cumplimiento
-   │
-       └── 10. Resumen y siguiente paso
+```mermaid
+mindmap
+  root((Ver el historial))
+    1. Qué es el historial
+      la cadena de commits
+      dónde vive
+      qué no es el historial
+    2. La lista de commits
+      dónde está
+      anatomía de cada entrada
+      elegir rama y rango de fechas
+    3. El detalle de un commit
+      metadatos
+      diff
+      navegar a versiones anteriores
+      viajar en el tiempo con Browse files
+    4. Historial de un archivo
+      historial del archivo
+      quién escribió cada línea con blame
+      ver una línea en su contexto
+    5. Comparar
+      dos commits
+      rama frente a rama
+      etiquetas y fechas
+    6. Buscar en el historial
+      búsqueda básica
+      encontrar dónde se rompió
+    7. Errores comunes con diagnóstico completo
+    8. Práctica guiada
+    9. Nivel profesional
+      análisis del historial
+      responsable de cambios
+      calidad del historial
+      auditoría y cumplimiento
+      cuándo no fiarse del historial
+    10. Resumen y siguiente paso
 ```
 
 ---
@@ -110,13 +109,10 @@ Malentendidos frecuentes
 
 ### 2.1. Cómo llegar
 
-```text
-Página principal del repositorio
-   │
-   └── pestaña "Commits" (junto al nombre de la rama)
-          │
-          ▼
-   Lista completa de commits de la rama seleccionada
+```mermaid
+flowchart TD
+    A["Página principal del repositorio"] --> B["Pestaña Commits junto al nombre de la rama"]
+    B --> C["Lista completa de commits de la rama seleccionada"]
 ```
 
 ### 2.2. Anatomía de una entrada
@@ -337,14 +333,13 @@ Dónde buscar
 
 ### 6.2. Encontrar «dónde se rompió»
 
-```text
-Pregunta típica: «esto funcionaba antes; ¿cuándo cambió?»
-──────────────────────────────────────────────
-1. Identifica el archivo sospechoso
-2. Abre su History (solo sus cambios)
-3. Recorre los commits recientes leyendo mensajes
-4. Abre los candidatos y mira sus diffs
-5. Confirma cuál introdujo el cambio problemático
+```mermaid
+flowchart TD
+    A["Pregunta típica: esto funcionaba antes y no sé cuándo cambió"] --> B["Identificas el archivo sospechoso"]
+    B --> C["Abres su History, que muestra solo sus cambios"]
+    C --> D["Recorres los commits recientes leyendo los mensajes"]
+    D --> E["Abres los candidatos y miras sus diffs"]
+    E --> F["Confirmas cuál introdujo el cambio problemático"]
 ```
 
 En Git local, este procedimiento se automatiza con `git bisect` (búsqueda binaria), que te deja saltar directamente al commit culpable; se menciona en la sección 11.
@@ -405,6 +400,8 @@ En Git local, este procedimiento se automatiza con `git bisect` (búsqueda binar
 **Por qué:** la interfaz web no permite reescribir commits (y es bueno: la inmutabilidad es una garantía).
 
 **Cómo comprobarlo:** no hay botón de editar commit en la vista (solo comentarios).
+
+⚠️ **RIESGO:** reescribir historial con Git local cambia los identificadores de todos los commits de la rama; en una rama compartida deja a los demás con clones descoordinados, y lo único que lo recupera es que alguien conserve una copia de la rama anterior.
 
 **Opciones:** dejarlo como está (lo normal) o reescribir historial con Git local (avanzado, coordinado, riesgoso en ramas compartidas).
 
@@ -515,6 +512,10 @@ Capacidad de responder, sin ayuda: «¿quién cambió X, cuándo, en qué commit
 
 El historial no es una lista decorativa: es la base de la comprensión del proyecto y de la revisión del trabajo.
 
+### Ejercicio de transferencia
+
+En tu repositorio de práctica, elige una frase concreta de un archivo, localiza con «History» y «Blame» en qué commit apareció y ábrelo con «Browse files» para ver el proyecto de ese momento. Entrega: el enlace al commit, su hash corto, la fecha exacta, el autor y la frase que rastreaste.
+
 ---
 
 ## 9. Nivel profesional
@@ -603,6 +604,20 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **El historial es la memoria del proyecto: leerlo bien es la forma de entender por qué el código está como está, y cuidarlo es la forma de que esa memoria siga siendo útil.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Dónde miras para listar los commits y por qué el historial que ves depende de la rama que tenga seleccionada?
+2. ¿Qué información lleva cada entrada de la lista y qué te aporta el diff que no te dice el título del commit?
+3. ¿Qué puedes hacer con «Browse files» en un commit antiguo y qué pasaría si lo usaras con la intención de modificar ese estado?
+4. ¿Cómo respondes a la pregunta «¿quién escribió esta línea?» y cómo sigues desde esa línea hasta el mensaje que explica el porqué?
+5. ¿Qué diferencia hay entre la pestaña «Commits» y la pestaña de actividad, y qué conclusión errónea sacas si las confundes?
+6. ¿Cómo procedes cuando un commit «no aparece» en la lista y por qué la primera comprobación es el selector de rama y los filtros?
+7. ¿Qué haces cuando el diff de un commit es enorme y qué suele estar diciéndote ese commit sobre su autor?
 
 ---
 
