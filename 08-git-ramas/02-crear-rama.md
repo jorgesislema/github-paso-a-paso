@@ -18,25 +18,19 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-Crear una rama
-       │
-       ├── 1. git branch (solo crea)
-   │        ├── desde HEAD
-   │        ├── desde otra referencia
-   │        └── variante -f (mover punta)
-   │
-       ├── 2. Crear y cambiar: -c / -b
-   │
-       ├── 3. Desde un commit o punto concreto
-   │
-       ├── 4. En el remoto: push -u
-   │
-       ├── 5. Errores comunes con diagnóstico completo
-   │
-       ├── 6. Práctica guiada
-   │
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Crear una rama))
+    1. git branch solo crea
+      desde HEAD
+      desde otra referencia
+      variante -f para mover punta
+    2. Crear y cambiar con -c y -b
+    3. Desde un commit o punto concreto
+    4. En el remoto con push -u
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional y resumen
 ```
 
 ---
@@ -77,6 +71,8 @@ Salida típica -vv:
 ```
 
 ### 1.3. `git branch -f` (mover punta a mano)
+
+⚠️ **RIESGO:** al mover el puntero a mano, los commits que cubría esa rama dejan de tener nombre: quedan huérfanos y solo el reflog los conserva un tiempo.
 
 ```bash
 git branch -f feature-x a3f9c21
@@ -207,6 +203,15 @@ Qué hace -u (--set-upstream):
 
 Sin -u, el primer push necesitas decir destino:
 git push origin feature-login
+```
+
+```mermaid
+flowchart TD
+    A["git switch -c rama desde la base correcta"] --> B["Commits en la rama"]
+    B --> C["git push -u origin rama"]
+    C --> D["La rama nace en el remoto con tus objetos"]
+    D --> E["git branch -vv muestra la pareja origin/rama"]
+    E --> F["Después: git push y git pull sin argumentos"]
 ```
 
 ---
@@ -370,6 +375,8 @@ git log --graph --oneline --decorate --all -n 8
 
 ### Paso 5: borrar las de prueba
 
+⚠️ **RIESGO:** `git branch -D` borra la rama aunque tenga commits no integrados: esos commits quedan sin nombre (huérfanos) y solo el reflog los guarda un tiempo. Revisa `git log <rama>` antes de forzar.
+
 ```bash
 git branch -d solo-crear forma-clasica desde-viejo
 # la que tiene commits (crear-cambiar):
@@ -397,6 +404,10 @@ Fluidez con `branch`, `switch -c`, `checkout -b`, creación desde puntos y publi
 ### Conclusión esperada
 
 Crear rama es un gesto de un segundo; la disciplina está en partir del punto correcto y publicar cuando toque.
+
+### Ejercicio de transferencia
+
+En un repositorio con una rama remota que no tienes localmente, crea tu rama desde un punto que no es HEAD (un tag o `HEAD~2`), publicala con `git push -u origin <rama>` y demuestra el enlace con `git branch -vv`. Entrega la salida de `branch -vv` y el enlace de la rama en GitHub, más una frase que explique por qué crear la rama no la publica.
 
 ---
 
@@ -444,6 +455,19 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **Crea ramas sin miedo y desde el punto correcto: es la operación más barata de Git y la que más orden trae a tu historial.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué `git branch nombre` no te cambia de rama y por qué eso se considera una ventaja?
+2. Si creas la rama estando en la rama equivocada, ¿qué síntomas tendrás después y cómo los detectas con `git log --graph --decorate`?
+3. ¿Qué aporta exactamente `git push -u origin <rama>` además de subir los commits?
+4. ¿En qué se diferencia `git switch -c` de `git branch -f` si los dos terminan con un nombre apuntando a un commit?
+5. ¿Por qué el mismo nombre puede existir a la vez en tu repositorio y en el remoto sin que eso sea un error?
+6. Ante «ya existe una rama con ese nombre», ¿qué mirarías: `-a`, `-vv` o el reflog? Justifica la elección.
 
 ---
 
