@@ -20,45 +20,42 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-Hacer un commit
-       │
-       ├── 1. Qué es un commit
-       │        ├── Definición
-       │        ├── Contenido del commit
-       │        └── Cadena del historial
-       │
-       ├── 2. De dónde salen los cambios
-       │        ├── En la web: ver → editar → commit
-       │        └── El borrador no es commit hasta confirmar
-       │
-       ├── 3. El mensaje de commit
-       │        ├── Título y descripción
-       │        ├── Qué hace un buen mensaje
-       │        └── Ejemplos buenos y malos
-       │
-       ├── 4. Hacer commit paso a paso (web)
-       │        ├── Commit simple
-       │        ├── Commit con descripción
-       │        └── Commit en rama nueva
-       │
-       ├── 5. Ver el commit resultante
-       │        ├── Diferencia (diff)
-       │        ├── Datos del commit
-       │        └── Comparar con versiones
-       │
-       ├── 6. Commit ≠ nube: la cuestión del push
-       │
-       ├── 7. Errores comunes con diagnóstico completo
-       │
-       ├── 8. Práctica guiada
-       │
-       ├── 9. Nivel profesional
-       │        ├── Commits atómicos
-       │        ├── Convenciones de equipo
-       │        └── Firmas y verificación
-       │
-       └── 10. Resumen y siguiente paso
+```mermaid
+mindmap
+  root((Hacer un commit))
+    1. Qué es un commit
+      definición
+      contenido del commit
+      cadena del historial
+      propiedades importantes
+    2. De dónde salen los cambios
+      en la web ver editar commit
+      el borrador no es commit hasta confirmar
+      vista previa de la diferencia
+      varios cambios un commit
+    3. El mensaje de commit
+      título y descripción
+      qué hace un buen mensaje
+      ejemplos buenos y malos
+      el mensaje como documentación
+    4. Hacer commit paso a paso en la web
+      commit simple
+      commit con descripción
+      commit en rama nueva
+      pantalla de éxito
+    5. Ver el commit resultante
+      la diferencia diff
+      datos del commit
+      comparar con versiones
+    6. Commit y la cuestión del push
+    7. Errores comunes con diagnóstico completo
+    8. Práctica guiada
+    9. Nivel profesional
+      commits atómicos
+      convenciones de equipo
+      firmas y verificación
+      política de historial
+    10. Resumen y siguiente paso
 ```
 
 ---
@@ -146,22 +143,12 @@ Propiedades del commit
 
 ### 2.1. El flujo en la web
 
-```text
-Flujo de edición en GitHub
-──────────────────────────────────────────────
-1. VER el archivo (o la carpeta)
-        │
-        ▼
-2. EDITAR (lápiz) o SUBIR (capítulo 04)
-        │
-        ▼
-3. CAMBIOS en el editor  ←─── esto NO está guardado
-        │                     todavía
-        ▼
-4. COMMIT CHANGES          ←─── AQUÍ se guarda
-        │
-        ▼
-5. Historial actualizado
+```mermaid
+flowchart TD
+    A["Ves el archivo o la carpeta"] --> B["Editas con el lápiz o subes archivos como en el capítulo 04"]
+    B --> C["Los cambios quedan en el editor y todavía no están guardados"]
+    C --> D["Pulsas Commit changes: aquí se guarda"]
+    D --> E["El historial queda actualizado"]
 ```
 
 El punto crucial: **los cambios en el editor son un borrador**. Hasta que no pulsas «Commit changes», nada queda registrado. Si cierras la pestaña antes, se pierde.
@@ -247,16 +234,14 @@ Piensa en quién leerá este mensaje dentro de seis meses: probablemente tú, bu
 
 ### 4.1. Commit desde un archivo nuevo o editado
 
-```text
-Procedimiento
-──────────────────────────────────────────────
-1. Termina el trabajo en el editor (archivo nuevo o editado)
-2. Revisa la vista previa del cambio
-3. Escribe el TÍTULO del commit
-4. (Opcional) escribe la descripción en el campo amplio
-5. Comprueba la RAMA destino (main u otra)
-6. Pulsa "Commit changes"
-7. Espera la confirmación: estás en el historial actualizado
+```mermaid
+flowchart TD
+    A["Terminas el trabajo en el editor con el archivo nuevo o editado"] --> B["Revisas la vista previa del cambio"]
+    B --> C["Escribes el título del commit"]
+    C --> D["Si hace falta escribes la descripción en el campo amplio"]
+    D --> E["Compruebas la rama destino, main u otra"]
+    E --> F["Pulsas Commit changes"]
+    F --> G["Esperas la confirmación y ya estás en el historial actualizado"]
 ```
 
 ### 4.2. Commit desde una subida de archivos
@@ -454,6 +439,8 @@ Cuando trabajas en la web, commit y «subida» ocurren juntos porque tu «equipo
 
 ### Error 4: Cerrar la pestaña sin confirmar
 
+⚠️ **RIESGO:** lo que está en el editor sin pulsar «Commit changes» no está en ningún commit: no hay borrador, ni historial, ni papelera que lo recupere; si cierras la pestaña se pierde para siempre.
+
 **Qué ocurrió:** horas de edición en el navegador... y se cerró la pestaña.
 
 **Por qué:** se creyó que «estaba guardado» al escribir.
@@ -549,6 +536,10 @@ Tres commits con mensajes distintos y claros; capacidad para abrir cualquier com
 
 El commit es un acto de documentación tanto como de guardado: lo que cambias importa, pero lo que explicas es lo que hace útil al historial.
 
+### Ejercicio de transferencia
+
+En tu repositorio de práctica, haz dos commits que nada tengan que ver con el curso —por ejemplo uno que corrija una frase mal escrita en el README y otro que añada una lista nueva a otro archivo— con título y descripción en ambos. Entrega: los dos enlaces a los commits, el texto completo de cada mensaje y el hash corto de cada uno.
+
 ---
 
 ## 9. Nivel profesional
@@ -643,6 +634,20 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **El commit es la unidad de verdad del proyecto: cada uno debe poder explicarse solo, por qué existe y qué cambió, sin necesidad de preguntarle a nadie.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Qué contiene un commit y por qué su mensaje es tan obligatorio como la instantánea que guarda?
+2. ¿Por qué los cambios escritos en el editor no son todavía un commit y qué es exactamente lo que los convierte en uno?
+3. ¿Qué pregunta responde el título del commit y cuál la descripción, y qué pasa si el título se queda en «update»?
+4. Si la vista previa del commit muestra una línea que no querías borrar, ¿qué haces antes de confirmar y por qué no conviene editar después el commit viejo?
+5. ¿Qué significa que un commit sea inmutable y cómo se corrige entonces un error ya confirmado?
+6. ¿Por qué en la web el commit y la subida ocurren en el mismo paso, y qué separación aparece cuando trabajas con Git en tu equipo?
+7. ¿Qué revisas en el diálogo de commit para evitar un commit enorme con treinta archivos o un commit en la rama equivocada?
 
 ---
 
