@@ -18,35 +18,28 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-HEAD
-       │
-       ├── 1. Qué es
-   │        ├── el puntero al «presente»
-   │        ├── dónde vive (.git/HEAD)
-   │        └── HEAD → rama → commit
-   │
-       ├── 2. Cómo se mueve
-   │        ├── al hacer commit
-   │        ├── al cambiar de rama
-   │        └── al ir a un commit suelto (checkout)
-   │
-       ├── 3. Detached HEAD
-   │        ├── qué es
-   │        ├── cuándo es normal
-   │        └── cuándo es un error
-   │
-       ├── 4. Combinaciones: HEAD~n y HEAD^n
-   │
-       ├── 5. Errores comunes con diagnóstico completo
-   │
-       ├── 6. Práctica guiada
-   │
-       ├── 7. Nivel profesional
-   │        ├── reflog: la memoria de HEAD
-   │        └── HEAD en scripts y flujos
-   │
-       └── 8. Resumen y siguiente paso
+```mermaid
+mindmap
+  root((HEAD))
+    1. Qué es
+      el puntero al presente
+      dónde vive en .git/HEAD
+      HEAD apunta a rama y la rama a commit
+    2. Cómo se mueve
+      al hacer commit
+      al cambiar de rama
+      al ir a un commit suelto con checkout
+    3. Detached HEAD
+      qué es
+      cuándo es normal
+      cuándo es un error
+    4. Combinaciones HEAD~n y HEAD^n
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional
+      reflog la memoria de HEAD
+      HEAD en scripts y flujos
+    8. Resumen y siguiente paso
 ```
 
 ---
@@ -55,10 +48,18 @@ HEAD
 
 ### 1.1. El puntero al presente
 
-```text
-rama main:   A ← B ← C ← D
-HEAD ────────────────────────► D (y main también apunta a D)
+```mermaid
+flowchart TD
+    HEAD["HEAD"] --> MAIN["rama main"]
+    MAIN --> D["D"]
+    D --> C["C"]
+    C --> B["B"]
+    B --> A["A"]
+```
 
+HEAD apunta a la rama, y la rama apunta al commit D: por eso se dice que HEAD y main apuntan a D. Las flechas de la cadena van de cada commit a su padre.
+
+```text
    │
    ├── «presente» = el commit con el que Git está
    │   trabajando en tu carpeta
@@ -106,11 +107,21 @@ HEAD ──► refs/heads/main ──► a3f9c21 (commit)
 
 ### 2.1. Al hacer commit
 
-```text
-Antes:   HEAD → main → B
-nuevo commit C:
-         HEAD → main → C   (C.padre = B)
+```mermaid
+flowchart TD
+    subgraph ANTES["Antes"]
+        H1["HEAD"] --> M1["main"]
+        M1 --> B1["B"]
+    end
+    subgraph DESPUES["Después del nuevo commit C"]
+        H2["HEAD"] --> M2["main"]
+        M2 --> C1["C - nuevo commit, su padre es B"]
+        C1 --> B2["B"]
+    end
+    M1 -->|"git commit crea C y mueve la referencia de la rama"| M2
+```
 
+```text
    │
    └── la rama «crece»; HEAD no se «suelta»: apunta
        a la rama, que ahora es C
@@ -148,6 +159,8 @@ Ahora:   HEAD ──────────► a3f9c21   (directo, SIN rama)
 ```
 
 ### 2.4. Restaurar con HEAD
+
+⚠️ **RIESGO:** `git restore archivo` (con o sin `--source`) sobrescribe el archivo del directorio de trabajo con la versión indicada: los cambios sin preparar de ese archivo se pierden y no son recuperables por Git.
 
 ```bash
 git restore --source HEAD archivo
@@ -236,6 +249,8 @@ HEAD~2^   → combinable: abuelo por la rama principal
 ```
 
 ### 4.2. Uso cotidiano
+
+⚠️ **RIESGO:** la última orden (`git restore --source HEAD~2 archivo`) pisa el archivo de tu carpeta con la versión de hace dos commits: los cambios locales sin preparar de ese archivo no se pueden recuperar después.
 
 ```bash
 git show HEAD~1
@@ -435,6 +450,10 @@ Capacidad de explicar en qué punto exacto del historial estás, a qué apunta H
 
 HEAD es el cursor de tu relación con la historia: lo mueven commit, switch y checkout; lo interpretan status y log; y sus combinaciones (`~`, `^`) te dan navegación libre por la cadena.
 
+### Ejercicio de transferencia
+
+En un repositorio con al menos cinco commits, sitúa HEAD con `cat .git/HEAD`, identifica a qué rama apunta y localiza en `git log --oneline` los commits que corresponden a `HEAD`, `HEAD~1` y `HEAD~3`; después entra en detached con `git switch --detach HEAD~1` y créale una rama de rescate antes de volver a la tuya. Entrega la salida de `cat .git/HEAD` en los tres momentos (rama, detached y rama de rescate).
+
 ---
 
 ## 7. Nivel profesional
@@ -504,6 +523,20 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **HEAD es tu cursor en la historia: sé siempre consciente de a qué apunta, porque cada orden de Git se ejecuta a partir de ahí.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. Si solo escribes `git commit`, ¿por qué se actualizan la rama y la lectura de HEAD aunque no ejecutas dos comandos?
+2. ¿Qué cambia entre `git switch --detach` y `git switch -c` en el mismo momento, y qué le pasa a los commits que hagas después en cada caso?
+3. ¿Por qué `git log` o `git show` no te dejan en detached HEAD y `git switch --detach` sí?
+4. `HEAD~2` devuelve bad revision en tu repositorio: ¿qué estás preguntando realmente y qué comprobación haces antes de reintentar?
+5. Si commiteas en detached HEAD, ¿por qué `main` no se ha movido aunque tú has creado un commit?
+6. ¿Qué guarda HEAD y qué no guarda, y cómo cambia eso tu respuesta ante un archivo que has perdido?
+7. ¿Por qué el reflog te da una segunda oportunidad tras un reset mal hecho y cuándo deja de ser fiable?
 
 ---
 
