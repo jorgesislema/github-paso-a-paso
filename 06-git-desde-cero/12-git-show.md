@@ -18,37 +18,30 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-git show
-       │
-       ├── 1. Qué muestra
-   │        ├── Cabecera + mensaje + diff
-   │        └── Qué NO muestra
-   │
-       ├── 2. Ejecutar con hash y con referencias
-   │        ├── hash corto
-   │        ├── HEAD y variantes
-   │        └── ramas y tags
-   │
-       ├── 3. Variantes
-   │        ├── --stat
-   │        ├── --name-only
-   │        └── -- un archivo
-   │
-       ├── 4. Aplicaciones prácticas
-   │        ├── Revisar un commit ajeno
-   │        ├── Recuperar contenido antiguo
-   │        └── Auditar un cambio concreto
-   │
-       ├── 5. Errores comunes con diagnóstico completo
-   │
-       ├── 6. Práctica guiada
-   │
-       ├── 7. Nivel profesional
-   │        ├── show en reportes
-   │        └── show como evidencia
-   │
-       └── 8. Resumen y siguiente paso
+```mermaid
+mindmap
+  root((git show))
+    1. Qué muestra
+      Cabecera + mensaje + diff
+      Qué NO muestra
+    2. Ejecutar con hash y con referencias
+      hash corto
+      HEAD y variantes
+      ramas y tags
+    3. Variantes
+      resumen con --stat
+      nombres con --name-only
+      foco en un archivo
+    4. Aplicaciones prácticas
+      Revisar un commit ajeno
+      Recuperar contenido antiguo
+      Auditar un cambio concreto
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional
+      show en reportes
+      show como evidencia
+    8. Resumen y siguiente paso
 ```
 
 ---
@@ -199,12 +192,12 @@ Solo cabecera y mensaje: «¿qué se dijo y quién lo dijo?».
 
 ### 4.1. Revisar un commit ajeno
 
-```text
-Flujo
-   │
-   ├── git log --oneline  →  localizas el hash
-   ├── git show <hash>    →  lees mensaje + diff
-   └── juzgas: ¿es correcto? ¿incluye lo que debe?
+```mermaid
+flowchart TD
+    A["git log --oneline"] --> B["localizas el hash"]
+    B --> C["git show con el hash"]
+    C --> D["lees mensaje y diff"]
+    D --> E["juzgas si es correcto y si incluye lo que debe"]
 ```
 
 ### 4.2. Recuperar contenido antiguo
@@ -420,6 +413,10 @@ Capacidad de pasar de «un hash en log» a «el detalle completo», y de extraer
 
 `git show` es la lupa del historial: mira un instante del pasado en detalle, con la seguridad de que solo estás mirando.
 
+### Ejercicio de transferencia
+
+En un repositorio con varios commits, recupera el contenido de un archivo tal como estaba tres commits atrás y compáralo con el actual sin modificar nada. Entrega la salida de `git show HEAD~3:<tu-archivo>` y la de `git show HEAD~3 --stat`, más dos líneas explicando qué cambió desde entonces. Añade una frase sobre por qué puedes mirar ese contenido con total seguridad.
+
 ---
 
 ## 7. Nivel profesional
@@ -477,6 +474,20 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **`git show` convierte un hash en historia completa: quién decidió, qué dijeron y qué cambió exactamente, en una sola consulta.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Qué tres bloques despliega `git show` de un commit y qué información nunca te da?
+2. ¿En qué se diferencia `git show` de `git log` y de `git diff`, y cómo decides cuál usar?
+3. ¿Qué puedes recorrer con `HEAD`, `HEAD~1` y `HEAD^`, y cómo localizas primero el hash correcto?
+4. ¿Qué variantes usarías para ver solo los archivos que tocó un commit?
+5. ¿Qué diferencia hay entre `git show hash:ruta` y `git show hash -- ruta`?
+6. ¿Por qué `git show` no cambia tus archivos y qué comando usarías si quisieras restaurarlos?
+7. ¿Qué haces cuando la salida es enorme y no encuentras lo que buscas?
 
 ---
 
