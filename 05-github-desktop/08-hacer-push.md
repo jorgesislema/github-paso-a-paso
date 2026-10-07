@@ -18,40 +18,40 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-Hacer push
-       │
-       ├── 1. Qué es push
-   │        ├── Definición
-   │        ├── Qué se envía (y qué no)
-   │        └── push vs. commit
-   │
-       ├── 2. Push desde GitHub Desktop
-   │        ├── El botón Push origin
-   │        ├── Estado antes y después
-   │        └── Verificación en la web
-   │
-       ├── 3. Local y remoto sincronizados
-   │        ├── Indicadores de estado
-   │        └── Concepto de adelanto/retraso
-   │
-       ├── 4. Cuando el push es rechazado
-   │        ├── Causa: el remoto va por delante
-   │        ├── Solución: pull primero (adelanto)
-   │        └── Qué NO hacer: force push
-   │
-       ├── 5. Permisos y rechazos de acceso
-   │
-       ├── 6. Errores comunes con diagnóstico completo
-   │
-       ├── 7. Práctica guiada
-   │
-       ├── 8. Nivel profesional
-   │        ├── Trabajo en equipo sincronizado
-   │        ├── Push a ramas y Pull Requests
-   │        └── Force push: política
-   │
-       └── 9. Resumen y siguiente paso
+```mermaid
+mindmap
+  root((Hacer push))
+    1. Qué es push
+      definición
+      qué se envía y qué no
+      push frente a commit
+      la rama que se actualiza
+    2. Push desde GitHub Desktop
+      el botón Push origin
+      estados del botón en ciclo
+      pasos de la subida
+      verificación en la web
+    3. Local y remoto sincronizados
+      los tres estados posibles
+      indicadores en Desktop
+      el hábito de sincronización
+    4. Cuando el push es rechazado
+      el remoto va por delante
+      el mensaje de error
+      solución con pull primero
+      qué no hacer, force push
+    5. Permisos y rechazos de acceso
+      sin permisos de escritura
+      rama protegida
+      organización, sesión y tamaño
+    6. Errores comunes con diagnóstico completo
+    7. Práctica guiada
+    8. Nivel profesional
+      trabajo en equipo sincronizado
+      push a ramas y Pull Requests
+      política sobre force push
+      auditoría del remoto
+    9. Resumen y siguiente paso
 ```
 
 ---
@@ -155,14 +155,12 @@ Pull  = traer los commits del remoto (capítulo 09)
 
 ### 2.3. Pasos
 
-```text
-Procedimiento
-──────────────────────────────────────────────
-1. Comprueba que la pestaña Changes está como esperas
-2. Pulsa "Push origin"
-3. Espera: progreso de subida (depende de tu red)
-4. El botón vuelve a "Fetch origin" (o estado al día)
-5. Indicador de commits pendientes: desaparece
+```mermaid
+flowchart TD
+    A["Compruebas que la pestaña Changes está como esperas"] --> B["Pulsas Push origin"]
+    B --> C["Esperas el progreso de subida según tu red"]
+    C --> D["El botón vuelve a Fetch origin"]
+    D --> E["El indicador de commits pendientes desaparece"]
 ```
 
 ### 2.4. Verificación en la web
@@ -267,21 +265,19 @@ de subir los tuyos»
 
 ### 4.3. La solución correcta
 
-```text
-Protocolo
-──────────────────────────────────────────────
-1. Pull (trae los commits del remoto)
-   │
-   ├── si no hay conflicto: Git fusiona automáticamente
-   │   y tu local queda al día + tus cambios encima
-   │
-   └── si hay conflicto: hay que resolverlo
-       (sección 10; mientras tanto, NO force)
-2. Revisa el resultado (History y cambios)
-3. Push (ahora sí)
+```mermaid
+flowchart TD
+    A["Pull: traes los commits del remoto"] --> B{"¿Hay conflicto?"}
+    B -->|"No"| C["Git fusiona automáticamente y tu local queda al día con tus cambios encima"]
+    B -->|"Sí"| D["Resuelves el conflicto sin forzar nada, sección 10"]
+    C --> E["Revisas el resultado en History y en los cambios"]
+    D --> E
+    E --> F["Push, ahora sí"]
 ```
 
 ### 4.4. Qué NO hacer: force push
+
+⚠️ **RIESGO:** el force push sobrescribe el remoto con tu versión y borra de allí los commits que otros subieron y que tú no tenías; sus clonaciones quedan descoordinadas y en ramas compartidas el trabajo destruido solo se recupera si alguien más lo tiene.
 
 ```text
 git push --force  (o "Force push" en la interfaz)
@@ -504,6 +500,10 @@ Remoto sincronizado con tu trabajo y capacidad de leer los indicadores de estado
 
 El push es el puente: sube exactamente los commits, ni un archivo suelto más. Leer el estado local/remoto correctamente es la mitad de no tener problemas en equipo.
 
+### Ejercicio de transferencia
+
+En dos repositorios de práctica distintos, deja en uno tres commits locales sin subir y en el otro ninguno, y observa cómo cambia el botón principal de Desktop en cada caso. Después sube los tres commits del primer repositorio. Entrega: dos capturas del botón (antes y después del push) y una línea escrita que explique qué le dirías a un compañero que dice «yo ya lo subió» y en GitHub no aparece nada.
+
 ---
 
 ## 8. Nivel profesional
@@ -576,6 +576,21 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **El push es un acuerdo entre dos copias: sube exactamente lo que tú decidiste y respeta lo que el remoto ya tiene. Ante cualquier rechazo, la respuesta es dialogar con el remoto (pull), no borrar su memoria (force).**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Qué viaja en un push y qué se queda en tu equipo, incluidos los archivos que tienes modificados sin commitear?
+2. ¿Cómo distingues en la interfaz si toca un Push origin, un Fetch origin o un Pull origin?
+3. Si hiciste tres commits antes de subir, ¿qué recibe GitHub con un solo push y cómo lo compruebas en la web?
+4. ¿Qué significa que el push rechazado no sea un error de la aplicación y cuál es el protocolo de tres pasos que lo resuelve?
+5. ¿Qué queda destruido exactamente tras un force push en una rama compartida y por qué suele ser un incidente de equipo?
+6. Si tu push falla, ¿cómo sabes si el motivo es divergencia, permisos, rama protegida, credenciales o tamaño de archivo?
+7. ¿Por qué la rutina de fetch y pull antes de empezar a editar evita la mayoría de los disgustos de sincronización?
+8. ¿Qué diferencia hay entre que tu lista de cambios esté vacía y que tu commit esté ya en GitHub?
 
 ---
 
