@@ -19,36 +19,28 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-git add
-       │
-       ├── 1. El área de preparación (staging)
-   │        ├── Qué es
-   │        ├── Por qué existe
-   │        └── Flujo completo
-   │
-       ├── 2. La sintaxis de git add
-   │        ├── Un archivo
-   │        ├── Varias rutas
-   │        ├── Carpetas
-   │        └── Todo (git add .)
-   │
-       ├── 3. Comprobar: status y diff --staged
-   │
-       ├── 4. Deshacer un add (git restore --staged)
-   │
-       ├── 5. Qué NO añadir
-   │
-       ├── 6. Errores comunes con diagnóstico completo
-   │
-       ├── 7. Práctica guiada
-   │
-       ├── 8. Nivel profesional
-   │        ├── Staging selectivo
-   │        ├── add -p (interactivo)
-   │        └── Orden add → commit en equipo
-   │
-       └── 9. Resumen y siguiente paso
+```mermaid
+mindmap
+  root((git add))
+    1. El área de preparación staging
+      Qué es
+      Por qué existe
+      Flujo completo
+    2. La sintaxis de git add
+      Un archivo
+      Varias rutas
+      Carpetas
+      Todo con git add .
+    3. Comprobar con status y diff --staged
+    4. Deshacer un add con git restore --staged
+    5. Qué NO añadir
+    6. Errores comunes con diagnóstico completo
+    7. Práctica guiada
+    8. Nivel profesional
+      Staging selectivo
+      add -p interactivo
+      Orden add y commit en equipo
+    9. Resumen y siguiente paso
 ```
 
 ---
@@ -59,15 +51,10 @@ git add
 
 El **área de preparación** (staging area, también llamada índice) es una zona intermedia donde Git acumula los cambios elegidos para el siguiente commit.
 
-```text
-Mapa de los tres lugares
-──────────────────────────────────────────────
-WORKING DIRECTORY     STAGING AREA        REPOSITORY
-(tu carpeta)          (preparación)       (historial)
-   │                      │                    │
- cambios en disco  ──add──►  elegidos  ──commit──►  instantánea
-                              para el              guardada
-                              próximo commit
+```mermaid
+flowchart TD
+    A["WORKING DIRECTORY tu carpeta<br/>cambios en disco"] -->|git add| B["STAGING AREA preparación<br/>elegidos para el próximo commit"]
+    B -->|git commit| C["REPOSITORY historial<br/>instantánea guardada"]
 ```
 
 ### 1.2. Por qué existe
@@ -463,6 +450,10 @@ Capacidad de elegir con precisión qué entra al commit y de verificarlo por dos
 
 `git add` convierte un lío de cambios en una propuesta concreta: esto es lo que voy a guardar. Revisar esa propuesta es la mitad de la disciplina del commit.
 
+### Ejercicio de transferencia
+
+En un repositorio con cambios de dos temas distintos (por ejemplo, correcciones de un documento y un archivo nuevo de trabajo), añade al área de preparación solo los archivos del primer tema y deja fuera el resto. Entrega la salida de `git status` y de `git diff --staged` que demuestren que entró exactamente lo que querías, más una frase explicando por qué no usaste `git add .` en ese caso.
+
 ---
 
 ## 8. Nivel profesional
@@ -533,6 +524,20 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **`git add` es una decisión, no un trámite: convierte «lo que cambió» en «lo que quiero recordar», y esa selección es lo que hace legible el historial.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Para qué existe el área de preparación y qué podrías no hacer si no existiera?
+2. ¿En qué se diferencian `git add archivo`, `git add carpeta/`, `git add .` y `git add -A` y cuándo conviene cada uno?
+3. ¿Cómo compruebas exactamente qué llevará el próximo commit y qué verías si no has añadido nada?
+4. ¿Qué diferencia hay entre `git restore --staged` y `git restore archivo`, y qué perderías con cada uno?
+5. ¿Por qué un borrado también necesita pasar por `git add` y qué pasa si se te olvida?
+6. ¿Qué tipos de archivos no deberían entrar nunca al área de preparación y qué consecuencia tiene si entran?
+7. Si acabas de hacer `git add .` y ves basura en `git status`, ¿qué haces antes de commitear?
 
 ---
 
