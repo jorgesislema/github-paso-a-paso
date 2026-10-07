@@ -21,6 +21,49 @@ No necesitas terminal para este capítulo. Es una lección de contexto que te ay
 
 ---
 
+## Mapa conceptual de este capítulo
+
+```mermaid
+mindmap
+  root((Por qué existe Git))
+    1. El control de versiones antes de Git
+      CVS SVN y BitKeeper
+      historial en un servidor central
+      dependencia de la conexión
+    2. El kernel de Linux
+      miles de desarrolladores
+      repartidos por el mundo
+    3. CVS y sus limitaciones
+      velocidad
+      conexión permanente
+      centralización y escalabilidad
+    4. La crisis de 2005
+      se perdió el servidor de kernel.org
+      paso temporal a BitKeeper
+    5. Linus Torvalds y el nacimiento de Git
+      creado en 2005
+      primer uso en el kernel
+    6. Las cuatro necesidades concretas
+      velocidad local
+      trabajo sin conexión
+      integridad de los datos
+      simplicidad
+    7. Cómo respondió Git a cada necesidad
+      todo en la máquina local
+      repositorios completos
+      hashes verificables
+      núcleo pequeño
+    8. De necesidad a estándar
+      adopción masiva
+      plataformas como GitHub
+    9. Qué puedes sacar de esta historia
+      cada diseño responde a una necesidad
+    10. Límites de esta historia
+      la colaboración es un acuerdo humano
+```
+
+---
+
 ## 1. El control de versiones antes de Git
 
 Antes de 2005, la mayoría de los proyectos grandes de software usaban sistemas de control de versiones **centralizados**.
@@ -34,12 +77,11 @@ Los más comunes eran:
 
 Todos ellos compartían una idea común: el historial completo del proyecto vive en un **servidor central**.
 
-```text
-Desarrollador A ──┐
-                  ├── servidor central (histórico completo)
-Desarrollador B ──┤
-                  │
-Desarrollador C ──┘
+```mermaid
+flowchart TD
+    A["Desarrollador A"] --> S["servidor central con el histórico completo"]
+    B["Desarrollador B"] --> S
+    C["Desarrollador C"] --> S
 ```
 
 Cada desarrollador solo tiene una copia parcial de su trabajo.
@@ -335,6 +377,10 @@ Deberías poder explicar:
 * que los datos están protegidos por hashes;
 * que la simplicidad estructural facilita el mantenimiento.
 
+### Ejercicio de transferencia
+
+Elige una gestión real que hoy llevas en un solo sitio (el presupuesto familiar en tu equipo, las recetas en una carpeta de la nube, un documento compartido por correo) y escribe cinco líneas aplicando las cuatro necesidades de Git: cómo te afectaría que ese único origen desaparezca y qué ganarías con una copia completa en cada dispositivo. Entrega el texto rotulando cada una de las cuatro necesidades (velocidad, sin conexión, integridad, simplicidad).
+
 ---
 
 ## Errores comunes
@@ -372,17 +418,17 @@ La verificación por hash no es opcional: es la base de la confianza en los dato
 
 ---
 
-## Cómo saber si lo entendiste
+## Autopreguntas de cierre
 
-Deberías poder explicar con tus propias palabras:
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
 
-* cómo era el control de versiones antes de Git;
-* qué limitaciones tenía CVS con desarrolladores distribuidos;
-* qué pasó en 2005 con el kernel de Linux;
-* quiénes y cuándo dieron nacimiento a Git;
-* cuáles son las cuatro necesidades concretas de Git;
-* cómo respondió Git a cada una de esas necesidades;
-* qué lección puedes sacar de esta historia para entender el comportamiento de Git.
+1. ¿Cómo funcionaba el control de versiones antes de Git y qué dependencia crítica introducía ese modelo?
+2. ¿Qué limitaciones tenía CVS con desarrolladores distribuidos y cuál de ellas habría frenado tu trabajo diario?
+3. ¿Qué ocurrió en 2005 con el servidor de kernel.org y por qué aceleró eso la adopción de Git?
+4. ¿Quién creó Git, en qué año y para qué proyecto concreto?
+5. ¿Cuáles son las cuatro necesidades de diseño de Git y por qué responden al tamaño del kernel?
+6. ¿Cómo responde Git a cada necesidad (velocidad, sin conexión, integridad, simplicidad) en la práctica diaria?
+7. ¿Qué lección de esta historia te ayudará a entender un comportamiento de Git que mañana te parezca extraño?
 
 Si alguna respuesta no está clara, vuelve a la sección correspondiente y repite la práctica.
 
