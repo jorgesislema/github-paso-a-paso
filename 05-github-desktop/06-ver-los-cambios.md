@@ -20,42 +20,40 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-Ver los cambios
-       │
-       ├── 1. La pestaña de cambios
-       │        ├── Lista de archivos
-       │        ├── Estados
-       │        └── Dónde se ve
-       │
-       ├── 2. Leer el diff
-   │        ├── Anatomía
-   │        ├── Contexto
-   │        └── Signado (+ / -)
-   │
-       ├── 3. Qué buscar en una revisión
-   │        ├── Cambios no deseados
-   │        ├── Secretos
-   │        ├── Archivos de más
-   │        └── Reformateos
-   │
-       ├── 4. Acciones sobre la revisión
-   │        ├── Aceptar y seguir
-   │        ├── Corregir y volver a mirar
-   │        └── Descartar cambios (riesgo)
-   │
-       ├── 5. Cambios en comparación con el historial
-   │
-       ├── 6. Errores comunes con diagnóstico completo
-   │
-       ├── 7. Práctica guiada
-   │
-       ├── 8. Nivel profesional
-   │        ├── Revisión por pares
-   │        ├── Vistas ampliadas
-   │        └── Reglas de equipo
-   │
-       └── 9. Resumen y siguiente paso
+```mermaid
+mindmap
+  root((Ver los cambios))
+    1. La pestaña de cambios
+      lista de archivos
+      estados M A D R
+      dónde está cada pestaña
+      contadores y selección
+    2. Leer el diff
+      anatomía del diff
+      los signos más y menos
+      el contexto importa
+      diff por archivo frente a global
+    3. Qué buscar en una revisión
+      cambios no deseados
+      secretos y datos sensibles
+      archivos de más
+      reformateos masivos
+    4. Acciones sobre la revisión
+      aceptar y seguir
+      corregir y volver a mirar
+      descartar cambios con riesgo
+      guardar trabajo con stash
+    5. Cambios en comparación con el historial
+      cambios frente al último commit
+      la lista vacía tras el commit
+      comparar con el remoto
+    6. Errores comunes con diagnóstico completo
+    7. Práctica guiada
+    8. Nivel profesional
+      revisión por pares
+      vistas ampliadas
+      reglas de equipo
+    9. Resumen y siguiente paso
 ```
 
 ---
@@ -165,15 +163,11 @@ Por qué ver contexto
 
 ### 2.4. Diff por archivo vs. global
 
-```text
-Revisión recomendada
-──────────────────────────────────────────────
-1. Mira la LISTA completa: ¿todos los archivos son
-   los que esperabas?
-2. Abre cada archivo y lee su diff
-3. No te saltes el archivo «raro» (el de configuración,
-   el nuevo, el borrado): ahí suelen estar los problemas
-4. Al final, vuelve a la lista: ¿sigue todo correcto?
+```mermaid
+flowchart TD
+    A["Mira la lista completa y comprueba que los archivos son los esperados"] --> B["Abre cada archivo y lee su diff"]
+    B --> C["No te saltes el archivo raro, el de configuración, el nuevo o el borrado"]
+    C --> D["Vuelve a la lista y confirma que sigue todo correcto"]
 ```
 
 ---
@@ -244,17 +238,20 @@ Si todo está correcto: pasas al capítulo 07 (commit). La revisión termina bie
 
 ### 4.2. Corregir y volver a mirar
 
-```text
-Ciclo de corrección
-──────────────────────────────────────────────
-revisas → encuentras un problema → vuelves al editor
-   → corriges → GUARDAS → vuelves a Desktop
-   → la lista se actualiza → revisas OTRA VEZ
+```mermaid
+flowchart TD
+    A["Revisas la lista y el diff"] --> B["Encuentras un problema"]
+    B --> C["Vuelves al editor y corriges"]
+    C --> D["Guardas el archivo"]
+    D --> E["Vuelves a Desktop y la lista se actualiza"]
+    E --> A
 ```
 
 La segunda mirada es la que casi nunca se hace y la que evita los errores.
 
 ### 4.3. Descartar cambios (con cuidado)
+
+⚠️ **RIESGO:** «Discard all changes» borra de tu disco todos los cambios que no están en ningún commit; Git no tiene una copia de ellos y no hay ninguna operación que los deshaga.
 
 Desktop permite descartar cambios (Discard):
 
@@ -482,6 +479,10 @@ Una lista de cambios limpia, con capacidad para detectar archivos ajenos y edici
 
 La revisión no es burocracia: es la última puerta donde puedes evitar que un error tuyo entre en el historial para siempre.
 
+### Ejercicio de transferencia
+
+En un repositorio con dos o más commits, prepara a propósito una revisión sucia: modifica un archivo de verdad, crea un `prueba.tmp` con cualquier texto y borra sin querer una línea de otro archivo. Después aplica el protocolo completo del capítulo y deja la lista limpia, sin commitear. Entrega: una captura de la lista de cambios con el único cambio correcto pendiente y una frase escrita indicando qué archivo habrías revisado el último y por qué.
+
 ---
 
 ## 8. Nivel profesional
@@ -547,6 +548,21 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **Revisar es convertir «creo que cambié lo que quería» en «sé exactamente qué voy a guardar». Ese acto de certeza es lo que hace confiable al historial.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Qué te responde la pestaña Changes y qué no te dice sobre el estado del repositorio remoto?
+2. ¿Qué significan las letras M, A, D y R en la lista de cambios y por qué una R a veces aparece como D más A?
+3. Al leer un diff, ¿qué representan las líneas con `+`, las de `-` y las que no llevan ninguna marca?
+4. ¿Cuál es el orden de una revisión que evita mirar solo el primer archivo y qué archivo suele contener los problemas?
+5. ¿Por qué un diff de 300 líneas para un cambio de dos es una señal de alarma y qué dos decisiones puedes tomar?
+6. ¿Qué hace exactamente el botón Discard y por qué no existe ninguna operación que lo deshaga?
+7. Si la lista de cambios está vacía pero en GitHub no se ve nada nuevo, ¿qué ha pasado y qué paso falta?
+8. ¿Qué cuatro peligros miras en diez segundos antes de pulsar Commit y qué haces si detectas uno de ellos?
 
 ---
 
