@@ -17,26 +17,20 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-git remote
-       │
-       ├── 1. Panorama de subcomandos
-   │        ├── add / remove / rename
-   │        ├── -v / show
-   │        ├── set-url / get-url
-   │        └── prune
-   │
-       ├── 2. Añadir y quitar
-   │
-       ├── 3. Inspeccionar: -v y show
-   │
-       ├── 4. Corregir: set-url (repos movidos)
-   │
-       ├── 5. Errores comunes con diagnóstico completo
-   │
-       ├── 6. Práctica guiada
-   │
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((git remote))
+    1. Panorama de subcomandos
+      add remove rename
+      -v y show
+      set-url y get-url
+      prune
+    2. Añadir y quitar
+    3. Inspeccionar con -v y show
+    4. Corregir con set-url para repos movidos
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional y resumen
 ```
 
 ---
@@ -66,6 +60,19 @@ git remote prune <n>           elimina fotos origin/*
    ├── -v = --verbose: el día a día
    └── todo vive en .git/config: sin efectos en el
        servidor ni en tu historial
+```
+
+```mermaid
+flowchart TD
+    A["¿Necesitas hablar con otro repo? git remote add nombre URL"] --> B["Comprueba la config local con git remote -v"]
+    B --> C{"¿La URL es la correcta?"}
+    C -->|"no"| D["Cámbiala con git remote set-url nombre URL"]
+    D --> B
+    C -->|"sí"| E["Inspecciona en detalle con git remote show o git ls-remote"]
+    E --> F["Mantén limpias las fotos con git fetch --prune"]
+    F --> G{"¿Sobra el remoto?"}
+    G -->|"sí"| H["git remote remove nombre, solo borra tu config"]
+    G -->|"no"| E
 ```
 
 ---
@@ -394,6 +401,10 @@ Manejo seguro de la gestión de remotos: crear, corregir, inspeccionar y limpiar
 
 `remote` es un subcomando pequeño con poder enorme: gobierna TODA tu relación con el exterior, y por eso es el primer sospechoso en cualquier problema de sincronización.
 
+### Ejercicio de transferencia
+
+En un repositorio de práctica, cambia deliberadamente la URL de `origin` a una inexistente, observa cómo falla el fetch, repárala con `set-url` y termina con `git fetch --prune` dejando las fotos limpias. Entrega: la salida de `git remote -v` con la URL rota y con la reparada, la de `git branch -r` antes y después de `fetch --prune`, y una frase que explique por qué `git remote remove` no afecta a nadie más que a ti.
+
 ---
 
 ## 7. Nivel profesional + resumen
@@ -444,6 +455,21 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **`remote -v` es la primera pregunta de todo diagnóstico de red: quién habla, a dónde y por qué esquema.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Qué te contesta `git remote -v` que no te conteste `git remote show origin`, y al revés?
+2. Tras clonar, `git remote add origin <URL>` falla porque ya existe: ¿qué comando debías usar si tu intención era cambiar la dirección?
+3. ¿Qué puede quedar mal en tus ramas después de renombrar un remoto y con qué comando lo detectas?
+4. `git ls-remote` ¿modifica algo de tu repositorio? ¿Por qué es la primera sonda cuando sospechas de la red o de la autenticación?
+5. Un script con `git push --all` envía todas tus ramas locales a un remoto genérico: ¿qué daño concreto causa y qué regla lo previene?
+6. ¿En qué se diferencia `git remote remove` de `git fetch --prune` y qué información desaparece en cada caso?
+7. `git remote show origin` te falla pero `git fetch` funciona: ¿qué orden de pruebas usarías para localizar la causa?
+8. ¿Por qué la URL con un token o contraseña dentro es una mala idea aunque resuelva el problema hoy?
 
 ---
 
