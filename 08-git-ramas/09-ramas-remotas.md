@@ -16,30 +16,24 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-Ramas remotas
-       │
-       ├── 1. Qué son
-   │        ├── refs/remotes/origin/*
-   │        ├── «fotos» que solo actualiza fetch
-   │        └── no se commitea en ellas
-   │
-       ├── 2. Las tres ramas del mismo nombre
-   │        ├── tu local
-   │        ├── tu foto origin/x
-   │        └── la real en el servidor
-   │
-       ├── 3. Trabajar sobre ramas remotas
-   │        ├── switch / -c --track
-   │        └── publicar primera rama
-   │
-       ├── 4. Lectura: branch -a / -r / -vv
-   │
-       ├── 5. Errores comunes con diagnóstico completo
-   │
-       ├── 6. Práctica guiada
-   │
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Ramas remotas))
+    1. Qué son
+      refs/remotes de origin
+      fotos que solo actualiza fetch
+      no se commitea en ellas
+    2. Las tres ramas del mismo nombre
+      tu rama local
+      tu foto origin/rama
+      la rama real en el servidor
+    3. Trabajar sobre ramas remotas
+      switch o -c con track
+      publicar la primera rama
+    4. Lectura con branch -a -r y -vv
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional y resumen
 ```
 
 ---
@@ -345,6 +339,8 @@ git status                   # practica leer ahead/behind
 
 ### Paso 5: pruner
 
+⚠️ **RIESGO:** el `git push origin --delete ciclica` de este paso borra la rama en el servidor para todos; hazlo solo con ramas de prueba tuyas y coordinadas.
+
 ```bash
 # en A: git push origin --delete ciclica
 # en B:
@@ -361,23 +357,26 @@ Capacidad de explicar, para cualquier rama, la relación entre local, foto y ser
 
 Las ramas remotas son el espejo sincronizable: lo que no refrescas con fetch es opinión vieja; el servidor manda y tu rama local produce.
 
+### Ejercicio de transferencia
+
+Con dos clonos del mismo repositorio (o dos cuentas), publica una rama desde el clon A y, desde el B, observa antes y después de `git fetch` los comandos `git branch -r`, `git log origin/<rama> --oneline` y `git switch <rama>`. Entrega las salidas que demuestran la diferencia entre foto y realidad, y la lista del ciclo completo de una rama compartida.
+
 ---
 
 ## 7. Nivel profesional + resumen
 
 ### 7.1. Flujos con varias personas
 
-```text
-Ciclo de rama compartida
-──────────────────────────────────────────────
-1. fetch (veo el mundo actual)
-2. switch -c desde origin/rama (si es ajena) o
-   switch -c nueva desde main actualizado
-3. trabajar + push -u (visibilidad/backup)
-4. PR → revisión → merge en servidor
-5. main local: pull (baja el merge)
-6. borrar rama local y remota (o auto-borrado)
-7. fetch --prune limpia fantasmas
+Ciclo de rama compartida:
+
+```mermaid
+flowchart TD
+    A["1. fetch: veo el mundo actual"] --> B["2. switch -c desde origin/rama si es ajena, o rama nueva desde main actualizado"]
+    B --> C["3. Trabajar y push -u para visibilidad y backup"]
+    C --> D["4. PR, revisiones y merge en el servidor"]
+    D --> E["5. En main local: pull baja el merge"]
+    E --> F["6. Borrar la rama local y la remota, o auto-borrado"]
+    F --> G["7. fetch --prune limpia las referencias fantasma"]
 ```
 
 ### 7.2. Automatización y reflejos
@@ -406,6 +405,19 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **Origen no es Git en la nube: es tu espejo local del servidor —actualízalo con fetch antes de creerte nada sobre él.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué `origin/main` puede tener un hash distinto de `main` sin que nadie haya «hecho nada»?
+2. ¿Qué actualiza exactamente `refs/remotes/origin/*` y qué comando no lo toca nunca?
+3. Si tu compañera publicó una rama y tú no la ves, ¿qué comandos descartan cada causa posible?
+4. ¿Por qué no puedes commitear directamente en `origin/feature` y cuál es el flujo correcto?
+5. ¿Cómo lees `git log origin/main..main` y `git log main..origin/main` para decidir si falta push o pull?
+6. ¿Qué problema resuelve `--prune` y cómo quedaría tu inventario de ramas sin él?
 
 ---
 
