@@ -18,32 +18,25 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-Modelo interno de Git
-       │
-       ├── 1. El mapa completo
-   │        ├── tres zonas + remoto
-   │        ├── referencias (refs) y HEAD
-   │        └── base de datos de objetos
-   │
-       ├── 2. Qué pasa cuando ejecutas…
-   │        ├── git add
-   │        ├── git commit
-   │        ├── git push / fetch
-   │        └── git switch/checkout
-   │
-       ├── 3. Plumbing vs. porcelain
-   │
-       ├── 4. Encaje de todos los conceptos
-   │
-       ├── 5. Errores y confusiones finales
-   │
-       ├── 6. Práctica guiada
-   │
-       ├── 7. Nivel profesional
-   │        └── seguridad, integridad, rendimiento
-   │
-       └── 8. Resumen y cierre de sección
+```mermaid
+mindmap
+  root((Modelo interno de Git))
+    1. El mapa completo
+      tres zonas más remoto
+      referencias refs y HEAD
+      base de datos de objetos
+    2. Qué pasa cuando ejecutas…
+      git add
+      git commit
+      git push y fetch
+      git switch y checkout
+    3. Plumbing vs. porcelain
+    4. Encaje de todos los conceptos
+    5. Errores y confusiones finales
+    6. Práctica guiada
+    7. Nivel profesional
+      seguridad integridad y rendimiento
+    8. Resumen y cierre de sección
 ```
 
 ---
@@ -52,38 +45,28 @@ Modelo interno de Git
 
 ### 1.1. Diagrama maestro
 
-```text
-                    ┌─────────────────────────────┐
-                    │      REPOSITORIO REMOTO     │
-                    │   (GitHub / servidor)       │
-                    └────────────▲────────────────┘
-                          push / fetch / pull
-                                 │
-┌────────────────────────────────┴───────────────────────────────┐
-│ TU MÁQUINA                                                     │
-│                                                                │
-│  ┌──────────────────┐    add     ┌──────────────────────────┐  │
-│  │ DIRECTORIO DE    │ ─────────► │ ÍNDICE / STAGING         │  │
-│  │ TRABAJO          │            │ (.git/index)             │  │
-│  │ (archivos que    │ ◄───────── │  selección del próximo   │  │
-│  │  editas)         │  restore   │  commit                  │  │
-│  └──────────────────┘            └────────────┬─────────────┘  │
-│                                               │ commit         │
-│                                               ▼                │
-│  ┌──────────────────────────────────────────────────────────┐  │
-│  │ BASE DE DATOS DE OBJETOS  (.git/objects)                │  │
-│  │   blobs  ·  trees  ·  commits  ·  tags      (inmutables) │  │
-│  └──────────────────────────────────────────────────────────┘  │
-│                                               ▲                │
-│  ┌───────────────────────────────┐             │ apuntan       │
-│  │ REFERENCIAS (.git/refs)       │ ────────────┘               │
-│  │   ramas:  refs/heads/main  ──────► commit                   │
-│  │   tags:   refs/tags/v1.0   ──────► tag                      │
-│  │   remotas: refs/remotes/origin/* ─► commit (copia de red)  │  │
-│  │ HEAD: ref: refs/heads/main  (o hash directo)               │  │
-│  └───────────────────────────────┘                             │
-└────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    REM["Repositorio remoto - GitHub o servidor"]
+    subgraph MACHINE["Tu máquina"]
+        WD["Directorio de trabajo - archivos que editas"]
+        IDX["Índice o staging - .git/index - selección del próximo commit"]
+        OBJ["Base de datos de objetos - .git/objects - blobs trees commits y tags - inmutables"]
+        subgraph REFS["Referencias - .git/refs y HEAD"]
+            HEADN["HEAD - ref refs/heads/main o hash directo"] -.->|"apunta a"| R1["rama refs/heads/main"]
+            R1 -->|"apunta a un commit"| OBJ
+            R2["tag refs/tags/v1.0"] -->|"apunta a un objeto tag"| OBJ
+            R3["remota refs/remotes/origin - copia de red"] -->|"apunta a un commit"| OBJ
+        end
+        WD -->|"add"| IDX
+        IDX -->|"restore"| WD
+        IDX -->|"commit"| OBJ
+    end
+    OBJ -->|"push"| REM
+    REM -->|"fetch o pull"| OBJ
 ```
+
+push sube objetos y referencias al remoto; fetch y pull bajan objetos nuevos y actualizan las referencias remotas (`refs/remotes/origin/*`) sin tocar tu rama.
 
 ### 1.2. Las cuatro capas
 
@@ -115,6 +98,15 @@ Nombres         .git/refs + HEAD   branch, switch, push,
 ---
 
 ## 2. Qué pasa cuando ejecutas…
+
+Cada orden del capítulo recorre el mismo circuito: el cambio nace en tu carpeta y va parada a parada hasta el remoto.
+
+```mermaid
+flowchart TD
+    WD2["Directorio de trabajo - tu edición"] -->|"git add"| IDX2["Índice - blob escrito y entrada actualizada"]
+    IDX2 -->|"git commit"| OBJ2["Objetos y refs - tree y commit nuevos y rama movida"]
+    OBJ2 -->|"git push"| REM2["Repositorio remoto - objetos y referencias nuevos"]
+```
 
 ### 2.1. `git add notas.md`
 
@@ -417,6 +409,10 @@ Capacidad de predecir, antes de ejecutar, qué tocará cada orden (objetos, refs
 
 El modelo interno deja de ser teoría: es la hipótesis con la que abres cada comando, y `count-objects`/`rev-parse`/`cat-file` son tus pruebas.
 
+### Ejercicio de transferencia
+
+Antes de ejecutar, escribe en papel qué tocará cada orden (`git add notas.md`, `git commit -m "nota"`, `git push`, `git switch -`): qué objeto o archivo nuevo aparece, qué referencia se mueve y qué no se toca; después ejecútalas y comprueba con `git status`, `git rev-parse HEAD` y `git count-objects -v`. Entrega tu predicción comparada con el resultado real.
+
 ---
 
 ## 7. Nivel profesional
@@ -481,6 +477,21 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **Git es una base de datos distribuida de objetos inmutables con referencias mutables; tus comandos son operaciones sobre esas dos familias —nada más, nada menos—.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. Traza el recorrido completo de un cambio: ¿qué pasa en cada parada (carpeta, índice, objetos, refs, remoto) al ejecutar add, commit y push?
+2. `git add` crea objetos y actualiza el índice: ¿por qué un add a un archivo igual al que ya está en HEAD no infla el repositorio?
+3. `git commit` mueve la rama y HEAD «se actualiza» solo: ¿por qué eso implica que HEAD no guarda estado propio más allá de dónde apunta?
+4. ¿Qué diferencia hay en el modelo entre `git fetch` y `git pull`, y cuál de las dos solo toca refs/remotes?
+5. Si `switch` reescribe archivos y mueve HEAD, ¿por qué el directorio de trabajo a veces muestra cambios «mágicos» tras cambiar de rama y qué parte del modelo lo explica?
+6. ¿Por qué los comandos son baratos cuando trabajas en local y qué cambia en tus comandos cuando hay red de por medio?
+7. Alguien dice que Git «no es más que una carpeta con versiones»: contraste esa frase con el mapa completo del capítulo y explica al menos tres cosas que se te escapan.
+8. ¿Qué te aporta hoy usar plumbing (cat-file, ls-files -s, rev-parse) en lugar de solo porcelain, y qué fallo concreto te ayudaría a diagnosticar?
 
 ---
 
