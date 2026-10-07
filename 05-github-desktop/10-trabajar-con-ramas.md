@@ -19,38 +19,42 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-Trabajar con ramas
-       │
-       ├── 1. Qué es una rama
-   │        ├── Definición (puntero)
-   │        ├── main
-   │        └── Por qué existen las ramas
-   │
-       ├── 2. Crear una rama (Desktop)
-   │
-       ├── 3. Cambiar de rama
-   │        ├── Qué se lleva y qué se deja
-   │        └── Estado limpio antes de cambiar
-   │
-       ├── 4. Trabajar en la rama
-   │        ├── Commits en rama
-   │        └── Push de la rama
-   │
-       ├── 5. Volver a main y ponerse al día
-   │
-       ├── 6. Ciclo completo de una rama
-   │
-       ├── 7. Errores comunes con diagnóstico completo
-   │
-       ├── 8. Práctica guiada
-   │
-       ├── 9. Nivel profesional
-   │        ├── Ramas efímeras
-   │        ├── Convenciones de nombres
-   │        └── Hacia el Pull Request
-   │
-       └── 10. Resumen y siguiente paso
+```mermaid
+mindmap
+  root((Trabajar con ramas))
+    1. Qué es una rama
+      un puntero con nombre
+      main, la rama principal
+      por qué existen las ramas
+      anatomía de un flujo con ramas
+    2. Crear una rama en Desktop
+      dónde está el menú de rama
+      el diálogo New branch
+      convenciones de nombres
+    3. Cambiar de rama
+      cómo se cambia
+      qué se lleva y qué se deja
+      estado limpio antes de cambiar
+    4. Trabajar en la rama
+      commits en la rama
+      push que crea la rama en el remoto
+      trabajo aislado de main
+    5. Volver a main y ponerse al día
+      volver con el menú de rama
+      fetch y pull en main
+      la fusión, adelanto
+    6. Ciclo completo de una rama
+      crear, trabajar y publicar
+      Pull Request y revisión
+      fusión y limpieza
+    7. Errores comunes con diagnóstico completo
+    8. Práctica guiada
+    9. Nivel profesional
+      ramas efímeras
+      convenciones y protección
+      hacia el Pull Request
+      ramas y versiones
+    10. Resumen y siguiente paso
 ```
 
 ---
@@ -247,6 +251,8 @@ En GitHub verás la rama nueva en el selector de ramas.
 
 ### 4.3. Trabajo aislado
 
+⚠️ **RIESGO:** descartar una rama que nunca se publicó borra también los commits que solo existían en ella; si no los subiste con push, ese trabajo no está en ningún sitio.
+
 ```text
 Mientras trabajas en feature:
    │
@@ -300,17 +306,14 @@ está publicada y main espera por ella».
 
 ## 6. Ciclo completo de una rama
 
-```text
-CICLO DE VIDA DE UNA RAMA (visión completa)
-──────────────────────────────────────────────
-1. Crear           (desde main actualizado)
-2. Trabajar        (commits en la rama)
-3. Push            (publicar la rama)
-4. Pull Request    (proponer fusión)  ← sección 17
-5. Revisión        (comentarios, ajustes)
-6. Fusión (merge)  (a main)           ← sección 08
-7. Limpiar         (borrar la rama local
-                    y remota ya fusionada)
+```mermaid
+flowchart TD
+    A["Crear la rama desde main actualizado"] --> B["Trabajar con commits en la rama"]
+    B --> C["Push para publicar la rama"]
+    C --> D["Pull Request para proponer la fusión, sección 17"]
+    D --> E["Revisión con comentarios y ajustes"]
+    E --> F["Fusión a main, sección 08"]
+    F --> G["Limpiar: borrar la rama local y remota ya fusionada"]
 ```
 
 Cada pieza de este ciclo tiene su sección; aquí la ves entera para entender dónde estás parado.
@@ -404,6 +407,8 @@ Cada pieza de este ciclo tiene su sección; aquí la ves entera para entender d�
 
 **Cómo comprobarlo:** lista de ramas (local y remota).
 
+⚠️ **RIESGO:** borrar una rama local o remota no fusionada elimina sus commits del repositorio; si nunca se publicaron con push, ese trabajo no queda en ningún sitio ni se recupera desde el historial.
+
 **Opciones:**
 * borrar las fusionadas (con cuidado);
 * borrar las abandonadas si su trabajo ya no interesa (si no se fusionó, su trabajo se pierde al borrar: verificar antes);
@@ -486,6 +491,10 @@ Una rama publicada, main intacta y dominada la sensación de «cambiar de línea
 
 Las ramas no duplican el proyecto: dividen su historia. Cambiar de rama es cambiar de perspectiva, y tu trabajo se mantiene ordenado en cada línea.
 
+### Ejercicio de transferencia
+
+En un repositorio de práctica que aún no tenga ramas, aplica el ciclo completo sin salir de GitHub Desktop: crea `fix/typo-en-readme`, comete ahí una corrección de una errata, publícala con push, vuelve a `main` y comprueba que la errata sigue sin corregir ahí. Entrega: la captura del selector de ramas de GitHub con la rama nueva visible y una línea escrita con el número de commits que tiene cada una de las dos ramas.
+
 ---
 
 ## 9. Nivel profesional
@@ -563,6 +572,21 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **Las ramas dividen la historia para que puedas trabajar sin miedo: cada tarea en su línea, main protegida y la fusión como momento de integración.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Qué es exactamente una rama y qué ocurre con tu carpeta de trabajo al crear una desde el menú de Desktop?
+2. ¿Cómo se cambia de rama en la interfaz y qué nota en el explorador cuando la rama destino tenía otros archivos?
+3. ¿Por qué conviene llegar con los cambios commiteados antes de cambiar de rama y qué aviso te da la aplicación si no lo haces?
+4. Si creas una rama y te vas a GitHub a buscarla, ¿por qué no aparece y qué acción concreta la publica?
+5. ¿Qué ocurre con `main` mientras trabajas y commiteas en una rama y qué tendría que pasar para que ese trabajo llegue a `main`?
+6. Tras volver a `main`, ¿por qué desaparece el trabajo que acabas de hacer y qué compruebas para saber que no se ha perdido?
+7. ¿Qué errores produce mirar la rama equivocada, tanto al hacer commit como al hacer push, y qué hábito te salva cada mañana?
+8. ¿Por qué acumular ramas abandonadas perjudica al equipo y qué regla de cierre evita el problema?
 
 ---
 
