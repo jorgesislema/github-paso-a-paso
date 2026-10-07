@@ -18,40 +18,32 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-git commit
-       │
-       ├── 1. Qué hace el commit
-   │        ├── La instantánea
-   │        ├── Autoría y fecha
-   │        └── El hash
-   │
-       ├── 2. Ejecutar git commit
-   │        ├── El editor de mensajes
-   │        ├── Título y cuerpo
-   │        └── Cómo guardar y salir
-   │
-       ├── 3. git commit -m (mensaje en línea)
-   │
-       ├── 4. Después del commit
-   │        ├── status
-   │        └── qué pasó con el staging
-   │
-       ├── 5. Otras opciones y sus riesgos
-   │        ├── -a
-   │        ├── --allow-empty
-   │        └── enmienda (mención)
-   │
-       ├── 6. Errores comunes con diagnóstico completo
-   │
-       ├── 7. Práctica guiada
-   │
-       ├── 8. Nivel profesional
-   │        ├── Convenciones y verificación
-   │        ├── Firmas
-   │        └── Convivencia con cambios remotos
-   │
-       └── 9. Resumen y siguiente paso
+```mermaid
+mindmap
+  root((git commit))
+    1. Qué hace el commit
+      La instantánea
+      Autoría y fecha
+      El hash
+    2. Ejecutar git commit
+      El editor de mensajes
+      Título y cuerpo
+      Cómo guardar y salir
+    3. git commit -m con el mensaje en línea
+    4. Después del commit
+      status
+      qué pasó con el staging
+    5. Otras opciones y sus riesgos
+      la opción -a
+      la opción --allow-empty
+      enmienda con git commit --amend
+    6. Errores comunes con diagnóstico completo
+    7. Práctica guiada
+    8. Nivel profesional
+      Convenciones y verificación
+      Firmas
+      Convivencia con cambios remotos
+    9. Resumen y siguiente paso
 ```
 
 ---
@@ -121,6 +113,15 @@ Lo que verás
 
 2. El editor muestra una plantilla con comentarios (#)
    y el cursor listo para escribir
+```
+
+```mermaid
+flowchart TD
+    A["Ejecutas git commit"] --> B["Se abre tu editor de mensajes"]
+    B --> C["Escribes título y cuerpo"]
+    C --> D["Guardas y sales del editor"]
+    D --> E["Git crea el commit y calcula su hash"]
+    E --> F["git status confirma staging vacío"]
 ```
 
 ### 2.2. Escribir el mensaje
@@ -264,6 +265,8 @@ Crea un commit sin cambios (casos raros: marcar un punto en el tiempo). No es un
 ### 5.3. Enmienda (mención)
 
 Para corregir el ÚLTIMO commit local (mensaje con errata, archivo olvidado):
+
+⚠️ **RIESGO:** reemplaza el último commit: el commit anterior deja de estar en la rama y su hash deja de ser válido para quien lo tenga copiado. Si ya lo habías hecho `git push`, reescribes historia compartida (cualquiera que lo tenga local tendrá conflictos); localmente lo recuperas con `git reflog`. Úsalo solo en commits aún no publicados.
 
 ```bash
 git commit --amend
@@ -466,6 +469,10 @@ Tres commits en el historial local con mensajes correctos y la certeza de que na
 
 El commit en terminal es el mismo acto de siempre, ahora con el control completo en tus manos: el staging que eliges, el mensaje que redactas y la localidad que recuerdas.
 
+### Ejercicio de transferencia
+
+En un repositorio con trabajo real (el de práctica vale), crea tres commits que representen tres decisiones distintas: uno con el editor de mensajes y dos con `git commit -m`. Entrega la salida de `git log --oneline -3` con esos tres mensajes y una línea por commit explicando por qué elegiste ese mensaje y no «cambios». Añade qué harías si el segundo mensaje tuviera una errata y ese commit todavía no se ha subido.
+
 ---
 
 ## 8. Nivel profesional
@@ -531,6 +538,21 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **El commit es la firma que pones en el historial: eliges qué guardar, cómo explicarlo y con qué identidad. Todo lo demás (push, PR, release) construye sobre esa decisión.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Qué guarda exactamente un commit y qué ocurre con el área de preparación después de crearlo?
+2. ¿Por qué el mensaje se escribe en un editor y qué estructura mínima debería tener?
+3. ¿Qué diferencia hay entre `git commit` y `git commit -m` y en qué situaciones usarías cada uno?
+4. ¿Qué harías si Git te responde «nothing to commit» cuando tú creías haber hecho cambios?
+5. ¿Qué riesgos conlleva `git commit -a` y por qué no conviene usarlo sin mirar `git status` antes?
+6. ¿Qué cambia en el historial al usar `git commit --amend` y por qué es peligroso si ya hiciste push?
+7. ¿Cómo detectarías que un commit salió con la autoría equivocada y qué se puede y no se puede corregir después?
+8. ¿Por qué un commit local todavía no le llega a GitHub y qué línea de `git status` te lo indica?
 
 ---
 
