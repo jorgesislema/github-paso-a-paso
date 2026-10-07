@@ -18,30 +18,24 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-git checkout
-       │
-       ├── 1. Los tres roles
-   │        ├── navegar ramas (como switch)
-   │        ├── restaurar archivos (como restore)
-   │        └── extraer árboles de un commit
-   │
-       ├── 2. checkout de rama
-   │        ├── rama existente
-   │        ├── -b (crear)
-   │        └── commit/tag → detached
-   │
-       ├── 3. restaurar con checkout -- archivo
-   │        ├── origen por defecto (índice)
-   │        └── equivalencias modernas
-   │
-       ├── 4. Flags peligrosos: -f
-   │
-       ├── 5. Errores comunes con diagnóstico completo
-   │
-       ├── 6. Práctica guiada
-   │
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((git checkout))
+    1. Los tres roles
+      navegar ramas como switch
+      restaurar archivos como restore
+      extraer árboles de un commit
+    2. Checkout de rama
+      rama existente
+      -b para crear
+      commit o tag en detached
+    3. Restaurar con checkout y doble guion
+      el índice como origen
+      equivalencias modernas
+    4. Flags peligrosos -f
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional y resumen
 ```
 
 ---
@@ -61,6 +55,15 @@ git checkout <ruta>        →  (variantes históricas de
    │
    └── misma orden, tres intenciones: la ambigüedad
        que motivó el reparto moderno
+```
+
+```mermaid
+flowchart TD
+    A["git checkout con un argumento"] --> B{"¿Qué argumento recibe?"}
+    B -- "nombre de rama" --> C["Navega: mismo trabajo que switch"]
+    B -- "-b nombre" --> D["Crea la rama y navega a ella"]
+    B -- "commit o tag" --> E["Navega al commit en detached HEAD"]
+    B -- "-- archivo" --> F["Restaura el archivo desde el índice"]
 ```
 
 ---
@@ -106,6 +109,8 @@ git checkout v1.0
 
 ### 3.1. La forma clásica
 
+⚠️ **RIESGO:** `git checkout -- notas.md` descarta tus cambios sin preparar en ese archivo y los vuelve al estado del índice: lo no guardado no se recupera con reflog.
+
 ```bash
 git checkout -- notas.md
 ```
@@ -140,6 +145,8 @@ todo el directorio               checkout .         restore .
 
 ### 3.3. La confusión famosa (volver a visitarla)
 
+⚠️ **RIESGO:** `git restore notas.md` y `git checkout -- notas.md` pisan la carpeta con el estado guardado: tu edición sin preparar se pierde. `--staged` sí es seguro para el trabajo en carpeta.
+
 ```bash
 git restore notas.md          # pisa la CARPETA: SE PIERDE
 git restore --staged notas.md # solo des-prepara: no
@@ -159,6 +166,8 @@ Regla (ya conocida, ahora con dos nombres):
 ---
 
 ## 4. Flags peligrosos: `-f`
+
+⚠️ **RIESGO:** `git checkout -f` sobrescribe cambios locales que bloquearían el cambio de rama y `checkout -f -- notas.md` descarta la edición del archivo: trabajo sin commitear que se pierde sin rastro recuperable.
 
 ```bash
 git checkout -f feature
@@ -318,6 +327,8 @@ git branch -d temporal      # si la creaste sin uso
 
 ### Paso 3: restaurar
 
+⚠️ **RIESGO:** los dos `git checkout -- notas.md` de este paso descartan la edición sin preparar del archivo. Hazlo solo con el archivo de prueba del ejercicio: en uno real perderías el cambio.
+
 ```bash
 # edita notas.md sin add
 git checkout -- notas.md    # ¡vuelve al estado previo!
@@ -347,6 +358,8 @@ git switch main
 
 ### Paso 5: -f con un archivo de prueba
 
+⚠️ **RIESGO:** `git checkout -f -- notas.md` descarta todo lo no preparado de ese archivo sin confirmación. Ejecútalo solo sobre el archivo de prueba del ejercicio.
+
 ```bash
 echo basura >> notas.md
 git checkout -f -- notas.md    # descarta sin piedad
@@ -362,6 +375,10 @@ Capacidad de elegir entre las dos familias sin sorpresas y de saber exactamente 
 ### Conclusión esperada
 
 Checkout es la orden vieja que hace tres trabajos; hoy ya puedes darle a cada trabajo su comando moderno —y usar el viejo con los ojos abiertos.
+
+### Ejercicio de transferencia
+
+En un repositorio de práctica, provoca la pérdida de un cambio con `git checkout -- <archivo>` y recupéralo después (por `git fsck --lost-found` si habías hecho `add`, o desde el historial del editor). Entrega los comandos usados en ambos sentidos y explica, con las dos familias de órdenes, a qué estado vuelve el archivo en cada caso.
 
 ---
 
@@ -407,6 +424,19 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **`checkout` es Git con una sola palabra para tres ideas; tú ya sabes cuál es cuál —y prefieres la familia que no deja dudas.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué la misma palabra `checkout` puede hacer tres cosas distintas y en qué orden descartarías interpretaciones al leer un comando?
+2. Si ejecutas `git checkout -- archivo` después de haber hecho `add`, ¿a qué estado vuelve el archivo y por qué?
+3. ¿Qué diferencia práctica hay entre `git restore --staged archivo` y `git restore archivo`?
+4. ¿Qué se pierde exactamente con `checkout -f` y por qué el reflog no te salva?
+5. ¿Cómo reconocerías que un comando de un tutorial es de los tiempos de `checkout` y qué equivalente moderno le pondrías?
+6. ¿En qué situaciones mantendrías `checkout` en tu flujo diario pudiendo usar `switch` y `restore`?
 
 ---
 
