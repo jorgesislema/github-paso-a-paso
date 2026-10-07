@@ -18,28 +18,22 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-Fusionar ramas
-       │
-       ├── 1. La idea: dos puntas, un ancestro
-   │
-       ├── 2. Resultados posibles
-   │        ├── fast-forward (avance de punta)
-   │        ├── commit de merge (dos padres)
-   │        └── fusión «ya al día» (nada que hacer)
-   │
-       ├── 3. Resolución automática vs. conflicto
-   │
-       ├── 4. Estrategias y flujos de integración
-   │        ├── directo en main
-   │        ├── Pull Request
-   │        └── --no-ff, squash (mención)
-   │
-       ├── 5. Errores comunes con diagnóstico completo
-   │
-       ├── 6. Práctica guiada
-   │
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Fusionar ramas))
+    1. La idea de dos puntas con un ancestro
+    2. Resultados posibles
+      fast-forward como avance de punta
+      commit de merge con dos padres
+      fusión ya al día sin nada que hacer
+    3. Resolución automática o conflicto
+    4. Estrategias y flujos de integración
+      integración directa en main
+      Pull Request
+      no-ff y squash como mención
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional y resumen
 ```
 
 ---
@@ -124,6 +118,16 @@ commit):
    │
    └── caso normal tras fusión previa o ramas
        apuntando al mismo sitio
+```
+
+```mermaid
+flowchart TD
+    A["git merge feature con HEAD en main"] --> B{"¿feature es ancestro de main?"}
+    B -- "sí" --> C["Already up to date: no se hace nada"]
+    B -- "no" --> D{"¿main tiene commits desde el ancestro común?"}
+    D -- "no" --> E["Fast-forward: la punta de main avanza hasta feature, sin commit nuevo"]
+    D -- "sí" --> F["Commit de merge M con dos padres"]
+    A -.- G["--no-ff obliga a crear M aunque sea posible el avance; --ff-only exige avance o falla"]
 ```
 
 ---
@@ -407,6 +411,10 @@ Capacidad de reconocer, en el grafo, qué tipo de fusión acabó de ocurrir y de
 
 Fusionar es la reunión de dos puntas con su ancestro: a veces avanza sin más, a veces deja constancia (M) y a veces discute (conflicto) — y tú diriges.
 
+### Ejercicio de transferencia
+
+En un repositorio con dos ramas de práctica, provoca los tres resultados (fast-forward, merge con commit de merge y «already up to date») y captura `git log --graph --oneline` de cada uno. Entrega las tres salidas y explica, leyendo el grafo, cómo identificarías cada resultado sin haber visto el mensaje de Git.
+
 ---
 
 ## 7. Nivel profesional + resumen
@@ -452,6 +460,19 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **Un merge no es «pegar archivos»: es unir historias con respecto a su ancestro —y la calidad de la unión depende de lo corta y viva que estuvo la rama.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Qué información usa Git para saber qué cambió cada lado si no hubiera ancestro común?
+2. ¿Por qué un fast-forward no deja constancia de que existió una rama y cuándo eso importa?
+3. Si `git merge` dice «Already up to date» y tú esperabas ver trabajo nuevo, ¿qué tres comprobaciones harías?
+4. ¿Qué cambia, respecto a la probabilidad de conflicto, entre ramas de un día y una rama abierta hace tres semanas?
+5. ¿Por qué revisar el diff del merge es distinto (e incluso más importante) que revisar el diff de la rama?
+6. En un equipo que integra con PRs, ¿quién ejecuta el merge y qué debe bajar tu local después?
 
 ---
 
