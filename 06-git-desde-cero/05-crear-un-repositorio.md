@@ -19,6 +19,40 @@ Este capítulo usa la terminal. Vas a crear y verificar tu primer repositorio re
 
 ---
 
+## Mapa conceptual de este capítulo
+
+```mermaid
+mindmap
+  root((Crear un repositorio))
+    1. Qué es un repositorio para Git
+      una carpeta inicializada
+      la carpeta oculta .git
+      sin .git no hay historial
+    2. Primera forma git init
+      sintaxis básica
+      ejemplo paso a paso
+      crea objects refs y HEAD
+    3. Segunda forma git clone
+      copia una URL existente
+      deja el remoto origin
+    4. Cuándo usar cada forma
+      init para proyectos nuevos
+      clone para proyectos existentes
+    5. La carpeta .git
+      objetos y referencias
+      HEAD y configuración local
+      no se edita a mano
+    6. Cómo confirmar que el repositorio existe
+      ver la carpeta oculta
+      git status sin error
+      git log
+    7. Una primera comprobación
+      carpeta .git presente
+      status y origen claros
+```
+
+---
+
 ## 1. Qué es un repositorio para Git
 
 Para Git, un **repositorio** es una carpeta que Git ha inicializado.
@@ -198,6 +232,15 @@ Después de `git clone`, revisa:
 
 La regla general es sencilla:
 
+```mermaid
+flowchart TD
+    A["Quieres versionar una carpeta"] --> B{"¿Existe ya el repositorio en otra parte?"}
+    B -->|Sí| C["git clone URL-del-repositorio"]
+    B -->|No| D["git init en tu carpeta"]
+    C --> E[".git completa con historial y remoto origin"]
+    D --> F[".git vacía sin commits todavía"]
+```
+
 ### Usa `git init` cuando:
 
 * estás empezando un proyecto nuevo desde cero;
@@ -361,6 +404,10 @@ Deberías poder:
 * ver la carpeta `.git`;
 * confirmar que `git status` reconoce el repositorio.
 
+### Ejercicio de transferencia
+
+Toma una carpeta que ya exista en tu equipo con documentos reales (tus notas, un proyecto de estudio o el material de este curso) y conviértela en repositorio con `git init` sin mover ni renombrar ningún archivo. Entrega la salida de `git status` dentro de esa carpeta y una lista de los archivos que siguen intactos. Como variante, si ya usas GitHub, clona un repositorio público con `git clone` y entrega la carpeta clonada con su `git status` limpio.
+
 ---
 
 ## Errores comunes
@@ -398,17 +445,17 @@ Si borras `.git`, pierdes el historial del repositorio. No edites ni borres esa 
 
 ---
 
-## Cómo saber si lo entendiste
+## Autopreguntas de cierre
 
-Deberías poder explicar con tus propias palabras:
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
 
-* qué es un repositorio para Git;
-* qué diferencia hay entre `git init` y `git clone`;
-* cuándo conviene usar cada una;
-* qué contiene la carpeta `.git`;
-* cómo confirmar que un directorio es un repositorio;
-* qué ocurre internamente en cada comando;
-* qué revisar después de ejecutar cada comando.
+1. ¿Qué convierte una carpeta cualquiera en un repositorio para Git y qué la deja de ser?
+2. ¿En qué se diferencian `git init` y `git clone` y cómo decides cuál usar en una situación real?
+3. ¿Qué encontrarás dentro de `.git` y qué le pasaría al proyecto si la borrases sin querer?
+4. ¿Cómo demuestras que una carpeta es un repositorio si no ves la carpeta oculta en el explorador?
+5. ¿Qué diferencia hay entre el `.git` que deja `git init` y el que deja `git clone`?
+6. ¿Qué le diría Git si ejecutas `git status` fuera de un repositorio y cómo interpretarías ese error?
+7. ¿Por qué `git init` es seguro en una carpeta llena de archivos tuyos y qué comprobarías después?
 
 Si alguna respuesta no está clara, vuelve a la sección correspondiente y repite la práctica.
 
