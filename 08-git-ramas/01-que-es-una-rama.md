@@ -18,31 +18,25 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-Qué es una rama
-       │
-       ├── 1. Definición: un puntero con nombre
-   │        ├── archivo en refs/heads/
-   │        ├── punta (tip) vs. rama
-   │        └── avanza con cada commit
-   │
-       ├── 2. Mito: rama ≠ copia
-   │        ├── costo cero
-   │        └── cómo lo demuestra Git
-   │
-       ├── 3. Familias de ramas
-   │        ├── locales, remotas, de seguimiento
-   │        └── convenciones de nombres
-   │
-       ├── 4. Ramas en el flujo real
-   │        ├── main estable
-   │        └── ramas por tarea
-   │
-       ├── 5. Errores comunes con diagnóstico completo
-   │
-       ├── 6. Práctica guiada
-   │
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Qué es una rama))
+    1. Definición de un puntero con nombre
+      archivo en refs/heads/
+      punta o tip y rama
+      avanza con cada commit
+    2. Mito rama no es copia
+      costo cero
+      cómo lo demuestra Git
+    3. Familias de ramas
+      locales remotas y de seguimiento
+      convenciones de nombres
+    4. Ramas en el flujo real
+      main estable
+      ramas por tarea
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional y resumen
 ```
 
 ---
@@ -203,14 +197,17 @@ ser coherente y legible):
 
 ### 4.1. El patrón universal
 
-```text
-1. main estable (siempre en estado «usable»)
-2. para cada tarea: rama nueva desde main
-3. commits en la rama de tarea
-4. integrar de vuelta (merge o PR)
-5. borrar la rama de tarea
-6. repetir
+```mermaid
+flowchart TD
+    A["1. main estable, siempre en estado usable"] --> B["2. Para cada tarea: rama nueva desde main"]
+    B --> C["3. Commits en la rama de tarea"]
+    C --> D["4. Integrar de vuelta con merge o PR"]
+    D --> E["5. Borrar la rama de tarea"]
+    E --> F["6. Repetir con la siguiente tarea"]
+    F --> B
+```
 
+```text
 main ──────────────●──────────●──────────
                     \        /
 feature-a ──────────●──●──●─
@@ -430,6 +427,10 @@ Certeza de que una rama es solo un puntero: crearla no copia nada, avanza con co
 
 Las ramas son el mecanismo barato que hace posible el flujo moderno: experimenta sin miedo, integra con criterio y borra sin drama.
 
+### Ejercicio de transferencia
+
+En un repositorio real (o simulado con un segundo clon), aplica el patrón universal a una tarea pequeña de verdad: crea la rama, haz dos commits, intégrala y bórrala. Entrega el `git log --graph --oneline` final y la salida de `cat .git/refs/heads/<rama>` antes y después de cada commit, con una frase que explique por qué crear la rama no ralentizó nada.
+
 ---
 
 ## 7. Nivel profesional + resumen
@@ -475,6 +476,19 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **Una rama no es una versión del proyecto: es un nombre que dice «aquí estoy» —y por eso crearla es gratis y usarla, obligatorio.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. Si `git branch feature` no copia nada, ¿dónde está «guardada» la rama y por qué desaparece al borrarla?
+2. ¿Por qué dos ramas pueden apuntar al mismo commit y qué tiene que ocurrir para que dejen de hacerlo?
+3. ¿Qué argumento usarías para defender delante de un compañero crear una rama para una tarea de dos horas, con el costo real en la mano?
+4. ¿Qué diferencias prácticas hay entre `origin/main` y tu `main` local cuando trabajas sin conexión?
+5. ¿Qué paso del patrón universal evita que `main` reciba trabajo a medias y por qué es el más difícil de sostener en equipo?
+6. Cuando Git se niega a borrar una rama con `-d`, ¿qué te está diciendo exactamente y cómo averiguas si tiene razón?
 
 ---
 
