@@ -18,28 +18,22 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-Qué es un remote
-       │
-       ├── 1. Definición: nombre + URL
-   │        ├── dónde vive (config)
-   │        └── fetch y push URL
-   │
-       ├── 2. origin: la convención
-   │        ├── por qué ese nombre
-   │        └── qué NO es origin
-   │
-       ├── 3. Tipos y esquemas de URL
-   │        ├── https / ssh / git:// / locales
-   │        └── protocolos y credenciales
-   │
-       ├── 4. El mapa local ↔ remoto (consolidado)
-   │
-       ├── 5. Errores comunes con diagnóstico completo
-   │
-       ├── 6. Práctica guiada
-   │
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Qué es un remote))
+    1. Definición nombre y URL
+      dónde vive en tu config
+      URL de fetch y URL de push
+    2. origin la convención
+      por qué ese nombre
+      qué NO es origin
+    3. Tipos y esquemas de URL
+      https ssh git y rutas locales
+      protocolos y credenciales
+    4. El mapa local y remoto consolidado
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional y resumen
 ```
 
 ---
@@ -198,19 +192,12 @@ git remote add espejo file:///d:/backup/mi-proyecto.git
 
 ## 4. El mapa local ↔ remoto (consolidado)
 
-```text
-                    [remote "origin" = URL]
-                          ▲          ▲
-                    fetch │          │ push
-                          │          │
-       refs/remotes/origin/*    tus ramas locales
-       (fotos, sección 09)     (donde produces)
-
-Ciclo:
-   fetch/pull  →  refresca fotos y (pull) integra
-   push        →  sube objetos y avanza el remoto
-   clone       →  crea todo el clon con origin ya
-                  configurado
+```mermaid
+flowchart TD
+    R["Remoto origin, su URL en tu config"] -->|"fetch baja objetos y refs, no toca tu rama"| F["Tus fotos refs/remotes/origin"]
+    F -->|"pull además integra lo bajado en tu rama"| L["Tus ramas locales, donde produces"]
+    L -->|"push sube objetos y avanza el remoto"| R
+    C["git clone"] -->|"crea todo el clon con origin ya configurado"| F
 ```
 
 ```text
@@ -406,6 +393,10 @@ Capacidad de explicar exactamente a qué remotos hablas, con qué URL y qué ver
 
 Un remote es una línea en tu config: mínimo, local y bajo tu control. El misterio de «GitHub no me deja» se disuelve con `remote -v` + `ls-remote`.
 
+### Ejercicio de transferencia
+
+En un repositorio tuyo —o en uno de práctica con un espejo local— añade un segundo remoto con un nombre que no sea `origin`, compruébalo con `git remote -v` y después bórralo de nuevo. Entrega: la salida de `git remote -v` con los dos remotos y una frase escrita explicando qué conserva tu repositorio local si un día eliminas el remoto `origin` entero.
+
 ---
 
 ## 7. Nivel profesional + resumen
@@ -451,6 +442,21 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **El remoto no es una nube misteriosa: es una línea de config que tú escribes, tú cambias y tú verificas.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Qué dos elementos forman un remote y en qué archivo local los guarda Git?
+2. Si `git remote remove origin` no borra nada del servidor, ¿qué es exactamente lo que dejas de tener y cómo lo recuperas?
+3. ¿Por qué `origin` puede no ser GitHub en tu máquina y qué comando te dice la verdad al respecto?
+4. Tu repositorio es privado y cada operación de red pide credenciales: ¿qué esquema de URL conviene elegir y qué información NO debe viajar nunca en la URL?
+5. Un clon usa https y otro ssh, ambos con `origin` apuntando al mismo repositorio: ¿qué tienen igual y qué difiere en sus configs?
+6. El equipo renombró el repositorio en GitHub y ahora todos los fetch fallan con «not found»: ¿qué comando repara la conexión y por qué `git remote add` no es la respuesta?
+7. ¿Para qué sirve la línea `fetch = +refs/heads/*:refs/remotes/origin/*` y qué notarías en tu `git branch -r` si faltara?
+8. Tras clonar, haces `git remote -v` y ves una URL que no reconoces: ¿qué haces antes de tocar nada y por qué es mejor diagnosticar ahora que empujar y ver qué pasa?
 
 ---
 
