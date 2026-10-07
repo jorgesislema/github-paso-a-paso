@@ -23,6 +23,53 @@ Al terminar este capítulo tendrás la aplicación instalada y lista para inicia
 
 ---
 
+## Mapa conceptual de este capítulo
+
+```mermaid
+mindmap
+  root((Instalar GitHub Desktop))
+    1. De dónde se descarga
+      página oficial desktop.github.com
+      nunca páginas de terceros
+      capturas y botones de descarga
+    2. Versiones y requisitos
+      Windows y macOS
+      cuenta de GitHub y espacio en disco
+      permisos de administrador
+      archivo .exe o .dmg
+    3. Antes de instalar, decisiones previas
+      ubicación por defecto
+      carpeta base de proyectos
+    4. Instalación paso a paso en Windows
+      descarga del instalador
+      Control de cuentas de usuario
+      asistente corto
+      finalizar y ejecutar
+      aviso de SmartScreen
+    5. Instalación paso a paso en macOS
+      imagen .dmg
+      arrastrar a Aplicaciones
+      expulsar la imagen
+      aviso de seguridad
+    6. La primera pantalla de bienvenida
+      botón Sign in to GitHub.com
+      opción de clonar sin sesión
+    7. Qué comprobar al terminar
+      la aplicación se abre sin errores
+      aparece en el lugar esperado
+      versión más reciente
+      carpeta base y cuenta a mano
+    8. Actualizar y desinstalar
+      actualización automática o manual
+      desinstalar no borra clonados
+    9. Errores durante la instalación
+      descarga o instalador bloqueados
+      la aplicación no aparece
+      versión anticuada
+```
+
+---
+
 ## 1. De dónde se descarga
 
 GitHub Desktop se descarga únicamente desde la página oficial:
@@ -116,6 +163,16 @@ Crear esa carpeta ahora evita improvisar más adelante.
 ## 4. Instalación paso a paso en Windows
 
 Estos son los pasos habituales en Windows.
+
+```mermaid
+flowchart TD
+    A["Descargas el instalador desde desktop.github.com"] --> B["Ejecutas el archivo .exe"]
+    B --> C["Confirmas el aviso de Control de cuentas de usuario"]
+    C --> D["Sigues el asistente y aceptas la licencia"]
+    D --> E["Eliges la carpeta y esperas la barra de progreso"]
+    E --> F["Finalizas con la opción de abrir la aplicación"]
+    F --> G["Aparece la pantalla de bienvenida"]
+```
 
 ### Paso 1: descarga el instalador
 
@@ -342,6 +399,10 @@ Abre GitHub Desktop y comprueba que aparece la pantalla de bienvenida.
 
 Deberías ver la aplicación lista, con los botones de iniciar sesión o clonar un repositorio, y con la carpeta base de proyectos creada y vacía.
 
+### Ejercicio de transferencia
+
+En otro equipo distinto al que usas a diario (o en el tuyo tras desinstalar la versión anterior), instala GitHub Desktop siguiendo solo los pasos de este capítulo y crea la carpeta base de proyectos en una ruta corta y sin acentos. Entrega: una captura de la pantalla de bienvenida junto a la carpeta vacía en el explorador, y una línea escrita con el número de versión que muestra el menú Help → About.
+
 ---
 
 ## Errores comunes
@@ -383,17 +444,18 @@ Desinstalar la aplicación no borra los repositorios clonados. Si quieres empeza
 
 ---
 
-## Cómo saber si lo entendiste
+## Autopreguntas de cierre
 
-Deberías poder explicar con tus propias palabras:
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
 
-* desde qué página oficial se descarga GitHub Desktop;
-* qué formato de archivo se descarga en Windows y en macOS;
-* qué requisitos pide el sistema;
-* los pasos de instalación en tu sistema operativo;
-* qué muestra la pantalla de bienvenida;
-* qué comprobaciones se realizan al terminar la instalación;
-* cómo se actualiza y se desinstala la aplicación.
+1. ¿Desde qué página oficial se descarga GitHub Desktop y qué riesgo concreto asumes si la descargas de un sitio de terceros?
+2. ¿Qué formato de archivo te toca en Windows y cuál en macOS, y qué gesto distinto exige cada uno durante la instalación?
+3. ¿Qué requisitos debe cumplir tu equipo antes de instalar y qué haces si la computadora es de tu trabajo y no tienes permisos?
+4. ¿Por qué conviene crear la carpeta base de proyectos antes de instalar nada, y qué problemas evitas clonando dentro de una nube de sincronización?
+5. Si en mitad de la instalación aparece un aviso de SmartScreen o de Control de cuentas de usuario, ¿bajo qué condición sí debes confirmarlo?
+6. ¿Qué comprobaciones haces en los dos minutos siguientes a instalar para saber que todo quedó bien?
+7. ¿Qué desaparece y qué se conserva en tu equipo cuando desinstalas la aplicación?
+8. ¿Por qué la interfaz que describes en este capítulo podría no coincidir con la que ves en pantalla y cómo compruebas si es así?
 
 Si alguna respuesta todavía no está clara, vuelve a la sección correspondiente y repite la práctica.
 
