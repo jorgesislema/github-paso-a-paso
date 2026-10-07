@@ -19,41 +19,37 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-Hacer pull
-       │
-       ├── 1. Qué es pull
-   │        ├── Definición
-   │        ├── fetch vs. pull
-   │        └── pull como fusión
-   │
-       ├── 2. Pull desde GitHub Desktop
-   │        ├── El botón
-   │        ├── Pasos
-   │        └── Resultado
-   │
-       ├── 3. Escenarios
-   │        ├── A. Local limpio (lo típico)
-   │        ├── B. Local con cambios sin commit
-   │        └── C. Conflictos (señal)
-   │
-       ├── 4. Fusión automática: por qué ocurre
-   │
-       ├── 5. Conflictos: qué son (y que no cunda el pánico)
-   │        ├── Señales
-   │        ├── Qué NO hacer
-   │        └── Hacia dónde seguir (sección 10)
-   │
-       ├── 6. Errores comunes con diagnóstico completo
-   │
-       ├── 7. Práctica guiada
-   │
-       ├── 8. Nivel profesional
-   │        ├── Rutina de sincronización
-   │        ├── pull --rebase (mención)
-   │        └── Conflictos y equipo
-   │
-       └── 9. Resumen y siguiente paso
+```mermaid
+mindmap
+  root((Hacer pull))
+    1. Qué es pull
+      definición
+      fetch frente a pull
+      el pull como fusión
+    2. Pull desde GitHub Desktop
+      el botón Pull origin
+      pasos del pull
+      resultado tras el pull
+    3. Escenarios
+      A, local limpio
+      B, local con cambios sin commit
+      C, conflictos y su señal
+    4. Fusión automática, por qué ocurre
+      zonas distintas y zonas iguales
+      el commit de fusión
+      el fast-forward
+    5. Conflictos, qué son sin pánico
+      señales y marcadores
+      qué significa
+      qué no hacer
+      hacia dónde seguir, sección 10
+    6. Errores comunes con diagnóstico completo
+    7. Práctica guiada
+    8. Nivel profesional
+      rutina de sincronización
+      la alternativa con rebase
+      conflictos y equipo
+    9. Resumen y siguiente paso
 ```
 
 ---
@@ -130,18 +126,13 @@ Cuando el remoto está por delante:
 
 ### 2.2. Pasos
 
-```text
-Procedimiento
-──────────────────────────────────────────────
-1. (ideal) tener la pestaña Changes limpia
-   →  si hay cambios sin commit, haz commit primero
-      (o lee el punto 3B)
-2. Pulsa "Pull origin"
-3. Espera: descarga + fusión
-4. Comprueba:
-   · History: los commits remotos aparecen
-   · Changes: vacía (si no había conflicto)
-   · botón: vuelve a "Fetch origin"
+```mermaid
+flowchart TD
+    A["Idealmente con la pestaña Changes limpia, si hay cambios sin commit hazlo primero"] --> B["Pulsas Pull origin"]
+    B --> C["Esperas a la descarga y la fusión"]
+    C --> D["Compruebas en History que los commits remotos aparecen"]
+    D --> E["Compruebas que Changes queda vacía si no hubo conflicto"]
+    E --> F["El botón vuelve a Fetch origin"]
 ```
 
 ### 2.3. Resultado
@@ -201,6 +192,19 @@ Situación: tu trabajo y el remoto tocan lo mismo
    │
    └── NO es un error de sistema: es Git pidiéndote
        que decidas (sección 10)
+```
+
+Así se ven los tres escenarios cuando pulsas el botón:
+
+```mermaid
+flowchart TD
+    A["Pulsas Pull origin"] --> B{"¿Tu rama local tiene cambios sin commit?"}
+    B -->|"Sí"| C["Commitea primero tu trabajo, la regla es commit antes de pull"]
+    B -->|"No"| D["Git trae los commits del remoto"]
+    C --> D
+    D --> E{"¿Coincidís en las mismas líneas de un archivo?"}
+    E -->|"No"| F["Fusión automática y sigues trabajando"]
+    E -->|"Sí"| G["Conflicto con marcadores y tú decides, sección 10"]
 ```
 
 ---
@@ -282,6 +286,8 @@ Git dice, en sustancia:
 ```
 
 ### 5.3. Qué NO hacer
+
+⚠️ **RIESGO:** un pull interrumpido a medias deja el repositorio en estado de fusión sin resolver; si desde ahí fuerzas, cierras la aplicación o abortas sin leer, los archivos pueden quedar con los marcadores de conflicto en mitad del texto y parte del trabajo deja de estar en ningún lado.
 
 ```text
 Ante un conflicto, prohibido por prisa:
@@ -470,6 +476,10 @@ Experiencia directa de los dos desenlaces del pull: fusión limpia y (opcional) 
 
 El pull es la vida en equipo: mantiene tu copia al día. Y los conflictos, cuando llegan, son el precio de que Git nunca tire el trabajo de nadie.
 
+### Ejercicio de transferencia
+
+Reproduce los dos desenlaces en un repositorio distinto al de la práctica guiada: desde la web cambia una línea de un archivo y desde tu equipo otra línea del mismo archivo, y haz pull para ver la fusión automática; repite el proceso tocando exactamente la misma línea desde ambos lados para observar el conflicto. Entrega: una captura del archivo con los marcadores `<<<<<<<` y `=======` sin resolver y una línea escrita explicando qué decisión te pide Git ahí.
+
 ---
 
 ## 8. Nivel profesional
@@ -540,6 +550,21 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **El pull mantiene viva la conexión con el equipo: baja lo que otros subieron y te pide tu criterio solo cuando vuestros trabajos se cruzan.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Qué hace exactamente un pull y en qué se diferencia de un fetch, que también consulta al remoto?
+2. ¿Por qué el pull es una fusión y qué decides tú cuando vuestros cambios tocan zonas distintas y cuando tocan lo mismo?
+3. Si tienes cambios locales sin commitear, ¿qué haces antes de pulsar Pull origin y qué puede pasar si no lo haces?
+4. ¿Qué marcadores aparecen en un archivo en conflicto y qué le está pidiendo Git exactamente a la persona?
+5. ¿Por qué un conflicto no es un error del sistema y qué comportamientos solo empeoran la situación?
+6. Si haces pull repetidamente sin que cambie nada, ¿qué información real te falta leer y dónde está?
+7. ¿Cómo distingues en la interfaz si toca un push o un pull, y qué frase corta te ayuda a no confundirlos?
+8. ¿Qué hábitos de equipo reducen la frecuencia y la gravedad de los conflictos?
 
 ---
 
