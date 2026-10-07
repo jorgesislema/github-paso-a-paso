@@ -16,29 +16,23 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-git merge
-       │
-       ├── 1. Sintaxis y semántica
-   │        ├── merge <rama> (trae hacia aquí)
-   │        ├── qué comprueba antes
-   │        └── mensajes típicos
-   │
-       ├── 2. Opciones
-   │        ├── --no-ff / --ff-only
-   │        ├── --abort / --continue / --quit
-   │        ├── -m (mensaje)
-   │        └── estrategias (-s, mención)
-   │
-       ├── 3. Flujo de conflicto completo
-   │
-       ├── 4. Qué merge NO hace
-   │
-       ├── 5. Errores comunes con diagnóstico completo
-   │
-       ├── 6. Práctica guiada
-   │
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((git merge))
+    1. Sintaxis y semántica
+      merge trae la rama hacia tu HEAD
+      qué comprueba antes
+      mensajes típicos
+    2. Opciones
+      no-ff y ff-only
+      abort continue y quit
+      -m para el mensaje
+      estrategias -s
+    3. Flujo de conflicto completo
+    4. Qué merge NO hace
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional y resumen
 ```
 
 ---
@@ -145,27 +139,28 @@ git merge -s ours feature        # «guardo quién manda»
 
 ## 3. Flujo de conflicto completo
 
+```mermaid
+flowchart TD
+    A["1. git merge rama"] --> B["2. Git marca: Automatic merge failed; fix conflicts and then commit the result"]
+    B --> C["3. git status lista los Unmerged paths: los archivos que deciden"]
+    C --> D["4. Abre esos archivos: aparecen los marcadores de conflicto"]
+    D --> E["5. Edita: deja solo lo correcto o combina ambos lados, sin marcadores"]
+    E --> F["6. git add del archivo resuelto, repetido por cada archivo"]
+    F --> G{"7. git diff --check: quedan restos de marcadores?"}
+    G -- "sí" --> E
+    G -- "no" --> H["8. git commit cierra el merge, con el mensaje por defecto o con -m"]
+    A -- "sin conflictos" --> I["Fast-forward o commit de merge: no hay nada que resolver"]
+    D -- "si no quieres seguir" --> J["git merge --abort: vuelta al estado previo"]
+```
+
 ```text
-Paso a paso (la paciencia ordenada)
-──────────────────────────────────────────────
-1. git merge rama
-2. Git marca: "Automatic merge failed; fix conflicts
-   and then commit the result"
-3. git status          →  «Unmerged paths» (los que
-                          deciden)
-4. abre los archivos   →  marcadores:
-                             <<<<<<< HEAD
-                             tu versión (tu rama)
-                             =======
-                             su versión (la rama)
-                             >>>>>>> rama
-5. edita: deja SOLO lo correcto (o mezcla ambos);
-   NO queden marcadores
-6. git add <archivo>   →  «esto resuelto»
-   (repite 4-6 por cada archivo)
-7. git diff --check    →  ¿restos de marcadores?
-8. git commit          →  cierra el merge (mensaje
-   por defecto o -m)
+Marcadores dentro del archivo (detalle del paso 4):
+
+<<<<<<< HEAD
+tu versión (tu rama)
+=======
+su versión (la rama)
+>>>>>>> rama
 ```
 
 ```text
@@ -387,6 +382,10 @@ Seguridad para ejecutar merge, reconocer su salida, salir de un conflicto con m�
 
 `merge` es una orden corta con responsabilidad grande: le dices a Git qué unir, y Git hace el trabajo mecánico — la decisión humana (conflictos) y la publicación (push) siguen siendo tuyas.
 
+### Ejercicio de transferencia
+
+En un repositorio de práctica, provoca un conflicto real y recórrelo dos veces: una cancelándolo con `git merge --abort` y otra resolviéndolo con el método completo (`status`, edición, `add`, `diff --check`, `commit`). Entrega el `git status` de ambos caminos y el `git log --graph --oneline` final donde se vea el commit de merge.
+
 ---
 
 ## 7. Nivel profesional + resumen
@@ -431,6 +430,19 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **`merge` une historias; tú eliges dónde, cuándo y con qué forma —y si aprieta, resuelves con método o vuelves a empezar con `--abort`.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. Si estás en `feature` y ejecutas `git merge main`, ¿qué se fusiona en qué dirección y por qué confunde a tanta gente?
+2. ¿Qué comprueba Git antes de empezar a fusionar y qué haces si te dice que ya hay otra operación en curso?
+3. ¿Para qué sirve `--ff-only` si en el día a día casi siempre usas el comportamiento por defecto?
+4. Tras resolver un conflicto, ¿por qué `git add` sin revisar y `git commit` pueden llevarte a publicar marcadores?
+5. Cuando no sabes si continuar o cancelar un conflicto, ¿qué haces y qué garantiza cada camino?
+6. ¿Qué tres cosas no hace `git merge` que mucha gente asume que hace?
 
 ---
 
