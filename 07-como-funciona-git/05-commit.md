@@ -18,36 +18,29 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-Commit
-       │
-       ├── 1. Qué es
-   │        ├── instantánea con mensaje
-   │        ├── unidad de historial
-   │        └── identidad: hash
-   │
-       ├── 2. Anatomía
-   │        ├── cabecera (hash, autor, fecha)
-   │        ├── árbol (estado de archivos)
-   │        ├── padre (conexión al pasado)
-   │        └── mensaje (título + cuerpo)
-   │
-       ├── 3. Instantánea vs. diferencia
-   │
-       ├── 4. El mensaje: comunicación
-   │        ├── convención (imperativo, estilo)
-   │        └── por qué es para humanos y máquinas
-   │
-       ├── 5. Errores comunes con diagnóstico completo
-   │
-       ├── 6. Práctica guiada
-   │
-       ├── 7. Nivel profesional
-   │        ├── amend y reescribir recién publicado
-   │        ├── firmas y verificación
-   │        └── el commit como contrato de revisión
-   │
-       └── 8. Resumen y siguiente paso
+```mermaid
+mindmap
+  root((Commit))
+    1. Qué es
+      instantánea con mensaje
+      unidad de historial
+      identidad por hash
+    2. Anatomía
+      cabecera con hash autor y fecha
+      árbol con el estado de archivos
+      padre y conexión al pasado
+      mensaje con título y cuerpo
+    3. Instantánea vs. diferencia
+    4. El mensaje como comunicación
+      convención imperativa y de estilo
+      para humanos y para máquinas
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional
+      amend y reescribir lo recién publicado
+      firmas y verificación
+      el commit como contrato de revisión
+    8. Resumen y siguiente paso
 ```
 
 ---
@@ -121,9 +114,16 @@ Mensaje        el porqué; único texto humano del objeto
 
 ### 2.3. El padre: la cadena
 
-```text
-A ← B ← C ← D   (HEAD apunta a D)
+```mermaid
+flowchart TD
+    D["D - aquí está HEAD"] --> C["C"]
+    C --> B["B"]
+    B --> A["A - raíz, sin padre"]
+```
 
+Cada flecha apunta del commit a su padre: el orden del historial lo da esa cadena, no las fechas.
+
+```text
 · C tiene padre B; B tiene padre A; A no tiene (raíz)
 · sin padre no hay «antes», y sin antes no hay diff
 · un commit con DOS padres = resultado de merge
@@ -401,11 +401,17 @@ Un commit con mensaje completo y la capacidad de explicar cada campo que Git te 
 
 El commit no es «subir archivos»: es firmar un instante del proyecto con tu nombre, una fecha y una explicación. El hash lo identifica; el mensaje lo hace comprensible.
 
+### Ejercicio de transferencia
+
+En un repositorio con historia real (propio o de práctica), elige un commit antiguo con mensaje genérico y reescribe SOLO el mensaje del último commit si es tuyo y no está publicado, o documenta en dos líneas qué corregirías en los tres últimos mensajes si ya lo están. Entrega la salida de `git log --format=fuller -n 3` y una frase por commit explicando qué información falta para que un desconocido lo entienda.
+
 ---
 
 ## 7. Nivel profesional
 
 ### 7.1. `--amend` con criterio
+
+⚠️ **RIESGO:** `--amend` reescribe el último commit: su hash cambia y deja de ser el mismo commit para quien ya lo bajó (recuperable solo por reflog, no sirve si ya estaba publicado).
 
 ```bash
 git commit --amend        # añade lo nuevo al ÚLTIMO commit
@@ -464,6 +470,20 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **Un commit es una firma legible sobre un instante del proyecto: identidad en el hash, intención en el mensaje, verdad en la cadena de padres.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. Si Git guarda instantáneas completas, ¿por qué el repositorio no crece linealmente con cada commit?
+2. Si los diffs no están guardados sino que se derivan al pedirlos, ¿qué comprueba Git exactamente cuando ejecutas `git show` de un commit antiguo?
+3. ¿Qué cuenta un commit con dos padres sobre la historia que un commit con un solo padre no puede contar?
+4. ¿Por qué corregir un commit en la rama equivocada tiene un coste distinto según se haya publicado ya o no?
+5. ¿Qué se pierde de verdad cuando el historial está lleno de mensajes como «fix» o «update», más allá de la estética?
+6. ¿Por qué «hice commit» no equivale a «tengo respaldo» y qué tendría que ocurrir para que sí lo fuera?
+7. Si un commit mezcla formato y lógica, ¿qué falla en la revisión humana y en un `git bisect` posterior?
 
 ---
 
