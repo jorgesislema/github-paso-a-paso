@@ -25,6 +25,67 @@ Al terminar esta sección serás capaz de:
 * resolver un conflicto con el método de cinco pasos (decidir, limpiar, marcar, verificar, cerrar);
 * abortar un merge o rebase en curso sin perder trabajo;
 * aplicar prácticas que reducen los conflictos: ramas cortas, sincronización frecuente y commits atómicos.
+## Mapa conceptual
+
+```mermaid
+mindmap
+  root((10 · Conflictos en Git))
+    01 Qué es un conflicto
+      definición precisa de conflicto y tipos
+      significado de unmerged paths en el índice
+    02 Por qué aparecen
+      causas clásicas de conflicto
+      causas técnicas ocultas fin de línea codificación whitespace
+    03 Identificar un conflicto
+      señales de conflicto mensaje estado archivos
+      secuencia de identificación status diff índice
+    04 Resolver un conflicto
+      método de resolución paso a paso
+      cómo decidir elegir lado mezclar con criterio
+    05 Conflictos en merge
+      semántica de lados en merge
+      herramientas de resolución ours theirs mergetool
+    06 Conflictos en rebase
+      inversión de lados HEAD base entrante tu commit
+      ciclo de resolución continue skip abort
+    07 Abortar una operación
+      comandos de abortación y su alcance exacto
+      criterio abortar vs resolver
+    08 Buenas prácticas
+      hábitos diarios que reducen conflictos
+      estrategias de integración merge temprano rerere
+```
+## Mapa conceptual
+
+```mermaid
+mindmap
+  root((10 · Conflictos en Git))
+    01 Qué es un conflicto
+      definición precisa de conflicto y tipos
+      significado de unmerged paths en el índice
+    02 Por qué aparecen
+      causas clásicas de conflicto
+      causas técnicas ocultas fin de línea codificación whitespace
+    03 Identificar un conflicto
+      señales de conflicto mensaje estado archivos
+      secuencia de identificación status diff índice
+    04 Resolver un conflicto
+      método de resolución paso a paso
+      cómo decidir elegir lado mezclar con criterio
+    05 Conflictos en merge
+      semántica de lados en merge
+      herramientas de resolución ours theirs mergetool
+    06 Conflictos en rebase
+      inversión de lados HEAD base entrante tu commit
+      ciclo de resolución continue skip abort
+    07 Abortar una operación
+      comandos de abortación y su alcance exacto
+      criterio abortar vs resolver
+    08 Buenas prácticas
+      hábitos diarios que reducen conflictos
+      estrategias de integración merge temprano rerere
+```
+---
 
 ---
 
@@ -50,8 +111,15 @@ Y si quieres un conflicto de verdad sin armarlo a mano: el sandbox de la secció
 * Chacon, S. y Straub, B. — *Pro Git* (cap. 3: Merging).
 * Git — Documentación oficial: «git merge», «git rebase --abort».
 * Learn Git Branching — lección de conflictos.
-
 ---
+ 
+## Checkpoint 10 — Comprobación obligatoria
+1. Explica en tus propias palabras qué es un conflicto y cuándo ocurre.
+2. Identifica en el historial de un repositorio los marcadores de conflicto <<<<<<<, =======, >>>>>>>.
+3. Resuelve un conflicto simulado editando el archivo, marcándolo como resuelto y completando el merge.
+4. Aborta un merge o rebase en marcha usando el comando adecuado y verifica que el estado vuelva al anterior.
+5. Lista tres buenas prácticas que reducen la aparición de conflictos en tu flujo de trabajo.
+Si puedes hacerlo **sin mirar instrucciones**, el checkpoint está cerrado.
 
 ## Autopreguntas de cierre
 
@@ -61,6 +129,10 @@ Sin mirar el material, responde mentalmente y luego compruébalo con los capítu
 2. En un rebase, ¿qué lado es el tuyo y cuál el «ajeno» (vs. un merge)?
 3. Estás a medias en un merge y quieres volver atrás: ¿qué escribes?
 4. Antes de tocar el archivo, ¿qué es lo primero que tienes que entender de cada lado?
+5. ¿Qué comando usas para continuar un rebase después de resolver un conflicto?
+6. ¿Qué diferencia hay entre resolver un conflicto en merge y en rebase respecto a los lados?
+7. ¿Cómo puedes evitar que un conflicto aparezca al trabajar en la misma línea de un archivo?
+8. ¿Qué hace el comando `git rerere` y en qué situación es útil?
 
 ---
 
