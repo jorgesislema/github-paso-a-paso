@@ -17,28 +17,23 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-origin
-       │
-       ├── 1. Un nombre por defecto
-   │        ├── convención, no magia
-   │        └── cómo se crea
-   │
-       ├── 2. Todo lo que origin toca
-   │        ├── refs/remotes/origin/*
-   │        ├── upstreams (branch.<x>.remote = origin)
-   │        └── mensajes y atajos
-   │
-       ├── 3. origin en distintos contextos
-   │        ├── clone normal
-   │        ├── fork (origin + upstream)
-   │        └── remote alternativo (origin ≠ GitHub)
-   │
-       ├── 4. Errores y malentendidos
-   │
-       ├── 5. Práctica guiada
-   │
-       └── 6. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((origin))
+    1. Un nombre por defecto
+      convención sin magia
+      cómo se crea
+    2. Todo lo que origin toca
+      fotos refs/remotes/origin
+      upstreams de tus ramas
+      mensajes y atajos
+    3. origin en distintos contextos
+      clone normal
+      fork con origin y upstream
+      remoto alternativo que no es GitHub
+    4. Errores y malentendidos
+    5. Práctica guiada
+    6. Nivel profesional y resumen
 ```
 
 ---
@@ -121,14 +116,12 @@ git symbolic-ref refs/remotes/origin/HEAD
 
 ### 2.3. Con `@{upstream}`
 
-```text
-Si tu rama trackea origin/main:
-   │
-   ├── git pull  →  integra origin/main
-   ├── git push  →  sube a origin/main
-   └── git log @{upstream}..HEAD  →  tu progreso
-       respecto a ORIGIN (no a «GitHub» ni a «la nube»:
-       a esa referencia concreta)
+```mermaid
+flowchart TD
+    B["Tu rama trackea origin/main"]
+    B -->|"git pull"| P1["integra origin/main en tu rama"]
+    B -->|"git push"| P2["sube tu punta a origin/main"]
+    B -->|"git log @{upstream}..HEAD"| P3["tu progreso frente a esa referencia concreta, no frente a la nube"]
 ```
 
 ---
@@ -352,6 +345,10 @@ Un mapa mental exacto de tu origin: qué es, qué toca y cómo repararlo si algo
 
 Origin deja de ser «el nombre que sale» para ser una referencia que entiendes y gobiernas: -v, fotos, upstreams y HEAD bajo control.
 
+### Ejercicio de transferencia
+
+Renombra `origin` a otro nombre, comprueba con `git branch -vv` cómo cambian tus parejas, devuélvelo a `origin` y repara con `set-head -a` el `origin/HEAD` si desaparece. Entrega: la salida de `git remote -v` y `git branch -vv` en los tres momentos (renombrado, restaurado y con HEAD recalculado) más una frase que explique por qué `remote remove origin` no toca el servidor.
+
 ---
 
 ## 6. Nivel profesional + resumen
@@ -397,6 +394,20 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **Origen no es un sitio: es un nombre que apunta a un sitio —y quien controla ese puntero, controla la conversación con el servidor.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Qué es `origin` exactamente y qué mandato tiene Git sobre ese nombre que mucha gente le atribuye?
+2. Si en un fork `origin` es tu copia, ¿qué documento o comando te dice a dónde apunta de verdad cada vez que haces `git push` sin argumentos?
+3. ¿Qué información concreta te da `origin/HEAD` y cómo la reparas si queda apuntando mal?
+4. Tras renombrar `origin`, ¿qué queda desajustado en tu día a día aunque el servidor no se entere de nada?
+5. ¿Por qué una foto `origin/main` vieja puede llevarte a conclusiones falsas sobre lo que ha hecho el equipo?
+6. ¿Qué diferencia hay entre «origin es el original» y «origin es lo que diga `remote -v`», y qué errores prácticos nace de la primera creencia?
+7. En un repo donde el servidor interno es `origin` y GitHub es un remoto de respaldo, ¿qué rutina usarías para comprobar que ambos están al día?
 
 ---
 
