@@ -18,29 +18,23 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-Conflictos en merge
-       │
-       ├── 1. Semántica de lados
-   │        ├── HEAD = tuyo / >>>>> = entrante
-   │        └── verificar con status y log
-   │
-       ├── 2. Herramientas de resolución
-   │        ├── edición manual (la base)
-   │        ├── --ours / --theirs
-   │        └── mergetool (tres paneles)
-   │
-       ├── 3. Cierre: commit de merge
-   │        ├── mensaje por defecto
-   │        └── mensaje que documenta decisiones
-   │
-       ├── 4. Flujos típicos con conflicto
-   │
-       ├── 5. Errores comunes con diagnóstico completo
-   │
-       ├── 6. Práctica guiada
-   │
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Conflictos en merge))
+    1. Semántica de lados
+      HEAD = tuyo / >>>>> = entrante
+      verificar con status y log
+    2. Herramientas de resolución
+      edición manual (la base)
+      --ours / --theirs
+      mergetool (tres paneles)
+    3. Cierre: commit de merge
+      mensaje por defecto
+      mensaje que documenta decisiones
+    4. Flujos típicos con conflicto
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional + resumen
 ```
 
 ---
@@ -445,6 +439,22 @@ Cierre completo de conflicto de merge con lados verificados, método elegido y m
 
 En merge, los lados son estables y las herramientas directas: quien verifica quién es quién, resuelve sin sorpresas.
 
+
+### Ejercicio de transferencia
+Aplica la secuencia de identificación (status → diff → índice) a un conflicto que involucre solo cambios de espacios en blanco. Usa `git diff --check --ignore-space-change` para detectar y verifica que el índice muestre `stage 1` igual en ambos lados. Entregable: captura de pantalla de los comandos y su salida mostrando que el conflicto es solo de espacios.
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Cuáles son las tres señales principales que indican un conflicto en Git?
+2. ¿En qué orden debe ejecutarse la secuencia de identificación según el método del capítulo?
+3. ¿Qué comando te muestra los archivos con conflictos sin necesidad de revisar el mensaje?
+4. ¿Cómo puedes determinar si estás en un merge o en un rebase mirando el repositorio?
+5. ¿Qué indica la presencia de tres etapas (stage 1,2,3) en `ls-files -u` para un archivo?
+6. ¿Por qué es importante comprobar residuos con `diff --check` antes de cerrar un conflicto?
+7. ¿Qué debes hacer si `git status` muestra «unmerged paths» pero no recuerdas en qué operación estás?
+8. ¿Cómo afecta el historial de cada lado a la decisión de resolución de un conflicto?
 ---
 
 ## 7. Nivel profesional + resumen
