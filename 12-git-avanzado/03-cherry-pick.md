@@ -16,25 +16,20 @@ En este capítulo aprenderás:
 * conflictos y repetidos (el mismo fix dos veces);
 * errores comunes con diagnóstico completo, práctica guiada y nivel profesional.
 
----
-
 ## Mapa conceptual de este capítulo
 
-```text
-git cherry-pick
-       │
-       ├── 1. Qué hace (y qué NO hace)
-       ├── 2. Selección: hash, rangos, -x
-       ├── 3. Conflictos
-       ├── 4. Cherry-picks repetidos y -n
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
-```
+```mermaid
+mindmap
+  root((git cherry-pick))
+    1. Qué hace (y qué NO hace)
+    2. Selección: hash, rangos, -x
+    3. Conflictos
+    4. Cherry-picks repetidos y -n
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional + resumen
 
 ---
-
 ## 1. Qué hace (y qué NO hace)
 
 ```text
@@ -48,35 +43,35 @@ git switch release
 git cherry-pick <hash de C>
 
 release ── A ── B' ── C'
-                       │
-                       └── mismo CAMBIO que C,
-                           commit nuevo (padre:
-                           B')
+                        │
+                        └── mismo CAMBIO que C,
+                            commit nuevo (padre:
+                            B')
 ```
 
 ```text
 Qué SÍ hace:
-   │
-   ├── aplica la diferencia (parche) del commit sobre
-   │   tu HEAD actual
-   │
-   ├── crea un commit con mensaje (por defecto el
-   │   original) y referencia (con -x)
-   │
-   └── funciona entre ramas, forks y hasta
-       repositorios con el mismo origen
+    │
+    ├── aplica la diferencia (parche) del commit sobre
+    │   tu HEAD actual
+    │
+    ├── crea un commit con mensaje (por defecto el
+    │   original) y referencia (con -x)
+    │
+    └── funciona entre ramas, forks y hasta
+        repositorios con el mismo origen
 ```
 
 ```text
 Qué NO hace:
-   │
-   ├── NO mueve el commit original (sigue en su rama)
-   │
-   ├── NO arrastra los commits «entre medias» (solo
-   │   los elegidos)
-   │
-   └── NO copia el historial: solo el cambio (pierde
-       el contexto de los commits originales)
+    │
+    ├── NO mueve el commit original (sigue en su rama)
+    │
+    ├── NO arrastra los commits «entre medias» (solo
+    │   los elegidos)
+    │
+    └── NO copia el historial: solo el cambio (pierde
+        el contexto de los commits originales)
 ```
 
 ---
@@ -87,22 +82,22 @@ Qué NO hace:
 git cherry-pick a1b2c34               # uno
 git cherry-pick a1b2c34 d5e6f77       # dos concretos
 git cherry-pick a1b2c34^..f8g9h01     # rango (del
-                                       # primero al
-                                       # último inclusive)
+                                        # primero al
+                                        # último inclusive)
 git cherry-pick main..feature         # todo lo que
-                                       # feature tiene y
-                                       # main no
+                                        # feature tiene y
+                                        # main no
 git cherry-pick -x a1b2c34            # deja constancia
-                                       # del origen
+                                        # del origen
 ```
 
 ```text
 Mensaje con -x:
-   │
-   └── "fix: cálculo total (cherry picked from commit
-       a1b2c34)"
-       → en release se ve DE DÓNDE vino: auditoría
-         gratis
+    │
+    └── "fix: cálculo total (cherry picked from commit
+        a1b2c34)"
+        → en release se ve DE DÓNDE vino: auditoría
+          gratis
 ```
 
 ```bash
@@ -115,36 +110,15 @@ git log --oneline feature -n 5
 
 ## 3. Conflictos
 
-```text
-El cherry-pick es «merge contra tu HEAD con un lado
-concreto»:
-   │
-   ├── si tu rama y el origen cambiaron lo mismo →
-   │   conflicto (marcadores clásicos)
-   │
-   └── solución: método de la sección 10 → add →
-       git cherry-pick --continue
-```
-
-```bash
-git cherry-pick --continue     # tras resolver
-git cherry-pick --abort        # cancelar
-git cherry-pick --skip         # omitir este del rango
-```
-
-```text
-El «conflicto fantasma» (doble aplicación):
-   │
-   ├── el mismo fix ya está en tu rama (por merge
-   │   previo o cherry-pick anterior) pero con hash
-   │   distinto
-   │
-   ├── Git lo intenta aplicar → conflicto o «empty
-   │   commit»
-   │
-   └── solución: comprobar con git log --grep "mensaje"
-       ANTES de elegir; si ya está → no hace falta
-       (o --allow-empty solo si documentas algo nuevo)
+```mermaid
+flowchart TD
+    A[Iniciar cherry-pick] --> B{¿Hay conflicto?}
+    B -->|Sí| C[Resolver conflicto]
+    C --> D[git add <archivos>]
+    D --> E[git cherry-pick --continue]
+    B -->|No| F[Commit creado directamente]
+    E --> F
+    F --> G[Finalizar]
 ```
 
 ---
@@ -159,21 +133,21 @@ git commit -m "fix conjunto para release"
 
 ```text
 Cuándo -n:
-   │
-   ├── varios fixes que se comunican (un solo commit
-   │   de release)
-   │
-   └── o para traer cambios y amendar el commit actual
+    │
+    ├── varios fixes que se comunican (un solo commit
+    │   de release)
+    │
+    └── o para traer cambios y amendar el commit actual
 ```
 
 ```text
 Estrategia de mantenimiento:
-   │
-   ├── main recibe el fix → se etiqueta (tag) →
-   │   release cherry-pick del tag/hash con -x
-   │
-   └── documentar en CHANGELOG el hash de origen
-       (sección 14)
+    │
+    ├── main recibe el fix → se etiqueta (tag) →
+    │   release cherry-pick del tag/hash con -x
+    │
+    └── documentar en CHANGELOG el hash de origen
+        (sección 14)
 ```
 
 ---
@@ -372,34 +346,34 @@ Cherry-pick copia cambios, no historia: verificación de origen, de contexto y d
 
 ```text
 Mantenimiento de versiones:
-   │
-   ├── fix en main → tag vX.Y.Z
-   │
-   ├── git cherry-pick -x <hash> en release/1.x
-   │
-   ├── CHANGELOG anota: fix + hash de origen + release
-   │
-   └── CI ejecuta en ambas ramas
+    │
+    ├── fix en main → tag vX.Y.Z
+    │
+    ├── git cherry-pick -x <hash> en release/1.x
+    │
+    ├── CHANGELOG anota: fix + hash de origen + release
+    │
+    └── CI ejecuta en ambas ramas
 ```
 
 ```text
-   │
-   ├── «hotfix forward-port»: también al revés (de
-   │   release a main) cuando main aún no lo tiene
-   │
-   └── regla: un solo origen de verdad del cambio;
-       los demás son ports documentados
+    │
+    ├── «hotfix forward-port»: también al revés (de
+    │   release a main) cuando main aún no lo tiene
+    │
+    └── regla: un solo origen de verdad del cambio;
+        los demás son ports documentados
 ```
 
 ### 7.2. Alternativas
 
 ```text
-   │
-   ├── ¿muchos commits relacionados? → merge de rama
-   │
-   ├── ¿todo el historial debe re-apilarse? → rebase
-   │
-   └── ¿un solo cambio? → cherry-pick (este capítulo)
+    │
+    ├── ¿muchos commits relacionados? → merge de rama
+    │
+    ├── ¿todo el historial debe re-apilarse? → rebase
+    │
+    └── ¿un solo cambio? → cherry-pick (este capítulo)
 ```
 
 ### 7.3. Resumen
@@ -418,6 +392,25 @@ La idea principal es:
 > **Cherry-pick mueve cambios, no historia: su valor está en lo que ahorra y su riesgo en lo que no arrastra — por eso se hace con -x y con verificación.**
 
 ---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Qué hace la opción `-x` en `git cherry-pick` y por qué es valiosa en flujos de liberación?
+2. ¿Cómo seleccionarías un rango de commits para cherry-pick si quieres incluir los commits desde `main` hasta `feature` pero excluir el commit de `main`?
+3. ¿Qué comandos usarías para abortar un cherry-pick en conflicto y para omitir un commit en un rango de cherry-pick?
+4. ¿Cómo detectarías si un cherry-pick ya se había aplicado previamente en tu rama actual?
+5. ¿En qué situación sería apropiado usar `git cherry-pick -n` y qué paso adicional se requiere después?
+6. ¿Cómo evitarías aplicar un cherry-pick que duplica un cambio ya presente en tu rama?
+7. ¿Qué riesgo implica aplicar un cherry-pick sin probar en la rama destino y cómo lo mitigarías?
+8. ¿Cómo documentarías el origen de un cherry-pick en un changelog profesional?
+
+---
+
+## Ejercicio de transferencia
+
+Tienes dos ramas: `feature` con un commit que añade una nueva función y `release` que necesita esa función pero no todo el historial de `feature`. Usa `git cherry-pick` para transferir solo ese commit a `release`, verifica que el historial de `release` tenga un nuevo commit con el mismo cambio pero hash diferente, y documenta el origen con `-x`.
 
 ## Próximo paso
 
