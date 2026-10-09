@@ -10,17 +10,37 @@ Este capítulo es el manual del autor: cómo partir cambios, qué escribir en la
 
 ## Mapa conceptual de este capítulo
 
-```text
-Cómo escribir un buen PR
-       │
-       ├── 1. El tamaño importa
-       ├── 2. Atómico: una idea por PR
-       ├── 3. La descripción que vende (y documenta)
-       ├── 4. Historia y ramas limpias
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Cómo escribir un buen PR))
+    1. El tamaño importa
+      de 100 a 400 líneas se revisa atento
+      de 500 a 1000 se aprueba de vistazo
+      miles de líneas no se revisa de verdad
+      refactor previo y parte por capas
+      feature flag y PR apilado
+      cada línea recibe mirada humana
+    2. Atómico una idea por PR
+      se explica en una frase
+      se prueba de una vez
+      se revierte con un revert limpio
+      refactor sin mezclar con comportamiento
+      commit nuevo si surge algo en la revisión
+    3. La descripción que vende y documenta
+      qué y porqué antes que el diff
+      cómo probar como regalo al revisor
+      capturas y logs para lo visible
+      riesgos y breaking siempre que existan
+      Closes al pie con plantilla del equipo
+    4. Historia y ramas limpias
+      rebase sobre la base actual
+      rebase interactivo para reordenar
+      fuerza con force with lease
+      verifica checks verdes y diff limpio
+      rama corta significa poca divergencia
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional y resumen
 ```
 
 ---
@@ -157,19 +177,11 @@ Plantilla del equipo:
 
 ## 4. Historia y ramas limpias
 
-```text
-ANTES DE PEDIR REVISIÓN:
-──────────────────────────────────────────────────────
-1. rebase sobre la base actual (diff limpio)
-   git fetch origin
-   git rebase origin/main      # o merge, según política
-2. repasa la historia
-   git rebase -i HEAD~n
-   → reword (mensajes), squash (basura), drop
-3. fuerza con cuidado
-   git push --force-with-lease   # NUNCA --force
-                                 # ciego
-4. verifica: checks verde + el diff que TÚ cambias
+```mermaid
+flowchart TD
+    A["1. Sincroniza con la base: git fetch origin y git rebase origin/main, o merge según política"] --> B["2. Repasa la historia: git rebase -i HEAD~n para reword, squash y drop"]
+    B --> C["3. Fuerza con cuidado: git push --force-with-lease y nunca --force ciego"]
+    C --> D["4. Verifica: checks en verde y el diff que tú cambias"]
 ```
 
 ```text
@@ -321,6 +333,8 @@ git log --oneline origin/main..HEAD | Measure-Object
 
 ### Paso 2: limpia la historia
 
+⚠️ **RIESGO:** el rebase interactivo reescribe commits de tu rama: si ya los habías publicado, dejan de existir en la rama; recupéralos con `git reflog` si los necesitas.
+
 ```bash
 git rebase -i HEAD~5
 # → reword: mensajes con qué/porqué
@@ -328,6 +342,8 @@ git rebase -i HEAD~5
 ```
 
 ### Paso 3: rebase final
+
+⚠️ **RIESGO:** el rebase cambia los hashes de tus commits y el push sobrescribe la rama remota: quien la tenga abierta pierde los comentarios anclados a commits que ya no existen; recupera lo anterior con reflog y avisa antes de forzar.
 
 ```bash
 git fetch origin
@@ -361,6 +377,10 @@ PR con historia de pocos commits con mensajes, diff limpio, descripción complet
 ### Conclusión esperada
 
 Un buen PR es trabajo de empaque: parte, limpia, documenta y evidencia — la revisión hará el resto.
+
+### Ejercicio de transferencia
+
+Toma el trabajo más grande que hayas hecho esta semana — o inventa uno — y córtalo en dos PRs atómicos: uno de refactor sin cambio de comportamiento y otro de cambio de comportamiento, cada uno con su descripción de qué, porqué y cómo probarlo. Entrega: las dos descripciones escritas y la frase que justifica el corte.
 
 ---
 
@@ -407,6 +427,19 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **La revisión solo es tan buena como el paquete que recibe: parte el trabajo, limpia la historia, cuenta el porqué y deja la evidencia — el revisor aporta lo que tú no ves.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué un PR de 3000 líneas no se revisa de verdad, aunque el revisor sea meticuloso?
+2. ¿Qué debe responder la descripción de un PR antes de que nadie mire el diff, y por qué ese orden ayuda al revisor?
+3. ¿Por qué el refactor debe viajar en un PR distinto del cambio de comportamiento?
+4. ¿Qué ganas y qué arriesgas al limpiar la historia con rebase interactivo justo antes de pedir revisión?
+5. Si durante la revisión surge un cambio que no pertenece al PR, ¿qué haces y por qué no lo metes «ya que estamos»?
+6. ¿Por qué cerrar un PR sin merge puede ser la mejor decisión y cómo evitas que un PR se convierta en zombi?
 
 ---
 
