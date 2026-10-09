@@ -18,29 +18,23 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-Qué es un conflicto
-       │
-       ├── 1. Definición
-   │        ├── dos cambios solapados + ancestro
-   │        └── tipos: contenido, adición/borrado, rename
-   │
-       ├── 2. El estado de conflicto
-   │        ├── índice: entradas unmerged (stage 1-3)
-   │        ├── mensaje y archivos marcados
-   │        └── la operación «en pausa»
-   │
-       ├── 3. Los marcadores
-   │        ├── anatomía <<<<<<< ======= >>>>>>>
-   │        └── quién es quién
-   │
-       ├── 4. Qué NO es un conflicto
-   │
-       ├── 5. Errores comunes con diagnóstico completo
-   │
-       ├── 6. Práctica guiada
-   │
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Qué es un conflicto))
+    1. Definición
+      dos cambios solapados + ancestro
+      tipos contenido adición borrado rename
+    2. El estado de conflicto
+      índice entradas unmerged stage 1-3
+      mensaje y archivos marcados
+      la operación en pausa
+    3. Los marcadores
+      anatomía <<<<<<< ======= >>>>>>>
+      quién es quién
+    4. Qué NO es un conflicto
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional + resumen
 ```
 
 ---
@@ -393,6 +387,22 @@ Haber visto un conflicto por dentro (estado, índice, marcadores) y haber salido
 
 El conflicto es un estado con nombre, índice y salida: ni magia ni desastre. Ahora ya puedes mirarlo de frente.
 
+
+### Ejercicio de transferencia
+Aplica la secuencia de identificación (status → diff → índice) a un conflicto que involucre solo cambios de espacios en blanco. Usa `git diff --check --ignore-space-change` para detectar y verifica que el índice muestre `stage 1` igual en ambos lados. Entregable: captura de pantalla de los comandos y su salida mostrando que el conflicto es solo de espacios.
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Cuáles son las tres señales principales que indican un conflicto en Git?
+2. ¿En qué orden debe ejecutarse la secuencia de identificación según el método del capítulo?
+3. ¿Qué comando te muestra los archivos con conflictos sin necesidad de revisar el mensaje?
+4. ¿Cómo puedes determinar si estás en un merge o en un rebase mirando el repositorio?
+5. ¿Qué indica la presencia de tres etapas (stage 1,2,3) en `ls-files -u` para un archivo?
+6. ¿Por qué es importante comprobar residuos con `diff --check` antes de cerrar un conflicto?
+7. ¿Qué debes hacer si `git status` muestra «unmerged paths» pero no recuerdas en qué operación estás?
+8. ¿Cómo afecta el historial de cada lado a la decisión de resolución de un conflicto?
 ---
 
 ## 7. Nivel profesional + resumen
