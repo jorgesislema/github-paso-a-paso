@@ -10,32 +10,57 @@ Un buen flujo de PR no es burocracia: es la cadencia que permite entregar a diar
 
 ## Mapa conceptual de este capítulo
 
-```text
-El PR como disciplina de equipo
-       │
-       ├── 1. Estados y etiquetas del flujo
-       ├── 2. Acuerdos de tiempo (SLA informal)
-       ├── 3. Automatizaciones alrededor del PR
-       ├── 4. Métricas con criterio
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((El PR como disciplina de equipo))
+    1. Estados y etiquetas del flujo
+      de Draft a Open con la lista hecha
+      de Open a Changes requested y vuelta
+      de aprobado y verde a Merged
+      etiquetas de tipo, estado, área y prioridad
+      Draft no pide tiempo a nadie
+      cerrar PR es una decisión válida
+      pocas etiquetas con reglas de uso
+    2. Acuerdos de tiempo SLA informal
+      primer comentario en 1 a 2 días hábiles
+      autor responde en 24 a 48 horas
+      escalar en standup si nadie revisa
+      ventana prioritaria para lo que bloquea release
+      si no se cumple, ataca carga o tamaño
+    3. Automatizaciones alrededor del PR
+      revisores automáticos con CODEOWNERS
+      plantilla de PR y checks obligatorias
+      etiquetado con bots y autocierre de issues
+      no se automatiza aprobación ni diseño
+      un check vacío da falsa confianza
+    4. Métricas con criterio
+      tiempos hasta primer comentario y hasta merge
+      tamaño medio del PR
+      porcentaje de hilos resueltos antes de merge
+      nada de rankings de personas
+      métrica como síntoma y no como veredicto
+      señales de salud del flujo
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional y resumen
 ```
 
 ---
 
 ## 1. Estados y etiquetas del flujo
 
-```text
-FLUJO VISIBLE
-──────────────────────────────────────────────────────
-Draft ──listo──► Open ──revisión──► Changes requested
-                    │                     │
-                    │◄───── cambios ◄─────┘
-                    ▼
-               Approved + verde ──► Merged
+**FLUJO VISIBLE**
 
+```mermaid
+flowchart TD
+    A["Draft"] -->|"listo"| B["Open"]
+    B -->|"revisión"| C["Changes requested"]
+    C -->|"cambios del autor"| B
+    B -->|"aprobación y verde"| D["Approved"]
+    D -->|"integrar"| E["Merged"]
+```
+
+```text
 Etiquetas (labels) útiles:
    │
    ├── tipo: bug, feature, docs, refactor, chore
@@ -350,6 +375,10 @@ Flujo documentado (estados, etiquetas, SLA), automatización básica y primeras 
 
 La disciplina de PR es un contrato operativo pequeño que se escribe, se automatiza donde se puede y se revisa con datos de proceso.
 
+### Ejercicio de transferencia
+
+En un proyecto donde colaboras — o en uno simulado con una segunda cuenta — escribe el flujo mínimo de PR: tres estados, seis etiquetas con regla de uso y dos acuerdos de tiempo. Entrega: el fragmento de CONTRIBUTING listo para pegar y la lista de métricas de proceso que registrarías durante dos semanas.
+
 ---
 
 ## 7. Nivel profesional + resumen
@@ -391,6 +420,19 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **La disciplina de PR es la cadencia del equipo: estados claros, tiempos acordados, checks automáticas y métricas que miran el flujo — no a las personas.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué un flujo con quince etiquetas y cuatro columnas puede ser peor que no tener flujo ninguno?
+2. Si el acuerdo de revisión se incumple siempre, ¿qué dos causas reales debes mirar antes de culpar al equipo?
+3. ¿Qué métricas miden el proceso y cuáles miden a las personas, y por qué esa distinción lo cambia todo?
+4. ¿Por qué automatizar un check sin tests significativos da falsa confianza en lugar de proteger?
+5. ¿Qué debe poder responder un PR marcado como «ready» sin que nadie pregunte, y quién lo garantiza?
+6. ¿Por qué cerrar en la retro un PR viejo es señal de un flujo sano y no un fracaso?
 
 ---
 
