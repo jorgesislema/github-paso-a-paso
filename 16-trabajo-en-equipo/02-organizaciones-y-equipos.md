@@ -10,17 +10,16 @@ Este capítulo enseña a montar y gobernar una organización: estructura, equipo
 
 ## Mapa conceptual de este capítulo
 
-```text
-Organizaciones y equipos
-       │
-       ├── 1. De cuenta personal a organización
-       ├── 2. Estructura: repos, equipos, miembros
-       ├── 3. Roles en la organización
-       ├── 4. Ajustes que importan
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Organizaciones y equipos))
+    1 De cuenta personal a organización
+    2 Estructura repos equipos miembros
+    3 Roles en la organización
+    4 Ajustes que importan
+    5 Errores comunes con diagnóstico completo
+    6 Práctica guiada
+    7 Nivel profesional resumen
 ```
 
 ---
@@ -48,21 +47,11 @@ CUÁNDO MIGRAR:
        usuario de alguien)
 ```
 
-```text
-CÓMO (ideas, la UI cambia):
-   │
-   ├── crear organización → transferir repos
-   │   (Transfer ownership) o clonar/mover
-   │   (GitHub tiene migración de repos — revisar la
-   │   doc actual de tu versión)
-   │
-   ├── transferir: el repo conserva historia, issues,
-   │   PRs; cambia el owner → rompe enlaces antiguos
-   │   (los redirigen, pero avisa)
-   │
-   └── transferir la cuenta personal a organización
-       también es posible (perfil único) — decisión
-       importante, evaluar antes
+```mermaid
+flowchart TD
+    A[Crear organización] --> B[Transferir o clonar/mover repos]
+    B --> C[Transferir repositorio (mantiene historia, issues, PRs; cambia owner)]
+    C --> D[Transferir cuenta personal a organización]
 ```
 
 ---
@@ -375,6 +364,10 @@ La organización convierte permisos dispersos en una estructura: personas → eq
 
 ---
 
+## Ejercicio de transferencia
+
+En una organización de práctica, crea tres equipos (frontend, backend, infra) con roles base adecuados, asigna dos repositorios de ejemplo a cada equipo, configura protección de rama main con aprobación de equipos de infra, y documenta el proceso en un archivo CONTRIBUTING. Entrega capturas de la configuración de equipos, protección de rama y el archivo CONTRIBUTING.
+
 ## 7. Nivel profesional + resumen
 
 ### 7.1. Org que gobierna sin frenar
@@ -415,6 +408,20 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **La organización es la estructura de gobierno: personas en equipos, equipos con rol, repos con dueño — y la seguridad puesta a nivel global una sola vez.**
+
+---
+
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué es estructurar una organización en equipos por área más eficaz que asignar permisos uno a uno en cada repositorio?
+2. ¿Cómo afecta la configuración de permisos base de la organización (como Read por defecto) al principio de mínimo privilegio y cuándo se necesita sobrescribirlo a nivel de equipo o repositorio?
+3. ¿Qué ventajas y riesgos presentan tener pocos Owners (2-3 con 2FA) frente a muchos Owners en una organización, y cómo se relaciona con la gobernanza y la seguridad?
+4. ¿De qué manera las plantillas de organización y los ajustes globales (como SSO y 2FA obligatorio) reducen la superficie de incidente y mejoran la consistencia en la creación de repositorios?
+5. ¿Cómo utilizarías el registro de auditoría de la organización para detectar cambios no autorizados en permisos, aplicaciones o membresías, y qué acciones tomarías tras una alerta?
+6. ¿Qué pasos seguirías para migrar una colección de repositorios personales a una organización asegurando que se conserven los issues, PRs y el historial, mientras se establece una estructura de equipos por área antes de la transferencia?
 
 ---
 
