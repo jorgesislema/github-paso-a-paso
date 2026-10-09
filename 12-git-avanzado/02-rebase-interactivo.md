@@ -14,26 +14,21 @@ En este capítulo aprenderás:
 * conflictos durante la reaplicación;
 * errores comunes con diagnóstico completo, práctica guiada y nivel profesional (alias y atajos).
 
----
-
 ## Mapa conceptual de este capítulo
 
-```text
-Rebase interactivo
-       │
-       ├── 1. Qué abre y qué NO hace (aún)
-       ├── 2. Las acciones del plan
-       ├── 3. El ciclo de ejecución
-       ├── 4. Flujo típico: limpiar antes del PR
-       ├── 5. Conflictos y pausas (edit/break)
-       │
-       ├── 6. Errores comunes con diagnóstico completo
-       ├── 7. Práctica guiada
-       └── 8. Nivel profesional + resumen
-```
+```mermaid
+mindmap
+  root((Rebase interactivo))
+    1. Qué abre y qué NO hace (aún)
+    2. Las acciones del plan
+    3. El ciclo de ejecución
+    4. Flujo típico: limpiar antes del PR
+    5. Conflictos y pausas (edit/break)
+    6. Errores comunes con diagnóstico completo
+    7. Práctica guiada
+    8. Nivel profesional + resumen
 
 ---
-
 ## 1. Qué abre y qué NO hace
 
 ```bash
@@ -45,22 +40,22 @@ git rebase -i origin/main   # sobre lo publicado
 
 ```text
 Al guardar y salir:
-   │
-   ├── Git AÚN no cambia nada: solo guardó tu plan
-   │
-   ├── al cerrar el editor, empieza la REAPLICACIÓN
-   │
-   └── cada commit seleccionado se recrea sobre la
-       base → hashes nuevos
+    │
+    ├── Git AÚN no cambia nada: solo guardó tu plan
+    │
+    ├── al cerrar el editor, empieza la REAPLICIÓN
+    │
+    └── cada commit seleccionado se recrea sobre la
+        base → hashes nuevos
 ```
 
 ```text
 ¡Cuidado con el alcance!
-   │
-   ├── HEAD~4 = exactamente 4 para atrás
-   │
-   └── main = TODA la diferencia respecto a main
-       (si llevas 30 commits, verás 30 líneas)
+    │
+    ├── HEAD~4 = exactamente 4 para atrás
+    │
+    └── main = TODA la diferencia respecto a main
+        (si llevas 30 commits, verás 30 líneas)
 ```
 
 ---
@@ -82,56 +77,44 @@ break   pausa a mitad de serie para trabajar
 
 ```text
 Ejemplo de plan:
-   │
-   pick   a1b2c34 feat: añade cálculo
-   fixup  77aa88b typo
-   reword 99zz111 feat: añade cálculo de total
-   drop   55bb666 borrador
-   exec   npm test
-   │
-   └── resultado: 2 commits limpios con tests
-       ejecutados al final
+    │
+    pick   a1b2c34 feat: añade cálculo
+    fixup  77aa88b typo
+    reword 99zz111 feat: añade cálculo de total
+    drop   55bb666 borrador
+    exec   npm test
+    │
+    └── resultado: 2 commits limpios con tests
+        ejecutados al final
 ```
 
 ```text
 Reglas de uso:
-   │
-   ├── el orden del archivo es el orden final
-   │
-   ├── se puede REORDENAR líneas (con cuidado: cambia
-   │   la base de cada una)
-   │
-   └── fixup + autosquash (abajo, punto 8) evita
-       escribir planes grandes a mano
+    │
+    ├── el orden del archivo es el orden final
+    │
+    ├── se puede REORDENAR líneas (con cuidado: cambia
+    │   la base de cada una)
+    │
+    └── fixup + autosquash (abajo, punto 8) evita
+        escribir planes grandes a mano
 ```
 
 ---
 
 ## 3. El ciclo de ejecución
 
-```text
-PLAN → GUARDAR → REAPLICAR → ¿conflicto? → resolver
-→ continue → ... → FIN
-```
-
-```bash
-# mientras corre:
-git status                       # en qué commit estás
-git rebase --continue            # aplicar y seguir
-git rebase --skip                # omitir el actual
-git rebase --abort               # volver exacto a antes
-
-# con edit pausado:
-git status                       # indica «edit»
-# ... trabajas (nuevos commits o amend) ...
-git rebase --continue
-```
-
-```bash
-# comprobación final:
-git log --oneline                # historia nueva
-git reflog | Select-String rebase  # dónde estaba antes
-                                   # (red de seguridad)
+```mermaid
+flowchart TD
+    A[PLAN] --> B[GUARDAR]
+    B --> C[REAPLICAR]
+    C --> D{¿conflicto?}
+    D -->|Sí| E[resolver]
+    E --> F[continue]
+    D -->|No| F
+    F --> G{¿más commits?}
+    G -->|Sí| C
+    G -->|No| H[FIN]
 ```
 
 ---
@@ -140,32 +123,34 @@ git reflog | Select-String rebase  # dónde estaba antes
 
 ```text
 Rama con historia ruidosa:
-   │
-   ├── "feat: wip"
-   ├── "fix typo"
-   ├── "wip 2"
-   ├── "feat: terminado"
-   └── "fix typo 2"
+    │
+    ├── "feat: wip"
+    ├── "fix typo"
+    ├── "wip 2"
+    ├── "feat: terminado"
+    └── "fix typo 2"
+```
 
+```text
 Plan (git rebase -i origin/main):
-   │
-   ├── pick   "feat: wip"
-   ├── fixup  "fix typo"
-   ├── fixup  "wip 2"
-   ├── reword "feat: terminado"   ← mensaje final
-   ├── fixup  "fix typo 2"
-   │
-   └── resultado: UN commit claro «feat: ...»
+    │
+    ├── pick   "feat: wip"
+    ├── fixup  "fix typo"
+    ├── fixup  "wip 2"
+    ├── reword "feat: terminado"   ← mensaje final
+    ├── fixup  "fix typo 2"
+    │
+    └── resultado: UN commit claro «feat: ...»
 ```
 
 ```text
 Antes de abrir el PR (checklist):
-   │
-   ├── 1. git rebase -i origin/main (alcance exacto)
-   ├── 2. plan con reword/fixup
-   ├── 3. tests (exec o manuales)
-   ├── 4. git log -p -n 3 (revisar el resultado)
-   └── 5. push (force-with-lease si ya existía)
+    │
+    ├── 1. git rebase -i origin/main (alcance exacto)
+    ├── 2. plan con reword/fixup
+    ├── 3. tests (exec o manuales)
+    ├── 4. git log -p -n 3 (revisar el resultado)
+    └── 5. push (force-with-lease si ya existía)
 ```
 
 ---
@@ -174,20 +159,20 @@ Antes de abrir el PR (checklist):
 
 ```text
 Durante la reaplicación puede salir conflicto:
-   │
-   ├── los LADOS están invertidos respecto a merge
-   │   (cap. 06 de la sección 10): HEAD = base,
-   │   >>>>>> = commit re-aplicado
-   │
-   ├── resolver → add → git rebase --continue
-   │
-   └── con varios commits: puede parar varias veces
+    │
+    ├── los LADOS están invertidos respecto a merge
+    │   (cap. 06 de la sección 10): HEAD = base,
+    >>>>>> = commit re-aplicado
+    │
+    ├── resolver → add → git rebase --continue
+    │
+    └── con varios commits: puede parar varias veces
 ```
 
 ```bash
 # con edit (dividir un commit grande):
 git reset --soft HEAD~1        # desmonta manteniendo
-                               # staged
+                                # staged
 git commit -m "parte 1"
 git add -p                     # elegir trozos
 git commit -m "parte 2"
@@ -403,29 +388,29 @@ git rebase -i --autosquash <base>
 ```
 
 ```text
-   │
-   ├── trabajas normal (commits pequeños con fixup!)
-   │
-   └── al final: un solo rebase --autosquash con el
-       plan ya armado por Git
+    │
+    ├── trabajas normal (commits pequeños con fixup!)
+    │
+    └── al final: un solo rebase --autosquash con el
+        plan ya armado por Git
 ```
 
 ```bash
 # historial legible mientras trabajas:
 git config --global alias.hist \
-  "log --oneline --graph --decorate --date=short"
+   "log --oneline --graph --decorate --date=short"
 ```
 
 ### 8.2. Rebase interactivo en CI
 
 ```text
-   │
-   ├── muchos equipos exigen historia plana por rama:
-   │   squash merge en GitHub (la plataforma aplasta
-   │   al integrar → el rebase manual es opcional)
-   │
-   └── cuando NO hay squash merge: el autor limpia con
-       -i antes del PR (punto 4)
+    │
+    ├── muchos equipos exigen historia plana por rama:
+    │   squash merge en GitHub (la plataforma aplasta
+    │   al integrar → el rebase manual es opcional)
+    │
+    └── cuando NO hay squash merge: el autor limpia con
+        -i antes del PR (punto 4)
 ```
 
 ### 8.3. Resumen
@@ -444,6 +429,25 @@ La idea principal es:
 > **El rebase interactivo convierte la historia en un plan que se lee antes de ejecutarse: quien no lee su propio plan, no conoce su propio historial.**
 
 ---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Qué acción de rebase -i usarías para corregir el mensaje de un commit sin cambiar su contenido?
+2. ¿Cómo afecta el orden de las acciones en el plan de rebase -i al historial resultante?
+3. ¿En qué situaciones sería útil usar el comando `exec` durante un rebase interactivo?
+4. ¿Cómo risolves un conflicto que ocurre durante la reaplicación de un rebase interactivo?
+5. ¿Qué ventaja tiene usar `--autosquash` con `git commit --fixup` frente a escribir el plan manualmente?
+6. ¿Cómo determinarías el alcance adecuado para un `git rebase -i` si tu rama tiene merges?
+7. ¿Qué política de equipo sería adecuada para decidir cuándo usar rebase interactivo en una rama compartida?
+8. ¿Cómo puedes recuperar tu historial si accidentalmente ejecutas un rebase interactivo que elimina commits importantes?
+
+---
+
+## Ejercicio de transferencia
+
+Toma una rama con tres commits consecutivos que corrigen errores tipográficos. Usa `git rebase -i` con las acciones `fixup` para unir los dos primeros commits en el tercero y verifica que el historial resultante tenga un solo commit con todos los cambios.
 
 ## Próximo paso
 
