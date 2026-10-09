@@ -10,17 +10,36 @@ Este capítulo enseña a revisar con método: qué mirar y en qué orden, cómo 
 
 ## Mapa conceptual de este capítulo
 
-```text
-Revisión de código
-       │
-       ├── 1. El contrato de la revisión
-       ├── 2. Qué mirar (orden de lectura)
-       ├── 3. Cómo dar comentarios útiles
-       ├── 4. Decidir: aprobar, cambios o hablar
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Revisión de código))
+    1. El contrato de la revisión
+      el autor entrega listo y responde con cambios
+      el revisor dedica hueco y decide con criterio
+      no es gatekeeping ni auditoría de estilo
+      no es aprobación de cortesía
+      objetivo común que no reviente en producción
+    2. Qué mirar orden de lectura
+      intención en descripción e issue
+      tests primero y sus huecos
+      diff leído como narración
+      seguridad y datos siempre
+      errores límite y rendimiento
+      mantenibilidad y estilo solo sin linter
+      preguntas madre por cada PR
+    3. Cómo dar comentarios útiles
+      observación impacto y propuesta
+      bloqueante no bloqueante o pregunta
+      tono de propuesta y nunca sobre la persona
+      sugerencias de línea cuando es mecánico
+    4. Decidir aprobar cambios o hablar
+      aprobar sin bloqueantes y entendiendo
+      pedir cambios con razones concretas
+      dudas de diseño resueltas antes de decidir
+      cerrar sin merge como éxito
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional y resumen
 ```
 
 ---
@@ -62,20 +81,15 @@ Qué NO es:
 
 ## 2. Qué mirar (orden de lectura)
 
-```text
-ORDEN RECOMENDADO
-──────────────────────────────────────────────────────
-1. descripción + issue → entender la INTENCIÓN
-2. tests → ¿qué garantizan? ¿faltan casos?
-3. el diff en contexto → leerlo como narración
-4. seguridad y datos → confianza/entrada/privado
-   (mirar SIEMPRE, cap. 4)
-5. errores y estados límite → vacíos, timeouts,
-   duplicados, concurrencia
-6. rendimiento → complejidad en bucles calientes,
-   consultas N+1 (si aplica al cambio)
-7. mantenibilidad → nombres, duplicación, claridad
-8. estilo → SOLO si no hay linter (o puntual)
+```mermaid
+flowchart TD
+    A["1. Descripción e issue: entender la intención"] --> B["2. Tests: qué garantizan y qué casos faltan"]
+    B --> C["3. Diff en contexto: leerlo como narración"]
+    C --> D["4. Seguridad y datos: confianza, entrada y privado, siempre"]
+    D --> E["5. Errores y estados límite: vacíos, timeouts, duplicados, concurrencia"]
+    E --> F["6. Rendimiento: bucles calientes y consultas N+1 si aplica"]
+    F --> G["7. Mantenibilidad: nombres, duplicación y claridad"]
+    G --> H["8. Estilo: solo si no hay linter o de forma puntual"]
 ```
 
 ```text
@@ -104,12 +118,10 @@ Técnica:
 
 ## 3. Cómo dar comentarios útiles
 
-```text
-FÓRMULA
-   │
-   ├── observación concreta (línea/archivo)
-   ├── impacto (qué puede salir mal / por qué importa)
-   └── propuesta (cómo mejorarlo) — si la tienes
+```mermaid
+flowchart TD
+    A["Observación concreta en una línea o archivo"] --> B["Impacto: qué puede salir mal o por qué importa"]
+    B --> C["Propuesta: cómo mejorarlo, si la tienes"]
 ```
 
 ```text
@@ -360,6 +372,10 @@ Revisión con al menos un hallazgo útil, comentarios con propuesta y decisión 
 
 Revisar es un trabajo con método: intención → tests → lógica → riesgos → forma, comentando con propuesta y decidiendo con honestidad.
 
+### Ejercicio de transferencia
+
+Elige un PR real de un repositorio público que te interese y revísalo por capas sin tocar el código: ¿resuelve lo que promete?, ¿es correcto ante errores y seguridad?, ¿es mantenible en seis meses? Entrega: tres comentarios escritos con la fórmula observación → impacto → propuesta y tu decisión final con su razón (aprobar, pedir cambios, comentar o cerrar).
+
 ---
 
 ## 7. Nivel profesional + resumen
@@ -399,6 +415,19 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **Revisar es mirar por el equipo y por el futuro del código: intención primero, riesgos siempre, comentarios con propuesta — y una decisión honesta al final.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué se empieza la revisión por la descripción y los tests, y no por el diff?
+2. ¿Qué diferencia hay entre un comentario bloqueante y una sugerencia, y qué se rompe cuando se confunden?
+3. Si no puedes aprobar con honestidad ni bloquear con razones, ¿qué dice esa situación y qué deberías hacer?
+4. ¿En qué se convierte «aprobar con las checks en verde» y en qué condiciones se vuelve costumbre peligrosa?
+5. ¿Qué estructura hace que un comentario sea útil en lugar de ofensivo, y por qué importa el elogio breve?
+6. ¿Por qué cerrar un PR sin merge se considera éxito y no fracaso?
 
 ---
 
