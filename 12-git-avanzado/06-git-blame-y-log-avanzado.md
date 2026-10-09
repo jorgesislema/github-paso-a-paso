@@ -14,29 +14,23 @@ En este capítulo aprenderás:
 * qué NO te dice el blame (y cómo no culpar al equivocado);
 * errores comunes con diagnóstico completo, práctica guiada y nivel profesional.
 
----
-
 ## Mapa conceptual de este capítulo
 
-```text
-git blame y log avanzado
-       │
-       ├── 1. log: encontrar el QUÉ
-   │        ├── rangos y navegación
-   │        ├── filtros (autor, fecha, archivo, grep)
-   │        └── formats y decoración
-   │
-       ├── 2. blame: encontrar el QUIÉN
-       ├── 3. show: el detalle de UNO
-       ├── 4. Los límites de la atribución
-   │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
-```
+```mermaid
+mindmap
+  root((git blame y log avanzado))
+    1. log: encontrar el QUÉ
+      1.1. Navegación básica
+      1.2. Filtros
+      1.3. Formats
+    2. blame: encontrar el QUIÉN
+    3. show: el detalle de UNO
+    4. Los límites de la atribución
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional + resumen
 
 ---
-
 ## 1. `log`: encontrar el QUÉ
 
 ### 1.1. Navegación básica
@@ -59,8 +53,8 @@ git log --since="2026-09-01" --until="2026-10-01"
 git log --since="2 weeks"
 git log --grep="fix" --oneline        # en MENSAJES
 git log -S "funcion_vieja" --oneline  # pickaxe: qué
-                                      # commit añadió o
-                                      # quitó ESTA cadena
+                                       # commit añadió o
+                                       # quitó ESTA cadena
 git log -- archivo                   # toca este archivo
 git log --no-merges --oneline         # sin merges
 ```
@@ -76,12 +70,12 @@ git log --name-only -n 3
 
 ```text
 Atajos útiles:
-   │
-   ├── -S «texto» → «¿quién introdujo/quitó esto?»
-   │
-   ├── --follow → renombres no rompen la historia
-   │
-   └── main..rama → «qué lleva la rama» (= base del PR)
+    │
+    ├── -S «texto» → «¿quién introdujo/quitó esto?»
+    │
+    ├── --follow → renombres no rompen la historia
+    │
+    └── main..rama → «qué lleva la rama» (= base del PR)
 ```
 
 ---
@@ -93,32 +87,32 @@ git blame archivo.py
 git blame -L 40,60 archivo.py        # solo líneas
 git blame -w archivo.py              # ignora espacios
 git blame -C archivo.py              # sigue líneas
-                                     # MOVIDAS desde
-                                     # otros archivos
+                                      # MOVIDAS desde
+                                      # otros archivos
 git blame -C -C archivo.py           # más agresivo
 git blame -L 1,10 -C HEAD^ archivo   # desde otro
-                                     # commit (antes de
-                                     # un push)
+                                      # commit (antes de
+                                      # un push)
 ```
 
 ```text
 Salida:
-   (hash) (autor, fecha) (línea del contenido)
-   a1b2c34 ana      2026-09-12  return total + iva
-   d4e5f67 luis     2026-09-30  # TODO revisar
+    (hash) (autor, fecha) (línea del contenido)
+    a1b2c34 ana      2026-09-12  return total + iva
+    d4e5f67 luis     2026-09-30  # TODO revisar
 ```
 
 ```text
 Cómo leerlo:
-   │
-   ├── cada línea apunta al ÚLTIMO commit que la
-   │   cambió (con esas opciones)
-   │
-   ├── blame sin -C/-w «inventa» autores cuando solo
-   │   se movió código o cambió indentación
-   │
-   └── blame de una zona recién formateada → todos
-       «culpables» del formateador (usa -w/-C)
+    │
+    ├── cada línea apunta al ÚLTIMO commit que la
+    │   cambió (con esas opciones)
+    │
+    ├── blame sin -C/-w «inventa» autores cuando solo
+    │   se movió código o cambió indentación
+    │
+    └── blame de una zona recién formateada → todos
+        «culpables» del formateador (usa -w/-C)
 ```
 
 ---
@@ -136,11 +130,11 @@ git show :0:archivo.py           # staged actual
 
 ```text
 Combina con lo anterior:
-   │
-   ├── log -p para rangos largos, show para uno
-   │
-   └── show HEAD^:ruta sirve también para comparar
-       versiones de un archivo sin checkout
+    │
+    ├── log -p para rangos largos, show para uno
+    │
+    └── show HEAD^:ruta sirve también para comparar
+        versiones de un archivo sin checkout
 ```
 
 ---
@@ -149,28 +143,28 @@ Combina con lo anterior:
 
 ```text
 Lo que blame NO dice:
-   │
-   ├── NO dice quién tuvo la IDEA (solo quién
-   │   escribió la línea)
-   │
-   ├── NO sobrevive a reescritura de historial sin
-   │   avisar (filter/rebase cambian hashes y a veces
-   │   autoría percibida)
-   │
-   ├── NO distingue «copió de Stack Overflow»
-   │
-   └── NO es justo con reformatos: usa -w/-C o no
-       culpes a nadie por estilo
+    │
+    ├── NO dice quién tuvo la IDEA (solo quién
+    │   escribió la línea)
+    │
+    ├── NO sobrevive a reescritura de historial sin
+    │   avisar (filter/rebase cambian hashes y a veces
+    │   autoría percibida)
+    │
+    ├── NO distingue «copió de Stack Overflow»
+    │
+    └── NO es justo con reformatos: usa -w/-C o no
+        culpes a nadie por estilo
 ```
 
 ```text
 Uso profesional responsable:
-   │
-   ├── blame como PUNTO DE PARTIDA de una pregunta
-   │   («quién sabe de este módulo»), no como veredicto
-   │
-   └── acompañar con git log del archivo y el ticket
-       asociado antes de concluir
+    │
+    ├── blame como PUNTO DE PARTIDA de una pregunta
+    │   («quién sabe de este módulo»), no como veredicto
+    │
+    └── acompañar con git log del archivo y el ticket
+        asociado antes de concluir
 ```
 
 ---
@@ -273,7 +267,7 @@ Uso profesional responsable:
 
 **Qué ocurrió:** `--graph` con merges muestra estructura y alguien leyó la columna como «orden cronológico».
 
-**Por qué:** el grafo no es una línea de tiempo estricta (fecha != posición).
+**Por qué:** el grafo no es una línea de tiempo estricto (fecha != posición).
 
 **Cómo comprobarlo:** comparar con `--date-order` o `--author-date-order`.
 
@@ -355,34 +349,34 @@ Log encuentra, blame atribuye y show detalla — y cada uno tiene opciones que e
 
 ```text
 «¿Dónde se usa X?» (además de grep del árbol):
-   │
-   └── git log -S "X" --oneline   → cuándo nació y
-       quién lo metió (luego blame de esas zonas)
+    │
+    └── git log -S "X" --oneline   → cuándo nació y
+        quién lo metió (luego blame de esas zonas)
 
 «¿Qué cambió desde la última release?»:
-   │
-   └── git log v2.0.0..HEAD --oneline --no-merges
+    │
+    └── git log v2.0.0..HEAD --oneline --no-merges
 
 «¿Qué toca este PR?»:
-   │
-   └── git log --name-only main..feature
+    │
+    └── git log --name-only main..feature
 
 «Historial de un archivo con renombres»:
-   │
-   └── git log --follow -p -- archivo
+    │
+    └── git log --follow -p -- archivo
 ```
 
 ### 7.2. Blame en revisiones e incidentes
 
 ```text
-   │
-   ├── incidente → bisect (cap. 05) → blame de la zona
-   │   → contacto del contexto
-   │
-   ├── blame con -w -C en archivos formateados
-   │
-   └── en el equipo: blame como «quién puede
-       explicar», nunca como «quién tiene la culpa»
+    │
+    ├── incidente → bisect (cap. 05) → blame de la zona
+    │   → contacto del contexto
+    │
+    ├── blame con -w -C en archivos formateados
+    │
+    └── en el equipo: blame como «quién puede
+        explicar», nunca como «quién tiene la culpa»
 ```
 
 ### 7.3. Resumen
@@ -401,6 +395,25 @@ La idea principal es:
 > **El historial responde si preguntas bien: log para el qué, blame para el quién, show para el detalle — con opciones que evitan culpas y conclusiones a medias.**
 
 ---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Qué opciones usarías con `git blame` para ignorar cambios de espacios y seguir líneas movidas desde otros archivos al investigar quién modificó una función específica?
+2. ¿Cómo determinarías si un archivo ha sido renombrado en su historial usando `git log`, y qué opción es esencial para que el seguimiento funcione correctamente?
+3. ¿Qué comando usarías para ver el contenido de un archivo en el commit anterior al actual sin hacer checkout?
+4. ¿En qué situación sería apropiado usar `git log -S` en lugar de `git log -G`, y qué limita cada uno?
+5. ¿Cómo evitarías atribuir erróneamente cambios a un desarrollador cuando el verdadero autor es un formateador automático de código?
+6. ¿Qué información proporciona `git show v2.1.0` que no obtendrías de `git log --oneline v2.1.0`?
+7. ¿Cómo usarías `git log --grep` y `git log --S` juntos para encontrar un commit que tanto menciona un error en su mensaje como introdujo una cadena específica en el código?
+8. ¿Qué riesgo implica interpretar el output de `git log --graph` como una línea de tiempo estricta y cómo lo mitigarías?
+
+---
+
+## Ejercicio de transferencia
+
+Tienes un archivo de configuración `settings.json` que ha sido modificado varias veces a lo largo del historial del proyecto. Necesitas determinar quién introdujo por última vez la clave `"timeout"` y cuándo lo hizo, considerando que el archivo pudo haber sido renombrado o movido. Describe los pasos que seguirías usando `git log --follow` para rastrear el historial del archivo, `git blame -w -C` para ignorar espacios y seguir líneas movidas, y `git show` para verificar el commit específico, asegurándote de que tu investigación sea precisa incluso si el archivo sufrió renombres o copias.
 
 ## Próximo paso
 
