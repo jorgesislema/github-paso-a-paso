@@ -10,17 +10,33 @@ Este capítulo explica las tres estrategias de integración de PR (merge commit,
 
 ## Mapa conceptual de este capítulo
 
-```text
-Merge, squash y rebase en el PR
-       │
-       ├── 1. Las tres estrategias (qué dejan)
-       ├── 2. Cuándo usar cada una
-       ├── 3. Configuración en la plataforma
-       ├── 4. Después del merge (local y ramas)
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Merge squash y rebase en el PR))
+    1. Las tres estrategias qué dejan
+      merge commit con dos padres y toda la historia
+      squash deja un solo commit en main
+      rebase deja línea recta con los commits
+      el PR queda como registro aunque el historial sea lineal
+    2. Cuándo usar cada una
+      squash para historia sucia y main legible
+      merge cuando la historia merece conservarse
+      rebase para línea recta sin perder pasos
+      elige una y documéntala en el equipo
+      con squash el mensaje del PR manda
+    3. Configuración en la plataforma
+      habilitar solo las opciones de tu política
+      delete branch después del merge
+      reglas de protección de quién integra
+      plantilla para el mensaje de squash
+    4. Después del merge local y ramas
+      actualizar local y borrar la rama
+      comprobar que la issue se cerró
+      rebasear las ramas dependientes
+      CI en main con revert o fix forward si falla
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional y resumen
 ```
 
 ---
@@ -138,6 +154,8 @@ Ajustes del repositorio → Pull Requests:
        plantilla del equipo (asunto = «tipo: qué»)
 ```
 
+⚠️ **RIESGO:** el `git rebase` de la rama reescribe sus commits con hashes nuevos: sobre una rama compartida rompes el historial de los demás; recupéralo con `git reflog` y reescribe solo ramas que estén en tu poder.
+
 ```bash
 # equivalencias en línea de comandos (si integras
 # sin plataforma):
@@ -158,22 +176,13 @@ git merge --squash feature && git commit
 
 ## 4. Después del merge (local y ramas)
 
-```text
-RUTINA DEL AUTOR TRAS MERGE:
-   │
-   ├── 1. actualizar local
-   │      git switch main
-   │      git pull --ff-only
-   ├── 2. borrar la rama
-   │      git branch -d feature        (local)
-   │      git push origin --delete feature
-   │      (o automático con «delete branch»)
-   └── 3. issue cerrada (Closes #n) → comprobar
-
-RUTINA SI HABÍA OTRAS RAMAS EN LA MESA (sección 17):
-   │
-   ├── rebasear las dependientes sobre el nuevo main
-   └── avisar si los conflictos afectan a otros
+```mermaid
+flowchart TD
+    A["1. Actualiza local: git switch main y git pull --ff-only"] --> B["2. Borra la rama local: git branch -d feature"]
+    B --> C["3. Borra la rama remota: git push origin --delete feature, o déjalo automático con delete branch"]
+    C --> D["4. Comprueba que la issue se cerró con el vínculo Closes"]
+    D --> E["5. Si había otras ramas en la mesa: rebasea las dependientes sobre el nuevo main"]
+    E --> F["6. Avisa si los conflictos afectan a otros"]
 ```
 
 ```text
@@ -344,6 +353,8 @@ git log --graph --oneline
 
 ### Paso 3: squash (en rama de prueba)
 
+⚠️ **RIESGO:** `git reset --hard` descarta los commits señalados de un plumazo; en esta rama de práctica son prescindibles, pero en un repo con trabajo sin publicar solo se recuperan con `git reflog`.
+
 ```bash
 git reset --hard HEAD~2   # deshaz el merge
                            # (práctica local)
@@ -354,6 +365,8 @@ git log --graph --oneline
 ```
 
 ### Paso 4: rebase lineal
+
+⚠️ **RIESGO:** `reset --hard` descarta commits y `rebase` reescribe la rama con hashes nuevos; ejecuta esto solo en la rama de práctica y comprueba antes en qué rama estás.
 
 ```bash
 git reset --hard HEAD~1
@@ -388,6 +401,10 @@ Historiales comparados y política de integración elegida y documentada.
 ### Conclusión esperada
 
 No hay estrategia «mejor»: hay historial que tu equipo puede leer y mantener — elígete una y hazla cumplir.
+
+### Ejercicio de transferencia
+
+Con los tres historiales que acabas de comparar, elige la estrategia que usarías en tu proyecto o trabajo real y defiéndela en tres líneas: qué historial deja, qué información se pierde y para quién es legible. Entrega: la política escrita («Integración: …») lista para pegarse en un CONTRIBUTING.
 
 ---
 
@@ -432,6 +449,19 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **Integrar es elegir qué historia quedará: el botón que pulsas decide si tu log de dentro de un año es un mapa o un laberinto.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. Si tu PR tiene diez commits con «wip» y arreglos, ¿qué historial deja en main cada una de las tres estrategias?
+2. ¿Por qué elegir squash obliga a cuidar el título y la descripción del PR como si fueran el mensaje de commit final?
+3. ¿Qué se pierde para bisect y blame si cada quien elige la estrategia que le apetece en cada PR?
+4. ¿Por qué rebase-and-merge exige historia limpia y quién paga el ruido si no la hay?
+5. ¿Qué relación hay entre el tamaño del PR y la estrategia de integración que conviene elegir?
+6. Si la CI de main se pone roja justo después de integrar, ¿qué haces primero y por qué no esperas a ver qué pasa?
 
 ---
 
