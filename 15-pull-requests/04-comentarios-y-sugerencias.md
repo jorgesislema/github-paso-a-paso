@@ -10,17 +10,37 @@ Este capítulo enseña a gestionar ese ciclo: cómo plantear sugerencias, aplica
 
 ## Mapa conceptual de este capítulo
 
-```text
-Comentarios y sugerencias
-       │
-       ├── 1. Tipos de comentario y sus hilos
-       ├── 2. Sugerencias aplicables
-       ├── 3. Ciclo del autor: aplicar, responder, resolver
-       ├── 4. Cuándo salir del PR (y volver)
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Comentarios y sugerencias))
+    1. Tipos de comentario y sus hilos
+      anclados a una línea con contexto
+      anclados al archivo o ficha general
+      comentario libre y sugerencia aplicable
+      revisión parcial por archivos
+      estado del hilo de abierto a resuelto
+      un tema por hilo y respuesta en el hilo
+    2. Sugerencias aplicables
+      bloque de sugerencia con botón de aplicación
+      corrección mecánica clara
+      no sirve para decisiones o reestructurar
+      se convierten en commits de la rama
+      limpiar la historia si se aplican muchas
+    3. Ciclo del autor aplicar responder resolver
+      cambiar y responder con el commit
+      no aplicar y argumentar con razones
+      pregunta de diseño con charla y resumen
+      tras los cambios push y avisos en los hilos
+      revisar hilos outdated y checks verdes
+      estado final con todo resuelto y aprobado
+    4. Cuándo salir del PR y volver
+      diseño, datos privados o ver en vivo
+      charla corta ante desacuerdo de fondo
+      vuelta con la decisión en una línea
+      el PR es el archivo de la decisión
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional y resumen
 ```
 
 ---
@@ -115,25 +135,15 @@ COMBINACIÓN DE SUGERENCIAS APLICADAS:
 
 ## 3. Ciclo del autor: aplicar, responder, resolver
 
-```text
-FLUJO POR HILO
-──────────────────────────────────────────────────────
-recibes comentario
-   │
-   ├── ¿es cambio claro? → aplica (sugerencia o a
-   │   mano), responde «hecho en abc123», resuelve
-   │
-   ├── ¿no estoy de acuerdo? → argumenta con
-   │   razones/constraints, deja el hilo abierto si
-   │   el revisor debe confirmar → tras acuerdo,
-   │   resuelve con la decisión
-   │
-   ├── ¿es pregunta de diseño? → responde, y si
-   │   crece, propón charla (cap. 4) y deja resumen
-   │   en el hilo
-   │
-   └── ¿es ruido/estilo? → «lo regula el linter» y
-       resuelve
+```mermaid
+flowchart TD
+    A["Recibes un comentario"] --> B{"¿Es cambio claro?"}
+    B -->|"sí"| C["Aplica con sugerencia o a mano, responde con el commit y resuelve"]
+    B -->|"no"| D{"¿Estás en desacuerdo?"}
+    D -->|"sí"| E["Argumenta con razones o constraints, deja el hilo abierto y tras el acuerdo resuelve con la decisión"]
+    D -->|"no"| F{"¿Es pregunta de diseño?"}
+    F -->|"sí"| G["Responde, y si crece propón charla y deja el resumen en el hilo"]
+    F -->|"no"| H["Responde que lo regula el linter y resuelve"]
 ```
 
 ```text
@@ -364,6 +374,10 @@ Ciclo completo: sugerencia → commit → hilo resuelto → decisión escrita �
 
 La conversación del PR es trabajo con estado: hilos que terminan, acuerdos que se escriben y cambios que se notifican.
 
+### Ejercicio de transferencia
+
+En tu repo de práctica con la segunda cuenta, deja un comentario con bloque de sugerencia sobre una línea y recorre el ciclo completo hasta cerrarlo: aplicar, responder con el commit y resolver el hilo. Entrega: el hilo resuelto y, si hubo desacuerdo, la decisión escrita en una línea dentro del mismo hilo.
+
 ---
 
 ## 7. Nivel profesional + resumen
@@ -403,6 +417,19 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **Cada hilo es una micro-decisión: aplícala o argumenta, escríbela y ciérrala — el PR solo avanza cuando la conversación tiene estado.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué «todo hilo termina resuelto o con decisión explícita» y qué se pierde cuando un hilo se abandona?
+2. ¿Cuándo es correcta una sugerencia aplicable y en qué se convierte cuando la usas para algo que exige decisión?
+3. ¿Qué ocurre con la confianza del revisor cuando se responde «ya vi» sin aplicar ni argumentar?
+4. ¿Por qué una decisión tomada en una charla debe volver escrita al PR?
+5. Si un hilo llega a treinta respuestas sin decisión, ¿por qué conviene cortarlo y qué haces con lo hablado?
+6. ¿Qué diferencia hay entre avisar de los cambios con un resumen y pedir de nuevo la revisión, y por qué ambos forman parte del ciclo?
 
 ---
 
