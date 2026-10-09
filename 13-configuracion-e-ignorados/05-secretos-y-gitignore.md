@@ -10,17 +10,16 @@ Este capítulo explica por qué ignore ≠ seguridad, qué hacer si un secreto s
 
 ## Mapa conceptual de este capítulo
 
-```text
-Secretos y .gitignore
-       │
-       ├── 1. La trampa (ignore no borra historial)
-       ├── 2. Flujo correcto desde el inicio
-       ├── 3. Si ya se publicó: respuesta en orden
-       ├── 4. Detección (secret scanning)
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Secretos y .gitignore))
+    La trampa
+    Flujo correcto
+    Respuesta publicada
+    Detección
+    Errores comunes
+    Práctica guiada
+    Nivel profesional
 ```
 
 ---
@@ -381,6 +380,9 @@ Prevención (ejemplo versionado + detección) y respuesta (rotar + purgar + repa
 
 ---
 
+### Ejercicio de transferencia
+Imagina que descubres una clave API en el historial de un repositorio público. Describe los pasos que seguirías para mitigar el riesgo, incluyendo rotación, purgado del historial y notificación a los afectados.
+
 ## 7. Nivel profesional + resumen
 
 ### 7.1. Programa de secretos (resumen)
@@ -416,6 +418,16 @@ La idea principal es:
 > **Ignorar es prevenir la entrada; si el secreto ya entró, solo valen dos cosas: rotar la credencial y purgar el historial — en ese orden.**
 
 ---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué `.gitignore` no elimina un secreto ya commiteado del historial?
+2. ¿Cuál es el orden correcto de respuesta a un secreto publicado según el capítulo?
+3. ¿Qué papel juega un archivo `.env.example` versionado en la prevención de secretos?
+4. ¿Cómo puedes detectar un secreto antes de que se haga commit usando hooks?
+5. ¿Qué es `force-with-lease` y por qué se usa al repartir cambios tras purgar el historial?
 
 ## Próximo paso
 
