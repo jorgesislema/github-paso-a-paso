@@ -1,4 +1,19 @@
 # Documentación técnica en `docs/`
+[`README.md`](README.md)
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compru�balo con este cap�tulo:
+
+1. �Por qu� es importante definir una regla de ubicaci�n clara (por ejemplo, ��lo busca alguien que ya entr�?� ? docs/; ��lo busca quien llega?� ? README) y c�mo afecta esto a la experiencia de usuarios nuevos versus desarrolladores que ya est�n familiarizados con el proyecto?
+2. �C�mo influye la presencia de un �ndice enlazado desde el README ra�z en la capacidad de encontrar documentaci�n t�cnica espec�fica, y qu� riesgos existen si el �ndice falta o est� desactualizado?
+3. �Qu� ventajas ofrece utilizar ADRs (Architectural Decision Records) para documentar decisiones de arquitectura frente a simplemente incluir el �c�mo� en la documentaci�n de implementaci�n, y c�mo se evita que los ADRs se vuelvan obsoletos?
+4. �De qu� manera integrar revisiones de documentaci�n en los PRs (por ejemplo, mediante checklists que verifiquen que los diagramas afectados est�n actualizados) contribuye a mantener la documentaci�n sincronizada con el c�digo y a reducir la pudrici�n?
+5. �Qu� consecuencias tiene almacenar credenciales o informaci�n sensible en archivos de documentaci�n dentro de un repositorio p�blico, y c�mo mitigarlo utilizando placeholders y referencias a gestores de secretos?
+6. �C�mo dise�ar�as un proceso de revisi�n peri�dica de documentaci�n que combine el uso de linters de Markdown, verificaciones de enlaces y builds de sitio est�tico para asegurar que la documentaci�n permanezca �til y accesible a lo largo del tiempo?
+
+[`README.md`](README.md)
+# Documentación técnica en `docs/`
 
 ## Introducción
 
@@ -7,60 +22,56 @@ El README abre la puerta; detrás necesita una casa ordenada: `docs/` con guías
 Este capítulo enseña a organizar la documentación técnica de un repositorio: qué va en `docs/`, qué formatos usar, cómo documentar arquitectura y decisiones, y cómo evitar que se pudra.
 
 ---
-
 ## Mapa conceptual de este capítulo
 
-```text
-Documentación técnica en docs/
-       │
-       ├── 1. Qué va en docs/ (y qué no)
-       ├── 2. Estructura recomendada
-       ├── 3. Formatos: Markdown, ADR, diagramas
-       ├── 4. Mantenerla viva
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Documentación técnica en docs/))
+    Qué va en docs/ (y qué no)
+    Estructura recomendada
+    Formatos Markdown ADR diagramas
+    Mantenerla viva
+      Errores comunes con diagnóstico completo
+      Práctica guiada
+      Nivel profesional + resumen
 ```
 
 ---
-
 ## 1. Qué va en docs/ (y qué no)
 
 ```text
 VA a docs/:
-   │
-   ├── guías (primeros pasos, recetas, troubleshooting)
-   ├── arquitectura y diagramas de sistema
-   ├── decisiones (ADR: arquitectónicas y de proceso)
-   ├── referencia de API/CLI (generada o escrita)
-   ├── convenciones del proyecto (estilo, seguridad)
-   └── runbooks (operación, incidentes)
+    │
+    ├── guías (primeros pasos, recetas, troubleshooting)
+    ├── arquitectura y diagramas de sistema
+    ├── decisiones (ADR: arquitectónicas y de proceso)
+    ├── referencia de API/CLI (generada o escrita)
+    ├── convenciones del proyecto (estilo, seguridad)
+    └── runbooks (operación, incidentes)
 ```
 
 ```text
 NO va (está en otro sitio):
-   │
-   ├── README        → puerta de entrada (cap. 02)
-   ├── CHANGELOG     → entregas (cap. 04)
-   ├── CONTRIBUTING  → contribuir (cap. 05)
-   └── código/comentarios → en el código, lo
-       inseparable (docs «junto al código» para
-       detalles micro)
+    │
+    ├── README        → puerta de entrada (cap. 02)
+    ├── CHANGELOG     → entregas (cap. 04)
+    ├── CONTRIBUTING  → contribuir (cap. 05)
+    └── código/comentarios → en el código, lo
+        inseparable (docs «junto al código» para
+        detalles micro)
 ```
 
 ```text
-   │
-   ├── regla de ubicación: «¿lo busca alguien que
-   │   ya entró?» → docs/; «¿lo busca quien llega?»
-   │   → README
-   │
-   └── documentos CORTOS con un objetivo; los
-       gordos se dividen y se indexan
+    │
+    ├── regla de ubicación: «¿lo busca alguien que
+    │   ya entró?» → docs/; «¿lo busca quien llega?»
+    │   → README
+    │
+    └── documentos CORTOS con un objetivo; los
+        gordos se dividen y se indexan
 ```
 
 ---
-
 ## 2. Estructura recomendada
 
 ```text
@@ -84,28 +95,27 @@ docs/
 
 ```text
 Convenciones:
-   │
-   ├── índice (docs/README.md) enlazado desde el
-   │   README raíz
-   │
-   ├── nombres en minúsculas-guion (coherente con el
-   │   resto del repo)
-   │
-   ├── numeración solo en decisiones (ADR):
-   │   0001, 0002…
-   │
-   └── fechas ISO (2026-10-02) cuando ayuden
+    │
+    ├── índice (docs/README.md) enlazado desde el
+    │   README raíz
+    │
+    ├── nombres en minúsculas-guion (coherente con el
+    │   resto del repo)
+    │
+    ├── numeración solo en decisiones (ADR):
+    │   0001, 0002…
+    │
+    └── fechas ISO (2026-10-02) cuando ayuden
 ```
 
 ---
-
 ## 3. Formatos: Markdown, ADR, diagramas
 
 ```text
 MARKDOWN
-   │
-   ├── base de todo (cap. 01 de esta sección)
-   └── plantillas por tipo (guía, runbook, ADR)
+    │
+    ├── base de todo (cap. 01 de esta sección)
+    └── plantillas por tipo (guía, runbook, ADR)
 ```
 
 ```markdown
@@ -127,62 +137,60 @@ Usamos PostgreSQL 16…
 
 ```text
 DIAGRAMAS
-   │
-   ├── ASCII en Markdown (portable, versionable,
-   │   como en este curso) para esquemas simples
-   │
-   ├── Mermaid/PlantUML: bloques de código que la
-   │   plataforma renderiza → orden de magnitud para
-   │   diagramas grandes (mención: elegir uno y
-   │   mantenerlo)
-   │
-   └── arquitectura: cajas y flechas con la
-       frontera de datos y confianza visible (sección
-       25)
+    │
+    ├── ASCII en Markdown (portable, versionable,
+    │   como en este curso) para esquemas simples
+    │
+    ├── Mermaid/PlantUML: bloques de código que la
+    │   plataforma renderiza → orden de magnitud para
+    │   diagramas grandes (mención: elegir uno y
+    │   mantenerlo)
+    │
+    └── arquitectura: cajas y flechas con la
+        frontera de datos y confianza visible (sección
+        25)
 ```
 
 ```text
 RECUERDA:
-   │
-   ├── el formato sigue al lector: runbook debe ser
-   │   copiable en incidente (paso a paso, comandos)
-   │
-   └── ADR = «por qué decidimos», no «cómo está
-       hecho» (ese es el doc de arquitectura)
+    │
+    ├── el formato sigue al lector: runbook debe ser
+    │   copiable en incidente (paso a paso, comandos)
+    │
+    └── ADR = «por qué decidimos», no «cómo está
+        hecho» (ese es el doc de arquitectura)
 ```
 
 ---
-
 ## 4. Mantenerla viva
 
 ```text
 Señales de pudrición:
-   │
-   ├── comandos/paths que ya no existen
-   ├── contradicción entre README y docs/
-   └── ADRs sin actualizar estado («Propuesta» de
-       hace dos años)
+    │
+    ├── comandos/paths que ya no existen
+    ├── contradicción entre README y docs/
+    └── ADRs sin actualizar estado («Propuesta» de
+        hace dos años)
 ```
 
 ```text
 Higiene:
-   │
-   ├── los PR que cambian comportamiento tocan docs/
-   │   (checklist, sección 05)
-   │
-   ├── docs con «dueño» (CODEOWNERS por carpeta,
-   │   sección 18)
-   │
-   ├── ADRs: solo se cambia el estado con nuevo ADR
-   │   (superseded por ADR-NNNN) — el pasado no se
-   │   reescribe
-   │
-   └── revisión periódica: «¿seguiría siendo cierto
-       este documento hoy?»
+    │
+    ├── los PR que cambian comportamiento tocan docs/
+    │   (checklist, sección 05)
+    │
+    ├── docs con «dueño» (CODEOWNERS por carpeta,
+    │   sección 18)
+    │
+    ├── ADRs: solo se cambia el estado con nuevo ADR
+    │   (superseded por ADR-NNNN) — el pasado no se
+    │   reescribe
+    │
+    └── revisión periódica: «¿seguiría siendo cierto
+        este documento hoy?»
 ```
 
 ---
-
 ## 5. Errores comunes con diagnóstico completo
 
 ### Error 1: docs/ como cajón de sastre
@@ -292,7 +300,6 @@ Higiene:
 **Cómo se evita:** escaneo en CI y revisión de seguridad (secciones 20/24).
 
 ---
-
 ## 6. Práctica guiada
 
 ### Objetivo
@@ -322,10 +329,11 @@ Crear un `docs/` ordenado con índice, una guía, un ADR y un runbook corto.
 
 ### Paso 6: enlazar y verificar
 
-```text
-README raíz → docs/README.md → cada documento
-Prueba de clics; prueba de ejecución del runbook en
-el sandbox.
+```mermaid
+flowchart TD
+    A["README raíz"] --> B["docs/README.md"]
+    B --> C["cada documento"]
+    D["Prueba de clics"] --> E["Prueba de ejecución del runbook en el sandbox"]
 ```
 
 ### Resultado esperado
@@ -336,28 +344,31 @@ el sandbox.
 
 La documentación técnica se organiza como producto: ubicación por pregunta, formatos por propósito y dueños por área.
 
----
+### Ejercicio de transferencia
 
+Imagina que debes documentar el proceso de despliegue de una aplicación web en un entorno de staging para un equipo de operaciones que no conoce el código. Crea un runbook operativo en `docs/operacion/` que incluya pasos numerados con comandos copiables, verificación por paso y condiciones de rollback. Además, añade un diagrama de arquitectura actualizado en `docs/arquitectura/` que muestre los componentes involucrados y sus fronteras de confianza. Entiende que el runbook debe ser usable sin conexión a internet y que el diagrama debe estar en formato Mermaid para facilitar revisiones en PR. Entrega los archivos runbook y diagrama, junto con una captura de prueba de ejecución del runbook en un entorno aislado.
+
+---
 ## 7. Nivel profesional + resumen
 
 ### 7.1. Doc como sistema
 
 ```text
-   │
-   ├── índice + plantillas + dueños (CODEOWNERS)
-   │
-   ├── ADR obligatorio para cambios de arquitectura
-   │   (proceso del equipo, sección 15/25)
-   │
-   ├── diagramas como código (fuente en repo, revisión
-   │   en PR, render en CI si aplica)
-   │
-   ├── docs como código: linter de Markdown, enlaces
-   │   verificados en CI, builds de sitio estático
-   │   (categoría: docs-as-code)
-   │
-   └── clasificación y escaneo: nada de credenciales
-       en docs (secciones 20/24)
+    │
+    ├── índice + plantillas + dueños (CODEOWNERS)
+    │
+    ├── ADR obligatorio para cambios de arquitectura
+    │   (proceso del equipo, sección 15/25)
+    │
+    ├── diagramas como código (fuente en repo, revisión
+    │   en PR, render en CI si aplica)
+    │
+    ├── docs como código: linter de Markdown, enlaces
+    │   verificados en CI, builds de sitio estático
+    │   (categoría: docs-as-code)
+    │
+    └── clasificación y escaneo: nada de credenciales
+        en docs (secciones 20/24)
 ```
 
 ### 7.2. Resumen
@@ -376,7 +387,6 @@ La idea principal es:
 > **La documentación es infraestructura del conocimiento: se versiona, se revisa y tiene dueño — porque lo que no se mantiene, engaña.**
 
 ---
-
 ## Próximo paso
 
 Has completado la organización de `docs/`.
