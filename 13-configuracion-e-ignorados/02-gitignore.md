@@ -10,17 +10,16 @@ Este capítulo enseña a escribir `.gitignore` que funcionen a la primera, a ent
 
 ## Mapa conceptual de este capítulo
 
-```text
-.gitignore
-       │
-       ├── 1. Qué ignora (y qué NO)
-       ├── 2. Sintaxis de patrones
-       ├── 3. Orden y negaciones
-       ├── 4. Ignorar archivos YA rastreados
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((.gitignore))
+    Qué ignora
+    Sintaxis de patrones
+    Orden y negaciones
+    Ignorar archivos rastreados
+    Errores comunes
+    Práctica guiada
+    Nivel profesional
 ```
 
 ---
@@ -369,6 +368,9 @@ Ignore funcional, verificado con check-ignore, con un des-rastreo limpio y sin p
 ### Conclusión esperada
 
 `.gitignore` gobierna lo que entra, no lo que ya está dentro — y cada patrón se confirma con `check-ignore -v`.
+### Ejercicio de transferencia
+
+Crea un .gitignore para un proyecto Java que ignore archivos .class y .jar, verifica con git check-ignore -v que funcionan.
 
 ---
 
@@ -415,6 +417,16 @@ La idea principal es:
 > **El .gitignore decide lo que entra; lo que ya está dentro se saca con --cached — y todo patrón se demuestra con check-ignore -v.**
 
 ---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Cómo afecta el orden de las reglas en .gitignore cuando se usan negaciones?
+2. ¿Qué comando usas para verificar por qué un archivo está siendo ignorado o no?
+3. ¿Por qué un archivo ya rastreado no se ignora al añadir una regla en .gitignore?
+4. ¿Cuál es la diferencia entre ignorar un directorio con "dir/" y con "dir/*"?
+5. ¿Qué pasos debes seguir para dejar de.trackear un archivo grande sin borrarlo de tu disco?
 
 ## Próximo paso
 
