@@ -18,29 +18,24 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-Buenas prácticas para evitar conflictos
-       │
-       ├── 1. Hábitos diarios
-   │        ├── pull/fetch frecuente
-   │        ├── ramas cortas
-   │        └── commits pequeños y enfocados
-   │
-       ├── 2. Diseñar el trabajo
-   │        ├── dividir por zona/área
-   │        ├── archivos de «alto tráfico»
-   │        └── contratos (interfaces, formatos)
-   │
-       ├── 3. Estrategias de integración
-   │        ├── merge temprano / actualizar rama
-   │        ├── rebase suave de actualización
-   │        └── rerere y automatización
-   │
-       ├── 4. Errores comunes con diagnóstico completo
-   │
-       ├── 5. Práctica guiada
-   │
-       └── 6. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Buenas prácticas para evitar conflictos))
+    1. Hábitos diarios
+      pull/fetch frecuente
+      ramas cortas
+      commits pequeños y enfocados
+    2. Diseñar el trabajo
+      dividir por zona/área
+      archivos de «alto tráfico»
+      contratos (interfaces, formatos)
+    3. Estrategias de integración
+      merge temprano / actualizar rama
+      rebase suave de actualización
+      rerere y automatización
+    4. Errores comunes con diagnóstico completo
+    5. Práctica guiada
+    6. Nivel profesional + resumen
 ```
 
 ---
@@ -423,6 +418,22 @@ Una rutina personal de prevención: fetch diario, plan de archivos por tarea, au
 
 Los conflictos no se eliminan, se administran: trabajo corto, integrado a menudo y en zonas compatibles.
 
+
+### Ejercicio de transferencia
+Aplica la secuencia de identificación (status → diff → índice) a un conflicto que involucre solo cambios de espacios en blanco. Usa `git diff --check --ignore-space-change` para detectar y verifica que el índice muestre `stage 1` igual en ambos lados. Entregable: captura de pantalla de los comandos y su salida mostrando que el conflicto es solo de espacios.
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Cuáles son las tres señales principales que indican un conflicto en Git?
+2. ¿En qué orden debe ejecutarse la secuencia de identificación según el método del capítulo?
+3. ¿Qué comando te muestra los archivos con conflictos sin necesidad de revisar el mensaje?
+4. ¿Cómo puedes determinar si estás en un merge o en un rebase mirando el repositorio?
+5. ¿Qué indica la presencia de tres etapas (stage 1,2,3) in `ls-files -u` para un archivo?
+6. ¿Por qué es importante comprobar residuos con `diff --check` antes de cerrar un conflicto?
+7. ¿Qué debes hacer si `git status` muestra «unmerged paths» pero no recuerdas en qué operación estás?
+8. ¿Cómo afecta el historial de cada lado a la decisión de resolución de un conflicto?
 ---
 
 ## 6. Nivel profesional + resumen
