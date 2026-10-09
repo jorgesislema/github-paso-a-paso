@@ -18,28 +18,22 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-Identificar un conflicto
-       │
-       ├── 1. Señales
-   │        ├── mensaje de Git
-   │        ├── git status (unmerged paths)
-   │        └── archivos con marcadores
-   │
-       ├── 2. La secuencia de identificación
-   │        ├── ¿en qué operación estoy?
-   │        ├── ¿qué archivos?
-   │        └── ¿qué bloques y quién es quién?
-   │
-       ├── 3. Índice y estados (ls-files -u)
-   │
-       ├── 4. Comprobación de residuos
-   │
-       ├── 5. Errores comunes con diagnóstico completo
-   │
-       ├── 6. Práctica guiada
-   │
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Identificar un conflicto))
+    1. Señales
+      mensaje de Git
+      git status (unmerged paths)
+      archivos con marcadores
+    2. La secuencia de identificación
+      ¿en qué operación estoy?
+      ¿qué archivos?
+      ¿qué bloques y quién es quién?
+    3. Índice y estados (ls-files -u)
+    4. Comprobación de residuos
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional + resumen
 ```
 
 ---
@@ -93,35 +87,16 @@ git diff --name-only --diff-filter=U   # solo los U
 
 ## 2. La secuencia de identificación
 
-```text
-MÉTODO (dos minutos)
-──────────────────────────────────────────────────────
-1. ¿EN QUÉ ESTOY?
-     git status
-     · "You have unmerged paths" → conflicto
-     · ¿merge?  ¿"Merging"? / MERGE_HEAD
-     · ¿rebase? "interactive rebase in progress" /
-       rebase-merge en .git
-     · ¿nada de esto? → no hay operación (busca otra
-       causa)
-
-2. ¿QUÉ ARCHIVOS?
-     git status (Unmerged paths)
-     git diff --name-only --diff-filter=U
-
-3. ¿QUIÉN ES QUIÉN?
-     · merge: HEAD = tuyo; >>>>>> = lo que llega
-     · rebase: HEAD = base nueva; >>>>>> = tu commit
-     · duda: git log --graph --left-right <lados>
-
-4. ¿QUÉ BLOQUES?
-     abre el archivo (o git diff) y localiza cada
-     marcador: anota líneas y decisión prevista
-
-5. ¿QUÉ HISTORIAL RESPALDA LA DECISIÓN?
-     git log -p --follow -- <archivo>   (contexto)
-     git show <commit> -- <archivo>     (cambios
-     concretos)
+```mermaid
+flowchart TD
+    A[Inicio] --> B{¿Hay conflicto?}
+    B -- Sí, unmerged paths --> C[Listar archivos en conflicto]
+    B -- No --> Z[No hay conflicto]
+    C --> D[Determinar operación: merge o rebase]
+    D --> E[Identificar lados (HEAD/otros)]
+    E --> F[Examinar bloques de conflicto]
+    F --> G[Consultar historial para decidir]
+    G --> H[Fin]
 ```
 
 ---
@@ -358,6 +333,22 @@ Un método mecánico que puedes ejecutar en cualquier conflicto: seis comandos y
 
 Identificar es separar hechos de pánico: operación, archivos, lados, bloques, historia — en ese orden, siempre.
 
+
+### Ejercicio de transferencia
+Aplica la secuencia de identificación (status → diff → índice) a un conflicto que involucre solo cambios de espacios en blanco. Usa `git diff --check --ignore-space-change` para detectar y verifica que el índice muestre `stage 1` igual en ambos lados. Entregable: captura de pantalla de los comandos y su salida mostrando que el conflicto es solo de espacios.
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Cuáles son las tres señales principales que indican un conflicto en Git?
+2. ¿En qué orden debe ejecutarse la secuencia de identificación según el método del capítulo?
+3. ¿Qué comando te muestra los archivos con conflictos sin necesidad de revisar el mensaje?
+4. ¿Cómo puedes determinar si estás en un merge o en un rebase mirando el repositorio?
+5. ¿Qué indica la presencia de tres etapas (stage 1,2,3) en `ls-files -u` para un archivo?
+6. ¿Por qué es importante comprobar residuos con `diff --check` antes de cerrar un conflicto?
+7. ¿Qué debes hacer si `git status` muestra «unmerged paths» pero no recuerdas en qué operación estás?
+8. ¿Cómo afecta el historial de cada lado a la decisión de resolución de un conflicto?
 ---
 
 ## 7. Nivel profesional + resumen
