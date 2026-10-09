@@ -10,36 +10,31 @@ Los permisos de GitHub son jerárquicos y granulares. Este capítulo enseña los
 
 ## Mapa conceptual de este capítulo
 
-```text
-Colaboradores y permisos
-       │
-       ├── 1. Niveles: plataforma, repo, rama
-       ├── 2. Roles del repositorio (tabla)
-       ├── 3. Cómo se asignan y a quién
-       ├── 4. Fuera del repo: outside collaborators
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Colaboradores y permisos))
+    1 Niveles plataforma repo rama
+    2 Roles del repositorio
+    3 Cómo se asignan y a quién
+    4 Fuera del repo outside collaborators
+    5 Errores comunes con diagnóstico completo
+    6 Práctica guiada
+    7 Nivel profesional resumen
 ```
 
 ---
 
 ## 1. Niveles: plataforma, repo, rama
 
-```text
-JERARQUÍA DE CONTROL
-──────────────────────────────────────────────────────
-NIVEL 1 — Cuenta / plataforma
-  · tu cuenta, tu 2FA, tus llaves SSH
-NIVEL 2 — Organización (si aplica)
-  · equipos, políticas de la org (cap. 02)
-NIVEL 3 — Repositorio
-  · quién es colaborador y con qué rol
-  · ajustes: seguridad, ramas, merge
-NIVEL 4 — Rama (protecciones)
-  · reglas sobre main: checks, aprobaciones,
-    integradores (sección 18)
+```mermaid
+flowchart TD
+    A["Nivel 1: Cuenta / plataforma"]
+    B["Nivel 2: Organización"]
+    C["Nivel 3: Repositorio"]
+    D["Nivel 4: Rama (protecciones)"]
+    A --> B
+    B --> C
+    C --> D
 ```
 
 ```text
@@ -353,6 +348,10 @@ Los permisos son dos capas — rol del repo y reglas de rama — y ambas se dise
 
 ---
 
+## Ejercicio de transferencia
+
+En un repositorio de práctica simulando una startup, crea un equipo llamado 'desarrolladores' con rol Write y otro llamado 'líderes técnicos' con rol Maintain. Asigna a dos usuarios de prueba cada equipo, protege la rama mainrequiriendo aprobación de líderes técnicos, y verifica que los desarrolladores puedan abrir PRs pero no integrarlos directamente. Entrega capturas de la configuración de equipos y protección de rama, y una breve explicación de cómo se aplica el mínimo privilegio.
+
 ## 7. Nivel profesional + resumen
 
 ### 7.1. Gestión de accesos como seguridad
@@ -390,6 +389,20 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **El acceso correcto es el que dura lo que dura la función: rol mínimo por capa, integración por rama protegida y cuentas individuales siempre.**
+
+---
+
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué es importante asignar permisos siguiendo el principio de mínimo privilegio y qué riesgos se evitan al no otorgar acceso Admin innecesario?
+2. ¿Cómo afecta la protección de ramas (como requerir pull requests y aprobaciones) al flujo de trabajo de un equipo que utiliza roles Write y Maintain?
+3. ¿De qué manera el rol Triage facilita la gestión de issues sin permitir modificaciones al código, y en qué situaciones sería preferible asignar este rol en lugar de Write?
+4. ¿Cuál es la diferencia entre asignar permisos directamente a un usuario y hacerlo mediante equipos en una organización, y qué ventajas ofrece cada enfoque?
+5. ¿Cómo gestionarías el acceso de un colaborador externo cuyo contrato ha terminado, asegurando que se revoquen todos los permisos y se verifique que no queden accesos residuales?
+6. ¿Qué papel juega el archivo CODEOWNERS en la asignación automática de revisores y cómo complementa las reglas de protección de ramas?
 
 ---
 
