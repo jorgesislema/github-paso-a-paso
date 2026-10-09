@@ -14,52 +14,47 @@ En este capítulo aprenderás:
 * hooks distribuidos (Husky, pre-commit, lefthook) de forma informada;
 * errores comunes con diagnóstico completo, práctica guiada y nivel profesional.
 
----
-
 ## Mapa conceptual de este capítulo
 
-```text
-git hooks
-       │
-       ├── 1. Qué son (cliente vs. servidor)
-       ├── 2. Los hooks de uso diario
-       ├── 3. Escribir hooks (ejemplos)
-       ├── 4. Distribución por equipo
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
-```
+```mermaid
+mindmap
+  root((git hooks))
+    1. Qué son (cliente vs. servidor)
+    2. Los hooks de uso diario
+    3. Escribir hooks (ejemplos)
+    4. Distribución por equipo
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional + resumen
 
 ---
-
 ## 1. Qué son (cliente vs. servidor)
 
 ```text
 HOOKS DE CLIENTE (voluntarios — en .git/hooks)
-   │
-   ├── pre-commit      antes de crear el commit
-   ├── prepare-commit-msg  modificar mensaje inicial
-   ├── commit-msg      validar el mensaje
-   ├── post-commit    (informativo)
-   ├── pre-push       antes de push
-   └── ... (post-checkout, pre-rebase...)
+    │
+    ├── pre-commit      antes de crear el commit
+    ├── prepare-commit-msg  modificar mensaje inicial
+    ├── commit-msg      validar el mensaje
+    ├── post-commit    (informativo)
+    ├── pre-push       antes de push
+    └── ... (post-checkout, pre-rebase...)
 
 HOOKS DE SERVIDOR (obligatorios — en el remoto)
-   │
-   ├── pre-receive / update  (GitHub: checks y
-   │   reglas de rama, vía Actions o configuración)
-   └── post-receive
+    │
+    ├── pre-receive / update  (GitHub: checks y
+    │   reglas de rama, vía Actions o configuración)
+    └── post-receive
 ```
 
 ```text
 La distinción clave:
-   │
-   ├── cliente: ayuda, pero puede saltarse (quien
-   │   ejecuta git commit --no-verify no lo corre)
-   │
-   └── servidor/CI: la garantía real; el cliente es
-       comodidad y velocidad de feedback
+    │
+    ├── cliente: ayuda, pero puede saltarse (quien
+    │   ejecuta git commit --no-verify no lo corre)
+    │
+    └── servidor/CI: la garantía real; el cliente es
+        comodidad y velocidad de feedback
 ```
 
 ```bash
@@ -75,26 +70,26 @@ git config core.hooksPath   # ruta alternativa (ver 4)
 
 ```text
 pre-commit
-   │
-   ├── formatear (black, prettier, gofmt)
-   ├── lint
-   ├── tests rápidos
-   └── bloquear archivos prohibidos (gigantes, .env)
+    │
+    ├── formatear (black, prettier, gofmt)
+    ├── lint
+    ├── tests rápidos
+    └── bloquear archivos prohibidos (gigantes, .env)
 
 commit-msg
-   │
-   └── validar formato (Convención de commits, ticket
-       obligatorio)
+    │
+    └── validar formato (Convención de commits, ticket
+        obligatorio)
 
 pre-push
-   │
-   ├── tests completos (más lentos)
-   └── bloquear pushes a ramas protegidas (política
-       local)
+    │
+    ├── tests completos (más lentos)
+    └── bloquear pushes a ramas protegidas (política
+        local)
 
 prepare-commit-msg
-   │
-   └── plantillas (asunto con rama, Co-authored-by)
+    │
+    └── plantillas (asunto con rama, Co-authored-by)
 ```
 
 ---
@@ -104,17 +99,17 @@ prepare-commit-msg
 ### 3.1. Estructura
 
 ```text
-   │
-   ├── es un SCRIPT ejecutable (sh, bash, Python,
-   │   PowerShell… según entorno)
-   │
-   ├── código de salida 0 → el proceso CONTINÚA
-   │
-   ├── código ≠ 0 → el proceso SE DETIENE (en
-   │   pre-commit no se crea el commit)
-   │
-   └── sin extensión de archivo: nombre exacto del
-       hook
+    │
+    ├── es un SCRIPT ejecutable (sh, bash, Python,
+    │   PowerShell… según entorno)
+    │
+    ├── código de salida 0 → el proceso CONTINÚA
+    │
+    ├── código ≠ 0 → el proceso SE DETIENE (en
+    │   pre-commit no se crea el commit)
+    │
+    └── sin extensión de archivo: nombre exacto del
+        hook
 ```
 
 ### 3.2. Ejemplo: `pre-commit` (bash)
@@ -127,8 +122,8 @@ echo "formateando..."
 # ejemplo: formateador del proyecto
 # black --quiet .
 if grep -q "DEBUG_SECRET" $(git diff --cached --name-only); then
-  echo "ERROR: posible secreto en los cambios"
-  exit 1
+   echo "ERROR: posible secreto en los cambios"
+   exit 1
 fi
 exit 0
 ```
@@ -139,7 +134,7 @@ exit 0
 # core.hooksPath y scripts envolventes (el repositorio
 # debe estandarizarlo)
 chmod +x .git/hooks/pre-commit     # Unix: hacerlo
-                                   # ejecutable
+                                    # ejecutable
 ```
 
 ### 3.3. Ejemplo: `commit-msg`
@@ -151,12 +146,12 @@ msg_file=$1
 first=$(head -n1 "$msg_file")
 len=${#first}
 if [ "$len" -gt 72 ]; then
-  echo "ERROR: asunto demasiado largo ($len > 72)"
-  exit 1
+   echo "ERROR: asunto demasiado largo ($len > 72)"
+   exit 1
 fi
 case "$first" in
-  feat:*|fix:*|docs:*|chore:*|refactor:*|test:*) exit 0 ;;
-  *) echo "ERROR: usa tipo (feat:, fix:, docs:...)"; exit 1 ;;
+   feat:*|fix:*|docs:*|chore:*|refactor:*|test:*) exit 0 ;;
+   *) echo "ERROR: usa tipo (feat:, fix:, docs:...)"; exit 1 ;;
 esac
 ```
 
@@ -166,7 +161,7 @@ esac
 git commit --amend --no-edit      # dispara pre-commit
 # probar el mensaje:
 git commit -m "esto no vale"      # commit-msg debe
-                                  # rechazar
+                                   # rechazar
 # saltarse UNA vez (solo si lo entiendes):
 git commit --no-verify
 ```
@@ -177,16 +172,18 @@ git commit --no-verify
 
 ```text
 El problema: .git/hooks NO se versiona (está en .git).
+```
 
+```text
 Soluciones:
-   │
-   ├── core.hooksPath: apuntar a una carpeta SÍ
-   │   versionada (ej. .githooks/) → instalar con un
-   │   git config y ya
-   │
-   └── frameworks de hooks (Husky para JS, pre-commit
-       de Python, lefthook…) → gestionan instalación,
-       múltiples lenguajes y activación
+    │
+    ├── core.hooksPath: apuntar a una carpeta SÍ
+    │   versionada (ej. .githooks/) → instalar con un
+    │   git config y ya
+    │
+    └── frameworks de hooks (Husky para JS, pre-commit
+        de Python, lefthook…) → gestionan instalación,
+        múltiples lenguajes y activación
 ```
 
 ```bash
@@ -197,14 +194,14 @@ git config core.hooksPath .githooks
 
 ```text
 Política profesional:
-   │
-   ├── el repo incluye hooks + instrucción de
-   │   instalación (una línea)
-   │
-   ├── y el CI repite las mismas validaciones (los
-   │   hooks del cliente ayudan; CI garantiza)
-   │
-   └── --no-verify no engaña a CI
+    │
+    ├── el repo incluye hooks + instrucción de
+    │   instalación (una línea)
+    │
+    ├── y el CI repite las mismas validaciones (los
+    │   hooks del cliente ayudan; CI garantiza)
+    │
+    └── --no-verify no engaña a CI
 ```
 
 ---
@@ -226,8 +223,6 @@ Política profesional:
 **Opciones:** corregir nombre/ruta; `chmod +x`; revisar salida en terminal.
 
 **Riesgos:** falsa sensación de validación.
-
-**Solución:** probar el hook manualmente tras crearlo (paso obligatorio).
 
 **Cómo se evita:** checklist de instalación en el README del equipo.
 
@@ -364,7 +359,7 @@ chmod +x .githooks/pre-commit      # si aplica
 echo "console.log('x')" > app.js
 git add app.js
 git commit -m "feat: x"            # debe FALLAR con
-                                    # mensaje claro
+                                     # mensaje claro
 ```
 
 ### Paso 3: commit-msg
@@ -380,7 +375,7 @@ exit 0
 ```bash
 git commit -m ""                   # falla
 git commit -m "feat: x"            # pasa (quita antes
-                                    # el console.log)
+                                     # el console.log)
 ```
 
 ### Paso 4: instalar en copia
@@ -403,7 +398,9 @@ echo "push validando... (simulado)"
 exit 0
 ```
 
+```bash
 1. Ejecuta `git push` y observa el aviso.
+```
 
 ### Resultado esperado
 
@@ -421,32 +418,32 @@ Un hook útil es corto, rápido, hablador y acompañado de CI; la instalación e
 
 ```text
 Cliente (feedback rápido):
-   │
-   ├── formateador + lint (pre-commit)
-   ├── validación de mensaje (commit-msg)
-   └── tests rápidos (pre-push, opcional)
+    │
+    ├── formateador + lint (pre-commit)
+    ├── validación de mensaje (commit-msg)
+    └── tests rápidos (pre-push, opcional)
 
 Servidor/CI (garantía):
-   │
-   ├── mismos checks (formateo, lint) → nadie puede
-   │   saltárselos de verdad
-   ├── tests completos, seguridad (sección 20)
-   └── reglas de rama (merge solo con checks verdes)
+    │
+    ├── mismos checks (formateo, lint) → nadie puede
+    │   saltárselos de verdad
+    ├── tests completos, seguridad (sección 20)
+    └── reglas de rama (merge solo con checks verdes)
 
 Distribución:
-   │
-   ├── core.hooksPath versionado, o framework
-   │   (Husky/lefhthook/pre-commit) según ecosistema
-   └── «setup» en documentación de contributing
+    │
+    ├── core.hooksPath versionado, o framework
+    │   (Husky/lefhthook/pre-commit) según ecosistema
+    └── «setup» en documentación de contributing
 ```
 
 ### 7.2. Medición
 
 ```text
-   │
-   ├── tiempo total de hooks < 10 s (objetivo típico)
-   │
-   └── si crece: mover a CI o cachear
+    │
+    ├── tiempo total de hooks < 10 s (objetivo típico)
+    │
+    └── si crece: mover a CI o cachear
 ```
 
 ### 7.3. Resumen
@@ -465,6 +462,25 @@ La idea principal es:
 > **Los hooks convierten las reglas del equipo en ejecución automática en tu máquina; la calidad real llega cuando esas mismas reglas viven también en el servidor.**
 
 ---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Qué comando usarías para verificar si un hook tiene permisos de ejecución en un sistema Unix?
+2. ¿Cómo determinarías si un hook se encuentra en la ubicación correcta según la configuración de `core.hooksPath`?
+3. ¿Qué riesgo implica usar un hook que no proporciona mensajes de error claros cuando falla?
+4. ¿Cómo evitarías que un hook lento cause que los desarrolladores lo ignoren o lo desactiven?
+5. ¿Qué patrón deberías seguir en un hook que modifica archivos staged para asegurar que los cambios se incluyan en el commit?
+6. ¿Cómo combinarías los hooks del cliente con el CI para garantizar que las reglas del equipo se apliquen tanto localmente como en el servidor?
+7. ¿Qué ventaja tiene usar un framework como Husky o lefthook para gestionar hooks en un proyecto JavaScript?
+8. ¿Cómo medirías el tiempo total de ejecución de tus hooks y qué harías si supera el umbral recomendado?
+
+---
+
+## Ejercicio de transferencia
+
+Tienes un proyecto de Python que utiliza el formateador black y el linter flake8. Necesitas asegurarte de que antes de cada commit, el código esté formateado con black y pase las pruebas rápidas de flake8. Describe los pasos que seguirías para crear un hook `pre-commit` que ejecute black y flake8, proporcione mensajes de error claros si falla, y esté versionado mediante `core.hooksPath` para que todo el equipo pueda instalarlo fácilmente.
 
 ## Próximo paso
 
