@@ -152,15 +152,19 @@ CUÁNDO NO usar milestone:
 
 ## 4. Ciclo de vida y rutinas
 
-```text
-CICLO
-──────┬──┬────────────────────────────────────────────
- abierta → triage (etiquetas, dueño)
-    → en curso (asignada; PR vinculado)
-      → revisión (PR abierto con Closes #n)
-        → cerrada (merge automático o manual)
-          o cerrada como «no hará» (con comentario
-            del porqué — ¡importa!)
+```mermaid
+flowchart TD
+    A["abierta"]
+    B["triage (etiquetas, dueño)"]
+    C["en curso (asignada; PR vinculado)"]
+    D["revisión (PR abierto con Closes #n)"]
+    E["cerrada (merge automático o manual)"]
+    F["cerrada como «no hará» (con comentario del porqué)"]
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    D --> F
 ```
 
 ```text
@@ -382,6 +386,10 @@ Las issues se ejecutan cuando tienen criterios, dueño, etiqueta útil y pertene
 
 ---
 
+## Ejercicio de transferencia
+
+En un repositorio de práctica, crea tres issues representando diferentes tipos de trabajo (bug, feature, documentación) con criterios de aceptación, asigna etiquetas según tu taxonomía, ásignalas a un milestone con objetivo y fecha, y vincula un PR que cierre una issue usando «Closes #n». Entrega capturas de las issues, el milestone, el PR y la gráfica de GitHub Projects si la usas.
+
 ## 7. Nivel profesional + resumen
 
 ### 7.1. Tracker como sistema de planificación
@@ -418,6 +426,22 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **El tracker solo funciona si cada issue es ejecutable (criterios + dueño) y cada milestone es un objetivo — el resto es una lista de deseos con fecha.**
+
+---
+
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué es esencial que una issue tenga criterios de aceptación claros y cómo afecta eso al proceso de revisión de pull requests?
+2. ¿Cómo diseñarías una taxonomía de etiquetas que sea útil para el triage y evitando la proliferación de etiquetas decorativas o inútiles?
+3. ¿De qué manera los milestones con objetivo y fecha ayudan a planificar entregas y a detectar desviaciones de alcance temprano?
+4. ¿Cuál es el rol del triage semanal en el flujo de trabajo de issues y cómo previene el acumularse de issues sin etiqueta o sin dueño?
+5. ¿Cómo utilizarías el vínculo «Closes #n» en un PR para automatizar el cierre de issues y qué precauciones debes tomar para evitar cierres incorrectos?
+6. ¿Qué estrategias seguirías para manejar issues que se cierran como «no hará» y cómo documentar esa decisión para mantener la confianza en el tracker?
+7. ¿Cómo integrarías GitHub Projects con el flujo de issues para visualizar el progreso hacia un milestone y qué ventajas aporta frente a usar solo milestones?
+8. ¿De qué forma la métrica de edad de issues y el porcentaje con dueño pueden ser indicadores de salud del proceso de gestión de issues?
 
 ---
 
