@@ -1,4 +1,19 @@
 # El README
+[`03-mensajes-de-commit.md`](03-mensajes-de-commit.md)
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compru�balo con este cap�tulo:
+
+1. �Por qu� es esencial que el README responda primero al �qu�, luego al �por qu� y finalmente al �c�mo� en la experiencia de un nuevo visitante?
+2. �C�mo afecta la decisi�n de colocar documentaci�n extensiva (como manuales de API) en docs/ en lugar de saturar el README a la usabilidad y al mantenimiento del proyecto?
+3. �Qu� criterios debes usar para determinar si un bloque de informaci�n (por ejemplo, una tabla de configuraci�n) pertenece al README o debe moverse a un documento separado en docs/?
+4. �C�mo contribuyen los badges honesto y la pr�ctica de �clon limpio� a la confianza de los usuarios potenciales y a la calidad percibida del proyecto?
+5. �Qu� consecuencias tiene omitir la secci�n de licencia o usar una licencia inadecuada para el tipo de proyecto y su audiencia?
+6. �C�mo implementar�as un proceso de revisi�n de PR que asegure que el README se mantenga sincronizado con los cambios en la interfaz de uso o instalaci�n?
+
+[`03-mensajes-de-commit.md`](03-mensajes-de-commit.md)
+# El README
 
 ## Introducción
 
@@ -7,45 +22,40 @@ El README es la primera — y muchas veces única — página que leerán de tu 
 Un README profesional no es un dumping ground de todo lo que sabes: es una puerta de entrada con enlaces al resto. Este capítulo enseña su estructura, su contenido mínimo y cómo mantenerlo vivo.
 
 ---
-
 ## Mapa conceptual de este capítulo
 
-```text
-El README
-       │
-       ├── 1. Las tres preguntas
-       ├── 2. Estructura recomendada
-       ├── 3. Qué sí y qué no incluir
-       ├── 4. Mantenerlo vivo
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((El README))
+    Las tres preguntas
+    Estructura recomendada
+    Qué sí y qué no incluir
+    Mantenerlo vivo
+      Errores comunes con diagnóstico completo
+      Práctica guiada
+      Nivel profesional + resumen
 ```
 
 ---
-
 ## 1. Las tres preguntas
 
 ```text
 Cualquier lector (usuario, reclutador, compañero) hace:
-
-   │
-   ├── ¿QUÉ es?          → título + descripción
-   ├── ¿POR QUÉ?         → problema que resuelve
-   └── ¿CÓMO empiezo?    → instalación y primer uso
+    │
+    ├── ¿QUÉ es?          → título + descripción
+    ├── ¿POR QUÉ?         → problema que resuelve
+    └── ¿CÓMO empiezo?    → instalación y primer uso
 ```
 
 ```text
 El orden de lectura real es de arriba abajo:
-   │
-   ├── los primeros 10 renglones deciden si siguen
-   │
-   └── por eso: beneficio ANTES que arquitectura
+    │
+    ├── los primeros 10 renglones deciden si siguen
+    │
+    └── por eso: beneficio ANTES que arquitectura
 ```
 
 ---
-
 ## 2. Estructura recomendada
 
 ```markdown
@@ -69,11 +79,11 @@ Uno o dos párrafos: qué hace y para quién.
 
 ```text
 Ajustes según tipo de proyecto:
-   │
-   ├── librería → uso con snippets por lenguaje
-   ├── app     → instalación + capturas
-   ├── doc     → índice de guías
-   └── portfolio → qué demuestra + enlaces
+    │
+    ├── librería → uso con snippets por lenguaje
+    ├── app     → instalación + capturas
+    ├── doc     → índice de guías
+    └── portfolio → qué demuestra + enlaces
 ```
 
 ```bash
@@ -84,64 +94,63 @@ cd mi-proyecto
 ```
 
 ---
-
 ## 3. Qué sí y qué no incluir
 
 ```text
 SÍ (puerta de entrada):
-   │
-   ├── promesa clara y verificable
-   ├── ejemplo mínimo EJECUTABLE (copiar y pegar)
-   ├── estado real («en desarrollo» / «estable»)
-   ├── badges honestos (build, versión, licencia)
-   └── enlaces: docs, contributing, glosario, FAQ
+    │
+    ├── promesa clara y verificable
+    ├── ejemplo mínimo EJECUTABLE (copiar y pegar)
+    ├── estado real («en desarrollo» / «estable»)
+    ├── badges honestos (build, versión, licencia)
+    └── enlaces: docs, contributing, glosario, FAQ
 ```
 
 ```text
 NO (pertenece en docs/):
-   │
-   ├── manual completo del API (→ docs/)
-   ├── historial entero del equipo (→ CHANGELOG/ADRs)
-   ├── esquemas internos extensos (→ docs/arquitectura)
-   └── textos de marketing vacíos sin evidencia
+    │
+    ├── manual completo del API (→ docs/)
+    ├── historial entero del equipo (→ CHANGELOG/ADRs)
+    ├── esquemas internos extensos (→ docs/arquitectura)
+    └── textos de marketing vacíos sin evidencia
 ```
 
 ```text
-   │
-   ├── el README crece por ENLACES, no por absorción
-   │
-   └── si una sección supera ~50-80 líneas: extraer
-       y enlazar
+    │
+    ├── el README crece por ENLACES, no por absorción
+    │
+    └── si una sección supera ~50-80 líneas: extraer
+        y enlazar
 ```
 
 ---
-
 ## 4. Mantenerlo vivo
 
 ```text
 Señales de README muerto:
-   │
-   ├── los comandos del ejemplo ya no existen
-   ├── menciona archivos/ramas que cambiaron de nombre
-   └── nadie lo revisa en los PRs que tocan «cómo se
-       usa»
+    │
+    ├── los comandos del ejemplo ya no existen
+    │
+    ├── menciona archivos/ramas que cambiaron de nombre
+    │
+    └── nadie lo revisa en los PRs que tocan «cómo se
+        usa»
 ```
 
 ```text
 Higiene:
-   │
-   ├── revisar el README en PRs que cambian interfaz
-   │   o instalación (checklist del equipo)
-   │
-   ├── badges con estado real (no decorativos)
-   │
-   └── «actualizado: …» no hace falta si el repo
-       tiene historia viva: el README se revisa como
-       código
+    │
+    ├── revisar el README en PRs que cambian interfaz
+    │   o instalación (checklist del equipo)
+    │
+    ├── badges con estado real (no decorativos)
+    │
+    └── «actualizado: …» no hace falta si el repo
+        tiene historia viva: el README se revisa como
+        código
 ```
 
 ---
-
 ## 5. Errores comunes con diagnóstico completo
 
 ### Error 1: asumir conocimiento del lector
@@ -255,7 +264,6 @@ Higiene:
 **Cómo se evita:** revisar la sección de estado en cada release.
 
 ---
-
 ## 6. Práctica guiada
 
 ### Objetivo
@@ -266,10 +274,10 @@ Reescribir un README siguiendo las tres preguntas y probarlo en clon limpio.
 
 ```text
 Toma el README de tu proyecto de práctica y responde:
-   │
-   ├── ¿en 30 segundos se entiende qué es?
-   ├── ¿el primer ejemplo se puede copiar?
-   └── ¿hay enlaces a docs sin engordar?
+    │
+    ├── ¿en 30 segundos se entiende qué es?
+    ├── ¿el primer ejemplo se puede copiar?
+    └── ¿hay enlaces a docs sin engordar?
 Marca lo que falte.
 ```
 
@@ -307,24 +315,27 @@ README probado en clon limpio, con estructura, enlaces y checklist de mantenimie
 
 El README es un contrato con el lector: se escribe para quien llega por primera vez y se revisa como código.
 
----
+### Ejercicio de transferencia
 
+Imagina que debes documentación para una biblioteca de funciones matemáticas de uso interno en tu empresa. Redacta un README que siga la estructura de tres preguntas, incluya un ejemplo de uso mínimo con enlaces a la documentación detallada en `docs/` y añade una licencia adecuada para uso interno. Luego, verifica que un colega pueda clonar el repositorio y ejecutar el ejemplo sin leer ningún otro documento.
+
+---
 ## 7. Nivel profesional + resumen
 
 ### 7.1. README como producto
 
 ```text
-   │
-   ├── métrica informal: «¿puede alguien ejecutar el
-   │   ejemplo en 5 minutos?»
-   │
-   ├── revisión explícita en PRs de interfaz
-   │
-   ├── plantilla por tipo de proyecto (la organización
-   │   tiene su README estándar)
-   │
-   └── en portafolios/reclutamiento: el README es tu
-       carta de presentación técnica (sección 26)
+    │
+    ├── métrica informal: «¿puede alguien ejecutar el
+    │   ejemplo en 5 minutos?»
+    │
+    ├── revisión explícita en PRs de interfaz
+    │
+    ├── plantilla por tipo de proyecto (la organización
+    │   tiene su README estándar)
+    │
+    └── en portafolios/reclutamiento: el README es tu
+        carta de presentación técnica (sección 26)
 ```
 
 ### 7.2. Resumen
@@ -343,7 +354,6 @@ La idea principal es:
 > **Un README se escribe para el que llega mañana y se prueba como código hoy: promesa clara, ejemplo copiable y enlaces — nada más en la puerta.**
 
 ---
-
 ## Próximo paso
 
 Ya tienes la portada.
