@@ -22,6 +22,29 @@ En este capítulo aprenderás:
 
 Al terminar, podrás corregir cambios locales con precisión y sin miedo.
 
+
+```mermaid
+mindmap
+  root((git restore))
+    Áreas de Git
+      Directorio de trabajo
+      Índice
+      HEAD
+    Variantes de restore
+      archivo
+      --staged
+      --source=HEAD
+      .
+    Flujo típico
+      Modificar
+      git add
+      git commit
+    Comparación
+      checkout --
+      reset HEAD
+      switch
+```
+
 ---
 
 ## 1. La recuperación es un superpoder
@@ -387,32 +410,12 @@ Cuando leas material antiguo, ya sabrás traducirlo.
 
 Esta imagen resume el comportamiento del comando.
 
-```text
-                 git restore archivo
-                 copia: Índice → Directorio de trabajo
-                         │
-                         ▼
-             Solo cambia el directorio de trabajo
-
-           git restore --staged archivo
-           copia: HEAD → Índice
-                         │
-                         ▼
-             Solo cambia el índice
-             (el trabajo queda pendiente, sin perderse)
-
-      git restore --source=HEAD archivo
-      copia: HEAD → Directorio de trabajo
-                         │
-                         ▼
-             Solo cambia el directorio de trabajo
-             (el índice conserva lo preparado)
-
-  git restore --source=HEAD --staged --worktree archivo
-  copia: HEAD → Índice y HEAD → Directorio de trabajo
-                         │
-                         ▼
-             El archivo queda como en el último commit
+```mermaid
+flowchart TD
+    A["git restore archivo"] --> B["copia: Índice → Directorio de trabajo"] --> C["Solo cambia el directorio de trabajo"]
+    D["git restore --staged archivo"] --> E["copia: HEAD → Índice"] --> F["Solo cambia el índice\n(el trabajo queda pendiente, sin perderse)"]
+    G["git restore --source=HEAD archivo"] --> H["copia: HEAD → Directorio de trabajo"] --> I["Solo cambia el directorio de trabajo\n(el índice conserva lo preparado)"]
+    J["git restore --source=HEAD --staged --worktree archivo"] --> K["copia: HEAD → Índice y HEAD → Directorio de trabajo"] --> L["El archivo queda como en el último commit"]
 ```
 
 Ninguna de estas variantes modifica el historial de commits.
@@ -529,6 +532,11 @@ Deberías poder explicar con claridad:
 * qué área se modificó en cada caso;
 * qué cambios se conservaron y cuáles no.
 
+
+### Ejercicio de transferencia
+Crea una rama nueva, agrega un archivo, modifícalo, prepáralo y luego usa `git restore --staged` para desaprepararlo sin perder los cambios, verificando con `git status` que el archivo aparezca como no preparado pero aún presente.
+Luego, confirma el cambio con `git commit` y verifica que el historial mantenga el archivo preparado anteriormente.
+
 ---
 
 ## Errores comunes
@@ -625,7 +633,15 @@ La idea principal es:
 > **git restore mueve contenido entre las áreas locales sin tocar el historial: descarta o desprepara cambios, pero no destruye commits.**
 
 ---
+## Autopreguntas de cierre
 
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+1. ¿Cuál es la diferencia entre usar `git restore archivo` y `git restore --staged archivo` en cuanto a qué área de Git modifican?
+2. ¿Qué ocurre con el historial de commits cuando se usa cualquiera de las variantes de `git restore`?
+3. Si tienes un archivo preparado (en el índice) que no deseas incluir en el próximo commit, ¿qué comando usarías para desaprepararlo sin perder los cambios en el directorio de trabajo?
+4. ¿Cómo puedes recuperar un archivo que eliminaste por accidente del directorio de trabajo, siempre que estuviera previamente registrado en Git?
+5. ¿Qué indica la opción `--source=HEAD` al usar `git restore` y qué efecto tiene en el directorio de trabajo y el índice?
+6. ¿Cuál es la ventaja de usar `git restore .` y qué limitación tiene respecto a los archivos sin rastrear?
 ## Próximo paso
 
 Un cambio en el directorio de trabajo se deshace con `git restore`.
