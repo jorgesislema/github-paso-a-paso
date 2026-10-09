@@ -14,33 +14,28 @@ En este capítulo aprenderás:
 * tags como puntos de recuperación y anclas de CI/CD;
 * errores comunes con diagnóstico completo, práctica guiada y nivel profesional (releases de GitHub).
 
----
-
 ## Mapa conceptual de este capítulo
 
-```text
-Tags y versionado
-       │
-       ├── 1. Qué es un tag (y ligero vs. anotado)
-       ├── 2. Operaciones: crear, listar, borrar
-       ├── 3. Convenciones de nombres (SemVer)
-       ├── 4. Tags en el flujo: puntos, CI, releases
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
-```
+```mermaid
+mindmap
+  root((Tags y versionado))
+    1. Qué es un tag (y ligero vs. anotado)
+    2. Operaciones: crear, listar, borrar
+    3. Convenciones de nombres (SemVer)
+    4. Tags en el flujo: puntos, CI, releases
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional + resumen
 
 ---
-
 ## 1. Qué es un tag
 
 ```text
 main ── A ── B ── C ── D
-                 │
-              v2.1.0   ← etiqueta apuntando a C
-                         (incluso si main avanza,
-                          el tag sigue en C)
+                  │
+               v2.1.0   ← etiqueta apuntando a C
+                          (incluso si main avanza,
+                           el tag sigue en C)
 ```
 
 ```bash
@@ -54,20 +49,22 @@ git tag -a v2.1.0 -m "Versión 2.1.0: añade export PDF"
 
 ```text
 Ligero vs. anotado:
-   │
-   ├── ligero   → marca rápida (personal, temporal)
-   │
-   └── anotado  → hito oficial: lleva mensaje y
-                  metadatos firmables; es lo que se
-                  publica como release
+    │
+    ├── ligero   → marca rápida (personal, temporal)
+    │
+    └── anotado  → hito oficial: lleva mensaje y
+                   metadatos firmables; es lo que se
+                   publica como release
 ```
 
 ```text
 Los tags NO se copian con push/pull por defecto:
-   │
-   └── git push              → NO sube tags
-       git push --tags       → sube todos
-       git push origin v2.1.0 → sube uno (recomendado)
+    │
+    ├── git push              → NO sube tags
+    │
+    ├── git push --tags       → sube todos
+    │
+    └── git push origin v2.1.0 → sube uno (recomendado)
 ```
 
 ---
@@ -82,27 +79,26 @@ git tag -a v2.1.0 -m "..."     # crear anotado
 git tag <hash> v2.0.9          # etiquetar un commit
                                 # viejo
 git push origin v2.1.0         # subir UNO
-git push --tags                # subir TODOS
 ```
 
 ```bash
 # borrar (¡cuidado!):
 git tag -d v2.1.0              # local
-git push origin --delete v2.1.0   # remoto (afecta a
-                                  # todos)
+⚠️ **RIESGO:** Elimina el tag remoto, rompiendo referencias y releases que dependan de él.
+git push origin --delete v2.1.0   # remoto (afecta a todos)
 ```
 
 ```text
 El cuidado de borrar:
-   │
-   ├── el tag publicado es un ACUERDO: referencias,
-   │   releases y CI pueden depender de él
-   │
-   ├── borrarlo rompe enlaces (release de GitHub,
-   │   artefactos descargados por URL de tag)
-   │
-   └── regla: si ya salió, no se borra; si hubo error,
-       se publica una versión corregida (v2.1.1)
+    │
+    ├── el tag publicado es un ACUERDO: referencias,
+    │   releases y CI pueden depender de él
+    │
+    ├── borrarlo rompe enlaces (release de GitHub,
+    │   artefactos descargados por URL de tag)
+    │
+    └── regla: si ya salió, no se borra; si hubo error,
+        se publica una versión corregida (v2.1.1)
 ```
 
 ---
@@ -111,36 +107,36 @@ El cuidado de borrar:
 
 ```text
 Formato habitual:  vMAJOR.MINOR.PATCH   (p. ej. v2.1.0)
-
+ 
 MAJOR  → cambio incompatible (rompe API/contrato)
 MINOR  → funcionalidad nueva, compatible
 PATCH  → corrección compatible (fix)
-
+ 
 v0.x → mientras es 0, «incompatible» puede pasar sin
-       subir MAJOR (convención común)
+        subir MAJOR (convención común)
 ```
 
 ```text
 Reglas prácticas:
-   │
-   ├── prefijo «v» (v2.1.0) o no (2.1.0): elige UNO
-   │   y no cambies (rompe enlaces)
-   │
-   ├── el tag se coloca en el commit EXACTO de la
-   │   entrega (tras CI verde)
-   │
-   └── prerelease: v2.2.0-rc.1, v2.2.0-beta.3 (SemVer
-       lo permite)
+    │
+    ├── prefijo «v» (v2.1.0) o no (2.1.0): elige UNO
+    │   y no cambies (rompe enlaces)
+    │
+    ├── el tag se coloca en el commit EXACTO de la
+    │   entrega (tras CI verde)
+    │
+    └── prerelease: v2.2.0-rc.1, v2.2.0-beta.3 (SemVer
+        lo permite)
 ```
 
 ```text
 ¿Dónde vive la versión además del tag?
-   │
-   ├── en el proyecto: archivo VERSION o metadata del
-   │   manifiesto (según ecosistema)
-   │
-   └── coherencia: tag y archivo deben coincidir en
-       el commit de la entrega
+    │
+    ├── en el proyecto: archivo VERSION o metadata del
+    │   manifiesto (según ecosistema)
+    │
+    └── coherencia: tag y archivo deben coincidir en
+    el commit de la entrega
 ```
 
 ---
@@ -149,30 +145,30 @@ Reglas prácticas:
 
 ```text
 Puntos de recuperación:
-   │
-   ├── git checkout v2.1.0    → reproducir la entrega
-   │                            sin buscar hashes
-   └── git diff v2.1.0..main  → «qué cambió desde la
-                                 última versión»
+    │
+    ├── git checkout v2.1.0    → reproducir la entrega
+    │                            sin buscar hashes
+    └── git diff v2.1.0..main  → «qué cambió desde la
+                                  última versión»
 ```
 
 ```text
 CI/CD por tag:
-   │
-   ├── on: push: tags: ["v*"]
-   │      → publicar artefacto SOLO cuando hay versión
-   │
-   └── evita publicar en cada commit de main
+    │
+    ├── on: push: tags: ["v*"]
+    │      → publicar artefacto SOLO cuando hay versión
+    │
+    └── evita publicar en cada commit de main
 ```
 
 ```text
 Release de GitHub:
-   │
-   ├── tag anotado + Release en la interfaz
-   │   (notas, artefactos binarios, SHA)
-   │
-   └── el Release es la cara pública; el tag es el
-       ancla técnica (sección 18)
+    │
+    ├── tag anotado + Release en la interfaz
+    │   (notas, artefactos binarios, SHA)
+    │
+    └── el Release es la cara pública; el tag es el
+        ancla técnica (sección 18)
 ```
 
 ---
@@ -315,7 +311,7 @@ git show v0.1.0 --stat
 ```bash
 echo "v2" >> lib.py && git add . && git commit -m "feat: más"
 git diff v0.1.0..HEAD -- lib.py   # «desde la
-                                   # versión»
+                                    # versión»
 ```
 
 ### Paso 3: subir el tag
@@ -347,16 +343,14 @@ git tag -a v0.1.0 <hash correcto> -m "..."
 
 ```text
 Imagina un workflow con:
-
-on:
-  push:
-    tags: ["v*"]
-
-   │
-   ├── al hacer push de v0.1.0 el workflow se
-   │   dispara
-   │
-   └── al hacer push de un commit normal, NO
+  on:
+    push:
+      tags: ["v*"]
+    │
+    ├── al hacer push de v0.1.0 el workflow se
+    │   dispara
+    │
+    └── al hacer push de un commit normal, NO
 ```
 
 ### Resultado esperado
@@ -390,12 +384,12 @@ RELEASE PROFESIONAL
 ### 7.2. Puntos de verificación
 
 ```text
-   │
-   ├── ¿el tag apunta a main del release?  (show)
-   ├── ¿CI verde en ese commit?
-   ├── ¿CHANGELOG con la versión?
-   ├── ¿coincide el versión del manifiesto?
-   └── ¿firmado si el proyecto firma?
+    │
+    ├── ¿el tag apunta a main del release?  (show)
+    ├── ¿CI verde en ese commit?
+    ├── ¿CHANGELOG con la versión?
+    ├── ¿coincide el versión del manifiesto?
+    └── ¿firmado si el proyecto firma?
 ```
 
 ### 7.3. Resumen
@@ -414,6 +408,25 @@ La idea principal es:
 > **El tag es el contrato de versión: se pone con el CI verde, se sube a mano y, si ya se publicó, se corrige con una versión nueva — nunca moviéndolo.**
 
 ---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Cuál es la diferencia entre un tag ligero y un tag anotado en Git, y cuándo deberías usar cada uno?
+2. ¿Qué comando usarías para listar solo los tags que siguen el patrón de SemVer (por ejemplo, v1.*, v2.*)?
+3. ¿Por qué es peligroso usar `git push --tags` en un repositorio con tags locales de prueba o temporales?
+4. ¿Qué pasos seguirías para corregir un tag que apunta al commit equivocado si ya había sido publicado en el remoto?
+5. ¿Cómo verificarías que un tag anotado contiene los metadatos correctos (autor, fecha, mensaje)?
+6. ¿Qué convención de versionado sería apropiada para una biblioteca que mantiene compatibilidad hacia atrás pero agrega nuevas funcionalidades en cada versión menor?
+7. ¿Cómo usarías un tag para comparar los cambios entre dos versiones consecutivas de tu proyecto?
+8. ¿Qué riesgo implica borrar un tag que ya ha sido utilizado en un release publicado y cómo evitarlo?
+
+---
+
+## Ejercicio de transferencia
+
+Imagina que mantienes una biblioteca de JavaScript con versiones publicadas en npm. Acabas de corregir un error crítico en la rama `main` y necesitas publicar una versión de parche. Describe los pasos que seguirías para crear un tag anotado SemVer, subirlo explícitamente al remoto y generar un release en GitHub con notas de cambio, asegurándote de que el tag apunte al commit correcto y que no se reproduzca el error en versiones anteriores.
 
 ## Próximo paso
 
