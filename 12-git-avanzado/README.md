@@ -29,7 +29,74 @@ Al terminar esta sección serás capaz de:
 * investigar el «quién y qué» con `git blame` y `git log` avanzado;
 * explicar cuándo conviene `worktree`, submódulos y hooks.
 
----
+## Mapa conceptual
+
+```mermaid
+mindmap
+  root((12 · Git avanzado))
+    01 Reescritura del historial
+      amend
+      reset
+      rebase
+      filtrado
+    02 Rebase interactivo
+      plan de limpieza
+      pick
+      fixup
+    03 Cherry-pick
+      cherry-pick
+      -x
+      portar commits
+    04 Tags y versionado
+      tags anotadas
+      SemVer
+      convenciones de versionado
+    05 Git bisect
+      bisect manual
+      bisect automático
+      búsqueda binaria
+    06 Blame y log avanzado
+      blame
+      log avanzado
+      quién y qué
+    07 Git worktree
+      worktree
+      varias ramas
+      sin clon duplicado
+    08 Git submodules
+      submódulos
+      modelo
+      flujo
+      alternativas
+    09 Git hooks
+      hooks
+      validación automática
+      cliente
+      servidor
+
+## Checkpoint 12 — Comprobación obligatoria
+
+Antes de avanzar a `<siguiente bloque>/`, demuestra que puedes (en un repositorio de práctica real):
+
+1. **Utilizar** `git commit --amend` para modificar el último commit manteniendo los cambios preparados.
+2. **Ejecutar** `git rebase -i HEAD~3` para reordenar, combinar o editar los últimos tres commits.
+3. **Crear** una tag anotada con `git tag -a v1.0.0 -m "Versión 1.0.0"` y empujarla con `git push origin v1.0.0`.
+4. **Ejecutar** `git bisect start` para comenzar una búsqueda binaria y localizar un commit que introdujo un error.
+5. **Utilizar** `git worktree add ../hotfix develop` para crear un nuevo árbol de trabajo vinculado a la rama develop.
+6. **Configurar** un hook de pre-commit que ejecute `npm test` antes de cada commit.
+
+Si puedes hacerlo **sin mirar instrucciones**, el checkpoint está cerrado.
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con los capítulos de la sección:
+
+1. ¿Cuándo es aceptable reescribir un commit con `amend` y cuándo está prohibido?
+2. Un fallo existe en v2.3 y no en v2.2: ¿cómo localizas el commit culpable sin leer 200 commits?
+3. ¿Qué añade `cherry-pick -x` respecto a un cherry-pick normal?
+4. ¿Qué diferencia hay entre una tag liviana y una anotada?
+5. ¿Por qué es peligroso usar `git reset --hard` en una rama que ya se ha compartido con otros, y cómo puedes recuperarte si lo haces por accidente?
+6. ¿En qué situaciones preferirías usar `git worktree` en lugar de crear una nueva rama o hacer stash de tus cambios?
 
 ## ¿Qué aprenderás en esta sección?
 
@@ -52,19 +119,6 @@ Practica cada herramienta en tu repositorio de laboratorio antes de tocar uno re
 * Chacon, S. y Straub, B. — *Pro Git* (cap. 4: Git Tools).
 * Semantic Versioning (semver.org).
 * Git — Documentación oficial: «git bisect», «git blame», «git worktree», «git submodule».
-
----
-
-## Autopreguntas de cierre
-
-Sin mirar el material, responde mentalmente y luego compruébalo con los capítulos de la sección:
-
-1. ¿Cuándo es aceptable reescribir un commit con `amend` y cuándo está prohibido?
-2. Un fallo existe en v2.3 y no en v2.2: ¿cómo localizas el commit culpable sin leer 200 commits?
-3. ¿Qué añade `cherry-pick -x` respecto a un cherry-pick normal?
-4. ¿Qué diferencia hay entre una tag liviana y una anotada?
-
----
 
 ## Próximo paso
 
