@@ -14,25 +14,20 @@ En este capítulo aprenderás:
 * el flujo de hotfix/revisión en paralelo;
 * errores comunes con diagnóstico completo, práctica guiada y nivel profesional.
 
----
-
 ## Mapa conceptual de este capítulo
 
-```text
-git worktree
-       │
-       ├── 1. Qué es (mismo repo, varias carpetas)
-       ├── 2. Operaciones: add, list, remove, prune
-       ├── 3. Reglas de convivencia
-       ├── 4. Flujos: hotfix y revisión en paralelo
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
-```
+```mermaid
+mindmap
+  root((git worktree))
+    1. Qué es (mismo repo, varias carpetas)
+    2. Operaciones: add, list, remove, prune
+    3. Reglas de convivencia
+    4. Flujos: hotfix y revisión en paralelo
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional + resumen
 
 ---
-
 ## 1. Qué es
 
 ```text
@@ -54,12 +49,12 @@ proyecto-exp/             ← worktree 3 (rama exp)
 
 ```text
 Ventajas:
-   │
-   ├── sin duplicar historia (peso casi el mismo)
-   │
-   ├── mismas ramas, tags y stash visibles
-   │
-   └── cambios aislados por CARPETA (builds separados)
+    │
+    ├── sin duplicar historia (peso casi el mismo)
+    │
+    ├── mismas ramas, tags y stash visibles
+    │
+    └── cambios aislados por CARPETA (builds separados)
 ```
 
 ```bash
@@ -89,6 +84,7 @@ git worktree list
 
 # eliminar:
 git worktree remove ../ruta
+⚠️ **RIESGO:** Elimina el worktree incluso si tiene cambios sin commitear, perdiendo trabajo no guardado.
 git worktree remove --force ../ruta   # con cambios
 
 # limpiar referencias de carpetas borradas a mano:
@@ -100,10 +96,10 @@ git worktree move ../vieja ../nueva
 
 ```text
 Nota importante:
-   │
-   └── borrar la carpeta con el explorador NO basta:
-       el repositorio aún la «recuerda» → usa
-       worktree remove o prune
+    │
+    └── borrar la carpeta con el explorador NO basta:
+        el repositorio aún la «recuerda» → usa
+        worktree remove o prune
 ```
 
 ---
@@ -111,32 +107,32 @@ Nota importante:
 ## 3. Reglas de convivencia
 
 ```text
-   │
-   ├── una rama checked-out en UN solo worktree a la
-   │   vez (Git lo exige: evita dos HEADs en la misma
-   │   rama)
-   │
-   ├── los worktrees comparten historial, tags y
-   │   configuración local del repo
-   │
-   ├── el stash también es del repositorio: visible
-   │   desde cualquier worktree
-   │
-   └── en worktrees secundarios puedes hacer commit,
-       push y merge con normalidad
+    │
+    ├── una rama checked-out en UN solo worktree a la
+    │   vez (Git lo exige: evita dos HEADs en la misma
+    │   rama)
+    │
+    ├── los worktrees comparten historial, tags y
+    │   configuración local del repo
+    │
+    ├── el stash también es del repositorio: visible
+    │   desde cualquier worktree
+    │
+    └── en worktrees secundarios puedes hacer commit,
+        push y merge con normalidad
 ```
 
 ```text
 ¿Cuándo usar worktree y cuándo no?
-   │
-   ├── SÍ: dos ramas vivas a la vez, builds distintos,
-   │   revisar PRs, hotfix con entorno propio
-   │
-   ├── NO: como «copia de seguridad» (usa push)
-   │
-   └── NO: para experimentos destructivos compartiendo
-       historia sensible (ahí un clon aparte es más
-       seguro)
+    │
+    ├── SÍ: dos ramas vivas a la vez, builds distintos,
+    │   revisar PRs, hotfix con entorno propio
+    │
+    ├── NO: como «copia de seguridad» (usa push)
+    │
+    └── NO: para experimentos destructivos compartiendo
+        historia sensible (ahí un clon aparte es más
+        seguro)
 ```
 
 ---
@@ -145,17 +141,12 @@ Nota importante:
 
 ### 4.1. Hotfix mientras trabajas
 
-```text
-   │
-   ├── estás en main con trabajo sucio de la feature
-   │
-   ├── git worktree add ../p-hotfix hotfix-2.3
-   │   → carpeta limpia en la rama del hotfix
-   │
-   ├── arreglas, pruebas y push desde ahí
-   │
-   └── tu carpeta principal NO se enteró (cero stash,
-       cero cambio de rama)
+```mermaid
+flowchart TD
+    A[Estás en main con trabajo sucio de la feature] --> B[Crear worktree en rama hotfix-2.3]
+    B --> C[Carpeta limpia en la rama del hotfix]
+    C --> D[Arreglas, pruebas y push desde ahí]
+    D --> E[Tu carpeta principal no se ve afectada (cero stash, cero cambio de rama)]
 ```
 
 ### 4.2. Revisión de PRs sin ensuciar
@@ -171,14 +162,14 @@ git branch -d pr-42
 ### 4.3. Release de larga duración
 
 ```text
-   │
-   ├── worktree permanente en release/1.x
-   │
-   ├── sus builds y versiones viven separados de tu
-   │   main inestable
-   │
-   └── recordar: limpiar con worktree remove cuando
-       termine la rama
+    │
+    ├── worktree permanente en release/1.x
+    │
+    ├── sus builds y versiones viven separados de tu
+    │   main inestable
+    │
+    └── recordar: limpiar con worktree remove cuando
+        termine la rama
 ```
 
 ---
@@ -310,7 +301,7 @@ git init wt && cd wt
 echo base > app.txt && git add . && git commit -m "base"
 echo "trabajo en curso" >> app.txt     # sucio en main
 git status                             # sucio, NO lo
-                                        # resuelvas
+                                         # resuelvas
 ```
 
 ### Paso 2: worktree en paralelo
@@ -372,26 +363,26 @@ Worktree multiplica tus carpetas de trabajo sin duplicar historia: una rama por 
 ### 7.1. Worktrees en equipo
 
 ```text
-   │
-   ├── revisión de PRs con worktree = entorno limpio y
-   │   rápido (sin clonar 500 MB)
-   │
-   ├── ramas de mantenimiento largas con su carpeta
-   │   propia y su CI local
-   │
-   └── algunos flujos de hotfix lo usan como paso
-       intermedio antes de un clon completo para
-       publicar
+    │
+    ├── revisión de PRs con worktree = entorno limpio y
+    │   rápido (sin clonar 500 MB)
+    │
+    ├── ramas de mantenimiento largas con su carpeta
+    │   propia y su CI local
+    │
+    └── algunos flujos de hotfix lo usan como paso
+        intermedio antes de un clon completo para
+        publicar
 ```
 
 ```text
-   │
-   ├── en CI convencional NO suelen usarse (cada job
-   │   clona): el ahorro es de desarrollo local
-   │
-   └── en equipos con ramas de release vivas: gran
-       reducción de «cambios de rama» y de errores de
-       entorno sucio
+    │
+    ├── en CI convencional NO suelen usarse (cada job
+    │   clona): el ahorro es de desarrollo local
+    │
+    └── en equipos con ramas de release vivas: gran
+        reducción de «cambios de rama» y de errores de
+        entorno sucio
 ```
 
 ### 7.2. Resumen
@@ -410,6 +401,25 @@ La idea principal es:
 > **git worktree multiplica carpetas, no repositorios: compartes historia con cuidado y aíslas solo lo que debe estarlo — la rama y el estado de la carpeta.**
 
 ---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Qué comando usarías para crear un worktree nuevo basado en una rama existente sin cambiar tu worktree actual?
+2. ¿Cómo listarías todos los worktrees activos junto con sus ramas y rutas?
+3. ¿Qué riesgo implica usar `git worktree remove --force` y en qué situación sería apropiado hacerlo?
+4. ¿Por qué es importante ejecutar `git worktree prune` después de borrar manualmente una carpeta de worktree?
+5. ¿Qué regla de Git impide tener la misma rama checked-out en dos worktrees diferentes, y qué problema evitaría esta regla?
+6. ¿Cómo determinarías si un worktree secundario tiene cambios sin commitear antes de intentar eliminarlo?
+7. ¿Qué ventaja tiene usar worktrees para revisar pull requests en comparación con hacer stash y cambiar de rama en el trabajo principal?
+8. ¿Cómo evitarías que un script que asume una sola carpeta raíz falle cuando se ejecuta desde un worktree secundario?
+
+---
+
+## Ejercicio de transferencia
+
+Imagina que estás desarrollando una característica en la rama `feature/new-ui` y necesitas revisar un pull request urgente `origin/pull/123` sin perder tu trabajo actual. Describe los pasos que seguirías para crear un worktree temporal para la revisión del PR, probar los cambios, dejar un comentario y limpiar el worktree después, asegurándote de que tu trabajo en `feature/new-ui` permanezca intacto y sin stash.
 
 ## Próximo paso
 
