@@ -20,27 +20,22 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-upstream
-       │
-       ├── 1. Los dos sentidos
-   │        ├── remote llamado upstream (fork)
-   │        └── @{upstream} (pareja de tu rama)
-   │
-       ├── 2. Patrón de fork: origin vs. upstream
-   │        ├── mapeo de flujos
-   │        ├── fetch upstream y actualizar main
-   │        └── PR hacia el upstream
-   │
-       ├── 3. La pareja de la rama (config)
-   │        ├── branch.<x>.remote / .merge
-   │        └── @{upstream} en comandos
-   │
-       ├── 4. Errores y malentendidos
-   │
-       ├── 5. Práctica guiada
-   │
-       └── 6. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((upstream))
+    1. Los dos sentidos
+      remote llamado upstream en un fork
+      la pareja de tu rama
+    2. Patrón de fork origin y upstream
+      mapeo de flujos
+      fetch upstream y actualizar main
+      PR hacia el upstream
+    3. La pareja de la rama en tu config
+      claves branch remote y merge
+      la pareja usada en tus comandos
+    4. Errores y malentendidos
+    5. Práctica guiada
+    6. Nivel profesional y resumen
 ```
 
 ---
@@ -100,13 +95,11 @@ Misma palabra, dos capas:
 
 ### 2.1. El mapeo típico
 
-```text
-[ upstream ]  ← oficial (de donde sale el código)
-     ▲
-     │ fetch (bajar)          push (subir) ▼
-     │                                    [ origin ]
-     │  (tu fork)                           ▲
-     └────────────── tu clon local ─────────┘
+```mermaid
+flowchart TD
+    U["upstream, el repositorio oficial de donde sale el código"] -->|"git fetch upstream, bajas el código"| L["Tu clon local"]
+    L -->|"git push, subes tu trabajo"| O["origin, tu fork donde publicas"]
+    O -->|"pull request en la web, propones el cambio al oficial"| U
 ```
 
 ```bash
@@ -349,6 +342,8 @@ git log @{upstream}..HEAD --oneline   # vacío
 
 ### Paso 6: cambiar pareja (demostración)
 
+⚠️ **RIESGO:** `git push origin --delete practica-upstream` borra esa rama en el servidor (si alguien la seguía, su push quedará rechazado hasta recuperarla desde el reflog del servidor) y `git branch -D` borra la rama local aunque no esté fusionada; aquí solo destruyes la rama de práctica que creaste en el paso 4.
+
 ```bash
 git branch -u upstream/main practica-upstream
 git branch -vv                       # ¡pareja nueva!
@@ -366,6 +361,10 @@ Dos mapas nítidos en tu cabeza: direcciones (remotes) y parejas (tracking) — 
 ### Conclusión esperada
 
 Upstream es «de donde viene mi flujo»: en forks, el original; en tu rama, su pareja remota. Nombrar bien es diagnosticar a medias.
+
+### Ejercicio de transferencia
+
+Monta el patrón completo con un espejo local haciendo de oficial: añade `upstream`, nace una rama desde `upstream/main`, publícala en `origin` con `-u` y cambia su pareja dos veces con `git branch -u`. Entrega: la salida de `git remote -v` y de `git branch -vv` en cada paso, más una frase que explique a qué remoto respondería hoy un `git push` sin argumentos.
 
 ---
 
@@ -413,6 +412,20 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **Upstream es dirección de flujo: de donde mi código nace (el original) y hacia donde mi rama habla (su pareja) — nómbralos bien y la mitad de los enigmas desaparecen.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿En qué dos sentidos distintos se usa la palabra `upstream` en este capítulo y con qué comandos se comprueba cada uno?
+2. En el patrón de fork, ¿de qué remoto debes bajar el código y en cuál publicar tu trabajo, y qué comando rompe esa regla si te equivocas?
+3. ¿Dónde vive guardada la pareja de tu rama y qué comando te la muestra de forma legible?
+4. ¿Por qué `git pull` y `git push` sin argumentos pueden hacer cosas distintas de lo que imaginas en un repo con dos remotos?
+5. Si tu rama trackea `upstream/main` por error, ¿qué le pasa a tu siguiente `git push` y cómo lo reparas?
+6. ¿Qué revisas en la pantalla de un PR antes de enviarlo para no acabar proponiendo cambios de tu fork contra tu propio fork?
+7. ¿Por qué un fork desactualizado hace que todas tus PRs choquen, y con qué comando mides cuánto te has quedado atrás?
 
 ---
 
