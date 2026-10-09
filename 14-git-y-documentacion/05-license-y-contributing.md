@@ -1,4 +1,19 @@
 # Licencia, contribución y convivencia
+[`README.md`](README.md)
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compru�balo con este cap�tulo:
+
+1. �Por qu� es cr�tico decidir y colocar una licencia en el repositorio antes de aceptar contribuciones externas, y qu� riesgos legales se asumen al publicar c�digo sin licencia?
+2. �C�mo afecta elegir una licencia permisiva (como MIT) versus una copyleft (como GPL) a la posibilidad de que empresas privadas usen, modifiquen y distribuyan el software, y qu� implicaciones tiene esto para la estrategia de adopci�n del proyecto?
+3. �Qu� elementos esenciales debe incluir un archivo CONTRIBUTING para reducir la fricci�n con nuevos colaboradores, y c�mo influye la claridad del flujo de trabajo (fork/rama ? PR ? revisi�n) en la calidad y rapidez de las contribuciones aceptadas?
+4. �Por qu� es necesario que un c�digo de conducta incluya un mecanismo de denuncia real y un contacto responsable, y qu� consecuencias tiene la falta de estos elementos en la capacidad de gestionar incidentes de acoso o discriminaci�n en el proyecto?
+5. �C�mo decidir qu� informaci�n pertenece en una plantilla de issue o de PR, y qu� principio gu�a la inclusi�n de solo los campos que se verifican realmente (por ejemplo, mediante checks de CI) para evitar listas decorativas que generan falsa confianza?
+6. �Qu� pasos seguir�as para asegurarte de que las dependencias de tu proyecto no introduzcan licencias incompatibles, y c�mo integrar un escaneo de licencias en la cadena de CI para detectar problemas antes de que lleguen a producci�n?
+
+[`README.md`](README.md)
+# Licencia, contribución y convivencia
 
 ## Introducción
 
@@ -7,135 +22,130 @@ Un repositorio es jurídicamente un «todos los derechos reservados» por defect
 Este capítulo cubre la licencia (qué elegir y por qué), el CONTRIBUTING, el código de conducta y las plantillas de issues/PR: el marco que convierte un repo personal en un proyecto con comunidad.
 
 ---
-
 ## Mapa conceptual de este capítulo
 
-```text
-Licencia, contribución y convivencia
-       │
-       ├── 1. Licencia: el contrato de uso
-       ├── 2. CONTRIBUTING: cómo se contribuye
-       ├── 3. Código de conducta y comunidad sana
-       ├── 4. Plantillas (issues, PR, config)
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Licencia contribución y convivencia))
+    Licencia el contrato de uso
+    CONTRIBUTING cómo se contribuye
+    Código de conducta y comunidad sana
+    Plantillas issues PR config
+      Errores comunes con diagnóstico completo
+      Práctica guiada
+      Nivel profesional + resumen
 ```
 
 ---
-
 ## 1. Licencia: el contrato de uso
 
 ```text
 SIN licencia:
-   │
-   └── copyright total: otros NO pueden usarlo
-       legalmente (ni forks «útiles»), aunque el
-       código sea visible
+    │
+    └── copyright total: otros NO pueden usarlo
+        legalmente (ni forks «útiles»), aunque el
+        código sea visible
 ```
 
 ```text
 OPCIONES POPULARES (criterios, no asesoría legal)
 ──────────────────────────────────────────────────────
 MIT
-  · permisiva, mínimo texto
-  · uso comercial, modificación, distribución
-  · sin garantía; conserva el aviso de copyright
-  · el más usado para librerías pequeñas
+   · permisiva, mínimo texto
+   · uso comercial, modificación, distribución
+   · sin garantía; conserva el aviso de copyright
+   · el más usado para librerías pequeñas
 
 Apache-2.0
-  · permisiva como MIT +
-  · patentes explícitas (cesión de licencia de
-    patentes de los contribuidores)
-  · aviso de cambios
-  · común en proyectos corporativos/ grandes
+   · permisiva como MIT +
+   · patentes explícitas (cesión de licencia de
+     patentes de los contribuidores)
+   · aviso de cambios
+   · común en proyectos corporativos/ grandes
 
 GPL (v3)
-  · copyleft: derivados deben abrir su código bajo
-    la misma licencia
-  · «contagio» intencional para preservar libertades
+   · copyleft: derivados deben abrir su código bajo
+     la misma licencia
+   · «contagio» intencional para preservar libertades
 
 BSD / MPL / ISC / otros
-  · variantes permissivas o copyleft «por archivo»
-  · comparar según caso
+   · variantes permissivas o copyleft «por archivo»
+   · comparar según caso
 ```
 
 ```text
 Dónde va:
-   │
-   ├── archivo LICENSE (o COPYING) en la raíz —
-   │   GitHub lo detecta y lo muestra
-   │
-   ├── cabecera en README: «Licencia: MIT»
-   │
-   └── dependencias: la licencia de TU proyecto no
-       cambia la de las de terceros (compatibilidad:
-       p. ej. no puedes meter GPL en un binario
-       propietario)
+    │
+    ├── archivo LICENSE (o COPYING) en la raíz —
+    │   GitHub lo detecta y lo muestra
+    │
+    ├── cabecera en README: «Licencia: MIT»
+    │
+    └── dependencias: la licencia de TU proyecto no
+        cambia la de las de terceros (compatibilidad:
+        p. ej. no puedes meter GPL en un binario
+        propietario)
 ```
 
 ```text
-   │
-   ├── © años y titular: `Copyright (c) 2026 Nombre`
-   │
-   ├── licencias de contenido/docs: puede ser otra
-   │   (decisión explícita)
-   │
-   └── esto NO es asesoría legal: para producto con
-       patentes/empresa, consulta profesional
+    │
+    ├── © años y titular: `Copyright (c) 2026 Nombre`
+    │
+    ├── licencias de contenido/docs: puede ser otra
+    │   (decisión explícita)
+    │
+    └── esto NO es asesoría legal: para producto con
+        patentes/empresa, consulta profesional
 ```
 
 ---
-
 ## 2. CONTRIBUTING: cómo se contribuye
 
 ```text
 CONTENIDO DEL ARCHIVO CONTRIBUTING.md
-   │
-   ├── qué tipo de contribuciones se aceptan (y qué
-   │   NO se acepta)
-   ├── flujo: fork/rama → PR → revisión → merge
-   ├── reglas de commits (convención, cap. 03)
-   ├── cómo ejecutar el proyecto y los tests
-   ├── estilo y linters (si los hay)
-   ├── procesado de bugs (plantilla de issue)
-   ├── DCO/CLA si el proyecto los exige (mención)
-   └── a quién preguntar (discusiones, issues)
+    │
+    ├── qué tipo de contribuciones se aceptan (y qué
+    │   NO se acepta)
+    ├── flujo: fork/rama → PR → revisión → merge
+    ├── reglas de commits (convención, cap. 03)
+    ├── cómo ejecutar el proyecto y los tests
+    ├── estilo y linters (si los hay)
+    ├── procesado de bugs (plantilla de issue)
+    ├── DCO/CLA si el proyecto los exige (mención)
+    └── a quién preguntar (discusiones, issues)
 ```
 
 ```text
-   │
-   ├── un buen CONTRIBUTING reduce PRs que se
-   │   cierran por mal formato
-   │
-   └── guía de revisión: qué se espera en un PR
-       (tamaño, tests, docs) — clave en la sección
-       15
+    │
+    ├── un buen CONTRIBUTING reduce PRs que se
+    │   cierran por mal formato
+    │
+    └── guía de revisión: qué se espera en un PR
+        (tamaño, tests, docs) — clave en la sección
+        15
 ```
 
 ---
-
 ## 3. Código de conducta y comunidad sana
 
 ```text
 CODE_OF_CONDUCT.md
-   │
-   ├── conducta esperada (respeto, colaboración)
-   ├── conducta inaceptable (acoso, discriminación)
-   ├── mecanismo de denuncia y contacto responsable
-   └── consecuencias aplicadas
+    │
+    ├── conducta esperada (respeto, colaboración)
+    ├── conducta inaceptable (acoso, discriminación)
+    ├── mecanismo de denuncia y contacto responsable
+    └── consecuencias aplicadas
 ```
 
 ```text
 Por qué importa técnicamente:
-   │
-   ├── sin reglas, la moderación se vuelve arbitraria
-   │   (incidentes mal resueltos ahuyentan
-   │   contribuidores)
-   │
-   └── proyectos «con casa en orden» atraen más
-       colaboración sostenible
+    │
+    ├── sin reglas, la moderación se vuelve arbitraria
+    │   (incidentes mal resueltos ahuyentan
+    │   contribuidores)
+    │
+    └── proyectos «con casa en orden» atraen más
+        colaboración sostenible
 ```
 
 ```text
@@ -144,7 +154,6 @@ Covenant (mención); el texto se adapta al proyecto.
 ```
 
 ---
-
 ## 4. Plantillas (issues, PR, config)
 
 ```text
@@ -155,7 +164,7 @@ Covenant (mención); el texto se adapta al proyecto.
 │   └── feature.yml        → propuesta
 ├── PULL_REQUEST_TEMPLATE.md → checklist
 └── config.yml             → enlaces (docs, FAQ,
-                             discusiones)
+                              discusiones)
 ```
 
 ```markdown
@@ -168,20 +177,19 @@ Covenant (mención); el texto se adapta al proyecto.
 ```
 
 ```text
-   │
-   ├── el formulario (issues en YAML) guía al
-   │   reportante y ahorra idas y vueltas
-   │
-   ├── la checklist del PR estandariza la revisión
-   │   (sección 15)
-   │
-   └── GitHub también permite configurar el repo
-       (.github) con reglas de seguridad/gobernanza —
-       sección 18
+    │
+    ├── el formulario (issues en YAML) guía al
+    │   reportante y ahorra idas y vueltas
+    │
+    ├── la checklist del PR estandariza la revisión
+    │   (sección 15)
+    │
+    └── GitHub también permite configurar el repo
+        (.github) con reglas de seguridad/gobernanza —
+        sección 18
 ```
 
 ---
-
 ## 5. Errores comunes con diagnóstico completo
 
 ### Error 1: publicar sin licencia
@@ -291,7 +299,6 @@ Covenant (mención); el texto se adapta al proyecto.
 **Cómo se evita:** escaneo en CI (sección 24).
 
 ---
-
 ## 6. Práctica guiada
 
 ### Objetivo
@@ -328,11 +335,11 @@ Dejar un repo «con casa en orden»: licencia, CONTRIBUTING, COC y plantillas.
 
 ```text
 Comprueba en la plataforma:
-   │
-   ├── la licencia aparece en «About»
-   ├── abrir una issue muestra el formulario
-   ├── abrir un PR muestra la checklist
-   └── los enlaces de CONTRIBUTING funcionan
+    │
+    ├── la licencia aparece en «About»
+    ├── abrir una issue muestra el formulario
+    ├── abrir un PR muestra la checklist
+    └── los enlaces de CONTRIBUTING funcionan
 ```
 
 ### Resultado esperado
@@ -343,33 +350,36 @@ Repo con contrato de uso y flujo de contribución funcionando en la plataforma.
 
 La gobernanza mínima (licencia + CONTRIBUTING + COC + plantillas) es barata de montar y evita la mitad de la fricción con colaboradores.
 
----
+### Ejercicio de transferencia
 
+Imagina que estás incorporando una nueva dependencia de bajo nivel (por ejemplo, una biblioteca de criptografía) a tu proyecto con licencia MIT. Antes de fusionar el cambio, revisa la licencia de la dependencia y verifica su compatibilidad con MIT usando una herramienta de escaneo de licencias en CI. Luego, actualiza el archivo CONTRIBUTING para incluir una sección sobre la revisión de licencias de dependencias y añade un checkpoint en la plantilla de PR que oblige a confirmar que se ha realizado dicho escaneo. Entrega el informe de escaneo, el diff de CONTRIBUTING y la captura de la checkmark en la PR.
+
+---
 ## 7. Nivel profesional + resumen
 
 ### 7.1. Gobernanza que escala
 
 ```text
 NIVELES
-   │
-   ├── repositorio personal: LICENSE + CONTRIBUTING
-   │   básico + plantilla de issue
-   │
-   ├── proyecto con comunidad: COC + revisores por
-   │   área + CODEOWNERS + normas de release
-   │   (sección 18)
-   │
-   └── organización: políticas de licencia aprobadas,
-       escaneo de dependencias (SBOM), CLA/DCO según
-       legal, SECURITY.md para reportes (sección 20)
+    │
+    ├── repositorio personal: LICENSE + CONTRIBUTING
+    │   básico + plantilla de issue
+    │
+    ├── proyecto con comunidad: COC + revisores por
+    │   área + CODEOWNERS + normas de release
+    │   (sección 18)
+    │
+    └── organización: políticas de licencia aprobadas,
+        escaneo de dependencias (SBOM), CLA/DCO según
+        legal, SECURITY.md para reportes (sección 20)
 ```
 
 ```text
 Documentos clave (raíz o .github/):
-   │
-   ├── LICENSE · CONTRIBUTING · CODE_OF_CONDUCT
-   ├── SECURITY.md · SUPPORT.md (mención)
-   └── plantillas de issue/PR
+    │
+    ├── LICENSE · CONTRIBUTING · CODE_OF_CONDUCT
+    ├── SECURITY.md · SUPPORT.md (mención)
+    └── plantillas de issue/PR
 ```
 
 ### 7.2. Resumen
@@ -388,7 +398,6 @@ La idea principal es:
 > **El marco legal y social de un repo se declara en archivos: licencia que permite usarlo, CONTRIBUTING que dice cómo ayudar y reglas que protegen a quien colabora.**
 
 ---
-
 ## Próximo paso
 
 Has completado la documentación esencial.
