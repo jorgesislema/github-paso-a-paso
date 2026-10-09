@@ -10,17 +10,16 @@ Al final, Git responde a comandos cortos tuyos y se comporta como tu equipo espe
 
 ## Mapa conceptual de este capítulo
 
-```text
-Configuración avanzada y alias
-       │
-       ├── 1. Alias: de rutinas a comandos
-       ├── 2. Claves de comportamiento que valen la pena
-       ├── 3. Varias identidades (includeIf)
-       ├── 4. Config versionada por equipo
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Configuración avanzada y alias))
+    Alias: de rutinas a comandos
+    Claves de comportamiento
+    Varias identidades
+    Config versionada
+    Errores comunes
+    Práctica guiada
+    Nivel profesional
 ```
 
 ---
@@ -367,6 +366,9 @@ La config avanzada se gana con alias honestos, claves elegidas por dolor concret
 
 ---
 
+### Ejercicio de transferencia
+Crea un alias que muestre los últimos 5 commits con ramas y fechas, y verifica que funciona en tu entorno. Luego, documenta ese alias en un archivo de setup de equipo para que otros lo puedan usar.
+
 ## 7. Nivel profesional + resumen
 
 ### 7.1. Setup de referencia (lista de arranque)
@@ -407,6 +409,16 @@ La idea principal es:
 > **Tu configuración es tu entorno de trabajo: alias honestos, claves elegidas por dolor concreto y verificación por origen — auditada como cualquier otro código.**
 
 ---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Cuál es la diferencia entre un alias sencillo y un alias de shell (`!`) en términos de portabilidad?
+2. ¿Cómo puedes verificar que una clave de configuración se aplica desde el archivo correcto usando `--show-origin`?
+3. ¿Qué ventaja tiene usar `includeIf` para gestionar múltiples identidades (personal vs empresa)?
+4. ¿Por qué es recomendable documentar la configuración de equipo en un archivo de setup plutôt que confiar en la configuración global?
+5. ¿Qué riesgos asociados hay con los alias que ejecutan shell y cómo mitigarlos?
 
 ## Próximo paso
 
