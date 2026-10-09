@@ -25,6 +25,45 @@ Al terminar esta sección serás capaz de:
 * elegir la estrategia de integración (merge, squash, rebase) según el historial que quieres;
 * aplicar la disciplina de equipo: estados, etiquetas, SLA y métricas de proceso.
 
+## Mapa conceptual
+
+```mermaid
+mindmap
+  root((15 · Pull Requests))
+    01 Anatomía de un PR
+      qué es y qué no es
+      ciclo de vida completo
+      piezas con título descripción diff y checks
+      base y head
+      diff three-dot y autocierre de issues
+      errores comunes con diagnóstico
+    02 Cómo escribir un buen PR
+      tamaño de 100 a 400 líneas
+      atómico una idea por PR
+      descripción qué porqué y cómo probar
+      historia y ramas limpias
+    03 Revisión de código
+      contrato de autor y revisor
+      orden de lectura por capas
+      comentarios con propuesta
+      aprobar pedir cambios o hablar
+    04 Comentarios y sugerencias
+      un tema por hilo
+      sugerencias aplicables
+      aplicar responder resolver
+      acuerdo escrito al volver al PR
+    05 Merge squash y rebase
+      qué historial deja cada estrategia
+      cuándo usar cada una
+      política en la plataforma
+      rutina tras el merge
+    06 PR como disciplina de equipo
+      estados y etiquetas
+      SLA informal
+      automatizar lo verificable
+      métricas de proceso
+```
+
 ---
 
 ## ¿Qué aprenderás en esta sección?
@@ -48,6 +87,20 @@ Abre PRs reales de principio a fin mientras lees: anotar sin abrir no basta. Pra
 
 ---
 
+## Checkpoint 15 — Comprobación obligatoria
+
+Antes de avanzar a `16-trabajo-en-equipo/`, demuestra que puedes (en un repo de práctica real):
+
+1. **Abrir** un PR con descripción que responda qué, porqué y cómo probarlo.
+2. **Recibir** un comentario y responderlo con un commit nuevo (no con un comentario suelto).
+3. **Distinguir** qué historial deja squash frente a merge commit y elegir uno con una razón.
+4. **Revisar** un PR ajeno (o el de una segunda cuenta) con la capa ¿resuelve? → ¿es correcto? → ¿es mantenible?
+5. **Explicar** en qué estado del PR se tomaría la decisión de cerrarlo sin merge.
+
+Si puedes hacerlo **sin mirar instrucciones**, el checkpoint está cerrado.
+
+---
+
 ## Autopreguntas de cierre
 
 Sin mirar el material, responde mentalmente y luego compruébalo con los capítulos de la sección:
@@ -56,6 +109,10 @@ Sin mirar el material, responde mentalmente y luego compruébalo con los capítu
 2. ¿Qué diferencia deja en el historial un squash respecto a un merge commit?
 3. ¿Qué hace «inrevisable» a un PR antes de empezar?
 4. ¿Qué diferencia hay entre una sugerencia y una exigencia al comentar?
+5. Un PR de 3000 líneas: ¿por qué el revisor lo aprueba sin leer de verdad y qué deberías cambiar en tu forma de partir el trabajo?
+6. Antes de mirar el diff, ¿qué tres preguntas debe responder la descripción de un PR y por qué en ese orden?
+7. Las checks están verdes y el revisor aprobó: ¿qué te queda comprobar antes de integrar y por qué no basta con eso?
+8. Si integras con squash un PR de diez commits, ¿qué historial queda en main y qué información se pierde para dentro de seis meses?
 
 ---
 
