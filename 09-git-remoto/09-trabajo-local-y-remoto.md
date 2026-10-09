@@ -18,59 +18,39 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-Trabajo local y remoto
-       │
-       ├── 1. El ciclo completo (diagrama maestro)
-   │
-       ├── 2. La rutina diaria
-   │        ├── solo (local → push)
-   │        └── equipo (rama → PR → merge → pull)
-   │
-       ├── 3. Estados de sincronización
-   │        ├── ahead / behind / divergida / al día
-   │        └── cómo leerlos y resolverlos
-   │
-       ├── 4. El orden seguro de comandos
-   │
-       ├── 5. Errores comunes con diagnóstico completo
-   │
-       ├── 6. Práctica guiada (día completo simulado)
-   │
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Trabajo local y remoto))
+    1. El ciclo completo en el diagrama maestro
+    2. La rutina diaria
+      solo de local a push
+      equipo con rama PR merge y pull
+    3. Estados de sincronización
+      ahead behind divergida y al día
+      cómo leerlos y resolverlos
+    4. El orden seguro de comandos
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada de día completo simulado
+    7. Nivel profesional y resumen
 ```
 
 ---
 
 ## 1. El ciclo completo (diagrama maestro)
 
-```text
-                    [ SERVIDOR ]
-                (origin / upstream)
-                 ▲              │
-        push     │              │ fetch / pull
-                 │              ▼
-   ┌─────────────┴───────────────────────────────────┐
-   │  TUS FOTOS          refs/remotes/origin/*       │
-   │  (lo último que vi del servidor)                │
-   └─────────────────────┬───────────────────────────┘
-                         │ (pull integra en tu rama)
-                         ▼
-   ┌─────────────────────────────────────────────────┐
-   │  RAMAS LOCALES     refs/heads/*  (+ upstream)   │
-   │  HEAD → rama → commit                            │
-   │      ▲                                           │
-   │      │ commit                                    │
-   │  ┌───┴──────────────────┐                        │
-   │  │ ÍNDICE (staging)     │◄── add                 │
-   │  └───┬──────────────────┘                        │
-   │      ▲                                           │
-   │      │ (restore)                                 │
-   │  ┌───┴──────────────────┐                        │
-   │  │ DIRECTORIO DE TRABAJO│  ← tú editas           │
-   │  └──────────────────────┘                        │
-   └─────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    SR["Servidor con origin o upstream"]
+    SR -->|"git fetch baja objetos y refs sin tocar tu rama"| PH["Tus fotos refs/remotes/origin/*, lo último que viste del servidor"]
+    PH -->|"git pull integra en tu rama"| BR["Tus ramas refs/heads/* con HEAD y su upstream"]
+    SR -->|"git clone crea tu clon con fotos y rama por defecto"| WD["Directorio de trabajo, tú editas"]
+    WD -->|"git add"| IDX["Índice staging"]
+    IDX -->|"git commit avanza tu rama"| BR
+    IDX -->|"git restore vuelve al contenido del índice"| WD
+    BR -->|"git push sube commits y refs, con -u la primera vez"| SR
+```
 
+```text
 Regla de oro del ciclo:
    │
    ├── bajar:   fetch (ver) / pull (ver+integrar)
@@ -105,6 +85,8 @@ git branch -d tarea-actual
 ```
 
 ### 2.2. Equipo con Pull Requests (GitHub)
+
+⚠️ **RIESGO:** `git push origin --delete fix-tema` borra la rama en el servidor nada más fusionarla: si alguien tenía esa rama como pareja, su trabajo deja de tener destino hasta recuperarla desde el reflog del servidor (aquí es correcto porque el merge ya está en main).
 
 ```bash
 # EMPEZAR
@@ -362,6 +344,8 @@ git push -u origin docs-entrada
 
 ### Paso 4: integración (equipo con PR o directa)
 
+⚠️ **RIESGO:** `git push origin --delete fix-informe` borra la rama remota justo después de fusionarla; solo hazlo cuando el merge ya está en main (o en el PR), porque si el borrado es prematuro, quien trabajara en esa rama pierde su destino de push.
+
 ```bash
 # Opción PR (web): A abre PR fix-informe → B revisa → merge
 # Opción directa (repo sin protección):
@@ -396,6 +380,10 @@ Haber vivido el ciclo entero: dos flujos paralelos, integración ordenada, limpi
 ### Conclusión esperada
 
 El trabajo local y remoto no son mundos distintos: son la misma máquina de estados con dos cables (fetch/push) y una disciplina de ritmo.
+
+### Ejercicio de transferencia
+
+Durante tres días seguidos, aplica la receta anti-pérdidas a tu repositorio real y anota al final de cada jornada la salida de `git status`, `git branch -vv` y `git remote -v`. Entrega: las tres parejas de salidas (una por día) más un párrafo de diez líneas describiendo en qué estado quedabas cada mañana (al día, adelante, atrás o divergida) y qué comando resolvía ese estado.
 
 ---
 
@@ -444,6 +432,20 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **Local produce, remoto distribuye, fetch mira y push entrega — y la sincronización no es un evento, es un ritmo.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. Dibuja de memoria el ciclo local ↔ remoto y señala en qué flecha entra cada uno de `fetch`, `pull`, `push` y `commit`.
+2. ¿Qué cuatro estados de sincronización puedes tener respecto a tu pareja y qué comando único resuelve cada uno?
+3. ¿Por qué la receta anti-pérdidas empieza con `status` y no con `pull`?
+4. Llevas tres semanas en una rama sin integrar y todo conflicta al volver a main: ¿qué hiciste mal y qué rutina lo habría evitado?
+5. ¿Qué diferencia hay entre «mi compañero no ve mi trabajo» por falta de push y el mismo síntoma por empujar a otro remoto?
+6. ¿Qué dos cosas debes confirmar antes de borrar una rama remota con `push --delete` para no dejar a nadie sin destino de push?
+7. ¿Por qué un `git fetch` es el paso cero de cualquier diagnóstico de sincronización, incluso cuando el problema parece de otra cosa?
 
 ---
 
