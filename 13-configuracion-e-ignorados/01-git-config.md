@@ -10,17 +10,16 @@ En este capítulo aprenderás a leer, escribir y diagnosticar configuración, co
 
 ## Mapa conceptual de este capítulo
 
-```text
-git config
-       │
-       ├── 1. Los niveles (y el orden de precedencia)
-       ├── 2. Lectura: ver qué está activo
-       ├── 3. Claves de uso diario
-       ├── 4. Variables condicionales (includeIf)
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((git config))
+    Los niveles
+    Lectura
+    Claves de uso diario
+    Variables condicionales
+    Errores comunes
+    Práctica guiada
+    Nivel profesional
 ```
 
 ---
