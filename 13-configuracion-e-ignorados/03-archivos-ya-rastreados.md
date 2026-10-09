@@ -10,16 +10,15 @@ Este capítulo cubre los tres escenarios: sacar un archivo del repo manteniéndo
 
 ## Mapa conceptual de este capítulo
 
-```text
-Archivos ya rastreados
-       │
-       ├── 1. Sacar del repo (--cached)
-       ├── 2. Ignorar cambios locales (dos flags)
-       ├── 3. Limpieza y verificación
-       │
-       ├── 4. Errores comunes con diagnóstico completo
-       ├── 5. Práctica guiada
-       └── 6. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Archivos ya rastreados))
+    Sacar del repo
+    Ignorar cambios locales
+    Limpieza y verificación
+    Errores comunes
+    Práctica guiada
+    Nivel profesional
 ```
 
 ---
@@ -326,6 +325,9 @@ Sacar es `--cached` + ignore + commit; esconder cambios locales son flags tempor
 
 ---
 
+### Ejercicio de transferencia
+Identifica un archivo en tu proyecto que actualmente esté rastreado pero que debería ser ignorado (por ejemplo, logs o archivos de compilación). Aplica el flujo completo: `git rm --cached`, añade la regla a `.gitignore`, commit y verifica con `git status --ignored` y `git check-ignore`.
+
 ## 6. Nivel profesional + resumen
 
 ### 6.1. Decisiones de equipo
@@ -361,6 +363,16 @@ La idea principal es:
 > **Rastreado es un estado con superpoderes y responsabilidades: sacarlo es un acto de equipo, y esconder sus cambios es una excepción con fecha.**
 
 ---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Cuál es la diferencia entre `git rm --cached` y `git rm` al eliminar un archivo rastreado?
+2. ¿Cómo puedes ocultar cambios locales de un archivo rastreado sin perderlos, y qué comando verifica el estado de los flags?
+3. ¿Qué ocurre con el historial previo cuando sacas un archivo del repo con `--cached`?
+4. ¿Por qué es necesario combinar `git rm --cached` con un patrón en `.gitignore` y un commit?
+5. ¿Cuál es el riesgo de usar `assume-unchanged` como solución permanente para configuración local?
 
 ## Próximo paso
 
