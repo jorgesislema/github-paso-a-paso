@@ -31,6 +31,49 @@ Al terminar esta sección serás capaz de:
 * pushar con criterio y explicar por qué `--force` es cirugía, no rutina;
 * diagnosticar estados de sincronización (adelante, atrasado, divergencia) y corregirlos.
 
+## Mapa conceptual
+
+```mermaid
+mindmap
+  root((09 · Trabajo con remotos))
+    01 Qué es un remote
+      nombre y URL en tu config
+      origin como convención
+      esquemas https ssh y local
+    02 git remote
+      añadir y quitar
+      inspeccionar con -v y show
+      corregir con set-url
+    03 git clone
+      secuencia init remote fetch
+      opciones rama y profundidad
+      qué trae y qué no trae
+    04 git fetch
+      baja sin tocar tu rama
+      fotos origin y prune
+      mirar antes de integrar
+    05 git pull
+      fetch más integración
+      merge o rebase
+      carpeta limpia
+    06 git push
+      publicar con -u
+      negación non-fast-forward
+      force con lease
+    07 origin
+      nombre por defecto
+      fotos upstreams y HEAD
+      qué no es origin
+    08 upstream
+      el original en un fork
+      la pareja de tu rama
+      flujo de contribución
+    09 Trabajo local y remoto
+      ciclo completo
+      estados de sincronización
+      orden seguro de comandos
+```
+
 ---
 
 ## ¿Qué aprenderás en esta sección?
@@ -53,7 +96,7 @@ Cada capítulo de esta sección está diseñado para construir tu comprensión p
 
 Cada capítulo incluye:
 
-* Diagramas ASCII del ciclo local ↔ remoto y de los flujos de fork;
+* Diagramas Mermaid del ciclo local ↔ remoto, de los flujos de fork y de las operaciones de red;
 * Salidas reales de terminal y mensajes de error traducidos;
 * Errores comunes con diagnóstico completo (qué ocurrió, por qué, cómo comprobarlo, opciones, riesgos, solución y cómo evitarlo);
 * Prácticas guiadas con espejos locales (puedes practicar sin depender de red) y con tu repositorio real;
@@ -72,6 +115,21 @@ Hilo conductor: **fetch para mirar, pull para integrar, push para entregar** —
 
 ---
 
+## Checkpoint 09 — Comprobación obligatoria
+
+Antes de avanzar a `10-git-conflictos/`, demuestra que puedes (en un repositorio de práctica real, con tu espejo local o con GitHub):
+
+1. **Crear y revisar** un remoto: añadirlo con `git remote add`, comprobarlo con `git remote -v` y explicar qué diferencia hay entre la URL de fetch y la de push.
+2. **Clonar** dos veces el mismo repo —una con `--depth 1` y otra con `-b <rama> --single-branch`— y comparar con `git branch -a` y `git log --oneline` qué trajo cada clon.
+3. **Comparar fetch y pull**: hacer `git fetch`, leer `git log HEAD..origin/main`, comprobar con `git status` que tu rama no cambió y solo después integrar con `git pull`.
+4. **Provocar y resolver** un rechazo non-fast-forward desde un segundo clon, leyendo el error y resolviéndolo con fetch + pull + push, sin usar `--force`.
+5. **Diagnosticar** un desajuste con la tríada `git status` + `git branch -vv` + `git remote -v`, y decir qué comando toca en cada estado (adelante, atrás, divergida, sin pareja).
+6. **Explicar** en dos frases la diferencia entre `origin` y `upstream` en un fork, y señalar en qué comando se usa la pareja `@{upstream}`.
+
+Si puedes hacerlo **sin mirar instrucciones**, el checkpoint está cerrado.
+
+---
+
 ## Autopreguntas de cierre
 
 Sin mirar el material, responde mentalmente y luego compruébalo con los capítulos de la sección:
@@ -80,6 +138,10 @@ Sin mirar el material, responde mentalmente y luego compruébalo con los capítu
 2. ¿Cuándo es aceptable `--force` y cuándo es catastrófico?
 3. Tu rama va «atrasada» respecto al remoto: ¿qué haces y en qué orden?
 4. ¿Qué es el `upstream` y para qué sirve?
+5. Si haces `git fetch` con la carpeta llena de cambios sin commitear, ¿qué puede cambiar y qué no? ¿Por qué eso convierte a fetch en la única operación de red que puedes repetir sin miedo?
+6. Tu push sale rechazado y un compañero te dice «échale `--force`»: ¿qué tres preguntas te haces antes y cuál es la alternativa correcta?
+7. `git remote remove origin` no toca el servidor, pero sí deja un desajuste en tu equipo de trabajo: ¿qué se pierde exactamente y cómo lo reparas?
+8. Después de clonar un fork, ¿cómo averiguas —sin preguntar a nadie y sin equivocarte de destino— si tu `git push` va a parar a tu copia o al repositorio oficial?
 
 ---
 
