@@ -16,61 +16,55 @@ En este capítulo aprenderás:
 * cómo reparar después de un empuje reescrito (force-with-lease);
 * errores comunes con diagnóstico completo, práctica guiada y nivel profesional.
 
----
-
 ## Mapa conceptual de este capítulo
 
-```text
-Reescritura del historial
-       │
-       ├── 1. La regla de oro
-   │        ├── local: casi todo vale
-   │        └── compartido: nada sin coordinar
-   │
-       ├── 2. amend (el commit reciente)
-       ├── 3. rehacer con reset (la serie)
-       ├── 4. rebase -i (el editor de historia)
-       ├── 5. reescritura masiva (secrets, archivos)
-       ├── 6. reparar el remoto (force-with-lease)
-       │
-       ├── 7. Errores comunes con diagnóstico completo
-       ├── 8. Práctica guiada
-       └── 9. Nivel profesional + resumen
-```
+```mermaid
+mindmap
+  root((Reescritura del historial))
+    1. La regla de oro
+      local casi todo vale
+      compartido nada sin coordinar
+    2. amend el commit reciente
+    3. rehacer con reset la serie
+    4. rebase -i el editor de historia
+    5. reescritura masiva secrets, archivos
+    6. reparar el remoto force-with-lease
+    7. Errores comunes con diagnóstico completo
+    8. Práctica guiada
+    9. Nivel profesional + resumen
 
 ---
-
 ## 1. La regla de oro
 
 ```text
 ¿El commit es LOCAL (nadie más lo tiene)?
-   │
-   ├── SÍ → puedes reescribir: amend, reset, rebase -i
-   │
-   └── NO (ya se empujó y otros trabajan encima)
-            → NO reescribir: usa revert (sección 02
-              de la sección 11) o un commit nuevo de
-              corrección
+    │
+    ├── SÍ → puedes reescribir: amend, reset, rebase -i
+    │
+    └── NO (ya se empujó y otros trabajan encima)
+             → NO reescribir: usa revert (sección 02
+               de la sección 11) o un commit nuevo de
+               corrección
 ```
 
 ```text
 Señales de «ya no es local»:
-   │
-   ├── git status -sb muestra la rama publicada
-   │
-   ├── el PR está en revisión y otros han comentado
-   │
-   └── la rama es de releases o de equipo
+    │
+    ├── git status -sb muestra la rama publicada
+    │
+    ├── el PR está en revisión y otros han comentado
+    │
+    └── la rama es de releases o de equipo
 ```
 
 ```text
 Por qué la regla existe:
-   │
-   ├── los hashes cambian: los commits «viejos» dejan
-   │   de existir para quien los tenía
-   │
-   └── quien rebasea encima y luego hace push fuerza
-       el trabajo ajeno (punto 6)
+    │
+    ├── los hashes cambian: los commits «viejos» dejan
+    │   de existir para quien los tenía
+    │
+    └── quien rebasea encima y luego hace push fuerza
+        el trabajo ajeno (punto 6)
 ```
 
 ---
@@ -86,14 +80,14 @@ git commit --amend --no-edit    # cambiar contenido,
 
 ```text
 Casos típicos:
-   │
-   ├── mensaje con errata o poco claro
-   │
-   ├── se olvidó un archivo en el commit (staged y
-   │   amend)
-   │
-   └── commiteaste algo que no debía (usa amend solo
-       si el commit NO se publicó)
+    │
+    ├── mensaje con errata o poco claro
+    │
+    ├── se olvidó un archivo en el commit (staged y
+    │   amend)
+    │
+    └── commiteaste algo que no debía (usa amend solo
+        si el commit NO se publicó)
 ```
 
 ```bash
@@ -105,11 +99,11 @@ git log -1 --stat
 
 ```text
 Efecto:
-   │
-   ├── el commit VIEJO deja de estar en la rama
-   │   (queda solo en reflog)
-   │
-   └── el nuevo toma su lugar con hash nuevo
+    │
+    ├── el commit VIEJO deja de estar en la rama
+    │   (queda solo en reflog)
+    │
+    └── el nuevo toma su lugar con hash nuevo
 ```
 
 ---
@@ -122,13 +116,8 @@ del primero y desmontar los otros dos sin perder
 trabajo:
 
 A ── B ── C      →   A
- ▲                      ▲
- HEAD                   HEAD (tras reset A)
-
-git reset --mixed A       (por defecto: índice limpio,
-                          trabajo suelto)
-git reset --soft A        (todo preparado, listo para
-                          un solo commit nuevo)
+  ▲                      ▲
+  HEAD                   HEAD (tras reset A)
 ```
 
 ```bash
@@ -139,14 +128,15 @@ git commit -m "unificación con mensaje nuevo"
 
 ```text
 Cuándo elegir:
-   │
-   ├── --soft: voy a recommitear YA (quiero que todo
-   │   esté staged)
-   │
-   ├── --mixed: quiero volver a preparar a mano
-   │
-   └── --hard: descartar (evitar; solo con certeza y
-       tras stash)
+    │
+    ├── --soft: voy a recommitear YA (quiero que todo
+    │   esté staged)
+    │
+    ├── --mixed: quiero volver a preparar a mano
+    │
+    ├── --hard: descartar (evitar; solo con certeza y
+        tras stash)
+    └── (note: --hard is dangerous; see ⚠️ RIESGO below)
 ```
 
 ---
@@ -172,14 +162,12 @@ exec (ejecutar comando en cada paso), break
 
 ```text
 El proceso (después de guardar y cerrar):
-   │
-   ├── Git re-aplica la serie → posibles conflictos
-   │   (método de la sección 06 de la sección 10)
-   │
-   ├── con edit: estás «pausado» → amendas y
-   │   git rebase --continue
-   │
-   └── al final: historial nuevo, hashes nuevos
+    │
+    ├── Git re-aplica la serie → posibles conflictos
+    │   (método de la sección 06 de la sección 10)
+    ├── con edit: estás «pausado» → amendas y
+    │   git rebase --continue
+    └── al final: historial nuevo, hashes nuevos
 ```
 
 ```bash
@@ -204,17 +192,17 @@ git filter-repo --invert-paths --path cache.tmp
 ```
 
 ```text
-   │
-   ├── filter-branch (antiguo): existe pero es lento,
-   │   propenso a errores y desaconsejado por la
-   │   propia documentación de Git → no lo uses
-   │
-   ├── filter-repo: reemplazo moderno y rápido
-   │
-   └── si era un SECRETO: reescribir no basta
-       (sección 20 de seguridad): ROTAR la credencial
-       primero, después limpiar historial, después
-       verificar con el escaneo correspondiente
+    │
+    ├── filter-branch (antiguo): existe pero es lento,
+    │   propenso a errores y desaconsejado por la
+    │   propia documentación de Git → no lo uses
+    │
+    ├── filter-repo: reemplazo moderno y rápido
+    │
+    └── si era un SECRETO: reescribir no basta
+        (sección 20 de seguridad): ROTAR la credencial
+        primero, después limpiar historial, después
+        verificar con el escaneo correspondiente
 ```
 
 ```bash
@@ -234,13 +222,13 @@ git push --force-with-lease origin mi-rama
 
 ```text
 Diferencia crucial:
-   │
-   ├── push --force            → destruye lo que haya
-   │   en el remoto SIN preguntar (peligroso)
-   │
-   └── push --force-with-lease → falla si alguien más
-       empujó desde tu último fetch (no pisas trabajo
-       ajeno sin saberlo)
+    │
+    ├── push --force            → destruye lo que haya
+    │   en el remoto SIN preguntar (peligroso)
+    │
+    └── push --force-with-lease → falla si alguien más
+        empujó desde tu último fetch (no pisas trabajo
+        ajeno sin saberlo)
 ```
 
 ```bash
@@ -399,7 +387,7 @@ git log --oneline -n 1     # hash nuevo, mensaje nuevo
 
 ```bash
 git reset --soft HEAD~2    # B y C desmontados, cambios
-                           # staged
+                            # staged
 git status                 # todo preparado
 git commit -m "B+C unidos"
 git log --oneline          # historia plana nueva
@@ -420,7 +408,7 @@ git log --oneline
 ```bash
 git reflog | Select-String -Pattern 'rebase'   # o grep
 git reset --hard HEAD@{1}    # (elige el punto previo
-                             # correcto según tu reflog)
+                              # correcto según tu reflog)
 git log --oneline            # historia restaurada
 ```
 
@@ -452,32 +440,32 @@ Reescribir es rutina local y coordinación global: la herramienta es fácil, el 
 
 ```text
 Equipo profesional típico:
-   │
-   ├── ramas privadas: reescritura libre (amend,
-   │   rebase -i) antes de abrir PR
-   │
-   ├── rama de PR en revisión: cerrar cambios con
-   │   commits nuevos; reescribir solo con aviso y
-   │   lease
-   │
-   ├── main/release: NUNCA reescribir → revert
-   │
-   └── incidente con secreto: rotar credencial →
-       plan de reescritura + aviso + verificación
+    │
+    ├── ramas privadas: reescritura libre (amend,
+    │   rebase -i) antes de abrir PR
+    │
+    ├── rama de PR en revisión: cerrar cambios con
+    │   commits nuevos; reescribir solo con aviso y
+    │   lease
+    │
+    ├── main/release: NUNCA reescribir → revert
+    │
+    └── incidente con secreto: rotar credencial →
+        plan de reescritura + aviso + verificación
 ```
 
 ### 9.2. Higiene de historia
 
 ```text
-   │
-   ├── «WIP», «fix typo» aislados: agrupar antes del
-   │   PR (squash/fixup)
-   │
-   ├── mensajes que explican el porqué sobreviven a
-   │   cualquier reescritura posterior
-   │
-   └── CI y hooks (sección siguiente) verifican ANTES
-       de que la historia viaje
+    │
+    ├── «WIP», «fix typo» aislados: agrupar antes del
+    │   PR (squash/fixup)
+    │
+    ├── mensajes que explican el porqué sobreviven a
+    │   cualquier reescritura posterior
+    │
+    └── CI y hooks (sección siguiente) verifican ANTES
+        de que la historia viaje
 ```
 
 ### 9.3. Resumen
@@ -496,6 +484,25 @@ La idea principal es:
 > **Reescribir historia es seguro mientras sea tuyo y coordinado en cuanto deje de serlo: el hash que cambia en privado es detalle; el que cambia en equipo es una ruptura.**
 
 ---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Cuándo es aceptable reescribir un commit con `amend` y cuándo está prohibido?
+2. ¿Cómo afecta `reset --soft` al índice y al árbol de trabajo comparado con `reset --mixed`?
+3. ¿Qué ventaja tiene `rebase -i` sobre `reset --hard` para reescribir una serie de commits?
+4. ¿Por qué es peligroso usar `push --force` en una rama compartida y cómo mitiga `--force-with-lease` ese riesgo?
+5. ¿En qué situaciones sería apropiado usar `git filter-repo` y qué precauciones deben tomarse si hay secrets involucrados?
+6. ¿Cómo puedes recuperar un commit que parece haber desaparecido tras un rebase interactivo?
+7. ¿Qué política de equipo sería adecuada para decidir cuándo reescribir historial en una rama de release?
+8. ¿Cómo afecta la regla local/compartido a la elección entre `amend`, `reset` y `rebase -i`?
+
+---
+
+## Ejercicio de transferencia
+
+Crea un repositorio de práctica con al menos cinco commits. Usa `git reset --mixed` para desmontar los últimos tres commits, prepara los cambios para un nuevo commit y verifica que el historial se haya reescrito correctamente sin perder trabajo.
 
 ## Próximo paso
 
