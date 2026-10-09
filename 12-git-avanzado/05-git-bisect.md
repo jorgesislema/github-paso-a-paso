@@ -14,37 +14,32 @@ En este capítulo aprenderás:
 * bisect sobre rangos y con `visualize`;
 * errores comunes con diagnóstico completo, práctica guiada y nivel profesional.
 
----
-
 ## Mapa conceptual de este capítulo
 
-```text
-git bisect
-       │
-       ├── 1. La idea (búsqueda binaria)
-       ├── 2. Flujo manual (start/good/bad)
-       ├── 3. Automatización (--run, script)
-       ├── 4. Herramientas de apoyo
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
-```
+```mermaid
+mindmap
+  root((git bisect))
+    1. La idea (búsqueda binaria)
+    2. Flujo manual (start/good/bad)
+    3. Automatización (--run, script)
+    4. Herramientas de apoyo
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional + resumen
 
 ---
-
 ## 1. La idea
 
 ```text
 Historial:
-  ... f1  f2  f3  f4  f5  f6  f7  f8 ...
-        ▲ buenos          malos ▲
+   ... f1  f2  f3  f4  f5  f6  f7  f8 ...
+         ▲ buenos          malos ▲
 
 bisect elige el PUNTO MEDIO y te lo prueba:
-   │
-   ├── ¿bueno? → el culpable está a la derecha
-   ├── ¿malo?  → a la izquierda (o es él)
-   └── repite: log₂(n) pasos
+    │
+    ├── ¿bueno? → el culpable está a la derecha
+    ├── ¿malo?  → a la izquierda (o es él)
+    └── repite: log₂(n) pasos
 ```
 
 ```bash
@@ -58,9 +53,9 @@ git bisect good v1.0.0         # punto conocido bueno
 
 ```text
 Resultado al final:
-   │
-   └── "the first bad commit is a1b2c34 ..."
-       → el culpable exacto, con mensaje y autor
+    │
+    └── "the first bad commit is a1b2c34 ..."
+        → el culpable exacto, con mensaje y autor
 ```
 
 ---
@@ -77,23 +72,23 @@ git bisect good v1.0.0
 git bisect good                # este commit pasa
 git bisect bad                 # este commit falla
 git bisect skip                # este no se puede
-                               # probar (roto por otra
-                               # causa, build imposible)
+                                # probar (roto por otra
+                                # causa, build imposible)
 
 git bisect visualize            # qué queda por probar
 git bisect reset               # VOLVER a donde estabas
-                               # (imprescindible)
+                                # (imprescindible)
 ```
 
 ```text
 Estados a recordar:
-   │
-   ├── durante bisect, HEAD está «viajando» por la
-   │   historia (detached): no trabajes en paralelo
-   │
-   ├── bisect reset restaura tu rama/estado original
-   │
-   └── sin reset, la próxima operación se confunde
+    │
+    ├── durante bisect, HEAD está «viajando» por la
+    │   historia (detached): no trabajes en paralelo
+    │
+    ├── bisect reset restaura tu rama/estado original
+    │
+    └── sin reset, la próxima operación se confunde
 ```
 
 ---
@@ -113,25 +108,25 @@ npm test > /dev/null 2>&1    # o pytest, make test...
 ```
 
 ```text
-   │
-   ├── Git ejecuta el script en cada punto medio y
-   │   decide SOLO
-   │
-   ├── códigos: 0 good · 1-124 bad · 125 skip ·
-   │   otros → bisect se detiene con error
-   │
-   └── al final: el commit culpable sin tocar nada
+    │
+    ├── Git ejecuta el script en cada punto medio y
+    │   decide SOLO
+    │
+    ├── códigos: 0 good · 1-124 bad · 125 skip ·
+    │   otros → bisect se detiene con error
+    │
+    └── al final: el commit culpable sin tocar nada
 ```
 
 ```text
 Condiciones del script:
-   │
-   ├── determinista (mismo resultado para mismo
-   │   código)
-   │
-   ├── rápido (corre decenas de veces)
-   │
-   └── sin efectos secundarios (no publiques nada)
+    │
+    ├── determinista (mismo resultado para mismo
+    │   código)
+    │
+    ├── rápido (corre decenas de veces)
+    │
+    └── sin efectos secundarios (no publiques nada)
 ```
 
 ---
@@ -157,11 +152,11 @@ git bisect replay archivo.txt
 
 ```text
 Acotar acelera:
-   │
-   ├── si sabes «en la rama X ya estaba malo»:
-   │   marcar esos extremos reduce pasos
-   │
-   └── rangos: git bisect start <malo> <bueno>
+    │
+    ├── si sabes «en la rama X ya estaba malo»:
+    │   marcar esos extremos reduce pasos
+    │
+    └── rangos: git bisect start <malo> <bueno>
 ```
 
 ---
@@ -330,7 +325,7 @@ git log --oneline -n 1   # confirmar
 ```bash
 git bisect start HEAD <hash del "paso 1">
 git bisect run ./test.sh     # (o el intérprete
-                             # adecuado)
+                              # adecuado)
 # salida final: first bad commit = ...
 git bisect reset
 ```
@@ -360,16 +355,16 @@ Bisect convierte la historia en un algoritmo: marcas extremos verificados, prueb
 ### 7.1. Bisect en equipo
 
 ```text
-   │
-   ├── el test automatizado del CI es el mismo que
-   │   puede servir de script de bisect
-   │
-   ├── si el culpable es de otro autor, el mensaje y
-   │   la fecha del commit dicen el contexto (blame
-   │   del capítulo siguiente)
-   │
-   └── en incidentes: bisect + changelog = respuesta
-       rápida a «¿en qué versión entró?»
+    │
+    ├── el test automatizado del CI es el mismo que
+    │   puede servir de script de bisect
+    │
+    ├── si el culpable es de otro autor, el mensaje y
+    │   la fecha del commit dicen el contexto (blame
+    │   del capítulo siguiente)
+    │
+    └── en incidentes: bisect + changelog = respuesta
+        rápida a «¿en qué versión entró?»
 ```
 
 ```bash
@@ -382,15 +377,15 @@ git bisect run ./test.sh
 ### 7.2. Límites conocidos
 
 ```text
-   │
-   ├── bisect es binario: 1 bad/1 good por punto (no
-   │   sirve para fallos probabilísticos raros)
-   │
-   ├── migraciones de base de datos o dependencias
-   │   externas complican el script (skip frecuente)
-   │
-   └── historiales con merges complejos: funciona, pero
-       el script debe ser independiente de la rama
+    │
+    ├── bisect es binario: 1 bad/1 good por punto (no
+    │   sirve para fallos probabilísticos raros)
+    │
+    ├── migraciones de base de datos o dependencias
+    │   externas complican el script (skip frecuente)
+    │
+    └── historiales con merges complejos: funciona, pero
+        el script debe ser independiente de la rama
 ```
 
 ### 7.3. Resumen
@@ -409,6 +404,25 @@ La idea principal es:
 > **No revises la historia a mano: declara un bueno, un malo y un test — bisect devuelve el culpable, y el equipo recupera el tiempo.**
 
 ---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Qué hace el comando `git bisect visualize` y cómo puede ayudarte durante una sesión de bisect?
+2. ¿Cómo determinarías si un commit es bueno o malo cuando el resultado de tu prueba es ambiguo (por ejemplo, un test intermitente)?
+3. ¿Qué comando usarías para marcar un commit como «skip» durante un bisect y en qué situaciones sería apropiado hacerlo?
+4. ¿Cómo recuperarías tu rama original si accidentalmente olvidas ejecutar `git bisect reset` después de encontrar el culpable?
+5. ¿Qué ventaja tiene usar `git bisect run <script>` frente a realizar el bisect manualmente paso a paso?
+6. ¿Cómo acotarías una sesión de bisect si ya sabes que ciertos commits en el rango son buenos o malos?
+7. ¿Qué riesgo implica ejecutar un bisect en un historial que ha sido reescrito recientemente y cómo lo mitigarías?
+8. ¿Cómo combinarías git bisect con tags para determinar en qué versión específica se introdujo un error?
+
+---
+
+## Ejercicio de transferencia
+
+Tienes una aplicación web que pasó de funcionar correctamente en la versión v1.2.0 a presentar un error en la versión v1.3.0. Entre estas versiones hay 50 commits en la rama `main`. Describe los pasos que seguirías para usar `git bisect` con un script automatizado que detecte la presencia del error mediante una prueba unitaria, localizar el commit culpable en menos de 10 pasos, verificar el resultado y restaurar tu rama original.
 
 ## Próximo paso
 
