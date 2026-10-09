@@ -1,4 +1,19 @@
 # Mensajes de commit
+[`04-changelog-y-release-notes.md`](04-changelog-y-release-notes.md)
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compru�balo con este cap�tulo:
+
+1. �Por qu� es importante que el asunto de un commit describa el �qu� changed� en imperativo y el cuerpo explique el �por qu� con contexto y decisiones, en lugar de solo listar acciones?
+2. �C�mo afecta el uso de convenciones como Conventional Commits a la generaci�n autom�tica de changelogs y a la capacidad de determinar el incremento de versi�n semver solo desde el historial?
+3. �Qu� impacto tiene mezclar idiomas o usar un tono emocional en los mensajes de commit sobre la utilidad del historial para auditor�as y para nuevos miembros del equipo?
+4. �C�mo decidir si un mensaje de commit debe incluir un enlace a un issue (p. ej., �Closes #123�) y cu�ndo es suficiente dejar el contexto en el cuerpo sin referencia externa?
+5. �Qu� consecuencias tiene aplicar un rebase o amend a commits ya compartidos sin coordinar con el equipo, y c�mo se evita este riesgo?
+6. �C�mo implementar�as una revisi�n de PR que verifique tanto el formato del asunto (longitud, imperativo) como la presencia de explicaci�n del por qu� en el cuerpo?
+
+[`04-changelog-y-release-notes.md`](04-changelog-y-release-notes.md)
+# Mensajes de commit
 
 ## Introducción
 
@@ -7,73 +22,69 @@ El historial de Git es la memoria del proyecto: cada commit deja una nota. Esa n
 Un mensaje de commit bien escrito transforma el log de Git en documentación viva. Mal escrito, lo convierte en ruido inútil. Este capítulo cubre formato, convención, idioma y los errores que arruinan un historial.
 
 ---
-
 ## Mapa conceptual de este capítulo
 
-```text
-Mensajes de commit
-       │
-       ├── 1. Para quién escribes
-       ├── 2. Formato estándar (asunto + cuerpo)
-       ├── 3. Convenciones comunes (Conventional…)
-       ├── 4. Idioma y estilo
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Mensajes de commit))
+    Para quién escribes
+    Formato estándar asunto y cuerpo
+    Convenciones comunes Conventional Commits
+    Idioma y estilo
+      Errores comunes con diagnóstico completo
+      Práctica guiada
+      Nivel profesional + resumen
 ```
 
 ---
-
 ## 1. Para quién escribes
 
 ```text
 Lectores reales del mensaje:
-   │
-   ├── tú, en 3 meses, preguntando «¿por qué está
-   │   este if aquí?»
-   │
-   ├── quien revise el historial para auditar un
-   │   cambio (release, incidente, seguridad)
-   │
-   ├── quien haga bisect buscando la regresión
-   │   (sección 12) — el mensaje es su mapa
-   │
-   └── herramientas: changelogs automáticos,
-       analytics, integración con issues
+    │
+    ├── tú, en 3 meses, preguntando «¿por qué está
+    │   este if aquí?»
+    │
+    ├── quien revise el historial para auditar un
+    │   cambio (release, incidente, seguridad)
+    │
+    ├── quien haga bisect buscando la regresión
+    │   (sección 12) — el mensaje es su mapa
+    │
+    └── herramientas: changelogs automáticos,
+        analytics, integración con issues
 ```
 
 ```text
 Regla mental:
-   │
-   └── el asunto responde «qué cambió»;
-       el cuerpo responde «por qué cambió»
-       (el diff ya cuenta el «cómo»)
+    │
+    └── el asunto responde «qué cambió»;
+        el cuerpo responde «por qué cambió»
+        (el diff ya cuenta el «cómo»)
 ```
 
 ---
-
 ## 2. Formato estándar (asunto + cuerpo)
 
 ```text
 ELEMENTOS
 ──────────────────────────────────────────────────────
 asunto (subject)
-  · una línea, ≤ 50 caracteres (costumbre clásica)
-  · imperativo: «Añade…», «Corrige…», no «Añadido…»
-  · sin punto final
-  · mayúscula inicial según estilo del equipo
+   · una línea, ≤ 50 caracteres (costumbre clásica)
+   · imperativo: «Añade…», «Corrige…», no «Añadido…»
+   · sin punto final
+   · mayúscula inicial según estilo del equipo
 
 cuerpo (body) — opcional pero valioso
-  · línea en blanco tras el asunto
-  · párrafos de ≤ 72 caracteres
-  · explica EL PORQUÉ: contexto, problema, decisión
-  · menciona trade-offs y alternativas descartadas
+   · línea en blanco tras el asunto
+   · párrafos de ≤ 72 caracteres
+   · explica EL PORQUÉ: contexto, problema, decisión
+   · menciona trade-offs y alternativas descartadas
 
 pie (footer) — opcional
-  · vínculos: "Closes #123", "Refs: …"
-  · notas de revisión: "Reviewed-by: …"
-  · rompes API: "BREAKING CHANGE: …"
+   · vínculos: "Closes #123", "Refs: …"
+   · notas de revisión: "Reviewed-by: …"
+   · rompes API: "BREAKING CHANGE: …"
 ```
 
 ```text
@@ -94,33 +105,32 @@ Closes #482
 
 ```text
 Por qué el imperativo («Corrige»): los mensajes
-forman la frase «este commit *corrige* …» al
-aplicarse (y así lo traduce git log --oneline).
+ forman la frase «este commit *corrige* …» al
+ aplicarse (y así lo traduce git log --oneline).
 ```
 
 ---
-
 ## 3. Convenciones comunes
 
 ```text
 CONVENTIONAL COMMITS (la más extendida)
-   │
-   ├── tipo(scope): descripción
-   │     feat: funcionalidad nueva
-   │     fix: corrección de bug
-   │     docs: solo documentación
-   │     style: formato (sin cambio de lógica)
-   │     refactor: reestructurar sin cambiar
-   │                     comportamiento
-   │     test: añade/corriga tests
-   │     chore: tareas de mantenimiento
-   │     ci/build/perf: … según la convención del
-   │                     equipo
-   │
-   ├── BREAKING CHANGE: ! o pie explícito
-   │
-   └── sirve a: changelogs automáticos, semver
-       derivado, filtros de release
+    │
+    ├── tipo(scope): descripción
+    │     feat: funcionalidad nueva
+    │     fix: corrección de bug
+    │     docs: solo documentación
+    │     style: formato (sin cambio de lógica)
+    │     refactor: reestructurar sin cambiar
+    │                     comportamiento
+    │     test: añade/corriga tests
+    │     chore: tareas de mantenimiento
+    │     ci/build/perf: … según la convención del
+    │                     equipo
+    │
+    ├── BREAKING CHANGE: ! o pie explícito
+    │
+    └── sirve a: changelogs automáticos, semver
+        derivado, filtros de release
 ```
 
 ```text
@@ -140,41 +150,39 @@ git commit -m "fix: ..." # una línea (sin cuerpo)
 ```
 
 ---
-
 ## 4. Idioma y estilo
 
 ```text
-   │
-   ├── idioma: el que el equipo documente; lo crítico
-   │   es ser consistente y claro (en este repo, en
-   │   español con terminología técnica intacta)
-   │
-   ├── no mezclar idiomas dentro de un historial
-   │   sin criterio
-   │
-   ├── lenguaje neutro y profesional: sin sarcasmo,
-   │   sin culpabilizar («chore: no funcionaba el
-   │   review de Ana»)
-   │
-   └── nombra el dominio: «corrige cálculo de IVA en
-       exportación» > «pequeño arreglo»
+    │
+    ├── idioma: el que el equipo documente; lo crítico
+    │   es ser consistente y claro (en este repo, en
+    │   español con terminología técnica intacta)
+    │
+    ├── no mezclar idiomas dentro de un historial
+    │   sin criterio
+    │
+    ├── lenguaje neutro y profesional: sin sarcasmo,
+    │   sin culpabilizar («chore: no funcionaba el
+    │   review de Ana»)
+    │
+    └── nombra el dominio: «corrige cálculo de IVA en
+        exportación» > «pequeño arreglo»
 ```
 
 ```text
 Historial como disciplina:
-   │
-   ├── un commit = una idea revisable
-   │
-   ├── mensajes se reescriben ANTES de compartir
-   │   (amend / rebase -i de la sección 12)
-   │
-   └── después de compartir: solo añadiendo (y con
-       causa) — reescribir historial compartido
-       obliga a coordinar
+    │
+    ├── un commit = una idea revisable
+    │
+    ├── mensajes se reescriben ANTES de compartir
+    │   (amend / rebase -i de la sección 12)
+    │
+    └── después de compartir: solo añadiendo (y con
+        causa) — reescribir historial compartido
+        obliga a coordinar
 ```
 
 ---
-
 ## 5. Errores comunes con diagnóstico completo
 
 ### Error 1: mensajes de relleno
@@ -290,7 +298,6 @@ Historial como disciplina:
 **Cómo se evita:** reglas de estilo del equipo y pausa de 10 segundos antes de `git commit`.
 
 ---
-
 ## 6. Práctica guiada
 
 ### Objetivo
@@ -319,7 +326,7 @@ git config --global commit.template ~/.gitmessage.txt
 echo "cambio" >> nota.txt
 git add nota.txt
 git commit           # escribe asunto + cuerpo en el
-                     # editor
+                      # editor
 git log -1 --format=full   # verifica estructura
 ```
 
@@ -335,10 +342,10 @@ git log --oneline -10
 
 ```bash
 git reset --soft HEAD~2      # deshace 2 commits
-                              # manteniendo cambios
+                               # manteniendo cambios
 git commit                   # rehace con mensajes
-                              # buenos
-# o git rebase -i HEAD~2 con reword/squash
+                               # buenos
+# o git rebase -i HEAD~2 with reword/squash
 # (sección 12)
 ```
 
@@ -354,26 +361,29 @@ Historial de prueba legible: asuntos que cuentan el qué, cuerpos con el porqué
 
 El mensaje es la capa semántica del historial: se redacta como mini-documento y se revisa como parte del PR.
 
----
+### Ejercicio de transferencia
 
+Elige un proyecto de código abierto pequeño con el que nunca hayas contribuido. Envía un pull request que incluya al menos dos commits: uno con mensaje siguiendo Conventional Commits (tipo, ámbito, asunto ≤50) y otro que corrija un error menor. Asegúrate de que el cuerpo del primer commit explique el por qué con contexto y que el historial resultante sea legible y útil para un revisor externo. Entrega capturas del historial antes y después, junto con el mensaje del pull request.
+
+---
 ## 7. Nivel profesional + resumen
 
 ### 7.1. Historial como artefacto de ingeniería
 
 ```text
-   │
-   ├── convención + plantilla + hooks de lint de
-   │   mensajes (categoría: commitlint) en CI
-   │
-   ├── changelog derivado (feat/fix/BREAKING) y
-   │   semver derivado del historial
-   │
-   ├── historial que sobrevive a migraciones de
-   │   plataforma (por eso el contexto está en el
-   │   commit, no solo en el PR)
-   │
-   └── reescritura: solo lo local/no compartido, o
-       coordinación completa (sección 12, cap. 01)
+    │
+    ├── convención + plantilla + hooks de lint de
+    │   mensajes (categoría: commitlint) in CI
+    │
+    ├── changelog derivado (feat/fix/BREAKING) y
+    │   semver derivado del historial
+    │
+    ├── historial que sobrevive a migraciones de
+    │   plataforma (por eso el contexto está en el
+    │   commit, no solo en el PR)
+    │
+    └── reescritura: solo lo local/no compartido, o
+        coordinación completa (sección 12, cap. 01)
 ```
 
 ### 7.2. Resumen
@@ -392,7 +402,6 @@ La idea principal es:
 > **El historial es documentación ejecutable: escribe para quien lo leerá dentro de un año, con el qué en una línea y el porqué en el cuerpo.**
 
 ---
-
 ## Próximo paso
 
 Ya sabes documentar el pasado commit a commit.
