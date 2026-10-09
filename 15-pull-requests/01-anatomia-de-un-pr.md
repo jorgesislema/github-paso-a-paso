@@ -10,17 +10,37 @@ Este capítulo abre la sección describiendo qué es un PR, cómo es su ciclo de
 
 ## Mapa conceptual de este capítulo
 
-```text
-Anatomía de un Pull Request
-       │
-       ├── 1. Qué es (y qué no es)
-       ├── 2. Ciclo de vida completo
-       ├── 3. Piezas del PR
-       ├── 4. Lo que ocurre «por dentro»
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Anatomía de un Pull Request))
+    1. Qué es y qué no es
+      propuesta con toda la conversación
+      contexto de revisión con diff y checks
+      unidad de decisión aprobar pedir cambios o cerrar
+      registro guardado para siempre
+      no es un botón de merge
+      funciona entre repos y dentro del mismo repo
+    2. Ciclo de vida completo
+      preparar abrir revisar
+      verificar decidir integrar
+      post con rama borrada e issue cerrada
+      estados de draft a merged
+    3. Piezas del PR
+      título y descripción
+      vínculos y commits
+      diff y checks
+      revisores y etiquetas
+      base y head
+      conversaciones e historial
+    4. Lo que ocurre por dentro
+      diff three-dot contra ancestro común
+      workflows de CI del evento de pull request
+      comentarios anclados a líneas
+      estrategia de integración sobre la base
+      autocierre de issues con el merge
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional y resumen
 ```
 
 ---
@@ -70,31 +90,15 @@ NO ES:
 
 ## 2. Ciclo de vida completo
 
-```text
-1. PREPARAR (local)
-   rama → commits con sentido → push
-        │
-2. ABRIR (plataforma)
-   título, descripción, issue vinculada, draft si
-   aplica
-        │
-3. REVISAR
-   revisores asignados/comentados
-   → comentarios → cambios del autor
-   → segunda vuelta…
-        │
-4. VERIFICAR
-   checks (lint, tests, build) deben pasar
-   + aprobaciones requeridas
-        │
-5. DECIDIR
-   ✓ aprobado + verde → integrar
-        │
-6. INTEGRAR (merge / squash / rebase — cap. 05)
-        │
-7. POST
-   rama borrada, issue cerrada («Closes #x»),
-   historial disponible
+```mermaid
+flowchart TD
+    A["1. Preparar: rama, commits con sentido, push"] --> B["2. Abrir: título, descripción, issue vinculada, draft si aplica"]
+    B --> C["3. Revisar: revisores asignados, comentarios, cambios del autor, segunda vuelta"]
+    C --> D["4. Verificar: checks de lint, tests y build en verde + aprobaciones requeridas"]
+    D --> E{"5. Decidir: aprobado y verde"}
+    E -->|"sí"| F["6. Integrar: merge, squash o rebase (cap. 05)"]
+    E -->|"no"| C
+    F --> G["7. Post: rama borrada, issue cerrada con Closes, historial disponible"]
 ```
 
 ```text
@@ -357,6 +361,10 @@ PR abierto con base correcta, descripción completa, checks verdes y vínculo a 
 
 Un PR es un paquete: propuesta + evidencia (checks) + contexto (descripción) + decisión (revisión).
 
+### Ejercicio de transferencia
+
+En un repositorio donde ya trabajes — o en uno simulado con una segunda cuenta — abre un PR real de cualquier cambio pequeño y recórrelo por sus piezas: base correcta, descripción con qué/porqué/cómo probar, vínculo a una issue y checks en verde. Entrega: el enlace al PR y la cabecera escrita (base ← head) con el estado de sus checks.
+
 ---
 
 ## 7. Nivel profesional + resumen
@@ -394,6 +402,19 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **El PR es el contrato entre quien escribe y quien integra: propuesta clara, evidencia verde y conversación respetuosa — el merge es solo la última línea.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué decimos que un PR no es «un botón de merge» y qué se pierde cuando lo tratas como tal?
+2. ¿Qué diferencia hay entre lo que muestra el diff three-dot y lo que «adelantó» la base, y por qué importa eso para revisar?
+3. Si el diff aparece lleno de archivos que tú no tocaste, ¿cuáles son las dos causas probables y cómo decides cuál aplica?
+4. ¿Por qué un PR con checks verdes y aprobación puede seguir sin estar listo para integrar?
+5. ¿Qué papel juega el estado Draft y por qué no pedir revisión de algo no listo ahorra tiempo al equipo entero?
+6. ¿Qué cosas quedan guardadas para siempre cuando un PR se integra, aunque el historial quede lineal?
 
 ---
 
