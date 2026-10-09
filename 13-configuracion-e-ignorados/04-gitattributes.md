@@ -10,17 +10,16 @@ Es el archivo que evita la pesadilla de «cambios en todo el archivo porque algu
 
 ## Mapa conceptual de este capítulo
 
-```text
-.gitattributes
-       │
-       ├── 1. Para qué sirve (y por qué no basta config)
-       ├── 2. Sintaxis
-       ├── 3. El caso de los finales de línea
-       ├── 4. Diffs y merges: binary, merge drivers
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((.gitattributes))
+    Para qué sirve
+    Sintaxis
+    Finales de línea
+    Diffs y merges
+    Errores comunes
+    Práctica guiada
+    Nivel profesional
 ```
 
 ---
@@ -359,6 +358,9 @@ El proyecto declara cómo se tratan sus archivos; la config personal solo pinta 
 
 ---
 
+### Ejercicio de transferencia
+Aplica lo aprendido sobre .gitattributes a un proyecto que tenga archivos de configuración sensibles (como .env) que deben tratarse como binarios para evitar diffs innecesarios. Añade el atributo adecuado y verifica con `git check-attr`.
+
 ## 7. Nivel profesional + resumen
 
 ### 7.1. Setup recomendado (resumen)
@@ -399,6 +401,16 @@ La idea principal es:
 > **Quien clona tu proyecto no debe adivinar: el .gitattributes es la declaración de cómo se lee, se difumina y se fusiona cada archivo — para todos, sin depender de su configuración.**
 
 ---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Cuál es la diferencia entre autocrlf y el atributo text eol en .gitattributes?
+2. ¿Cómo declaras un archivo como binario en .gitattributes y por qué es importante?
+3. ¿Qué hace el atributo export-ignore y cuándo lo usarías?
+4. ¿Cómo puedes verificar qué atributos se aplican a un archivo específico?
+5. ¿Por qué es útil usar merge=ours en ciertos archivos generados?
 
 ## Próximo paso
 
