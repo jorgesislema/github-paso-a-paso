@@ -22,6 +22,26 @@ En este capítulo aprenderás:
 
 Al terminar, podrás corregir commits compartidos sin reescribir el pasado.
 
+
+```mermaid
+mindmap
+  root((git revert))
+    Problema: commit compartido
+      Commit ya enviado
+      Historial compartido
+    Solución: revert
+      Crea commit inverso
+      No reescribe historial
+      Safe for shared
+    Flujo típico
+      Identificar hash
+      Ejecutar revert
+      Resolver conflictos si los hay
+    Comparación con reset
+      Reset mueve rama
+      Revert añade commit
+      Reset local, revert seguro
+```
 ---
 
 ## 1. El problema: un commit que ya está compartido
@@ -355,12 +375,10 @@ Esta tabla resume la diferencia práctica.
 
 La regla mental es:
 
-```text
-¿El commit se compartió?
-        │
-        ├── No  → puedes mover el historial (reset)
-        │
-        └── Sí  → solo puedes añadir (revert)
+```mermaid
+flowchart TD
+    A["¿El commit se compartió?"] -->|No| B["Puedes mover el historial (reset)"]
+    A -->|Sí| C["Solo puedes añadir (revert)"]
 ```
 
 Un historial limpio y sin huecos es importante para ti, pero un historial estable y predecible es importante para todo el equipo.
