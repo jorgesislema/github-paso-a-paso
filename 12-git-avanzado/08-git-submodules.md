@@ -16,49 +16,46 @@ En este capítulo aprenderás:
 * alternativas (subtree, monorepo, dependencias);
 * errores comunes con diagnóstico completo, práctica guiada y nivel profesional.
 
----
-
 ## Mapa conceptual de este capítulo
 
-```text
-git submodule
-       │
-       ├── 1. ¿Cuándo SÍ y cuándo NO?
-       ├── 2. El modelo (gitlink: commit fijo)
-       ├── 3. Flujo básico: add, clone, update
-       ├── 4. Cambiar y publicar la versión
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
-```
+```mermaid
+mindmap
+  root((git submodule))
+    1. ¿Cuándo SÍ y cuándo NO?
+    2. El modelo (gitlink: commit fijo)
+    3. Flujo básico: add, clone, update
+    4. Cambiar y publicar la versión
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional + resumen
 
 ---
-
 ## 1. ¿Cuándo SÍ y cuándo NO?
 
 ```text
 Submódulo compensa cuando:
-   │
-   ├── necesitas versiones EXACTAS y auditables del
-   │   otro repo en cada commit del tuyo
-   │
-   ├── el otro repo es desarrollado en paralelo por
-   │   otro equipo y debe mantener su historia
-   │
-   └── ciertos repos dentro de una organización
+    │
+    ├── necesitas versiones EXACTAS y auditables del
+    │   otro repo en cada commit del tuyo
+    │
+    ├── el otro repo es desarrollado en paralelo por
+    │   otro equipo y debe mantener su historia
+    │
+    └── ciertos repos dentro de una organización
+```
 
+```text
 Submódulo NO compensa cuando:
-   │
-   ├── solo quieres «arrastrar unos archivos» →
-   │   subtree o copia controlada
-   │
-   ├── buscas siempre la última versión → dependencia
-   │   de package manager (npm, pip, cargo...)
-   │
-   └── el equipo es nuevo en el concepto y el coste
-       de aprendizaje supera el beneficio → monorepo o
-       paquete interno
+    │
+    ├── solo quieres «arrastrar unos archivos» →
+    │   subtree o copia controlada
+    │
+    ├── buscas siempre la última versión → dependencia
+    │   de package manager (npm, pip, cargo...)
+    │
+    └── el equipo es nuevo en el concepto y el coste
+        de aprendizaje supera el beneficio → monorepo o
+        paquete interno
 ```
 
 ---
@@ -67,34 +64,34 @@ Submódulo NO compensa cuando:
 
 ```text
 En tu repositorio queda:
-   │
-   ├── una entrada en .gitmodules (ruta, URL, rama)
-   │
-   ├── una ENTRADA DE ÍNDICE tipo «gitlink»: el HASH
-   │   exacto del submódulo (no su contenido)
-   │
-   └── la carpeta del submódulo tiene SU PROPIO .git
-       (o gitfile) → historia aparte
+    │
+    ├── una entrada en .gitmodules (ruta, URL, rama)
+    │
+    ├── una ENTRADA DE ÍNDICE tipo «gitlink»: el HASH
+    │   exacto del submódulo (no su contenido)
+    │
+    └── la carpeta del submódulo tiene SU PROPIO .git
+        (o gitfile) → historia aparte
 
-   proyecto/
-   ├── .gitmodules
-   ├── src/...
-   └── libs/mi-lib/      ← gitlink → hash a1b2c34
-                            (ese commit, ni más ni
-                            menos)
+    proyecto/
+    ├── .gitmodules
+    ├── src/...
+    └── libs/mi-lib/      ← gitlink → hash a1b2c34
+                             (ese commit, ni más ni
+                             menos)
 ```
 
 ```text
 Consecuencias del modelo:
-   │
-   ├── «actualizar el submódulo» = mover el gitlink a
-   │   otro commit → commit en EL PROYECTO padre
-   │
-   ├── clonar sin recursión deja carpetas VACÍAS
-   │   (el contenido no está en tu repo)
-   │
-   └── el submódulo es inmutable para el padre: dos
-       proyectos pueden apuntar a commits distintos
+    │
+    ├── «actualizar el submódulo» = mover el gitlink a
+    │   otro commit → commit en EL PROYECTO padre
+    │
+    ├── clonar sin recursión deja carpetas VACÍAS
+    │   (el contenido no está en tu repo)
+    │
+    └── el submódulo es inmutable para el padre: dos
+        proyectos pueden apuntar a commits distintos
 ```
 
 ---
@@ -118,17 +115,17 @@ git submodule update --init --recursive
 git submodule status        # (-)sin init (U)unmerged
 git submodule update        # pone el commit del padre
 git submodule update --remote   # trae la punta de la
-                                # rama remota del
-                                # submódulo
+                                 # rama remota del
+                                 # submódulo
 ```
 
 ```text
 Lectura de status:
-   │
-   ├── + → el submódulo está en un commit DISTINTO al
-   │        registrado (tienes cambios locales o desfase)
-   ├── U → conflicto de fusión
-   └── sin prefijo → exactamente en el commit del padre
+    │
+    ├── + → el submódulo está en un commit DISTINTO al
+    │        registrado (tienes cambios locales o desfase)
+    ├── U → conflicto de fusión
+    └── sin prefijo → exactamente en el commit del padre
 ```
 
 ```bash
@@ -142,21 +139,19 @@ git rm libs/mi-lib
 
 ## 4. Cambiar y publicar la versión
 
+```mermaid
+flowchart TD
+    A[Dentro del submódulo: fetch y elegir (o --remote para su rama)] --> B[Volver al padre: git status muestra el gitlink modificado]
+    B --> C[Commit en el padre: «chore: actualiza mi-lib a <hash>»]
+    C --> D[Push del padre (el submódulo ya publicó su commit en SU remoto — si no, falla para otros)]
+```
+
 ```text
-Flujo de actualización:
-   │
-   ├── 1. dentro del submódulo: fetch y elegir (o
-   │       --remote para su rama)
-   │
-   ├── 2. volver al padre: git status muestra el
-   │       gitlink modificado
-   │
-   ├── 3. commit en el padre: «chore: actualiza
-   │       mi-lib a <hash>»
-   │
-   └── 4. push del padre (el submódulo ya publicó su
-           commit en SU remoto — si no, falla para
-           otros)
+Regla de oro:
+    │
+    └── el commit referenciado del submódulo DEBE
+        existir en su remoto ANTES de que el padre lo
+        apunte (si no, nadie más podrá clonarlo)
 ```
 
 ```bash
@@ -167,14 +162,6 @@ cd ../..
 git add libs/mi-lib
 git commit -m "chore: mi-lib → a1b2c34"
 git push
-```
-
-```text
-Regla de oro:
-   │
-   └── el commit referenciado del submódulo DEBE
-       existir en su remoto ANTES de que el padre lo
-       apunte (si no, nadie más podrá clonarlo)
 ```
 
 ---
@@ -348,7 +335,7 @@ git submodule status           # refleja hash nuevo
 ### Paso 4: ver el estado del sistema
 
 ```bash
-git show HEAD --stat           # gitlink en el diff
+git show HEAD --stat           # gitlink in the diff
 git config --file .gitmodules --list
 git status                     # limpio
 ```
@@ -383,38 +370,38 @@ El submódulo es un puntero a un commit que debe existir para todos: publica en 
 Opción           Mejor para                Coste
 ──────────────────────────────────────────────────────
 submódulo  versiones exactas + historia   modelo mental
-           separada                        complejo
+            separada                        complejo
 subtree    llevar código dentro con        merges
-           historial embebido              ligeros
+            historial embebido              ligeros
 dependen-  libs públicas/internas según   el ecosistema
 cia (npm…)  ecosistema                      manda
 monorepo   todo junto y atómico            herramientas
-                                                 propias
+                                                  propias
 copiar     última urgencia / code freeze  sin relación
-           (nunca un flujo regular)
+            (nunca un flujo regular)
 ```
 
 ```text
 Decisión profesional:
-   │
-   ├── ¿quiénes actualizan? ¿con qué frecuencia?
-   ├── ¿necesitas auditoría «qué versión exacta en
-   │   qué fecha»? → submódulo (o lockfile)
-   └── ¿el equipo ya lo domina? (coste de adopción)
+    │
+    ├── ¿quiénes actualizan? ¿con qué frecuencia?
+    ├── ¿necesitas auditoría «qué versión exacta en
+    │   qué fecha»? → submódulo (o lockfile)
+    └── ¿el equipo ya lo domina? (coste de adopción)
 ```
 
 ### 7.2. Higiene profesional
 
 ```text
-   │
-   ├── README: clon con --recurse-submodules
-   │
-   ├── CI: init --recursive obligatorio
-   │
-   ├── política: submódulos se mueven en commits
-   │   dedicados, con mensaje que dice la versión
-   │
-   └── pruebas de humo tras cada actualización
+    │
+    ├── README: clon con --recurse-submodules
+    │
+    ├── CI: init --recursive obligatorio
+    │
+    ├── política: submódulos se mueven en commits
+    │   dedicados, con mensaje que dice la versión
+    │
+    └── pruebas de humo tras cada actualización
 ```
 
 ### 7.3. Resumen
@@ -434,11 +421,30 @@ La idea principal es:
 
 ---
 
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Qué información contiene el archivo `.gitmodules` y qué tipo de entrada en el índice de Git representa un submódulo?
+2. ¿Cómo clonarías un repositorio que tiene submódulos para asegurarte de que todos los submódulos se inicialicen y actualicen automáticamente?
+3. ¿Qué comando usarías para ver el estado de los submódulos, incluyendo si están inicializados, si tienen cambios locales o si hay conflictos de fusión?
+4. ¿Qué pasos seguirías para actualizar un submódulo a un nuevo commit y asegurar que el cambio se publique correctamente en el repositorio padre?
+5. ¿En qué situación sería apropiado usar `git submodule update --remote` y qué riesgo implica usarlo en una rama de producción?
+6. ¿Cómo detectarías y resolverías un conflicto de fusión que afecta al archivo `.gitmodules` o al gitlink de un submódulo?
+7. ¿Qué ventaja tiene usar `git submodule deinit` antes de eliminar el directorio de un submódulo con `git rm`?
+8. ¿Cómo evitarías que un submódulo quede apuntando a un commit que solo existe en tu repositorio local y no en el remoto?
+
+---
+
+## Ejercicio de transferencia
+
+Tienes un proyecto que depende de una librería interna desarrollada por otro equipo. Necesitas actualizar la librería a una nueva versión que corrige un error crítico y asegurarte de que la referencia en tu proyecto apunte al commit correcto. Describe los pasos que seguirías para actualizar el submódulo en su propio repositorio, publicar el cambio, actualizar el gitlink en el proyecto padre y verificar que el submódulo apunta al commit esperado, asegurándote de que el commit referenciado exista en el remoto del submódulo antes de mover el puntero.
+
 ## Próximo paso
 
 Ya conectas repositorios con control de versiones.
 
-El siguiente capítulo automatiza tus propios comandos en puntos clave: hooks.
+La siguiente herramienta automatiza tus propios comandos en puntos clave: hooks.
 
 Continúa con:
 
