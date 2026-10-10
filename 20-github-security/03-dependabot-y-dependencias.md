@@ -4,457 +4,331 @@
 
 Casi ningún proyecto vive solo: importa bibliotecas, acciones de CI y herramientas. Cada dependencia es una decisión de confianza y una superficie de riesgo que cambia con el tiempo. Este capítulo cubre el ciclo de vida de dependencias en GitHub: alertas de vulnerabilidades, actualizaciones automáticas con Dependabot, versionado consciente y la relación entre dependencias, errores de compilación y cadena de suministro.
 
+La regla fundamental: **las dependencias deben mantenerse actualizadas, pero siempre bajo control y revisión**.
+
 ---
 
 ## Mapa conceptual de este capítulo
 
-```text
-Dependabot y dependencias
-       │
-       ├── 1. El inventario: qué dependes de qué
-       │   ├── 2. Alertas: vulnerabilidades detectadas
-       │   ├── 3. Dependabot: actualizaciones
-       │   ├── 4. Versionado y confianza
-       │   └── 5. Dependencias de CI (Actions) y del SO
-       │
-       ├── 6. Errores comunes con diagnóstico completo
-       ├── 7. Práctica guiada
-       └── 8. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Dependabot y dependencias))
+    1. Tipos de dependencias
+      directo
+      transitivo
+      de desarrollo
+      peer
+    2. Archivos de manifiesto
+      package.json
+      requirements.txt
+      Pom.xml
+      Gemfile
+      Cargo.toml
+    3. Ciclo de vida
+      crear
+      usar
+      actualizar
+    4. Alertas y automatización
+      Dependabot alerts
+      Dependabot security updates
+      Dependabot version updates
+    5. Errores comunes
+    6. Práctica guiada
+    7. Nivel profesional + resumen
 ```
 
 ---
 
-## 1. El inventario: qué dependes de qué
+## 1. Tipos de dependencias
 
 ```text
-TRES LISTAS DIFERENTES:
-   │
-   ├── runtime: lo que tu producto ejecuta (imports
-   │   del código)
-   │
-   ├── dev/CI: linters, frameworks de test, actions —
-   │   no llega a producción, pero compromete tu CI
-   │
-   └── plataforma/infra: SO del runner, versiones de
-       intérpretes (node, python…)
+TIPO                 DESCRIPCIÓN                            EJEMPLOS
+────────────────────────────────────────────────────────────────────
+Directa              Bibliotecas que tu código importa      lodash, numpy
+Transitiva           Dependencias de tus dependencias       paquetes internos de lodash
+De desarrollo        Herramientas de testing, linting       jest, eslint, pytest
+Peer                 Bibliotecas que esperan que el host las proporcione (plugins)
 ```
 
 ```text
-ARCHIVOS DE INVENTARIO (ejemplos):
-   │
-   ├── package-lock.json / pnpm-lock / yarn.lock
-   ├── requirements.txt / poetry.lock / uv.lock
-   ├── Cargo.lock / go.sum / Gemfile.lock
-   └── Dockerfile (imágenes base) · .github/workflows
-       (actions)
+¿POR QUÉ IMPORTANTE DISTINGUIRLOS?
+- Las directas son las que tú eliges explícitamente.
+- Las transitivas pueden introducir riesgos ocultos.
+- Las de desarrollo no van al producto final, pero sí al flujo de CI.
+- Las peer requieren que el proyecto consumidor las proporcione.
+```
+
+---
+
+## 2. Archivos de manifiesto
+
+```text
+LENGUAJE      ARCHIVO               EJEMPLOS DE CONTENIDO
+────────────────────────────────────────────────────────────────────
+JavaScript    package.json          { "dependencies": { "lodash": "^4.17.21" } }
+Python        requirements.txt      requests==2.28.1
+Java          Pom.xml               <dependency><groupId>org.apache</groupId></dependency>
+Ruby          Gemfile               gem 'rails', '~> 7.0.0'
+Rust          Cargo.toml            [dependencies] serde = { version = "1.0" }
 ```
 
 ```text
-   │
-   ├── el lockfile es la fuente de verdad de QUÉ se
-   │   instala (y debe versionarse)
-   │
-   └── inventario = lockfiles + actions + imágenes:
-       todo lo que puede traer código ajeno
+BUenas PRÁCTICAS
+- Usa versiones exactas (lockfiles) para builds reproducibles.
+- Evita rangos amplios como "*" o "latest" en producción.
+- Revisa los cambios en lockfiles al actualizar dependencias.
+```
+
+---
+
+## 3. Ciclo de vida de una dependencia
+
+```text
+ETAPA              QUÉ HACE                              CÓMO SE GESTIONA
+────────────────────────────────────────────────────────────────────────────
+Crear              Añades la dependencia al manifiesto    npm install lodash@4.17.21
+Usar               Tu código importa y usa la biblioteca   import _ from 'lodash'
+Actualizar         Subes la versión y pruebas            npm update lodash
+Monitorear         Recibes alertas de vulnerabilidad    Dependabot alert
+Responder          Abres PR, revisas, pruebas, merges    Dependabot PR
+```
+
+```mermaid
+flowchart TD
+    A["Dependabot detecta una nueva versión disponible."] --> B["Abre un pull request con la actualización."]
+    B --> C["El equipo revisa el PR (lee notas de liberación, ejecuta pruebas)."]
+    C --> D["Si todo está bien, se aprueba y se mergea."]
+    D --> E["Si hay roturas, se investiga y se ajusta (quizás se necesita una versión intermedia)."]
+```
+
+---
+
+## 4. Alertas y automatización con Dependabot
+
+```text
+TIPO DE ALERTA      QUÉ DETECTA                               ACCIÓN TÍPICA
+────────────────────────────────────────────────────────────────────────────────
+Security update     Vulnerabilidad conocida en la dependencia  Actualizar a versión parche
+Version update      Nueva versión menor o mayor disponible    Actualizar según política
+```
+
+```text
+CONFIGURACIÓN BÁSICA
+- Archivo: .github/dependabot.yml
+- Puedes definir:
+  * paquetes a monitorizar
+  * frecuencia de revisiones (diaria, semanal)
+  * tipo de actualizaciones (security, version, ambos)
+  * divisores por ecosistema (npm, pip, etc.)
 ```
 
 ```bash
-# dependencias de runtime (ejemplo node):
-npm ls --depth=0
-# acciones usadas en CI:
-grep -rho "uses: [^ ]*" .github/workflows/ | sort -u
-```
-
----
-
-## 2. Alertas: vulnerabilidades detectadas
-
-```text
-QUÉ SON:
-   │
-   └── la plataforma conoce CVEs/avisos de ecosistemas
-       y te avisa cuando tu lockfile/versiones usan una
-       versión vulnerable
-```
-
-```text
-ANATOMÍA DE UNA ALERTA:
-   │
-   ├── qué dependencia, qué versión, qué vulnerabilidad
-   │   (identificador público)
-   │
-   ├── severidad y ruta (directa o transitiva)
-   │
-   └── parche disponible: versión corregida
-```
-
-```text
-RESPUESTA TÍPICA:
-   │
-   ├── 1. evaluar: ¿es real para tu caso de uso? (la
-   │   ruta de explotación te afecta)
-   │
-   ├── 2. actualizar (dependencia directa + lockfile)
-   │   → pasar tests
-   │
-   ├── 3. si no hay parche: mitigación (workaround,
-   │   desactivar el camino afectado) y seguimiento
-   │
-   └── 4. cerrar alerta con el commit que la resuelve
-```
-
-```text
-   │
-   └── trampa: alerta ≠ incidente, pero «mañana
-       miro» sin fecha es deuda (Error 2)
-```
-
----
-
-## 3. Dependabot: actualizaciones
-
-```text
-DOS FUNCIONES:
-   │
-   ├── Dependabot ALERTS: detecta vulnerabilidades
-   │   (punto 2)
-   │
-   └── Dependabot VERSION UPDATES: abre PRs
-       actualizando dependencias según tu calendario
-```
-
-```yaml
-# .github/dependabot.yml (esquema actual):
+# Ejemplo de .github/dependabot.yml
 version: 2
 updates:
-  - package-ecosystem: "npm"        # ecosistema
-    directory: "/"                   # dónde vive el
-                                     # manifest
+  - package-ecosystem: "npm"
+    directory: "/"
     schedule:
-      interval: "weekly"             # cadencia
-    groups:                          # agrupar para
-      dev-dependencies:              # menos PRs
-        patterns: ["*"]
-  - package-ecosystem: "github-actions"
+      interval: "daily"
+    open-pull-requests-limit: 10
+    allow:
+      - dependency-type: "direct"
+    assignees:
+      - "dependabot[bot]"
+  - package-ecosystem: "pip"
     directory: "/"
     schedule:
       interval: "weekly"
-```
-
-```text
-QUÉ ELEGIR:
-   │
-   ├── semanal como base; diario en repos muy activos
-   │
-   ├── agrupar (groups) para reducir ruido de PRs
-   │
-   ├── SIEMPRE incluir github-actions (sección 19
-   │   cap. 05)
-   │
-   └── versiones mayores: configurar si se aceptan
-       automático o solo aviso (revisión humana)
-```
-
-```text
-FLUJO DE PR DE DEPENDABOT:
-   │
-   ├── el PR pasa por CI como cualquier otro (sección
-   │   15)
-   │
-   ├── si el ecosistema lo permite, actualización
-   │   automática al verde (según config)
-   │
-   └── merge con revisión mínima: changelog + tests
+    open-pull-requests-limit: 5
 ```
 
 ---
 
-## 4. Versionado y confianza
+## 5. Errores comunes con diagnóstico completo
 
-```text
-SEMVER Y MÁS ALLÁ:
-   │
-   ├── lockfile fija la versión probada (¿qué usas
-   │   aunque pediste ^1.2.0?)
-   │
-   └── el «semver» es intención del mantenidor, no
-       garantía: revisa changelogs de majors
-```
+### Error 1: Dependencia sin actualizar durante años
 
-```text
-CONFIANZA DE UNA DEPENDENCIA:
-   │
-   ├── mantenimiento vivo, releases, transparencia
-   ├── tamaño/uso: muy popular ≠ invulnerable, pero
-   │   auditado por más gente
-   ├── postinstall/scripts: los scripts de instalación
-   │   son código ejecutado en TU máquina/CI — riesgo
-   │   de cadena de suministro (cap. 05)
-   │
-   └── alternativas: ¿la necesitas? (menos deps =
-       menos riesgo)
-```
+**Qué ocurrió:** una dependencia crítica tiene una vulnerabilidad conocida pero nunca se actualizó porque "funciona".
 
-```text
-   │
-   └── política práctica: deps nuevas se discuten en
-       el PR (¿por qué? ¿mantenida? ¿alternativa?) —
-       sección 26 hace esto una disciplina
-```
+**Por qué posibles:** falta de monitoreo; miedo a romper algo.
 
----
+**Cómo comprobarlo:** revisar alertas de Dependabot o ejecutar `npm audit` / `pip-audit`.
 
-## 5. Dependencias de CI (Actions) y del SO
+**Opciones:** actualizar a la última versión segura; si hay cambios rotundos, planear una migración.
 
-```text
-ACTIONS:
-   │
-   ├── inventario con grep (punto 1)
-   │
-   ├── renovación con Dependabot (ecosystem
-   │   github-actions) — p. ej. checkout v4 → v5
-   │
-   └── fijado por SHA/tag mayor (sección 19 cap. 05)
-```
+**Riesgos:** explotación de la vulnerabilidad; pérdida de datos o servicio.
 
-```text
-IMÁGENES BASE Y RUNNERS:
-   │
-   ├── Dockerfile: ¿base con versión fija? ¿se
-   │   actualiza? (dependabot también cubre
-   │   dockerfiles según config)
-   │
-   └── runners gestionados: parches del SO son de la
-       plataforma (sección 19) — tú vigilas
-       intérpretes (setup-* con versiones fijas)
-```
+**Solución:** establecer un proceso de revisión regular (semanal o mensual) de alertas.
 
-```text
-   │
-   └── la vulnerabilidad de CI también es
-       vulnerabilidad: comprometer tu pipeline es
-       comprometer tu release (sección 24)
-```
+**Cómo se evita:** activar Dependabot alerts y version updates con asignación automática a un equipo.
+
+### Error 2: Actualizar sin probar
+
+**Qué ocurrió:** se actualizó una dependencia a una versión mayor que rompió la API y el deploy falló en producción.
+
+**Por qué posibles:** confiar en que la versión menor es segura; no tener entorno de staging.
+
+**Cómo comprobarlo:** revisar el PR de Dependabot y notar que falta evidencia de pruebas.
+
+**Opciones:** siempre ejecutar la suite de pruebas en una rama de feature antes de mergear.
+
+**Riesgos:** downtime; pérdida de confianza del usuario.
+
+**Solución:** requerir que todo PR de Dependabot pase por el mismo flujo de CI que cualquier otro código.
+
+**Cómo se evita:** proteger la rama principal con requerimientos de aprobación y checks verdes.
+
+### Error 3: Ignorar las dependencias de desarrollo
+
+**Qué ocurrió:** una vulnerabilidad en una herramienta de testing (ej. jest) se explotó porque nadie la monitoreaba.
+
+**Por qué posibles:** creer que solo las dependencias de producción importan.
+
+**Cómo comprobarlo:** revisar si Dependabot está configurado para monitorear `devDependencies` o `requirements-dev.txt`.
+
+**Opciones:** añadir los archivos de desarrollo a la configuración de Dependabot.
+
+**Riesgos:** compromiso del entorno de CI o de las máquinas de desarrolladores.
+
+**Solución:** tratar las dependencias de desarrollo con la misma seriedad que las de producción.
+
+### Error 4: Usar rangos de versión peligrosos
+
+**Qué occurred:** se especificó `"lodash": "*"` y una actualización automática introdujo una versión mayor con cambios rotundos.
+
+**Por qué posibles:** querer "siempre tener lo último" sin entender el impacto.
+
+**Cómo comprobarlo:** revisar el manifiesto y ver rangos como `*` o `>`.
+
+**Opciones:** cambiar a rangos cuidadosos como `^4.17.21` o `~4.17.0`.
+
+**Riesgos:** ruptura inesperada del build o del comportamiento en tiempo de ejecución.
+
+**Solución:** usar lockfiles y actualizaciones intencionales mediante Dependabot version updates.
+
+**Cómo se evita:** educar al equipo sobre versionado semántico y el impacto de los rangos.
 
 ---
 
-## 6. Errores comunes con diagnóstico completo
-
-### Error 1: sin lockfile versionado
-
-**Qué ocurrió:** CI instalaba versiones distintas a las probadas localmente; nadie sabía qué había en producción.
-
-**Por qué:** .gitignore mal extendido (sección 13) o prisa.
-
-**Cómo comprobarlo:** ¿existe en el repo? ¿los diffs lo mueven?
-
-**Opciones:** versionarlo; regenerarlo desde cero si está corrupto.
-
-**Riesgos:** no-reproducibilidad + vulnerabilidades invisibles.
-
-**Solución:** lockfile = código (punto 1).
-
-**Cómo se evita:** checklist de init (sección 02).
-
----
-
-### Error 2: alertas acumuladas
-
-**Qué ocurrió:** decenas de alertas abiertas «desde hace meses».
-
-**Por qué:** sin dueño ni SLA; se confunde gravedad con urgencia.
-
-**Cómo comprobarlo:** panel de seguridad del repo: nº y antigüedad.
-
-**Opciones:** triaje (afecta/no afecta), parches por prioridad, mitigaciones, SLA por severidad.
-
-**Riesgos:** el incidente real se pierde en el ruido.
-
-**Solución:** flujo con dueño (punto 2/6).
-
-**Cómo se evita:** revisión mensual en gobernanza.
-
----
-
-### Error 3: Dependabot PRs rotos ignorados
-
-**Qué ocurrió:** los PRs de Dependabot fallaban CI y nadie los tocaba; las dependencias quedaron congeladas años atrás.
-
-**Por qué:** PRs automáticos sin dueño ni ritual de merge.
-
-**Cómo comprobarlo:** PRs abiertos de dependabot + su estado de checks.
-
-**Opciones:** tiempo fijo mensual para mergear; groups para menos PRs; merge automático de minor/patch cuando CI pasa.
-
-**Riesgos:** inercia → salto gigante doloroso después.
-
-**Solución:** rutina de mantenimiento (punto 3).
-
-**Cómo se evita:** cadencia en el calendario del equipo (sección 26).
-
----
-
-### Error 4: salto de versión mayor sin revisar
-
-**Qué ocurrió:** actualización mayor «para cerrar la alerta» rompió APIs en producción.
-
-**Por qué:** changelog no leído; CI no cubría el camino afectado.
-
-**Cómo comprobarlo:** diff del paquete; qué cambió de API; qué tests fallaron.
-
-**Opciones:** revertir; subir por partes; ampliar tests antes de reintentar.
-
-**Riesgos:** pánico y saltos mayores sin control.
-
-**Solución:** majors con revisión (punto 3).
-
-**Cómo se evita:** PRs de Dependabot separados por tipo.
-
----
-
-### Error 5: dependencias que nadie usa (superficie muerta)
-
-**Qué ocurrió:** el inventario tenía 20 libs y solo 6 se importaban; 3 con alertas sin uso real.
-
-**Por qué:** nadie depura.
-
-**Cómo comprobarlo:** análisis de imports/`npm ls`; alertas sobre paquetes no usados.
-
-**Opciones:** eliminar; documentar las que se dejan «por si acaso».
-
-**Riesgos:** superficie de ataque gratuita.
-
-**Solución:** menos dependencias (punto 4).
-
-**Cómo se evita:** revisión de deps en retiros de features.
-
----
-
-### Error 6: acciones de CI fuera del inventario
-
-**Qué ocurrió:** secret scanning y dependencias estaban verdes, pero una action sin actualizar llevaba un año con un problema conocido.
-
-**Por qué:** solo se miraban manifestos de runtime.
-
-**Cómo comprobarlo:** grep de `uses:` (punto 1) vs. la config de Dependabot.
-
-**Opciones:** añadir ecosystem github-actions; fijar y renovar.
-
-**Riesgos:** CI como caballo de Troya.
-
-**Solución:** inventario completo de tres listas (punto 1).
-
-**Cómo se evita:** checklist de repos.
-
----
-
-## 7. Práctica guiada
+## 6. Práctica guiada
 
 ### Objetivo
 
-Poner el inventario y la renovación automática de un proyecto al día.
+Configurar Dependabot en un repositorio de práctica y simular una actualización de dependencia.
 
-### Paso 1: inventario
+### Paso 1: explorar el manifiesto
 
 ```bash
-git ls-files | grep -E "(lock|requirements|go.sum|Cargo.lock)"
-grep -rho "uses: [^ ]*" .github/workflows/ | sort -u
-docker images  # si trabajas con Dockerfiles: revisa bases
+# Revisa qué dependencias tienes
+cat package.json   # o requirements.txt, Pom.xml, etc.
 ```
 
-1. Lista las tres categorías (runtime, dev/CI, plataforma).
+### Paso 2: crear el archivo de configuración
 
-### Paso 2: dependabot.yml
-
-```text
-Crea .github/dependabot.yml con:
-   │
-   ├── tu ecosistema de runtime (weekly + groups)
-   └── github-actions (weekly)
+```bash
+mkdir -p .github
+cat > .github/dependabot.yml << 'EOF'
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    allow:
+      - dependency-type: "direct"
+    assignees:
+      - "dependabot[bot]"
+EOF
 ```
 
-1. Commit en main y observa cómo aparece la config.
+### Paso 3: esperar o forzar una alerta
 
-### Paso 3: alertas
-
-1. Abre el panel de seguridad: ¿hay alertas? Aplica el flujo del punto 2 a la primera (evaluar → parchear → cerrar).
-
-### Paso 4: PR de ejemplo
-
-1. Espera o provoca (bump manual de una dev-dep) un PR de actualización y llévalo por CI completo como un PR normal (sección 15).
-
-### Paso 5: política
-
-```markdown
-## Dependencias
-- Lockfiles: versionados siempre
-- Actualizaciones: Dependabot semanal; merge mensual
-  con 30 min fijos
-- Majors: revisar changelog + tests ampliados
-- Acciones: fijadas + renovadas por Dependabot
-- Dependencias nuevas: justificación en el PR
+```bash
+# Si quieres forzar una alerta de seguridad, puedes añadir una dependencia vulnerable a propósito en un repo de prueba
+# Ejemplo: añadir una versión antigua de lodash con CVE conocido
+# Luego espera a que Dependabot la detecte (puede tomar unas horas)
 ```
 
-### Paso 6: métrica
+### Paso 4: revisar el PR
 
-1. Anota: alertas abiertas, días desde la más antigua y nº de PRs de Dependabot activos.
+1. Cuando Dependabot abra un PR, revisa la descripción (qué versión se actualiza, por qué).
+2. Ejecuta las pruebas locales o en tu entorno de CI simulado.
+3. Si todo está bien, aprueba y merges el PR.
 
 ### Resultado esperado
 
-Inventario claro, Dependabot activo en runtime y actions, alertas en flujo y política escrita.
+Un pull request de Dependabot que actualiza una dependencia, revisado y mergeado sin incidentes.
 
 ### Conclusión esperada
 
-Las dependencias se gestionan como todo lo demás: inventario, dueño, cadencia y criterio — el caos llega cuando nadie mira el panel.
+Dependabot automatiza el monitoreo y la actualización de dependencias, pero siempre requiere revisión humana antes de mergear.
+### Ejercicio de transferencia
+Configura Dependabot en un repositorio que use un manifiesto distinto al que usaste en la práctica guiada (por ejemplo, si usaste npm, ahora usa un proyecto Ruby con Gemfile). Entrega el archivo .github/dependabot.yml configurado y una captura de pantalla del PR generado por Dependabot.
 
 ---
 
-## 8. Nivel profesional + resumen
+## 7. Nivel profesional + resumen
 
-### 8.1. Gestión de dependencias a escala
+### 7.1. Programa de gestión de dependencias
 
 ```text
-   │
-   ├── alertas con SLA por severidad (sección 24)
-   │
-   ├── Dependabot con groups + merge automático de
-   │   parches donde el riesgo lo permite
-   │
-   ├── SBOM y trazabilidad de releases (cap. 05)
-   │
-   ├── revisión trimestral de superficie: deps muertas,
-   │   majors pendientes, imágenes base
-   │
-   ├── dependencias nuevas: RFC corto en el PR (sección
-   │   26)
-   │
-   └── métrica: % de alertas resueltas en SLA; días de
-       retraso medio de actualizaciones
+    │
+    ├── inventario de dependencias (manifestos + lockfiles)
+    │   (actualizado en cada PR)
+    │
+    ├── Dependabot configurado para:
+    │   * security updates: diarios
+    │   * version updates: semanales
+    │   * asignación automática a equipo de mantenimiento
+    │
+    ├── política de actualización:
+    │   * security updates: merge automático si CI verde
+    │   * version updates: revisión manual requerida
+    │
+    ├── bloqueo de merges si:
+    │   * tests fallan
+    │   * lockfiles cambiaron sin aprobación explícita
+    │
+    └── métricas:
+    │   * tiempo medio de respuesta a alertas de seguridad
+    │   * porcentaje de dependencias con versiones actualizadas
+    │   * número de incidentes por dependencias desactualizadas
 ```
 
-### 8.2. Resumen
+### 7.2. Resumen
 
 En este capítulo aprendiste que:
 
-* inventario de tres listas (runtime, CI, plataforma) con lockfiles versionados;
-* alertas de vulnerabilidades: evaluar, parchear, cerrar con commit — con dueño y SLA;
-* Dependabot para calendario de actualizaciones: ecosistemas, groups, actions incluidas;
-* confianza: semver intención, changelogs en majors, scripts de instalación como riesgo;
-* los errores típicos (sin lockfile, alertas acumuladas, PRs ignorados, salto ciego, deps muertas, actions olvidadas) se previenen con rutina;
-* a nivel profesional: métricas de SLA y superficie mínima.
+* las dependencias son partes externas que tu proyecto consume y deben gestionarse con el mismo rigor que tu propio código.
+* los tipos de dependencias (directa, transitiva, de desarrollo, peer) y sus archivos de manifiesto varían según el ecosistema.
+* el ciclo de vida incluye crear, usar, actualizar y monitorear, con Dependabot como herramienta clave de automatización.
+* los errores más comunes (dependencias sin actualizar, actualizar sin probar, ignorar dependencias de desarrollo, rangos peligrosos) se previenen con monitoreo, pruebas y políticas claras.
+* a nivel profesional, un programa de gestión de dependencias combina inventario, automatizaciónDependabot, revisiones y métricas.
 
 La idea principal es:
 
-> **Una dependencia es confianza prestada: se lleva inventario, se renueva en calendario y se devuelve cuando deja de servir — el panel de seguridad es tu correa de reversa.**
+> **Automatiza el monitoreo, pero nunca automatiza la decisión: Dependabot te avisa, tú decides cuándo y cómo actualizar.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Cuáles son los cuatro tipos principales de dependencias y un ejemplo de cada uno?
+2. ¿Dónde viven las dependencias en un proyecto de JavaScript y de Python?
+3. ¿Cuál es la diferencia entre una alerta de seguridad de Dependabot y una actualización de versión?
+4. ¿Por qué es importante revisar los changelogs antes de mergear un PR de Dependabot?
+5. ¿Cómo configurarías Dependabot para revisar dependencias de Python cada semana y crear como máximo três pull requests?
+6. ¿Qué pasos seguirías si Dependabot te avisa de una vulnerabilidad crítica en una dependencia de producción?
+7. ¿Por qué deberías tratar las dependencias de desarrollo con la misma seriedad que las de producción?
+8. ¿Qué métricas serían útiles para evaluar la efectividad de tu programa de gestión de dependencias?
 
 ---
 
 ## Próximo paso
 
-Ya gestionas la superficie de dependencias.
-
-Ahora el escaneo del código que tú escribes.
-
-Continúa con:
+Cuando termines este capítulo, continúa con la defensa del código mismo: cómo analizarlo estáticamente para encontrar vulnerabilidades antes de que lleguen a producción.
 
 [`04-code-scanning-y-codeql.md`](04-code-scanning-y-codeql.md)
