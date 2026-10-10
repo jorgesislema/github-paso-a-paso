@@ -10,34 +10,28 @@ La pieza de configuración es un archivo YAML en `.github/workflows/`. Este cap�
 
 ## Mapa conceptual de este capítulo
 
-```text
-Tu primer workflow
-       │
-       ├── 1. Cómo funciona Actions (el modelo)
-       ├── 2. Anatomía de un archivo workflow
-       ├── 3. Primer workflow: CI que verifica
-       ├── 4. Leer la ejecución (logs, checks)
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Tu primer workflow))
+    1. Cómo funciona Actions
+    2. Anatomía de un archivo workflow
+    3. Primer workflow CI que verifica
+    4. Leer la ejecución logs checks
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional resumen
 ```
 
 ---
 
 ## 1. Cómo funciona Actions (el modelo)
 
-```text
-EVENTO → WORKFLOW → JOB → STEP → RESULTADO
-──────────────────────────────────────────────────────
-push a main
-   └── workflow ci.yml (on: push)
-         └── job "test" (runner: ubuntu-latest)
-               ├── step: checkout del código
-               ├── step: instalar dependencias
-               ├── step: ejecutar tests
-               └── step: subir reporte (si falla)
-         → check verde/rojo en el commit/PR
+```mermaid
+flowchart TD
+    EVENTO["Evento"] --> WORKFLOW["Workflow"]
+    WORKFLOW --> JOB["Job"]
+    JOB --> STEP["Step"]
+    STEP --> RESULTADO["Resultado"]
 ```
 
 ```text
@@ -382,6 +376,10 @@ El primer workflow es una semilla: event → job → steps con nombre → check 
 
 ---
 
+### Ejercicio de transferencia
+
+En un repositorio de un proyecto Python, crea un workflow que ejecute pruebas con pytest en cada push a la rama dev, utilizando caché de dependencias y subiendo el reporte de cobertura como artefacto.
+
 ## 7. Nivel profesional + resumen
 
 ### 7.1. CI como mínimo profesional
@@ -423,6 +421,17 @@ La idea principal es:
 > **El workflow es la primera línea de defensa del repo: dispara en lo que importa, cuenta en qué paso falló y no cuesta más tiempo que la atención del equipo.**
 
 ---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué es necesario el paso `actions/checkout` antes de ejecutar cualquier comando que trabaje con el código del repositorio?
+2. ¿Qué diferencia hay entre usar `run:` y `uses:` en un step y cuándo prefieres cada uno?
+3. ¿Cómo afecta la falta de permisos `contents: read` al token `GITHUB_TOKEN` y qué riesgos implica otorgar permisos más amplios de lo necesario?
+4. ¿De qué manera el diagrama EVENTO → WORKFLOW → JOB → STEP → RESULTADO ayuda a entender el flujo de datos y dónde se producen los cambios de estado?
+5. ¿Qué ventajas ofrece estructurar un workflow con pasos con `name:` claro para el diagnóstico de fallos?
+6. ¿Cómo influye la elección del runner (ubuntu/windows/macos) en la compatibilidad de los pasos y qué consideraciones de rendimiento existen?
 
 ## Próximo paso
 
