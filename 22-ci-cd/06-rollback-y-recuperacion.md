@@ -8,18 +8,17 @@ Toda entrega lleva un plan B: **rollback** — volver a una versión conocida cu
 
 ## Mapa conceptual de este capítulo
 
-```text
-Rollback y recuperación
-       │
-       ├── 1. Cuándo se decide un rollback
-       ├── 2. Técnicas de recuperación
-       │   ├── 3. Requisitos para que funcione
-       │   ├── 4. Ensayar: el rollback que no se probó
-       │   └── 5. Cuando el rollback no basta
-       │
-       ├── 6. Errores comunes con diagnóstico completo
-       ├── 7. Práctica guiada
-       └── 8. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Rollback y recuperación))
+    1. Decidir cuándo hacer rollback
+    2. Técnicas de recuperación
+      3. Requisitos para que el rollback funcione
+      4. Ensayar el rollback
+      5. Cuando el rollback no basta
+    6. Errores comunes con diagnóstico completo
+    7. Práctica guiada
+    8. Nivel profesional y resumen
 ```
 
 ---
@@ -401,8 +400,12 @@ Runbook vivo, requisitos verificados, simulacro cronometrado y lecciones aplicad
 La reversión es una funcionalidad más del sistema de entrega: se diseña, se verifica y se mantiene — el día que la necesitas, es un procedimiento aburrido.
 
 ---
+### Ejercicio de transferencia
+
+Imagina que una actualización de una aplicación web causa errores intermitentes en producción. Diseña un procedimiento de rollback que incluya volver a la versión anterior, verificar la salud del servicio y notificar al equipo. Documenta los pasos y compártelos como un runbook.
 
 ## 8. Nivel profesional + resumen
+
 
 ### 8.1. Recuperación a escala
 
@@ -444,8 +447,19 @@ La idea principal es:
 > **La confianza en desplegar no viene de que nunca falle, sino de que revertir sea aburrido: versión retenida, proceso ensayado y alguien con nombre y turno.**
 
 ---
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Qué señales indican que es necesario iniciar un rollback inmediatamente después de un despliegue?
+2. ¿Cuáles son las técnicas principales de recuperación (reversión, reenvío, avance con arreglo) y en qué contexto se aplica cada una?
+3. ¿Qué requisitos deben cumplirse para que un rollback sea efectivo (artefacto retenido, proceso ensayado, responsabilidad clara)?
+4. ¿Por qué es esencial ensayar el rollback en un entorno de staging antes de confiar en él en producción?
+5. ¿En qué situaciones un rollback por sí solo no basta y qué acciones complementarias se deben tomar?
+6. ¿Cómo diseñarías un plan de rollback que incluya versionado inmutable, almacenamiento de artefactos y un runbook documentado?
 
 ## Próximo paso
+
 
 Has completado la sección de CI/CD.
 
