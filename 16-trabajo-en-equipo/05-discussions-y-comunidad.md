@@ -148,16 +148,19 @@ gh search issues "csv acentos" --repo owner/repo
 
 ## 4. Ciclo de comunidad: preguntar, responder, documentar
 
-```text
-BUCLE SANO
-──────────────────────────────────────────────────────
-1. pregunta (discussions)
-2. respuesta (comunidad/equipo)
-3. si se repite → RESPUESTA en docs/ (FAQ, guía)
-4. si es defecto → issue (con contexto del hilo)
-5. si es decisión → ADR + enlace
-6. la doc nueva se enlaza desde la siguiente
-   respuesta → el conocimiento se acumula
+```mermaid
+flowchart TD
+    A[pregunta (discussions)] --> B[respuesta (comunidad/equipo)]
+    B --> C{¿Se repite?}
+    C -->|Sí| D[RESPUESTA en docs/ (FAQ, guía)]
+    C -->|No| E{¿Es defecto?}
+    E -->|Sí| F[issue (con contexto del hilo)]
+    E -->|No| G{¿Es decisión?}
+    G -->|Sí| H[ADR + enlace]
+    G -->|No| I[Fin]
+    D --> J[la doc nueva se enlaza desde la siguiente respuesta → el conocimiento se acumula]
+    F --> J
+    H --> J
 ```
 
 ```text
@@ -340,6 +343,10 @@ El ciclo pregunta → respuesta → doc/issue es lo que convierte un canal en co
 
 ---
 
+## Ejercicio de transferencia
+
+En un repositorio de práctica, habilita Discussions con categorías Preguntas, Ideas y Anuncios; crea una pregunta modelo siguiendo la estructura de buen planteamiento, responde con pasos concretos y marca como aceptada, eleva la solución a un archivo de documentación, y simula que la conversación revela un bug para crear un Issue vinculado. Entrega capturas de la discusión, la respuesta aceptada, la documentación y el Issue creado.
+
 ## 7. Nivel profesional + resumen
 
 ### 7.1. Comunidad como producto
@@ -375,6 +382,22 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **La comunidad se construye cerrando el círculo: cada buena respuesta termina en docs o en una issue — así el conocimiento deja de depender de quien estaba online.**
+
+---
+
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Cómo decidirías cuándo usar una Discussion en lugar de un Issue, y qué tipos de conversaciones pertenecen a cada espacio?
+2. ¿Qué elementos hacen que una pregunta en Discussions sea buena y cómo facilita una plantilla de pregunta la obtención de respuestas útiles?
+3. ¿De qué manera la característica de «respuesta aceptada» en Discussions mejora la buscabilidad del conocimiento y qué papel juegan los upvotes en este proceso?
+4. ¿Cómo estructurarías el ciclo de comunidad (pregunta → respuesta → documentación/issue) para asegurar que el conocimiento se сохраня y se reutilice?
+5. ¿Qué normas de convivencia y de moderación considerarías para mantener una comunidad saludable y evitar el ruido o la toxicidad en Discussions?
+6. ¿Cómo manejarías datos sensibles que podrían aparecer accidentalmente en una Discussion y qué medidas preventivas aplicarías?
+7. ¿Qué rol juegan los responsables de comunidad y la guardia rotativa en la gestión eficiente de Discussions?
+8. ¿De qué forma elevar una respuesta a documentación o convertir una Discussion en un Issue contribuye a cerrar el círculo del conocimiento y a reducir la dependencia de la disponibilidad de personas?
 
 ---
 
