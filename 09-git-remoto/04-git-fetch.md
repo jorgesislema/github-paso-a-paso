@@ -18,32 +18,26 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-git fetch
-       │
-       ├── 1. Qué hace y qué NO hace
-   │        ├── baja objetos + refs
-   │        ├── actualiza origin/* (fotos)
-   │        └── NO toca tu rama ni tu carpeta
-   │
-       ├── 2. Usar las fotos: mirar antes de integrar
-   │        ├── log origin/main..HEAD
-   │        ├── log HEAD..origin/main
-   │        └── diff y grafo
-   │
-       ├── 3. Opciones
-   │        ├── --prune / -p
-   │        ├── --all / remoto concreto
-   │        ├── etiquetas (--tags)
-   │        └── refspecs
-   │
-       ├── 4. fetch vs. pull vs. clone
-   │
-       ├── 5. Errores comunes con diagnóstico completo
-   │
-       ├── 6. Práctica guiada
-   │
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((git fetch))
+    1. Qué hace y qué NO hace
+      baja objetos y refs
+      actualiza fotos origin
+      NO toca tu rama ni tu carpeta
+    2. Usar las fotos mirar antes de integrar
+      log origin/main..HEAD
+      log HEAD..origin/main
+      diff y grafo
+    3. Opciones
+      --prune
+      --all y remoto concreto
+      etiquetas con --tags
+      refspecs
+    4. fetch frente a pull y clone
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional y resumen
 ```
 
 ---
@@ -195,13 +189,19 @@ pull      sí (nuevos)    sí                SÍ (integra:
                                             rebase)
 ```
 
-```text
-Decisión:
-   │
-   ├── solo quiero VER            → fetch
-   ├── quiero llevarme y usar     → pull (con carpeta
-   │                                 limpia)
-   └── no existo aún como clon    → clone
+```mermaid
+flowchart TD
+    Q{"¿Qué necesitas?"}
+    Q -->|"solo ver lo del remoto"| F["git fetch, baja y actualiza tus fotos origin sin tocar tu rama"]
+    Q -->|"llevarmelo y usarlo ya"| P["git pull, fetch más integración en tu rama con carpeta limpia"]
+    Q -->|"aún no existo como clon"| C["git clone, historial completo con origin configurado"]
+```
+
+```mermaid
+flowchart TD
+    S["Servidor con las ramas de origin"] -->|"git fetch baja objetos y refs, tu rama no cambia"| PH["Tus fotos origin"]
+    PH -->|"git pull integra esas fotos en tu rama"| BR["Tu rama local"]
+    BR -->|"git push sube tus commits y avanza el remoto"| S
 ```
 
 ---
@@ -387,6 +387,10 @@ Capacidad de refrescar el mundo remoto y de leerlo (`log a..b`, diff, grafo) sin
 
 Fetch es tu «actualizar mapa»: con él, decides integrar con información completa; sin él, trabajas con noticias viejas.
 
+### Ejercicio de transferencia
+
+En tu repositorio real, haz `git fetch`, anota con `git log HEAD..origin/main --oneline` qué falta por integrar y comprueba con `git status` que tu rama y tu carpeta siguen idénticas; después borra una rama remota en la web (o en un espejo local) y repite el fetch con `--prune`. Entrega: las dos listas de commits (o un «vacío») y la salida de `git branch -r` antes y después del prune.
+
 ---
 
 ## 7. Nivel profesional + resumen
@@ -432,6 +436,20 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **Fetch actualiza lo que sabes; solo tú decides cuándo actualiza lo que haces — y por eso se hace siempre, sin miedo.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Qué tres cosas hace `git fetch` y qué tres cosas se niega a hacer, por mucho que las pidas?
+2. Después de un fetch, ¿cómo sabes con un único comando qué commits te faltan y cuáles te sobran respecto a `origin/main`?
+3. ¿Qué diferencia hay entre `git fetch` y `git fetch --prune`, y qué molesta la segunda si la dejas de hacer durante meses?
+4. ¿Por qué puedes hacer fetch con la carpeta llena de cambios sin miedo, y por qué el mismo gesto con `pull` sí te puede costar trabajo?
+5. Si tras el fetch tu rama no ha cambiado, ¿has fallado en algo? Explica la confusión típica detrás de esa sensación.
+6. ¿Qué te aporta `git log --graph --all` después de un fetch que no podías ver antes, y cómo ayuda a decidir entre merge y rebase?
+7. ¿Cuándo tiene sentido `git fetch --all --tags` en lugar de un `git fetch` simple, y qué te pierdes en el caso simple?
 
 ---
 
