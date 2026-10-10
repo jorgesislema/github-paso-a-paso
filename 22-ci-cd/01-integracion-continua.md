@@ -8,18 +8,17 @@
 
 ## Mapa conceptual de este capítulo
 
-```text
-Integración continua
-       │
-       ├── 1. Qué es (y qué NO es)
-       ├── 2. El flujo completo: del commit al verde
-       │   ├── 3. Anatomía de un pipeline de CI
-       │   ├── 4. Calidad del feedback: rápido y fiable
-       │   └── 5. Cultura: integrar a diario
-       │
-       ├── 6. Errores comunes con diagnóstico completo
-       ├── 7. Práctica guiada
-       └── 8. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Integración continua))
+    1. Qué es y qué NO es
+    2. El flujo completo del commit al verde
+      3. Anatomía de un pipeline de CI
+      4. Calidad del feedback rápido y fiable
+      5. Cultura integrar a diario
+    6. Errores comunes con diagnóstico completo
+    7. Práctica guiada
+    8. Nivel profesional y resumen
 ```
 
 ---
@@ -386,8 +385,12 @@ Pipeline ordenado y medido, checks obligatorios y política escrita.
 CI funciona cuando es rápido, fiable y no negociable: el equipo confía en el verde porque el verde nunca miente.
 
 ---
+### Ejercicio de transferencia
+
+En un repositorio público de ejemplo, crea un workflow de GitHub Actions que realice build y pruebas de una aplicación Node.js y suba el artefacto como release. Comparte el enlace al workflow y una captura del run exitoso.
 
 ## 8. Nivel profesional + resumen
+
 
 ### 8.1. CI a escala
 
@@ -426,8 +429,19 @@ La idea principal es:
 > **Integración continua no es tener un pipeline: es que el equipo fusiona a diario con la seguridad de que el verde es verdad — y eso se sostiene con velocidad, fiabilidad y cero excepciones.**
 
 ---
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué es necesario que el feedback de CI sea rápido (en minutos) y no en días para que sea efectivo?
+2. ¿Cuál es la diferencia entre «integrar a diario» y «subir todos los días» en términos de riesgo y costo de integración?
+3. ¿Cómo contribuye la cultura de integrar a diario a reducir el miedo al merge y mejorar la confianza en el verde?
+4. ¿Qué métricas usarías para evaluar la calidad de un pipeline de CI (tiempo de build, tasa de fallos, tiempo de recuperación)?
+5. ¿Cómo afecta la falta de pruebas automatizadas en CI a la detección temprana de errores?
+6. ¿De qué manera el uso de caché en dependencias mejora la eficiencia de CI y qué riesgos implica si se usa incorrectamente?
 
 ## Próximo paso
+
 
 Ya tienes la verificación de cada integración.
 
