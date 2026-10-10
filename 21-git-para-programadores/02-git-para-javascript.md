@@ -8,18 +8,17 @@ JavaScript vive en repositorios donde el volumen de archivos generados es enorme
 
 ## Mapa conceptual de este capítulo
 
-```text
-Git para JavaScript
-       │
-       ├── 1. Estructura de un proyecto
-       │   ├── 2. package.json y lockfiles
-       │   ├── 3. Scripts: el contrato del equipo
-       │   ├── 4. .gitignore del JS
-       │   └── 5. Frameworks, builds y salidas
-       │
-       ├── 6. Errores comunes con diagnóstico completo
-       ├── 7. Práctica guiada
-       └── 8. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Git para JavaScript))
+    Estructura del proyecto
+      package.json y lockfiles
+      Scripts contrato del equipo
+      .gitignore del JS
+      Frameworks builds salidas
+    Errores comunes diagnóstico completo
+    Práctica guiada
+    Nivel profesional resumen
 ```
 
 ---
@@ -385,6 +384,9 @@ En JS, la disciplina de lock+scripts+gitignore convierte el caos potencial del e
 ---
 
 ## 8. Nivel profesional + resumen
+### Ejercicio de transferencia
+Aplica lo aprendido en este capítulo a un proyecto personal de tu elección. Por ejemplo, si el capítulo trata sobre ramas en Git, crea una nueva rama para una característica que hayas estado pensando y haz un commit inicial. Entregable: captura de pantalla del comando git branch mostrando tu nueva rama.
+## 8. Nivel profesional + resumen
 
 ### 8.1. JavaScript a escala
 
@@ -423,6 +425,16 @@ La idea principal es:
 
 ---
 
+## Próximo paso
+## Autopreguntas de cierre
+1. ¿Cómo explicarías con tus propias palabras el concepto de Introducción?
+1. ¿Cuál es la relación entre Mapa conceptual de este capítulo y 1. Estructura de un proyecto?
+1. ¿Qué pasos seguirías para aplicar 1. Estructura de un proyecto en un escenario real?
+1. ¿Qué errores comunes debes evitar al trabajar con 2. package.json y lockfiles?
+1. ¿Cómo medirías el éxito al implementar 3. Scripts: el contrato del equipo?
+1. ¿Qué herramientas o comandos mencionados en el capítulo son esenciales para 4. .gitignore del JS?
+1. ¿Cómo adaptarías el proceso descrito en 5. Frameworks, builds y salidas si tuvieran que trabajar en un entorno distribuido?
+1. ¿Qué principio subyace detrás de la recomendación de 6. Errores comunes con diagnóstico completo?
 ## Próximo paso
 
 Ya cubres los dos lenguajes de aplicación.
