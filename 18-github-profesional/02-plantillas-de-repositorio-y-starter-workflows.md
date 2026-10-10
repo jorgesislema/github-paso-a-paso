@@ -10,17 +10,16 @@ Este capítulo cubre las tres palancas de repetición de GitHub: repositorios co
 
 ## Mapa conceptual de este capítulo
 
-```text
-Plantillas de repositorio y starter workflows
-       │
-       ├── 1. Repositorio con plantilla
-       ├── 2. Starter workflows (Actions)
-       ├── 3. Plantillas de organización
-       ├── 4. Evitar que la plantilla envejezca
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Plantillas de repositorio y starter workflows))
+    Repositorio con plantilla
+    Starter workflows Actions
+    Plantillas de organización
+    Evitar que la plantilla envejezca
+    Errores comunes con diagnóstico completo
+    Práctica guiada
+    Nivel profesional + resumen
 ```
 
 ---
@@ -368,9 +367,7 @@ Plantilla publicada con CI verde y un proyecto nacido de ella en < 10 minutos.
 
 ### Conclusión esperada
 
-La plantilla es el «setup de máquina» del equipo: una sola fuente, probada de punta a punta y con dueño.
-
----
+La plantilla es el «setup de máquina» del equipo: una sola fuente, probada de punta a punta y con dueño.---
 
 ## 7. Nivel profesional + resumen
 
@@ -410,6 +407,17 @@ La idea principal es:
 > **Lo que se repite se estandariza: la planta de un repo profesional es un artefacto versionado, probado y con dueño — no una carpeta copiada de un proyecto antiguo.**
 
 ---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué es peligroso marcar un repositorio de producción como plantilla y qué problemas puede causar en los nuevos repositorios creados desde ella?
+2. ¿Qué ventajas ofrece usar un starter workflow con versiones fijas de acciones en lugar de referencias como @main o tags movibles?
+3. ¿Cómo afecta a la consistencia de la organización tener múltiples plantillas privadas por equipo y cuál es la solución recomendada?
+4. ¿Qué señales indican que una plantilla está envejeciendo y qué práctica de higiene se recomienda para mantenerla?
+5. En la práctica guiada, ¿cuál es el propósito de la prueba de humo obligatoria y cómo se relaciona con la confiabilidad de la plantilla?
+6. ¿Qué métrica sugiere el nivel profesional para evaluar la eficacia de las plantillas de organización y por qué es importante?
 
 ## Próximo paso
 
