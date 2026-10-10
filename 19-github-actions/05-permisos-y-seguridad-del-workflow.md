@@ -10,17 +10,16 @@ Este capítulo enseña a endurecer los workflows: mínimo privilegio real, patro
 
 ## Mapa conceptual de este capítulo
 
-```text
-Permisos y seguridad del workflow
-       │
-       ├── 1. Mínimo privilegio: permissions y scope
-       ├── 2. Acciones de terceros: elegir y fijar
-       ├── 3. Eventos privilegiados: pull_request_target
-       ├── 4. Controles de plataforma
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Permisos y seguridad del workflow))
+    1. Mínimo privilegio permissions y scope
+    2. Acciones de terceros elegir y fijar
+    3. Eventos privilegiados pull_request_target
+    4. Controles de plataforma
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional resumen
 ```
 
 ---
@@ -401,6 +400,10 @@ La seguridad de Actions es mínimo privilegio + eventos conscientes + supply cha
 
 ---
 
+### Ejercicio de transferencia
+
+En un proyecto de desarrollo de una API que despliega en Kubernetes, crea un workflow que utilice permisos mínimos, fixe todas las acciones de terceros a sus SHA, y revise que no haya uso de `pull_request_target` para ejecutar código externo.
+
 ## 7. Nivel profesional + resumen
 
 ### 7.1. Endurecimiento a escala
@@ -443,6 +446,17 @@ La idea principal es:
 > **Un workflow solo debe poder lo que ejecuta: token mínimo, eventos sin privilegios sobre código ajeno y actions fijadas — la comodidad no compra credenciales.**
 
 ---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué es esencial declarar explícitamente los permisos en un workflow y qué riesgos implica heredar la configuración del repo/org?
+2. ¿Cuál es la diferencia entre usar una acción de terceros con un tag móvil y fijarla a un SHA específico, y cómo afecta eso a la seguridad de la cadena de suministro?
+3. ¿En qué consiste el peligro de usar `pull_request_target` para ejecutar código del PR y qué alternativas seguras existen para validar PRs sin exponer secretos?
+4. ¿Qué controles de plataforma se recomiendan activar para limitar la superficie de ataque de GitHub Actions y cómo afectan cada uno a la seguridad?
+5. ¿Cómo influye la separación de jobs en términos de permisos y por qué es importante que un job de test no tenga permisos de escritura?
+6. ¿Qué riesgos existen al usar acciones de terceros sin fijar y cómo se puede mitigar con Dependabot y revisiones de seguridad?
 
 ## Próximo paso
 
