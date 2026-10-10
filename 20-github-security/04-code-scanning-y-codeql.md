@@ -8,18 +8,17 @@ Las dependencias se vigilan con alertas; tu propio código necesita algo equival
 
 ## Mapa conceptual de este capítulo
 
-```text
-Code scanning y CodeQL
-       │
-       ├── 1. Qué es y cómo piensa el análisis
-       ├── 2. Activación y flujo en el PR
-       ├── 3. Tipos de hallazgos y severidad
-       │   ├── 4. Interpretar sin miedo: señal vs. ruido
-       │   └── 5. Más allá de CodeQL
-       │
-       ├── 6. Errores comunes con diagnóstico completo
-       ├── 7. Práctica guiada
-       └── 8. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Code scanning y CodeQL))
+    1. Qué es y cómo piensa el análisis
+    2. Activación y flujo en el PR
+    3. Tipos de hallazgos y severidad
+      4. Interpretar sin miedo: señal vs. ruido
+      5. Más allá de CodeQL
+    6. Errores comunes con diagnóstico completo
+    7. Práctica guiada
+    8. Nivel profesional + resumen
 ```
 
 ---
@@ -80,13 +79,14 @@ CÓMO SE ACTIVA:
        con la acción oficial de CodeQL (fijada)
 ```
 
-```text
-FLUJO EN EL DÍA A DÍA:
-──────────────────────────────────────────────────────
-PR abierto → el análisis se ejecuta en los cambios
-              → alertas NUEVAS en el PR
-→ el equipo decide: corregir / descartar (con motivo)
-→ push a main → análisis completo → panel se actualiza
+```mermaid
+flowchart TD
+    A["PR abierto"] --> B["el análisis se ejecuta en los cambios"]
+    B --> C["alertas NUEVAS en el PR"]
+    C --> D["el equipo decide: corregir / descartar (con motivo)"]
+    D --> E["push a main"]
+    E --> F["análisis completo"]
+    F --> G["panel se actualiza"]
 ```
 
 ```text
@@ -375,9 +375,10 @@ Análisis activo en PR, un hallazgo corregido, un descarte motivado y política 
 ### Conclusión esperada
 
 El análisis estático vale por lo que rechaza a tiempo y por el hábito de triage que impone — sin política, solo añade ruido.
+### Ejercicio de transferencia
+En un repositorio de práctica, activa el análisis de código con CodeQL, introduce un flujo de datos peligroso (por ejemplo, una consulta SQL concatenada con entrada de usuario) en una rama, abre un PR y documenta el proceso de triage: leer la ruta, decidir si es real, corregir con consultas parametrizadas y descartar con motivo si es falso positivo. Entrega capturas de pantalla de la alerta, la ruta y el comentario de descarte.
 
 ---
-
 ## 8. Nivel profesional + resumen
 
 ### 8.1. Programa de análisis de código
@@ -420,6 +421,17 @@ La idea principal es:
 > **Un detector solo protege mientras se le hace caso: el valor está en que toda alerta nueva encuentre dueño y respuesta en el mismo PR — el resto es ruido que se aprende a gobernar.**
 
 ---
+
+## Autopreguntas de cierre
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+1. ¿Cuál es la diferencia entre una alerta de error/security y una de warning en CodeQL?
+2. ¿Cómo se interpreta la ruta de un hallazgo (fuente → transformación → sumidero) para determinar si es un falso positivo?
+3. ¿Por qué es importante que el análisis se ejecute en los pull requests y no solo en la rama principal?
+4. ¿Qué significa «descartar con motivo» y por qué es una práctica válida en el triage de alertas?
+5. ¿Cómo afecta la política de ruido al número de alertas que se consideran señal verdadera?
+6. ¿Cuál es el flujo típico de un PR desde su apertura hasta la actualización del panel de seguridad?
+7. ¿Qué complementos al analysis de CodeQL se mencionan en el capítulo y cómo contribuyen a la seguridad?
+8. ¿Cómo se puede mejorar un detector cuando el mismo patrón se descarta varias veces como falso positivo?
 
 ## Próximo paso
 
