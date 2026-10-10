@@ -8,18 +8,17 @@ Los humanos se equivocan; la defensa que funciona es la automática. GitHub esca
 
 ## Mapa conceptual de este capítulo
 
-```text
-Secret scanning y push protection
-       │
-       ├── 1. Cómo escanea GitHub
-       ├── 2. Push protection: bloquear antes del daño
-       ├── 3. Alertas: qué hacer, cuándo y quién
-       │   ├── 4. Escaneo propio y complementos
-       │   └── 5. Mecanismos de revocación de plataformas
-       │
-       ├── 6. Errores comunes con diagnóstico completo
-       ├── 7. Práctica guiada
-       └── 8. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Secret scanning y push protection))
+    1. Cómo escanea GitHub
+    2. Push protection bloquear antes del daño
+    3. Alertas qué hacer cuándo y quién
+      4. Escaneo propio y complementos
+      5. Mecanismos de revocación de plataformas
+    6. Errores comunes con diagnóstico completo
+    7. Práctica guiada
+    8. Nivel profesional + resumen
 ```
 
 ---
@@ -88,13 +87,11 @@ PUSH PROTECTION:
        ahí
 ```
 
-```text
-MOMENTO DE LA DEFENSA:
-──────────────────────────────────────────────────────
-ANTES del push:  hooks locales (punto 4) + revisión
-EN el push:      push protection (bloquea)
-DESPUÉS:         alerta de secret scanning → respuesta
-                 (cap. 01 punto 5)
+```mermaid
+flowchart TD
+    A["ANTES del push: hooks locales (punto 4) + revisión"] --> B["EN el push: push protection (bloquea)"]
+    B --> C["DESPUÉS: alerta de secret scanning → respuesta"]
+    C --> D["(cap. 01 punto 5)"]
 ```
 
 ---
@@ -390,6 +387,10 @@ Defensas activadas, simulación documentada, detector en CI y playbook de alerta
 
 Detectar es bueno; bloquear es mejor; y rotar con dueño y tiempo es obligatorio — los tres, juntos.
 
+### Ejercicio de transferencia
+
+En un repositorio de práctica, activa secret scanning y push protection, luego simula una alerta creando un pull request con un secreto de prueba y documenta el flujo completo desde la detección hasta la resolución.
+
 ---
 
 ## 8. Nivel profesional + resumen
@@ -431,6 +432,18 @@ La idea principal es:
 > **La red que importa bloquea el secreto antes del commit; la que llega tarde solo convierte una detección en un incidente — y aun así, la respuesta empieza siempre por rotar.**
 
 ---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Cómo difiere el escaneo de secretos de la protección en el push en cuanto al momento de actuación?
+2. ¿Qué pasos seguirías al recibir una alerta de secret scanning para asegurar una respuesta adecuada?
+3. ¿Por qué es importante rotar un secreto antes de resolver la alerta en GitHub?
+4. Nombra dos complementos al escaneo de plataforma que puedas implementar localmente.
+5. ¿Cómo configurarías un hook local para detectar secretos antes del commit?
+6. ¿Qué métricas considerarías importantes para evaluar la efectividad del escaneo y push protection en una organización?
+7. Describe cómo manejarías un secreto detectado en un artefacto de CI según las mejores prácticas del capítulo.
 
 ## Próximo paso
 
