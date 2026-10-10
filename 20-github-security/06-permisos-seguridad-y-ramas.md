@@ -8,20 +8,19 @@ Toda la detección del mundo sirve de poco si un atacante — o un error humano 
 
 ## Mapa conceptual de este capítulo
 
-```text
-Permisos, accesos y protección de ramas
-       │
-       ├── 1. Identidad fuerte: 2FA, SSO, passkeys
-       ├── 2. Permisos: de quien tiene acceso a lo que
+```mermaid
+mindmap
+  root((Permisos, accesos y protección de ramas))
+    1. Identidad fuerte: 2FA, SSO, passkeys
+    2. Permisos: de quien tiene acceso a lo que
        │   │   puede hacer
-       │   ├── 3. Revisar quién tiene acceso (y cuándo
-       │   │       se fue)
+       │   ├── 3. Revisar quién tiene acceso (y cuándo se fue)
        │   ├── 4. Protección de ramas y reglas
        │   └── 5. Controles como código (rulesets)
-       │
-       ├── 6. Errores comunes con diagnóstico completo
-       ├── 7. Práctica guiada
-       └── 8. Nivel profesional + resumen
+    │
+    ├── 6. Errores comunes con diagnóstico completo
+    ├── 7. Práctica guiada
+    └── 8. Nivel profesional + resumen
 ```
 
 ---
@@ -392,6 +391,9 @@ En main (o en ruleset):
 
 Identidad reforzada, accesos auditados, main blindado y política publicada.
 
+### Ejercicio de transferencia
+En un repositorio de práctica, activa 2FA con llave de seguridad, revisa los permisos de los colaboradores y protege la rama main con reglas de protección que requieran revisión y checks verdes. Luego intenta un push forzado o una fusión directa para verificar que la protección funcione. Entrega capturas de pantalla de la configuración de protección y los intentos fallidos.
+
 ### Conclusión esperada
 
 La seguridad de acceso es lista + reglas + disciplina: lo que no se revisa se pudre, y lo que un admin puede saltar no protege a nadie.
@@ -441,6 +443,17 @@ La idea principal es:
 > **Un control solo es un control si también le aplica al que más poder tiene: accesos que se revisan, ramas que nadie salta y bajas que ocurren hoy, no la semana que viene.**
 
 ---
+
+## Autopreguntas de cierre
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+1. ¿Cuál es la diferencia entre los permisos de lectura, triage, write, maintain y admin en un repositorio de GitHub?
+2. ¿Por qué es importante revisar los permisos de los colaboradores trimestralmente y qué acciones se pueden tomar si se encuentran permisos excesivos?
+3. ¿Cómo protege la protección de ramas contra fusiones directas y fuerza de pushes, y qué elementos son necesarios para que sea efectiva?
+4. ¿Qué ventaja ofrece usar rulesets como código en lugar de configuraciones individuales de protección de ramas?
+5. ¿Cómo se puede asegurar que los administradores de la organización también estén sujetos a las mismas reglas de protección de ramas?
+6. ¿Qué papel juegan los tokens de acceso personal (PAT) con caducidad corta en la seguridad de los repositorios?
+7. ¿Cómo se combina la protección de ramas con los workflows de CI para asegurar que los checks sean obligatorios antes de la fusión?
+8. ¿Cuál es el procedimiento recomendado para manejar la baja de un colaborador para evitar acceso fantasma?
 
 ## Próximo paso
 
