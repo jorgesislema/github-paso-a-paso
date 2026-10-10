@@ -10,17 +10,16 @@ No es «commitear a lo loco a main»: es integración continua de verdad con dis
 
 ## Mapa conceptual de este capítulo
 
-```text
-Trunk-Based Development
-       │
-       ├── 1. El modelo y sus variantes
-       ├── 2. Mecanismos: pequeñez y flags
-       ├── 3. Requisitos (lo que no negocia)
-       ├── 4. Por qué duele y cuándo vale la pena
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Trunk-Based Development))
+    1. El modelo y sus variantes
+    2. Mecanismos pequeñez y flags
+    3. Requisitos lo que no negocia
+    4. Por qué duele y cuándo vale la pena
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional + resumen
 ```
 
 ---
@@ -353,6 +352,10 @@ TBD no es anarquía: es la misma integración de siempre, acelerada por tests, f
 
 ---
 
+### Ejercicio de transferencia
+
+Lleva el principio de Trunk-Based Development a un entorno de documentación o configuración: en lugar de código, aplica la integración continua de cambios pequeños con banderas de funcionalidad (por ejemplo, activar/desactivar secciones de una guía) y verifica cómo reduce el riesgo de lanzamientos fallidos.
+
 ## 7. Nivel profesional + resumen
 
 ### 7.1. TBD en organiación
@@ -396,6 +399,16 @@ La idea principal es:
 > **Trunk-based es velocidad con red de seguridad: tests que avisan en minutos y flags que esconden lo que aún no debe verse — integrar a diario no es falta de proceso, es proceso más corto.**
 
 ---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué es fundamental que los tests sean rápidos y confiables en Trunk-Based Development y qué sucede si son lentos o poco fiables?
+2. ¿Cómo afecta la gestión de feature flags (caducidad, dueño) a la acumulación de deuda técnica y qué prácticas pueden mitigarla?
+3. ¿En qué situaciones sería aceptable usar ramas efímeras de horas versus integrar directamente a main y qué criterios de equipo lo determinan?
+4. ¿Qué métricas de velocidad de integración (tiempo medio de PR→merge, frecuencia de main rojo) son más relevantes para evaluar la salud de un flujo TBD?
+5. ¿Cómo decidirías entre adoptar TBD directamente o transitar mediante ramas efímeras y qué factores de madurez de CI y cultura de equipo influyen?
 
 ## Próximo paso
 
