@@ -8,19 +8,17 @@ Un **artefacto** es la salida concreta de tu pipeline — paquete, imagen, binar
 
 ## Mapa conceptual de este capítulo
 
-```text
-Artefactos y versionado
-       │
-       ├── 1. Qué es un artefacto y por qué su versión
-       │   │   es la identidad
-       │   ├── 2. Convenciones de versionado
-       │   ├── 3. Repositorios de artefactos
-       │   ├── 4. Promocición: el mismo a todo el viaje
-       │   └── 5. Retención y caducidad
-       │
-       ├── 6. Errores comunes con diagnóstico completo
-       ├── 7. Práctica guiada
-       └── 8. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Artefactos y versionado))
+    1. Artefacto y su versión como identidad
+      2. Convenciones de versionado
+      3. Repositorios de artefactos
+      4. Promoción de artefactos
+      5. Retención y caducidad de artefactos
+    6. Errores comunes con diagnóstico completo
+    7. Práctica guiada
+    8. Nivel profesional y resumen
 ```
 
 ---
@@ -383,8 +381,12 @@ Versión semántica con digest, publicación por CI, registro poblado y polític
 El artefacto con identidad es el contrato del despliegue: lo que se publica, se registra, no se toca y se puede volver a encontrar.
 
 ---
+### Ejercicio de transferencia
+
+En un proyecto de una librería de Python, publica un paquete en TestPyPI siguiendo SemVer, luego promueve la misma versión a PyPI después de pasar pruebas de integración. Comparte los comandos usados y los enlaces a los paquetes.
 
 ## 8. Nivel profesional + resumen
+
 
 ### 8.1. Artefactos a escala
 
@@ -424,8 +426,19 @@ La idea principal es:
 > **La versión es la identidad del producto en el tiempo: lo que se publica no se toca, lo que se despliega es la pieza validada y lo que se corre siempre se puede nombrar — si no, no hay incidente que puedas resolver con precisión.**
 
 ---
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué la versión de un artefacto debe ser su identidad inmutable y qué problemas surgen si se reutiliza una versión?
+2. ¿Qué convenciones de versionado (como SemVer) son más adecuadas para artefactos de software y por qué?
+3. ¿Cómo elegir un repositorio de artefactos (como Docker Hub, Maven Central, GitHub Packages) y qué características deben evaluarse?
+4. ¿Qué significa promocionar un artefacto y por qué es importante que el mismo artefacto recorra todos los entornos sin ser reconstruido?
+5. ¿Qué políticas de retención y caducidad deberías aplicar a artefactos para equilibrar costo de almacenamiento y necesidades de auditoría?
+6. ¿Cómo afecta la falta de retención adecuada de artefactos a la capacidad de realizar rollbacks o investigar incidentes pasados?
 
 ## Próximo paso
+
 
 Ya sabes construir, nombrar y promocionar.
 
