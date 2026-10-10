@@ -18,27 +18,21 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-git pull
-       │
-       ├── 1. Qué hace
-   │        ├── fetch + integrar
-   │        ├── modos: merge (default típico) y rebase
-   │        └── --ff-only
-   │
-       ├── 2. Precondiciones y flujos seguros
-   │        ├── carpeta limpia
-   │        └── la rutina de sincronización
-   │
-       ├── 3. Configuración: pull.rebase
-   │
-       ├── 4. Opciones útiles
-   │
-       ├── 5. Errores comunes con diagnóstico completo
-   │
-       ├── 6. Práctica guiada
-   │
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((git pull))
+    1. Qué hace
+      fetch más integración
+      modos merge y rebase
+      --ff-only
+    2. Precondiciones y flujos seguros
+      carpeta limpia
+      la rutina de sincronización
+    3. Configuración pull.rebase
+    4. Opciones útiles
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional y resumen
 ```
 
 ---
@@ -51,12 +45,14 @@ git pull
 git pull
 ```
 
-```text
-git pull origin main   (explícito)
-   =  git fetch origin main
-   +  integración en TU rama actual:
-        (merge)  git merge origin/main
-        (rebase) git rebase origin/main
+```mermaid
+flowchart TD
+    A["git pull origin main, la forma explícita"] --> B["git fetch origin main, baja lo nuevo a tus fotos"]
+    B --> C{"¿Cómo integra en tu rama actual?"}
+    C -->|"merge, modo habitual"| D["git merge origin/main, puede crear un M de merge"]
+    C -->|"rebase"| E["git rebase origin/main, historia lineal re-apilada"]
+    D --> F["Tu rama actual con lo bajado ya integrado"]
+    E --> F
 ```
 
 ### 1.2. Modos de integración
@@ -389,6 +385,10 @@ Capacidad de predecir el resultado de un pull (ff, M o conflicto) y de configura
 
 Pull es fetch con decisión de integración: con carpeta limpia y modo elegido, es el gesto natural de sincronización diaria.
 
+### Ejercicio de transferencia
+
+Con dos clonos de un espejo local, provoca una divergencia real y ejecuta el mismo `git pull` en dos copias limpias distintas: una con `--rebase` y otra con `--no-rebase`. Entrega: los dos grafos de `git log --graph --oneline --decorate` y una frase que explique cuál de los dos resultados publicarías en una rama compartida y por qué.
+
 ---
 
 ## 7. Nivel profesional + resumen
@@ -434,6 +434,20 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **Pull no es «actualizar» a secas: es traer y decidir cómo unir — la política del equipo cabe en un flag, la seguridad, en tu status previo.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Qué dos operaciones encadena exactamente `git pull` y cuál de las dos es la única que puede modificar tu carpeta de trabajo?
+2. ¿Qué te aporta `git pull --ff-only` que un pull normal no te da, y en qué contexto conviene esa actitud?
+3. Git te obliga a decidir entre merge y rebase al hacer pull: ¿qué dos caminos tienes y a qué tipo de rama conviene cada uno?
+4. ¿Por qué la rutina segura es status → pull → status y no simplemente «pull y a ver»?
+5. Hiciste un pull «solo para mirar» y ahora tu historia tiene un merge que no querías: ¿qué comandos te permiten localizar el punto de partida y deshacerlo con criterio?
+6. Si haces pull en una rama que no es la que creías, ¿qué queda mal exactamente y con qué comando lo detectas antes de seguir?
+7. ¿Qué diferencia hay entre `git pull --rebase` y `git config pull.rebase true`, y cuál de los dos deja huella en cómo trabajará tu equipo mañana?
 
 ---
 
