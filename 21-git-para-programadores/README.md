@@ -15,8 +15,6 @@ Hasta aquí el oficio es común a todo el mundo; aquí empieza la aplicación po
 
 ## Objetivos de aprendizaje
 
-Al terminar esta sección serás capaz de:
-
 * estructurar un proyecto Python con dependencias fijadas y `.gitignore` correcto;
 * aplicar la disciplina de un gestor, un lockfile y unos scripts en JavaScript;
 * manejar notebooks con reproducibilidad y registrar experimentos en ciencia de datos;
@@ -24,8 +22,31 @@ Al terminar esta sección serás capaz de:
 * decidir el destino de los archivos grandes: LFS, almacén externo o «jamás»;
 * aplicar la lista definitiva de lo que jamás debe entrar al historial.
 
----
+## Mapa conceptual
 
+```mermaid
+  root((21 · Git para programadores, datos e inteligencia artificial))
+    01 Git para Python
+      Estructura del proyecto
+      Dependencias versionadas
+    02 Git para JavaScript
+      Estructura del proyecto
+      package.json y lockfiles
+    03 Git para ciencia de datos
+      Estructura proyecto datos
+      Notebooks ordenados
+    04 Git para inteligencia artificial
+      Mapa de componentes
+      Código, configs y prompts en Git
+    05 Datos, artefactos y archivos grandes
+      Por qué Git odia binarios grandes
+      Criterio de entrada
+    06 Qué no debe entrar al repositorio
+      La regla que lo explica todo
+      Lista negra comentada
+```
+
+---
 ## ¿Qué aprenderás en esta sección?
 
 1. [`01-git-para-python.md`](01-git-para-python.md) — estructura, locks, tests y guion de Python.
@@ -48,17 +69,16 @@ Si programas en uno de estos mundos, aplica el capítulo a tu proyecto de práct
 
 ---
 
+## Próximo paso
 ## Autopreguntas de cierre
-
-Sin mirar el material, responde mentalmente y luego compruébalo con los capítulos de la sección:
-
-1. ¿Qué diferencia hay entre `requirements.txt` y `pyproject.toml` con lockfile?
-2. ¿Se commitea un notebook de Jupyter con sus salidas? ¿Cómo decides?
-3. ¿Dónde vive un modelo de IA: en el repo, en LFS o en un almacén? ¿Por qué?
-4. ¿Cuál es la regla de oro para decidir si un archivo pertenece a Git?
-
----
-
+1. ¿Cómo explicarías con tus propias palabras el concepto de Bienvenido a esta sección?
+1. ¿Cuál es la relación entre En esta sección estudiarás y Objetivos de aprendizaje?
+1. ¿Qué pasos seguirías para aplicar Objetivos de aprendizaje en un escenario real?
+1. ¿Qué errores comunes debes evitar al trabajar con Mapa conceptual?
+1. ¿Cómo medirías el éxito al implementar ¿Qué aprenderás en esta sección??
+1. ¿Qué herramientas o comandos mencionados en el capítulo son esenciales para Cómo estudiar esta sección?
+1. ¿Cómo adaptarías el proceso descrito en Referencias si tuvieran que trabajar en un entorno distribuido?
+1. ¿Qué principio subyace detrás de la recomendación de Próximo paso?
 ## Próximo paso
 
 Cuando termines los seis capítulos, continúa con la siguiente sección:
