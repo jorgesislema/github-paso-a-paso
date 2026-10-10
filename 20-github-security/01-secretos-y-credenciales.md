@@ -10,18 +10,17 @@ La regla fundamental: **un repositorio no debe convertirse accidentalmente en un
 
 ## Mapa conceptual de este capítulo
 
-```text
-Secretos y credenciales
-       │
-       ├── 1. Catálogo: qué es cada cosa
-       │   ├── 2. Dónde vive cada credencial
-       │   ├── 3. Ciclo de vida: crear, usar, rotar
-       │   ├── 4. SSH: claves de identidad
-       │   └── 5. El historial: qué pasa si entró
-       │
-       ├── 6. Errores comunes con diagnóstico completo
-       ├── 7. Práctica guiada
-       └── 8. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Secretos y credenciales))
+    1. Catálogo qué es cada cosa
+      2. Dónde vive cada credencial
+      3. Ciclo de vida crear usar rotar
+      4. SSH claves de identidad
+      5. El historial qué pasa si entró
+    6. Errores comunes con diagnóstico completo
+    7. Práctica guiada
+    8. Nivel profesional + resumen
 ```
 
 ---
@@ -383,6 +382,12 @@ Inventario completo, alcances mínimos, SSH con passphrase y calendario de rotac
 
 La credencial segura es la que tiene hogar, dueño y fecha — el repo nunca es su hogar.
 
+### Ejercicio de transferencia
+
+En un repositorio personal, crea un archivo .env.example que liste las variables de entorno necesarias para un proyecto y explica cómo cargarlas de forma segura en GitHub Secrets. Entrega el archivo .env.example y una captura de pantalla mostrando los secrets configurados.
+
+
+
 ---
 
 ## 8. Nivel profesional + resumen
@@ -425,6 +430,17 @@ La idea principal es:
 > **Una credencial sin hogar, dueño y fecha de caducidad es un incidente esperando: guárdala donde corresponde, alcánzala al mínimo y rótala antes de que la roten por ti.**
 
 ---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Cuál es la regla fundamental para manejar secretos en un repositorio?
+2. Nombra tres lugares correctos donde almacenar credenciales y tres lugares incorrectos.
+3. Describe el ciclo de vida de un secreto desde su creación hasta su revocación.
+4. ¿Qué pasos seguirías si descubres que un secreto fue commitado al historial?
+5. ¿Por qué es importante usar un scope mínimo en los tokens de acceso personal?
+6. ¿Cómo crearías una clave SSH segura y dónde almacenarías la clave privada?
 
 ## Próximo paso
 
