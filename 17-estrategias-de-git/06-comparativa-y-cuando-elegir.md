@@ -10,17 +10,16 @@ Este capítulo cierra la sección comparando los flujos en una sola tabla, dando
 
 ## Mapa conceptual de este capítulo
 
-```text
-Comparativa y cuándo elegir
-       │
-       ├── 1. Tabla comparativa
-       ├── 2. Árbol de decisión
-       ├── 3. Factores que inclinan la balanza
-       ├── 4. Evolucionar (o cambiar) de flujo
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Comparativa y cuándo elegir))
+    1. Tabla comparativa
+    2. Árbol de decisión
+    3. Factores que inclinan la balanza
+    4. Evolucionar o cambiar de flujo
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional + resumen
 ```
 
 ---
@@ -63,30 +62,18 @@ LO QUE COMPARTEN TODOS:
 
 ## 2. Árbol de decisión
 
-```text
-¿Tu software se despliega a demanda (web/servicio
-con deploy frecuente)?
-   │
-   ├── SÍ → ¿CI < 10 min y equipo disciplinado?
-   │         ├── SÍ → ¿te animas con flags?
-   │         │        ├── SÍ → Trunk-Based
-   │         │        └── NO → GitHub Flow
-   │         └── NO → GitHub Flow (primero arregla
-   │                   CI — sección 19)
-   │
-   └── NO (versiones con número/calendario:
-       móvil/escritorio/entrega)
-            │
-            ├── ¿soportas varias versiones a la vez?
-            │      ├── SÍ → Git Flow (o GitHub Flow +
-            │      │         release branches)
-            │      └── NO → Git Flow ligero o GitHub
-            │                Flow con ventana de release
-            │
-            └── ¿el equipo es novato en Git?
-                     └── empieza por GitHub Flow y
-                         crece (no adopts ceremonia que
-                         no puedes sostener)
+```mermaid
+flowchart TD
+    Start[¿Tu software se despliega a demanda (web/servicio con deploy frecuente)?] -->|Sí| CI[¿CI < 10 min y equipo disciplinado?]
+    Start -->|NO| Soporte[¿soportas varias versiones a la vez?]
+    CI -->|Sí| Animado[¿te animas con flags?]
+    CI -->|NO| GitHubFlowCI[GitHub Flow (primero arregla CI — sección 19)]
+    Animado -->|Sí| TrunkBased[Trunk-Based]
+    Animado -->|NO| GitHubFlowAnimado[GitHub Flow]
+    Soporte -->|Sí| GitFlowConRelease[Git Flow (o GitHub Flow + release branches)]
+    Soporte -->|NO| Novato[¿el equipo es novato en Git?]
+    Novato -->|Sí| GitFlowNovato[empieza por GitHub Flow y crece (no adopts ceremonia que no puedes sostener)]
+    Novato -->|NO| GitFlowNovato[empieza por GitHub Flow y crece (no adopts ceremonia que no puedes sostener)]
 ```
 
 ```text
@@ -351,6 +338,9 @@ Decisión de flujo escrita con requisitos, alineación de plataforma y fecha de 
 ### Conclusión esperada
 
 Elegir un flujo es elegir un conjunto de costes: el correcto es el que tu equipo puede sostener y medir.
+### Ejercicio de transferencia
+
+Lleva el proceso de elección de flujo de trabajo a un contexto de proyecto de infraestructura como código: en lugar de decidir un flujo para código de aplicación, define cómo gestionarías los cambios en tus módulos de Terraform o paquetes de NuGet usando los mismos criterios de despliegue, tamaño de equipo y madurez de CI.
 
 ---
 
@@ -391,6 +381,16 @@ La idea principal es:
 > **No elijas el flujo más moderno: elige el que tu equipo pueda sostener con lo que hoy tiene — y escríbelo, para que sea una decisión y no una costumbre.**
 
 ---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué es importante evaluar el flujo de trabajo con métricas de propósito (tiempo a producción, main rojo, incidentes) en lugar de solo medir características del flujo (número de commits, tipo de merge)?
+2. ¿Cómo afecta el crecimiento del equipo desde pequeño a mediano a la elección entre GitHub Flow, Git Flow y Trunk-Based Development y qué umbrales de tamaño podrían desencadenar un cambio?
+3. ¿Qué pasos seguirías para migrar de un flujo a otro sin interrumpir entregas en curso y cómo asegurar que la transición sea limpia?
+4. ¿Cómo equilibrar la necesidad de documentación de la decisión de flujo (como un ADR) con la agilidad para adaptar el flujo cuando cambien las circunstancias?
+5. ¿Qué indicadores de que el equipo está listo para Trunk-Based Development (CI < 10 min, pruebas confiables, cultura de revisión rápida) serían más decisivos para adoptarlo?
 
 ## Próximo paso
 
