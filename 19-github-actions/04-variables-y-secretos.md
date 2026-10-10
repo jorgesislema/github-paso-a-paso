@@ -10,17 +10,16 @@ Este capítulo cubre los ámbitos de variables (repo, org, entorno, workflow), l
 
 ## Mapa conceptual de este capítulo
 
-```text
-Variables y secretos
-       │
-       ├── 1. Ámbitos de variables (y jerarquía)
-       ├── 2. Secretos: dónde viven y cómo usarlos
-       ├── 3. El token implícito: GITHUB_TOKEN
-       ├── 4. Higiene: nunca en logs ni en el repo
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Variables y secretos))
+    1. Ámbitos de variables y jerarquía
+    2. Secretos dónde viven y cómo usarlos
+    3. El token implícito GITHUB_TOKEN
+    4. Higiene nunca en logs ni en el repo
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional resumen
 ```
 
 ---
@@ -408,6 +407,10 @@ La separación vars/secrets/entornos es el sistema cardiovascular de Actions: si
 
 ---
 
+### Ejercicio de transferencia
+
+En un proyecto de despliegue de una aplicación en la nube que requiere claves de API para servicios externos, configura un workflow que utilice variables para la URL del servicio, secrets almacenados en un environment de producción con reviewers, y rota los secrets cada 90 días usando un workflow programado.
+
 ## 7. Nivel profesional + resumen
 
 ### 7.1. Gestión de secretos en CI/CD
@@ -448,6 +451,17 @@ La idea principal es:
 > **Los secretos viajan por donde tú decides: ámbito mínimo, paso por env, sin eco en logs y con fecha de caducidad — lo que no tiene dueño, tiene fecha de incidente.**
 
 ---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué es importante distinguir entre variables y secretos y qué riesgos implica confundirlos?
+2. ¿Cómo afecta el ámbito de un secreto (repo, org, environment) a su disponibilidad en diferentes tipos de eventos (push, pull_request, forks)?
+3. ¿Cuál es la diferencia entre usar `vars.` y `secrets.` en un workflow y qué ocurre si se intenta usar un secreto como variable?
+4. ¿De qué manera el `GITHUB_TOKEN` se ve afectado por los permisos declarados y qué permisos mínimos son suficientes para un workflow de CI básico?
+5. ¿Qué prácticas de higiene se recomiendan para evitar que los secretos aparezcan en logs y por qué es peligroso usar `set -x` o `echo $VAR` con secretos?
+6. ¿Cómo influye la rotación de secretos y la asignación de un dueño en la seguridad de la automatización y qué riesgos implica mantener secretos eternos?
 
 ## Próximo paso
 
