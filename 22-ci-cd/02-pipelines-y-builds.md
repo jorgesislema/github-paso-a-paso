@@ -8,18 +8,17 @@ El **pipeline** es la cadena de pasos que convierte tu commit en un artefacto ve
 
 ## Mapa conceptual de este capítulo
 
-```text
-Pipelines y builds
-       │
-       ├── 1. Del commit al artefacto
-       ├── 2. Diseño de etapas y dependencias
-       │   ├── 3. Builds reproducibles
-       │   ├── 4. Matrices y paralelismo
-       │   └── 5. Artefactos entre etapas
-       │
-       ├── 6. Errores comunes con diagnóstico completo
-       ├── 7. Práctica guiada
-       └── 8. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Pipelines y builds))
+    1. Del commit al artefacto
+    2. Diseño de etapas y dependencias
+      3. Builds reproducibles
+      4. Matrices y paralelismo
+      5. Artefactos entre etapas
+    6. Errores comunes con diagnóstico completo
+    7. Práctica guiada
+    8. Nivel profesional y resumen
 ```
 
 ---
@@ -375,8 +374,12 @@ Grafo por etapas, artefacto identificado y smoke test sobre la pieza real.
 Un buen pipeline es una cadena de evidencias: cada etapa deja su rastro y el artefacto final es el mismo que se probó.
 
 ---
+### Ejercicio de transferencia
+
+En un proyecto de microservicios, diseña un pipeline que buildée y teste cada servicio de forma independiente, usando matrices para probar múltiples versiones de Node.js. Entrega el diagrama del pipeline y el archivo YAML.
 
 ## 8. Nivel profesional + resumen
+
 
 ### 8.1. Pipelines a escala
 
@@ -415,8 +418,19 @@ La idea principal es:
 > **El pipeline es una cadena de evidencias: si el artefacto que despliegas no es exactamente el que probaste, todo lo anterior — tests, revisiones, escaneos — se aplica a otra cosa.**
 
 ---
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué es importante definir claramente las etapas y sus dependencias en un pipeline de CI/CD?
+2. ¿Cómo afecta la falta de builds reproducibles a la confianza en el proceso de entrega y qué técnicas se usan para lograrlo?
+3. ¿Qué ventajas ofrecen las matrices y el paralelismo en un pipeline, y cuándo podrían introducir complejidad innecesaria?
+4. ¿Cómo se asegura que los artefactos generados en una etapa sean idénticos a los consumidos en la siguiente etapa?
+5. ¿De qué manera el manejo incorrecto de artefactos entre etapas puede provocar fallos en despliegues aunque los tests pasen?
+6. ¿Qué prácticas recomendarías para minimizar errores comunes en pipelines (como dependencias faltantes o configuraciones inconsistentes)?
 
 ## Próximo paso
+
 
 Ya construyes artefactos fiables.
 
