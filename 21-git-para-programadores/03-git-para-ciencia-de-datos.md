@@ -379,6 +379,9 @@ En datos, Git guarda la intención y la receta; los gigabytes viven referenciado
 ---
 
 ## 8. Nivel profesional + resumen
+### Ejercicio de transferencia
+Aplica lo aprendido en este capítulo a un proyecto personal de tu elección. Por ejemplo, si el capítulo trata sobre ramas en Git, crea una nueva rama para una característica que hayas estado pensando y haz un commit inicial. Entregable: captura de pantalla del comando git branch mostrando tu nueva rama.
+## 8. Nivel profesional + resumen
 
 ### 8.1. Data a escala
 
@@ -420,6 +423,16 @@ La idea principal es:
 
 ---
 
+## Próximo paso
+## Autopreguntas de cierre
+1. ¿Cómo explicarías con tus propias palabras el concepto de Introducción?
+1. ¿Cuál es la relación entre Mapa conceptual de este capítulo y 1. Estructura: código, notebooks y datos?
+1. ¿Qué pasos seguirías para aplicar 1. Estructura: código, notebooks y datos en un escenario real?
+1. ¿Qué errores comunes debes evitar al trabajar con 2. Notebooks sin caos?
+1. ¿Cómo medirías el éxito al implementar 3. Entornos y dependencias?
+1. ¿Qué herramientas o comandos mencionados en el capítulo son esenciales para 4. Experimentos: registrar, no improvisar?
+1. ¿Cómo adaptarías el proceso descrito en 5. Reproducibilidad del resultado si tuvieran que trabajar en un entorno distribuido?
+1. ¿Qué principio subyace detrás de la recomendación de 6. Errores comunes con diagnóstico completo?
 ## Próximo paso
 
 Ya sabes versionar datos y experimentos.
