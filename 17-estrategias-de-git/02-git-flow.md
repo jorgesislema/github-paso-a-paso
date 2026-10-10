@@ -10,17 +10,16 @@ Sigue siendo la respuesta correcta en contextos de releases planificadas (aplica
 
 ## Mapa conceptual de este capítulo
 
-```text
-Git Flow
-       │
-       ├── 1. Las cinco ramas y sus roles
-       ├── 2. Ciclos: feature, release, hotfix
-       ├── 3. Diagrama completo del flujo
-       ├── 4. Ventajas, costes y cuándo aplicarlo
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Git Flow))
+    1. Las cinco ramas y sus roles
+    2. Ciclos feature, release, hotfix
+    3. Diagrama completo del flujo
+    4. Ventajas, costes y cuándo aplicarlo
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional + resumen
 ```
 
 ---
@@ -108,19 +107,19 @@ main ──► git switch -c hotfix/1.3.1 main
 
 ## 3. Diagrama completo del flujo
 
-```text
-              (release estabiliza)
-                      │
-main    ──●───────────●──────────●──────────●──
-          ▲ tag 1.0   │          ▲ tag 1.1  ▲ 1.1.1
-          │           │          │          │ hotfix
-develop ──┴──●────●───┴──●───────┴──────────┴──
-             ▲    ▲      release/1.1
-             │    └── develop
-             feature/a   (y vuelta a develop)
-
-RAMAS EFÍMERAS: feature/*, release/*, hotfix/*
-RAMAS PERSISTENTES: main, develop
+```mermaid
+flowchart TD
+    A["develop"] --> B["feature/*"]
+    B --> C["PR/merge a develop"]
+    C --> A
+    A --> D["release/*"]
+    D --> E["merge a main + tag"]
+    E --> F["main"]
+    F --> G["hotfix/*"]
+    G --> H["merge a main + tag"]
+    H --> F
+    G --> I["merge a develop"]
+    I --> A
 ```
 
 ```text
@@ -371,6 +370,10 @@ Git Flow funciona cuando cada merge de vuelta se hace — la herramienta no perd
 
 ---
 
+### Ejercicio de transferencia
+
+Imagina que gestionas el ciclo de vida de una biblioteca de código abierto con versiones semver. Describe cómo usarías Git Flow para preparar una versión 2.0.0, incluyendo la creación de ramas release, el manejo de hotfixes y la comunicación de cambios rompiendo compatibilidad.
+
 ## 7. Nivel profesional + resumen
 
 ### 7.1. Git Flow bien llevado
@@ -410,6 +413,16 @@ La idea principal es:
 > **Git Flow es un contrato de dos líneas: main cuenta lo desplegado, develop lo que viene — y los merges de vuelta son lo que evita que el futuro pierda los arreglos del pasado.**
 
 ---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué es necesario que los merges de hotfix y release se realicen tanto a main como a develop y qué pasa si se omite uno de ellos?
+2. ¿Cómo afecta la presencia de múltiples ramas de release, feature y hotfix simultáneas a la complejidad de integración y qué estrategias pueden reducirla?
+3. ¿En qué contexto sería preferible usar Git Flow en lugar de GitHub Flow y qué indicadores de producto o equipo lo justifican?
+4. ¿Qué métricas de ciclo de vida (tiempo de release, frecuencia de hotfix, edad de ramas) serían útiles para monitorizar la salud de un flujo Git Flow?
+5. ¿Cómo decidirías entre mantener una rama de release para estabilización versus usar únicamente tags desde main y qué factores de riesgo influyen?
 
 ## Próximo paso
 
