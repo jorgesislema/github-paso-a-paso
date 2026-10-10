@@ -8,17 +8,16 @@ Un workflow que funciona una vez puede atrofiarse: tarda mucho, falla de formas 
 
 ## Mapa conceptual de este capítulo
 
-```text
-Debugging y buenas prácticas
-       │
-       ├── 1. Depurar sin adivinar
-       ├── 2. Rendimiento: caché, paralelo, filtros
-       ├── 3. Concurrency, cancelación y reintentos
-       ├── 4. Mantenimiento del workflow
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Debugging y buenas prácticas))
+    1. Depurar sin adivinar
+    2. Rendimiento caché paralelo filtros
+    3. Concurrency cancelación y reintentos
+    4. Mantenimiento del workflow
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional resumen
 ```
 
 ---
@@ -374,6 +373,10 @@ Mantener Actions es mantenimiento de software: logs legibles, rendimiento vigila
 
 ---
 
+### Ejercicio de transferencia
+
+En un proyecto de migración de una aplicación legacy a microservicios, crea un plan de monitoreo que incluya métricas de duración de PR, porcentaje de reintentos, y un playbook para diagnosticar fallos comunes basado en logs de pasos.
+
 ## 7. Nivel profesional + resumen
 
 ### 7.1. Operación de CI/CD
@@ -412,6 +415,17 @@ La idea principal es:
 > **La automatización también se mantiene: logs que cualquiera lee, tiempos que vigilas y workflows con dueño — lo que nadie entiende, nadie lo tocará cuando haga falta.**
 
 ---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué es importante leer el log del step fallido antes de revisar otros steps y cómo ayuda eso al diagnóstico rápido?
+2. ¿De qué manera el caché de dependencias y la paralelización de jobs reducen el tiempo de ejecución y qué métricas se deben vigilar para detectar cuellos de botella?
+3. ¿Cuál es la diferencia entre usar `concurrency` con `cancel-in-progress` en PRs y evitarlo en despliegues, y qué riesgos implica usarlo incorrectamente?
+4. ¿Cómo influye la presencia de un dueño del workflow y la documentación viva en el mantenimiento a largo plazo de la automatización?
+5. ¿Qué se considera un test flaky y por qué es peligroso arreglarlo con reintentos en lugar de corregir la causa raíz?
+6. ¿Cómo afecta la acumulación de artefactos y cachés sin límites de retención al costo y al rendimiento, y qué políticas se recomiendan para mitigarlo?
 
 ## Próximo paso
 
