@@ -16,29 +16,23 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-git push
-       │
-       ├── 1. Qué hace
-   │        ├── sube objetos + actualiza refs
-   │        ├── precondiciones (non-ff, permisos)
-   │        └── -u (enlazar)
-   │
-       ├── 2. Sintaxis y opciones
-   │        ├── push [remoto] [rama]
-   │        ├── --force vs --force-with-lease
-   │        ├── --all / --tags / --delete
-   │        └── pushes por defecto
-   │
-       ├── 3. La negación non-fast-forward
-   │
-       ├── 4. Empujar con seguridad
-   │
-       ├── 5. Errores comunes con diagnóstico completo
-   │
-       ├── 6. Práctica guiada
-   │
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((git push))
+    1. Qué hace
+      sube objetos y actualiza refs
+      precondiciones non-fast-forward y permisos
+      -u para enlazar la rama
+    2. Sintaxis y opciones
+      push con remoto y rama
+      --force frente a --force-with-lease
+      --all --tags --delete
+      pushes por defecto
+    3. La negación non-fast-forward
+    4. Empujar con seguridad
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional y resumen
 ```
 
 ---
@@ -100,6 +94,8 @@ git push -u origin feature  # publica + enlaza
 
 ### 2.2. `--force` y `--force-with-lease`
 
+⚠️ **RIESGO:** `git push --force` sobrescribe la punta de la rama en el servidor: cualquier commit que esté allí y no en el tuyo deja de apuntar la rama remota (pierdes trabajo ajeno en esa referencia; en un repo compartido solo se recupera con el reflog del servidor o con las fotos locales de los afectados).
+
 ```bash
 git push --force origin main           # brutal
 git push --force-with-lease            # con garantías
@@ -122,6 +118,8 @@ La diferencia (crítica):
 ```
 
 ### 2.3. Otras opciones
+
+⚠️ **RIESGO:** `git push origin --delete rama` borra la rama en el servidor de forma inmediata (si alguien trabajaba en ella, su `push` posterior quedará rechazado; solo es recuperable mientras el servidor conserve la ref en su reflog). `git push --all` sube todas tus ramas locales al destino, incluidas las de prueba.
 
 ```bash
 git push --all origin        # TODAS tus ramas locales
@@ -163,6 +161,15 @@ git log origin/main..HEAD --oneline   # lo que traes
 git pull                              # integrar (modo
                                       # del equipo)
 git push                              # ahora sí
+```
+
+```mermaid
+flowchart TD
+    A["Push rechazado con non-fast-forward"] --> B["git fetch origin, refresca tus fotos"]
+    B --> C["git log HEAD..origin/main y origin/main..HEAD, lee qué hay en cada lado"]
+    C --> D["git pull, integra con el modo que use el equipo"]
+    D --> E["git push, ahora sí sube sin borrar nada"]
+    A -.->|"nunca como primera reacción"| F["git push --force, puede borrar el trabajo del equipo"]
 ```
 
 ```text
@@ -404,6 +411,8 @@ git push                    # hacerlo de verdad
 
 ### Paso 5: force-with-lease (en TU rama, solo práctica)
 
+⚠️ **RIESGO:** el último `git push --force-with-lease` sobrescribe la punta de la rama en el servidor: los commits que había allí dejan de estar en esa referencia (aquí solo los tuyos, porque es tu rama de práctica; en una rama compartida perderías trabajo ajeno).
+
 ```bash
 git commit -m "Cambio" --allow-empty
 git push
@@ -416,6 +425,8 @@ git push --force-with-lease         # ahora ok (si nadie
 1. Comprueba: `git log origin/push-demo` refleja el commit enmendado.
 
 ### Paso 6: borrar la demo remota
+
+⚠️ **RIESGO:** `git push origin --delete push-demo` borra la rama en el servidor (si alguien la tenía como pareja, su trabajo deja de tener destino hasta que se recupere desde el reflog del servidor) y `git branch -D` borra la rama local aunque no esté fusionada; en esta demo solo destruyes tu propia práctica.
 
 ```bash
 git push origin --delete push-demo
@@ -432,6 +443,10 @@ Fluidez con el ciclo publicar → actualizar → rechazo → integración → re
 ### Conclusión esperada
 
 Push es el acto de entrega: verifica destino y contenido, sube y deja foto al día; cuando algo lo frena, el camino es integrar, no arrasar.
+
+### Ejercicio de transferencia
+
+En un repositorio con una segunda cuenta o un espejo local, publica una rama con `-u`, provoca un rechazo non-fast-forward desde el otro clon y resuélvelo sin `--force`; después usa `git push --dry-run` en un commit nuevo y compara la salida con la del push real. Entrega: la salida del push rechazado, la del dry-run y una frase que explique qué habría pasado en el servidor si hubieras usado `--force` en lugar de integrar.
 
 ---
 
@@ -477,6 +492,21 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **Push es entrega, no transporte: verifica qué subes, a dónde y con qué derecho — y si alguien te frena, primero entiendes, después integras.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Qué dos cosas sube `git push` y cuál de las dos es la que el servidor realmente valida?
+2. Tu push sale rechazado con non-fast-forward: ¿qué tres comandos ejecutas, en qué orden, y por qué el `--force` no es el tercero?
+3. ¿Qué garantía adicional te da `--force-with-lease` frente a `--force` y en qué situación concreta te salva?
+4. ¿Qué hace `-u` la primera vez que publicas una rama y qué comandos dejan de funcionar si no lo usas?
+5. ¿Por qué subir un commit con un secreto dentro obliga a cambiar esa clave, aunque después borres el commit del historial?
+6. ¿Qué ves con `git push --dry-run` que no arriesgas al ejecutarlo, y en qué casos merece la pena?
+7. Si empujas por error una rama de pruebas a `main` en un repo sin protección, ¿qué camino correcto existe además de «force para deshacer»?
+8. ¿Qué diferencia hay entre borrar una rama remota con `push --delete` y simplemente dejar de seguirla con `fetch --prune`?
 
 ---
 
