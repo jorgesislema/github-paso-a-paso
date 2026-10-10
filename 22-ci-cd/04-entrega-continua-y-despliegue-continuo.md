@@ -8,18 +8,17 @@ CI responde «¿este cambio está bien?»; **entrega continua** (CD) responde «
 
 ## Mapa conceptual de este capítulo
 
-```text
-Entrega continua y despliegue continuo
-       │
-       ├── 1. CD vs. despliegue continuo: la distinción
-       ├── 2. El camino: de verde a producción
-       │   ├── 3. Environments y gates
-       │   ├── 4. Estrategias de publicación
-       │   └── 5. Automatizar sin miedo
-       │
-       ├── 6. Errores comunes con diagnóstico completo
-       ├── 7. Práctica guiada
-       └── 8. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Entrega continua y despliegue continuo))
+    1. Diferencia entre CD y despliegue continuo
+    2. Camino de verde a producción
+      3. Environments y gates
+      4. Estrategias de publicación
+      5. Automatizar sin miedo
+    6. Errores comunes con diagnóstico completo
+    7. Práctica guiada
+    8. Nivel profesional y resumen
 ```
 
 ---
@@ -387,8 +386,12 @@ Camino completo con environments, humo en ambos lados, gates documentados y una 
 La entrega continua es un carril con barreras visibles: cada gate existe por escrito y la última milla solo se automatiza cuando las puertas ya se han ganado la confianza.
 
 ---
+### Ejercicio de transferencia
+
+Imagina que debes desplegar una aplicación de banking que requiere cero downtime. Diseña un pipeline usando estrategia canary con monitoreo de métricas clave y rollback automático si se detecta anomalía. Describir los pasos y compartir un diagrama.
 
 ## 8. Nivel profesional + resumen
+
 
 ### 8.1. Entrega a escala
 
@@ -432,8 +435,19 @@ La idea principal es:
 > **Desplegar rápido no es lo opuesto a despliegue seguro: es el resultado de puertas automatizadas, humo que vigila y una reversión que ya ha funcionado alguna vez.**
 
 ---
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Cuál es la diferencia esencial entre entrega continua y despliegue continuo, y por qué es importante distinguirlos en la práctica?
+2. ¿Cómo contribuyen los environments y los gates a la seguridad del proceso de despliegue continuo?
+3. ¿Qué ventajas y desventajas tienen las estrategias de publicación blue‑green y canary frente a un despliegue directo?
+4. ¿De qué manera la automatización sin miedo se logra mediante pruebas de humo, rollbacks automáticos y monitoreo en producción?
+5. ¿Qué riesgos asume un equipo que omite los gates de aprobación antes de desplegar a producción, incluso con pruebas automatizadas?
+6. ¿Cómo diseñarías un pipeline que incluya un environment de staging con pruebas de integración y un gate de manual antes de pasar a producción?
 
 ## Próximo paso
+
 
 Ya entregas con gates.
 
