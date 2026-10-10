@@ -24,8 +24,33 @@ Al terminar esta sección serás capaz de:
 * configurar protección de ramas y rulesets que ejecutan la política;
 * publicar releases con artefactos, prereleases e inmutabilidad;
 * aplicar convenciones de naming verificables a ramas, commits y workflows.
+## Mapa conceptual
+
+```mermaid
+mindmap
+  root((18 · GitHub profesional))
+    01 Estructura de un repositorio profesional
+      convención sobre invención
+      separación por propósito
+    02 Plantillas de repositorio y starter workflows
+      plantilla de repositorio
+      starter workflows
+    03 Protección de ramas y rulesets
+      protección de rama
+      rulesets
+    04 Releases, artefactos y versiones
+      release
+      prerelease
+    05 Convenciones y naming
+      naming de ramas
+      naming de commits
+    06 Gobernanza
+      roles de decisión
+      RFC/ADR
+```
 
 ---
+
 
 ## ¿Qué aprenderás en esta sección?
 
@@ -48,6 +73,19 @@ Esta sección es de ensamblaje: aplica cada capítulo a un repositorio real (pre
 
 ---
 
+## Checkpoint 18 — Comprobación obligatoria
+
+Antes de avanzar a `19-github-actions/`, demuestra que puedes (en un repositorio de práctica real):
+
+1. **Crear** una regla de protección de rama que requiera revisiones de pull request.
+2. **Configurar** un ruleset que implique la línea de base de protección.
+3. **Publicar** una release con artefactos y notas de versión.
+4. **Aplicar** convenciones de naming verificables a ramas y commits.
+5. **Definir** roles de decisión y un proceso de cambio RFC/ADR.
+6. **Realizar** una auditoría de gobernanza básica revisando el CONTRIBUTING y SECURITY.
+
+Si puedes hacerlo **sin mirar instrucciones**, el checkpoint está cerrado.
+
 ## Autopreguntas de cierre
 
 Sin mirar el material, responde mentalmente y luego compruébalo con los capítulos de la sección:
@@ -56,6 +94,9 @@ Sin mirar el material, responde mentalmente y luego compruébalo con los capítu
 2. ¿Qué diferencia hay entre una release y una prerelease?
 3. ¿Por qué debe ser inmutable una release publicada?
 4. ¿Qué es un RFC y cuándo se prefiere frente a un ADR?
+5. ¿Cómo afecta la protección de ramas a la colaboración en un equipo grande cuando se configura incorrectamente?
+6. ¿Qué consecuencias tendría publicar una release prerelease como versión estable por error?
+7. ¿Por qué es importante que las convenciones de naming sean verificables mediante CI plutôt que solo documentadas?
 
 ---
 
