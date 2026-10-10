@@ -10,17 +10,16 @@ La regla que lo resume todo: **cuanto más tiempo vive una rama, más cuesta int
 
 ## Mapa conceptual de este capítulo
 
-```text
-Flujo de ramas y sincronización
-       │
-       ├── 1. La cuenta de la divergencia
-       ├── 2. Rebase vs. merge para sincronizar
-       ├── 3. Estrategias de sincronización diaria
-       ├── 4. Conviviendo con ramas largas
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Flujo de ramas y sincronización))
+    1. La cuenta de la divergencia
+    2. Rebase vs. merge para sincronizar
+    3. Estrategias de sincronización diaria
+    4. Conviviendo con ramas largas
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional + resumen
 ```
 
 ---
@@ -342,6 +341,7 @@ git log --graph --oneline -5
 ```
 
 ### Paso 4: la misma rama con rebase
+⚠️ **RIESGO:** se descarta el último commit local; recuperable mediante reflog antes de que se elimine.
 
 ```bash
 git reset --hard HEAD~1        # deshaz el merge (práctica)
@@ -374,6 +374,9 @@ Divergencia medida, conflicto resuelto en ambos modos y ramas viejas retiradas.
 ### Conclusión esperada
 
 Sincronizar es una rutina barata que evita el proyecto de «integrar al final» — rebase para lo propio, merge para lo compartido, criterio para los conflictos.
+### Ejercicio de transferencia
+
+Lleva el principio de sincronización frecuente a un entorno de gestión de configuración de infraestructura: en lugar de código, aplica pulls y rebase diario a tus archivos de Terraform o Ansible y verifica cómo reduce los conflictos al desplegar cambios en múltiples entornos.
 
 ---
 
@@ -415,6 +418,16 @@ La idea principal es:
 > **La rama que no se sincroniza es un préstamo con intereses: paga un poco cada día (rebase) o pagarás todo junto cuando ya no haya tiempo.**
 
 ---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué es crítico sincronizar las ramas con frecuencia y qué problemas se acumulan si se deja hacerlo hasta el final?
+2. ¿Cómo afecta la elección entre rebase y merge para sincronizar a la linealidad del historial y a la posibilidad de perder trabajo en ramas públicas?
+3. ¿Qué estrategias de reducción de conflictos de raíz (ramas pequeñas, commits no mezcladores, etc.) son más efectivas en tu equipo y cómo podrías medir su impacto?
+4. ¿Cómo decidirías entre aceptar una rama larga legítima (como soporte de versión) versus tratarla como temporal y qué criterios de caducidad usarías?
+5. ¿Qué métricas de sincronización (frecuencia de pull, tiempo medio de rebase, número de conflictos por PR) serían más útiles para monitorizar la salud del flujo de trabajo?
 
 ## Próximo paso
 
