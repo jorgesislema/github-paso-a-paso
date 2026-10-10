@@ -8,18 +8,17 @@
 
 ## Mapa conceptual de este capítulo
 
-```text
-Cultura y principios DevOps
-       │
-       ├── 1. El problema: dos mundos separados
-       ├── 2. Principios del flujo DevOps
-       │   ├── 3. El bucle: retroalimentación
-       │   ├── 4. Responsabilidad compartida (y dueños)
-       │   └── 5. Cómo se mide (métricas de flujo)
-       │
-       ├── 6. Errores comunes con diagnóstico completo
-       ├── 7. Práctica guiada
-       └── 8. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Cultura y principios DevOps))
+    1. El problema dos mundos separados
+    2. Principios del flujo DevOps
+      3. El bucle retroalimentación
+      4. Responsabilidad compartida y dueños
+      5. Cómo se mide métricas de flujo
+    6. Errores comunes con diagnóstico completo
+    7. Práctica guiada
+    8. Nivel profesional + resumen
 ```
 
 ---
@@ -104,12 +103,16 @@ EN GIT SE VEN ASÍ:
 
 ## 3. El bucle: retroalimentación
 
-```text
-BUCLE COMPLETO:
-──────────────────────────────────────────────────────
-usuario → producción → métricas/alertas (cap. 06)
-   → decisiones → backlog → código → CI → entrega
-   → producción (más rápida y mejor)
+```mermaid
+flowchart TD
+    A["usuario"] --> B["producción"]
+    B --> C["métricas y alertas"]
+    C --> D["decisiones"]
+    D --> E["backlog"]
+    E --> F["código"]
+    F --> G["CI"]
+    G --> H["entrega"]
+    H --> B
 ```
 
 ```text
@@ -372,6 +375,11 @@ Bucle mapeado, cuello de botella atacado, primeras métricas y acuerdos escritos
 
 DevOps es la longitud del bucle: mides dónde se atasca, quitas ese tramo y repites — la cultura se demuestra quitando fricción, no en declaraciones.
 
+### Ejercicio de transferencia
+
+Evalúa el bucle de entrega de una aplicación web que uses regularmente (como un blog o una tienda en línea). Identifica un paso manual o lento en el proceso y propone una mejora específica para automatizarlo o acelerarlo, describiendo el cambio esperado y cómo medirías su impacto.
+
+
 ---
 
 ## 8. Nivel profesional + resumen
@@ -413,6 +421,17 @@ La idea principal es:
 > **DevOps se mide en la longitud del bucle: cada semana que acortas entre idea, entrega y aprendizaje es cultura demostrada — el resto son palabras sin pipeline detrás.**
 
 ---
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué es esencial que el bucle de retroalimentación sea corto en DevOps, y cómo afecta la longitud del bucle a la capacidad de aprendizaje y adaptación?
+2. ¿Cómo se relaciona la responsabilidad compartida con dueños claros con la prevención del error de responsabilidad compartida = responsabilidad nadie?
+3. ¿De qué manera las métricas de flujo funcionan como un barómetro en lugar de un examen, y qué tipo de preguntas deberían guiar su uso?
+4. ¿Cómo contribuye la automatización como disciplina (scripts con dueño, idempotentes y versionados en Git) a la fiabilidad y escalabilidad de los procesos?
+5. ¿Por qué es importante tratar la plataforma como un producto interno y aplicar mejora continua institucionalizada a nivel profesional?
+6. ¿Qué papel juega la reutilización de plantillas, workflows y componentes compartidos en la eficiencia y reducción de errores?
+
 
 ## Próximo paso
 
