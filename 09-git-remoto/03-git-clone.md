@@ -16,27 +16,22 @@ En este capítulo aprenderás:
 
 ## Mapa conceptual de este capítulo
 
-```text
-git clone
-       │
-       ├── 1. Qué hace (paso a paso)
-   │        ├── init + remote + fetch + checkout
-   │        └── configuración resultante
-   │
-       ├── 2. Opciones clave
-   │        ├── <URL> [carpeta]
-   │        ├── -b/--branch
-   │        ├── --depth 1 (clon superficial)
-   │        ├── --single-branch
-   │        └── --origin / --bare
-   │
-       ├── 3. Qué NO trae el clon
-   │
-       ├── 4. Errores comunes con diagnóstico completo
-   │
-       ├── 5. Práctica guiada
-   │
-       └── 6. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((git clone))
+    1. Qué hace paso a paso
+      init remote fetch checkout
+      configuración resultante
+    2. Opciones clave
+      carpeta destino
+      rama elegida con -b
+      profundidad con --depth 1
+      rama única con --single-branch
+      nombre con --origin y clon --bare
+    3. Qué NO trae el clon
+    4. Errores comunes con diagnóstico completo
+    5. Práctica guiada
+    6. Nivel profesional y resumen
 ```
 
 ---
@@ -76,12 +71,13 @@ git status             # rama por defecto, al día
 
 ### 1.3. Esquema
 
-```text
-[remoto] ──clone──► [tu carpeta]
-                      ├─ .git (historial completo)
-                      ├─ origin (URL)
-                      ├─ origin/* (fotos de ramas)
-                      └─ archivos (rama por defecto)
+```mermaid
+flowchart TD
+    R["Remoto, el repo en GitHub o en un servidor"] -->|"git clone descarga refs y objetos"| T["Tu carpeta con el clon"]
+    T --> G[".git con el historial completo"]
+    T --> O["origin con la URL del remoto"]
+    T --> F["fotos origin de las ramas"]
+    T --> A["archivos de la rama por defecto ya en tu disco"]
 ```
 
 ---
@@ -372,6 +368,10 @@ Capacidad de elegir el tipo de clon adecuado y de verificar, tras clonar, remoto
 
 Clonar es «traer el proyecto a casa con su historia y una dirección de vuelta»; las opciones deciden cuánta historia y qué nombre recibe esa dirección.
 
+### Ejercicio de transferencia
+
+Clona el mismo repositorio dos veces —una completa y otra con `--depth 1 --single-branch`— y compara ambas con `git remote -v`, `git branch -a` y `git log --oneline | Measure-Object -Line`. Entrega: la comparación en dos filas (qué trae cada clon) y la URL exacta que quedó en `origin` de cada uno.
+
 ---
 
 ## 6. Nivel profesional + resumen
@@ -419,6 +419,20 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **`clone` es la instantánea completa del proyecto con un cable de vuelta: tu decisión está en cuánta historia traes y a qué URL apunta ese cable.**
+
+---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Qué cuatro pasos internos ejecuta `git clone` antes de dejarte trabajar, y cuál de ellos escribe la dirección `origin`?
+2. ¿Qué información NO trae un clon aunque el repo esté en GitHub, y por qué eso separa «Git» de «GitHub» como plataforma?
+3. ¿Qué ganas y qué pierdes con `git clone --depth 1`, y en qué situaciones esa pérdida te pasaría factura?
+4. ¿Cuál es la diferencia práctica entre `--single-branch` y `-b <rama>`, y qué notas con `git branch -a` en cada caso?
+5. ¿Por qué `git clone --bare` no sirve para trabajar dentro y qué papel juega un clon bare en un equipo?
+6. Clonas un repo y `git remote -v` apunta a una copia que no es la que te interesaba: ¿qué comando lo arregla sin repetir la descarga?
+7. ¿Qué hacías si el clon termina en «detached HEAD» o en una rama que no esperabas, y cómo evitas que vuelva a pasar?
 
 ---
 
