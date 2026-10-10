@@ -91,14 +91,12 @@ ROADMAP (timeline)
        (si usas fechas)
 ```
 
-```text
-Criterio de elección:
-   │
-   ├── ¿quién lo lee? → 1-2 vistas por audiencia
-   ├── vistas GUARDADAS con filtro (ej. solo P0/P1,
-   │   solo milestone actual)
-   └── no necesitas todas las vistas: necesitas
-       claridad
+```mermaid
+flowchart TD
+    A[¿Quién lo lee?] --> B[1-2 vistas por audiencia]
+    A --> C[Vistas GUARDADAS con filtro (ej. solo P0/P1, solo milestone actual)]
+    C --> D[No necesitas todas las vistas]
+    D --> E[Necesitas claridad]
 ```
 
 ---
@@ -354,6 +352,10 @@ El board vale lo que refleja: fuente = issues/PRs, campos no duplicados con etiq
 
 ---
 
+## Ejercicio de transferencia
+
+En un proyecto de práctica, crea un board con columnas To do, In progress, Review, Done; añade campos de prioridad (P0/P1/P2) y área (backend/frontend); crea tres issues de diferentes áreas y prioridades, asígnalas al proyecto, y verifica que aparecen en las columnas correctas según su estado. Luego, crea una automatización que mueva items a Done al mergear un PR y pruébala. Entrega capturas del board, campos, automatización y el resultado.
+
 ## 7. Nivel profesional + resumen
 
 ### 7.1. Projects a escala de equipo
@@ -387,6 +389,22 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **El tablero es un espejo: si refleja issues y PRs reales con pocos campos, decide; si se convierte en base de datos paralela, engaña.**
+
+---
+
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué es importante que GitHub Projects sea solo una vista de las issues y PRs y no una base de datos paralela, y qué riesgos surgen al duplicar información?
+2. ¿Cómo decidirías entre usar un board, una tabla o un roadmap según el tipo de audiencia y la información que necesita cada uno?
+3. ¿De qué manera los campos personalizados (estado, área, prioridad, fechas) evitan la duplicación con etiquetas y cuándo deberías elegir uno u otro para un mismo eje?
+4. ¿Qué automatizaciones mecánicas (como mover items a Done al mergear un PR) son seguras de automatizar y por qué nunca se debe automatizar la decisión de movimiento?
+5. ¿Cómo utilizarías filtros guardados para monitorizar la higiene del proyecto (por ejemplo, items sin dueño o atascos en revisión) y qué acciones tomarías basándote en esos filtros?
+6. ¿Qué pasos seguirías para escalar el uso de Projects a nivel de equipo, asegurando que haya una vista adecuada para cada audiencia y una revisión trimestral de columnas y campos?
+7. ¿Cómo integrarías GitHub Projects con milestones y releases para cerrar el círculo de planificación y ejecución?
+8. ¿De qué forma la métrica de edad en columna y la distribución por estado/área pueden ayudar a detectar bloqueos y mejorar el flujo de trabajo?
 
 ---
 
