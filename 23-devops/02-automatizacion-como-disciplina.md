@@ -4,195 +4,176 @@
 
 Ya automatizaste CI y entrega (sección 22); aquí la automatización se vuelve método: la regla de «lo que se hace dos veces se automatiza», aplicada a todo el ciclo — configuración de entornos, tareas de mantenimiento, provisionamiento y las repetitividades que consumen la atención del equipo. También enseña el arte de automatizar bien: scripts pequeños, versionados, con tests y dueños — porque una automatización rota es más cara que la tarea manual.
 
----
-
+## ---
 ## Mapa conceptual de este capítulo
 
-```text
-Automatización como disciplina
-       │
-       ├── 1. Qué se automatiza (y qué no)
-       ├── 2. Escalones: de script a sistema
-       │   ├── 3. Automatizaciones que viven en Git
-       │   ├── 4. La tarea manual que se vuelve script
-       │   └── 5. Cuando la automatización se vuelve deuda
-       │
-       ├── 6. Errores comunes con diagnóstico completo
-       ├── 7. Práctica guiada
-       └── 8. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Automatización como disciplina))
+    1. Qué se automatiza y qué no
+    2. Escalones de script a sistema
+      3. Automatizaciones que viven en Git
+      4. La tarea manual que se vuelve script
+      5. Cuando la automatización se vuelve deuda
+    6. Errores comunes con diagnóstico completo
+    7. Práctica guiada
+    8. Nivel profesional + resumen
 ```
 
 ---
-
 ## 1. Qué se automatiza (y qué no)
 
 ```text
 BUENOS CANDIDATOS:
-   │
-   ├── lo repetitivo y con reglas claras (build,
-   │   deploy, backups, reportes)
-   ├── lo olvidadizo (rotaciones, recordatorios,
-   │   renovaciones — sección 20 cap. 03)
-   ├── lo peligroso si se hace mal (procesos con
-   │   checklist que la máquina ejecuta siempre igual)
-   └── lo que da feedback lento a mano (verificaciones)
+    │
+    ├── lo repetitivo y con reglas claras (build,
+    │   deploy, backups, reportes)
+    ├── lo olvidadizo (rotaciones, recordatorios,
+    │   renovaciones — sección 20 cap. 03)
+    ├── lo peligroso si se hace mal (procesos con
+    │   checklist que la máquina ejecuta siempre igual)
+    └── lo que da feedback lento a mano (verificaciones)
 ```
 
 ```text
 MALOS CANDIDATOS (al menos al principio):
-   │
-   ├── decisiones sin criterio escrito (automatizar la
-   │   ambigüedad automatiza el caos)
-   │
-   ├── tareas que cambian cada vez (espera a que
-   │   estabilicen el proceso)
-   │
-   └── lo que nadie entiende: sin entenderlo a mano,
-       no se puede confiar en la versión script
+    │
+    ├── decisiones sin criterio escrito (automatizar la
+    │   ambigüedad automatiza el caos)
+    │
+    ├── tareas que cambian cada vez (espera a que
+    │   estabilicen el proceso)
+    │
+    └── lo que nadie entiende: sin entenderlo a mano,
+        no se puede confiar en la versión script
 ```
 
 ```text
-   │
-   └── criterio: primero entender y estandarizar;
-       después automatizar (Error 1 si se invierte)
+    │
+    └── criterio: primero entender y estandarizar;
+        después automatizar (Error 1 si se invierte)
 ```
 
 ---
-
 ## 2. Escalones: de script a sistema
 
 ```text
 NIVELES (crece según necesidad):
 ──────────────────────────────────────────────────────
 0. checklist humana       (cuando nadie puede
-                          equivocarse de paso)
+                           equivocarse de paso)
 1. script local           (un archivo, versionado)
 2. script ejecutable      por el equipo (requisitos,
-                          --help, errores claros)
+                           --help, errores claros)
 3. job en CI/CD           (disparo, registro, alerta)
 4. sistema con estado     (reintentos, colas, paneles)
 ```
 
 ```text
-   │
-   └── el error no es quedarse en 1: es saltar a 4
-       con un proceso que aún vive en la cabeza de
-       una persona (Error 3)
+    │
+    └── el error no es quedarse en 1: es saltar a 4
+        con un proceso que aún vive en la cabeza de
+        una persona (Error 3)
 ```
 
 ```text
 EN CADA ESCALÓN:
-   │
-   ├── el script es código: se revisa, se versiona, se
-   │   prueba (sección 15)
-   │
-   └── nombre claro, salidas legibles, código de
-       salida útil (errores ≠ «falló algo»)
+    │
+    ├── el script es código: se revisa, se versiona, se
+    │   prueba (sección 15)
+    │
+    └── nombre claro, salidas legibles, código de
+        salida útil (errores ≠ «falló algo»)
 ```
 
 ---
-
 ## 3. Automatizaciones que viven en Git
 
 ```text
 DÓNDE VIVEN:
-   │
-   ├── scripts/ o tools/ en el repo del producto
-   │
-   ├── workflows (sección 19) para lo que corre en CI
-   │
-   └── repos de plataforma (sección 25) cuando sirven
-       a varios equipos
+    │
+    ├── scripts/ o tools/ en el repo del producto
+    │
+    ├── workflows (sección 19) para lo que corre en CI
+    │
+    └── repos de plataforma (sección 25) cuando sirven
+        a varios equipos
 ```
 
 ```text
 QUÉ SIGNIFICA "LIVE EN GIT":
-   │
-   ├── cambios por PR con revisión (nadie cambia una
-   │   automatización «a mano en el servidor»)
-   │
-   ├── historial: quién cambió qué y por qué (sección
-   │   14 — mensajes con motivo)
-   │
-   ├── probado: la automatización crítica tiene su
-   │   test o su modo dry-run (simulación)
-   │
-   └── con dueño (sección 16 cap. 06)
-```
-
-```text
-   │
-   └── «configuración como código» (cap. 04) y
-       «automatización como código» son el mismo
-       principio aplicado a cosas distintas
+    │
+    ├── cambios por PR con revisión (nadie cambia una
+    │   automatización «a mano en el servidor»)
+    │
+    ├── historial: quién cambió qué y por qué (sección
+    │   14 — mensajes con motivo)
+    │
+    ├── probado: la automatización crítica tiene su
+    │   test o su modo dry-run (simulación)
+    │
+    └── con dueño (sección 16 cap. 06)
 ```
 
 ---
-
 ## 4. La tarea manual que se vuelve script
 
-```text
-RECETA DE CONVERSIÓN:
-──────────────────────────────────────────────────────
-1. hazlo a mano con el checklist abierto (2–3 veces)
-2. escribe el checklist como pasos EXACTOS
-3. convierte pasos en script (idempotente: poder
-   correrlo dos veces sin romper)
-4. dry-run: imprime "haría X" sin ejecutar
-5. tests del script (scenarios: éxito, fallo parcial,
-   condiciones previas)
-6. versiona, documenta y da la vuelta al equipo
-7. solo entonces: programar/automatizar el disparo
+```mermaid
+flowchart TD
+    A["hazlo a mano con el checklist abierto (2–3 veces)"] --> B["escribe el checklist como pasos EXACTOS"]
+    B --> C["convierte pasos en script (idempotente: poder correrlo dos veces sin romper)"]
+    C --> D["dry-run: imprime 'haría X' sin ejecutar"]
+    D --> E["tests del script (scenarios: éxito, fallo parcial, condiciones previas)"]
+    E --> F["versiona, documenta y da la vuelta al equipo"]
+    F --> G["solo entonces: programar/automatizar el disparo"]
 ```
 
 ```text
 IDEMPOTENCIA (concepto clave):
-   │
-   └── ejecutar el script 1 vez = ejecutarlo 5 veces:
-       crea si no existe, actualiza si existe, no
-       duplica — base de toda automatización segura
-       (Error 4)
+    │
+    └── ejecutar el script 1 vez = ejecutarlo 5 veces:
+        crea si no existe, actualiza si existe, no
+        duplica — base de toda automatización segura
+        (Error 4)
 ```
 
 ```text
-   │
-   └── la tarea manual que se documenta YA es la mitad
-       del script: el runbook es el prototipo (sección
-       22 cap. 06)
+    │
+    └── la tarea manual que se documenta YA es la mitad
+        del script: el runbook es el prototipo (sección
+        22 cap. 06)
 ```
 
 ---
-
 ## 5. Cuando la automatización se vuelve deuda
 
 ```text
 SEÑALES:
-   │
-   ├── falla y se "arregla" saltándola a mano
-   ├── nadie sabe qué hace exactamente
-   ├── tarda más que la tarea original
-   └── cambia sin que nadie se entere (fuera de Git)
+    │
+    ├── falla y se "arregla" saltándola a mano
+    ├── nadie sabe qué hace exactamente
+    ├── tarda más que la tarea original
+    └── cambia sin que nadie se entere (fuera de Git)
 ```
 
 ```text
 DECISIÓN: REPARAR, SIMPLIFICAR O RETIRAR
-   │
-   ├── se usa y duele → reparar con prioridad
-   ├── se usa poco → ¿merece? ¿o volver a manual y
-   │   simplificar?
-   └── no se usa → retirar (lo que no se usa también
-       miente con su presencia)
+    │
+    ├── se usa y duele → reparar con prioridad
+    ├── se usa poco → ¿merece? ¿o volver a manual y
+    │   simplificar?
+    └── no se usa → retirar (lo que no se usa también
+        miente con su presencia)
 ```
 
 ```text
-   │
-   └── cada automatización tiene fecha de revisión en
-       la gobernanza (sección 18) — Error 6 si vive
-       indefinida sin mirarla
+    │
+    └── cada automatización tiene fecha de revisión en
+        la gobernanza (sección 18) — Error 6 si vive
+        indefinida sin mirarla
 ```
 
 ---
-
 ## 6. Errores comunes con diagnóstico completo
 
 ### Error 1: automatizar un proceso que nadie entiende
@@ -302,7 +283,6 @@ DECISIÓN: REPARAR, SIMPLIFICAR O RETIRAR
 **Cómo se evita:** plantilla sin secretos + escaneo.
 
 ---
-
 ## 7. Práctica guiada
 
 ### Objetivo
@@ -331,8 +311,6 @@ set -euo pipefail
 # 3. resumen claro al final
 ```
 
-1. Implementa con salida legible y código de salida correcto.
-
 ### Paso 4: dry-run y doble ejecución
 
 1. Añade `--dry-run` que imprima las acciones.
@@ -355,28 +333,32 @@ Script idempotente con dry-run, versionado, documentado y con su disparo/registr
 
 La disciplina no es automatizar mucho: es automatizar lo estable, probarlo, versionarlo y darle dueño — el resto sigue siendo una tarea a la espera de entenderse.
 
----
+### Ejercicio de transferencia
 
+Selecciona una tarea manual que realices con frecuencia (como actualizar un sitio web o generar un informe mensual). Aplica la receta de conversión: documenta el checklist, crea un script idempotente con pruebas de éxito/fallo, guárdalo en versión y establece su ejecución automática (como un job de CI o un cron). Entrega el enlace al repositorio y una breve explicación de cómo mejoró la fiabilidad o ahorró tiempo.
+
+
+---
 ## 8. Nivel profesional + resumen
 
 ### 8.1. Automatización a escala
 
 ```text
-   │
-   ├── catálogo de automatizaciones con dueño y fecha
-   │   de revisión (gobernanza — sección 18)
-   │
-   ├── plataforma de tareas (runners, colas, paneles)
-   │   como producto interno (sección 25)
-   │
-   ├── estándares: dry-run, idempotencia, logging,
-   │   alerta — checklist de la casa
-   │
-   ├── renovación automatizada de lo que se olvida
-   │   (Dependabot, rotaciones — sección 20)
-   │
-   └── métrica: horas ahorradas/mes (estimación
-       honesta) y fallos de automatización por trimestre
+    │
+    ├── catálogo de automatizaciones con dueño y fecha
+    │   de revisión (gobernanza — sección 18)
+    │
+    ├── plataforma de tareas (runners, colas, paneles)
+    │   como producto interno (sección 25)
+    │
+    ├── estándares: dry-run, idempotencia, logging,
+    │   alerta — checklist de la casa
+    │
+    ├── renovación automatizada de lo que se olvida
+    │   (Dependabot, rotaciones — sección 20)
+    │
+    └── métrica: horas ahorradas/mes (estimación
+        honesta) y fallos de automatización por trimestre
 ```
 
 ### 8.2. Resumen
@@ -396,6 +378,18 @@ La idea principal es:
 > **Una automatización es código con poder: si no está probada, versionada y con dueño, no es infraestructura — es una bomba de relojería con horario.**
 
 ---
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué es fundamental entender y estandarizar un proceso antes de automatizarlo, y qué riesgos asume uno al automatizar sin este paso?
+2. ¿Cómo se determina cuándo subir un escalón de automatización (de script local a sistema en CI, por ejemplo), y qué señales indican que es momento de hacerlo?
+3. ¿De qué manera los principios de Git (PR, revisión, historial, dueño y dry-run) aseguran que una automatización sea confiable y segura a largo plazo?
+4. ¿En qué consiste la receta de conversión de una tarea manual a un script idempotente, y por qué cada paso es crítico para el éxito?
+5. ¿Cómo se decide cuándo retirar una automatización versus repararla cuando se vuelve deuda, y qué criterios deben guiar esa decisión?
+6. ¿Qué papel juegan los estándares y el catálogo gobernado en la escalabilidad de la automatización a nivel profesional, y cómo evitan los errores típicos?
+
+
 
 ## Próximo paso
 
