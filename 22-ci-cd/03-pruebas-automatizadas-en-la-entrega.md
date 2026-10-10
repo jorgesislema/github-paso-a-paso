@@ -8,18 +8,17 @@ La sección 09 enseñó a diseñar pruebas; este capítulo las sitúa dentro del
 
 ## Mapa conceptual de este capítulo
 
-```text
-Pruebas automatizadas en la entrega
-       │
-       ├── 1. El papel de las pruebas en la cadena
-       ├── 2. Pirámide (o lo que hoy funcione)
-       │   ├── 3. Qué corre y cuándo
-       │   ├── 4. Suite saludable: rápida y fiable
-       │   └── 5. Cobertura como guía, no como meta
-       │
-       ├── 6. Errores comunes con diagnóstico completo
-       ├── 7. Práctica guiada
-       └── 8. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Pruebas automatizadas en la entrega))
+    1. Papel de las pruebas en la cadena
+    2. Pirámide de pruebas
+      3. Qué corre y cuándo
+      4. Suite de pruebas rápida y fiable
+      5. Cobertura de pruebas como guía
+    6. Errores comunes con diagnóstico completo
+    7. Práctica guiada
+    8. Nivel profesional y resumen
 ```
 
 ---
@@ -369,8 +368,12 @@ Estrategia por puerta aplicada, presupuesto cumplido, flaky en radar y política
 Las pruebas en la entrega no son «más pasos»: son las puertas que protegen cada avance — y solo funcionan si son rápidas, fiables y están donde el costo lo justifica.
 
 ---
+### Ejercicio de transferencia
+
+En un proyecto de una biblioteca JavaScript, define qué pruebas deben correr en cada PR (unitarias y lint), qué pruebas en cada push a main (integración y cobertura) y qué pruebas en releases nocturnos (e2e y performance). Documenta la decisión y comparte el archivo de configuración.
 
 ## 8. Nivel profesional + resumen
+
 
 ### 8.1. Pruebas a escala
 
@@ -411,8 +414,19 @@ La idea principal es:
 > **La confianza para desplegar se compra con puertas bien colocadas: pruebas rápidas donde se decide, lentas donde caben y ninguna que mienta — porque un verde flaky es un rojo disfrazado.**
 
 ---
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué es necesario colocar pruebas como puertas en el pipeline y qué ocurre si se omite alguna puerta?
+2. ¿Cómo ayuda la pirámide de pruebas a equilibrar velocidad y confianza en el proceso de entrega?
+3. ¿Qué tipos de pruebas deberían ejecutarse en cada pull request, en la rama main y en los releases, y por qué?
+4. ¿Qué características definen una suite de pruebas «saludable» (rápida y fiable) y cómo se logra?
+5. ¿De qué manera la cobertura de pruebas puede ser una guía útil pero no una meta absoluta, y qué riesgos existen al perseguir alta cobertura sin considerar calidad?
+6. ¿Cómo detectar y corregir suites flaky que comprometen la fiabilidad del verde en CI?
 
 ## Próximo paso
+
 
 Ya tienes la verificación con criterio.
 
