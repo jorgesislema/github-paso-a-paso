@@ -25,6 +25,31 @@ Al terminar esta sección serás capaz de:
 * usar GitHub Projects como vista sin duplicar la fuente de verdad;
 * explicar cómo `CODEOWNERS` define responsabilidad por área.
 
+## Mapa conceptual
+
+```mermaid
+mindmap
+  root((16 · Trabajo en equipo))
+    01 Colaboradores y permisos
+      Roles del repositorio
+      Niveles de permiso
+    02 Organizaciones y equipos
+      Estructura de equipos
+      Roles de gobernanza
+    03 Issues y etiquetas
+      Issues ejecutables
+      Taxonomía de etiquetas
+    04 GitHub Projects
+      Vistas y campos
+      Automatizaciones
+    05 Discussions y comunidad
+      Preguntas y respuestas
+      Bucle de comunidad
+    06 CODEOWNERS y responsabilidades
+      Responsabilidad por área
+      Revisores asignados
+```
+
 ---
 
 ## ¿Qué aprenderás en esta sección?
@@ -48,6 +73,17 @@ Practica cada pieza en una organización de prueba con una segunda cuenta: nada 
 
 ---
 
+## Checkpoint 16 — Comprobación obligatoria
+
+Antes de avanzar a `17-estrategias-de-git/`, demuestra que puedes (en un repositorio de práctica real):
+
+1. Asignar permisos de repositorio siguiendo el principio de mínimo privilegio (por ejemplo, dar rol Write a quien solo necesita empujar a ramas).
+2. Crear un equipo en una organización y asignarle rol de mantenimiento para un conjunto de repositorios.
+3. Convertir una idea en un issue ejecutable con etiquetas de prioridad y un milestone vinculado.
+4. Configurar un GitHub Project con vistas de tablero y automatización que mueve tarjetas al cerrar issues.
+5. Crear un archivo CODEOWNERS que defina responsabilidad por área y revisarlo en una pull request.
+6. Habilitar Discussions en un repositorio y convertir una pregunta técnica en una discusión productiva.
+
 ## Autopreguntas de cierre
 
 Sin mirar el material, responde mentalmente y luego compruébalo con los capítulos de la sección:
@@ -56,6 +92,10 @@ Sin mirar el material, responde mentalmente y luego compruébalo con los capítu
 2. ¿Qué diferencia hay entre un milestone y un Project?
 3. ¿Qué hace `CODEOWNERS` que un acuerdo humano no garantiza?
 4. ¿Cuándo corresponde usar Discussions en lugar de Issues?
+5. ¿Por qué es peligroso otorgar permisos Admin a múltiples personas en un repositorio privado y cómo afecta la trazabilidad de cambios?
+6. ¿Cómo decidiría entre usar un milestone y un GitHub Project para planificar una liberación de software, y qué información proporciona cada uno que el otro no da?
+7. ¿Qué consecuencias tiene definir incorrectamente los patrones en CODEOWNERS y cómo puede detectarlo antes de que cause bloqueos en PRs?
+8. ¿En qué situación sería apropiado usar Discussions en lugar de Issues para resolver una duda sobre la arquitectura del proyecto?
 
 ---
 
