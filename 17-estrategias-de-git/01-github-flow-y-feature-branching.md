@@ -10,17 +10,16 @@ Este capítulo describe el flujo completo, sus reglas de oro, por qué funciona 
 
 ## Mapa conceptual de este capítulo
 
-```text
-GitHub Flow y feature branching
-       │
-       ├── 1. Las reglas del flujo
-       ├── 2. El ciclo paso a paso
-       ├── 3. Feature branching (el concepto general)
-       ├── 4. Por qué funciona (y sus límites)
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((GitHub Flow y feature branching))
+    1. Las reglas del flujo
+    2. El ciclo paso a paso
+    3. Feature branching el concepto general
+    4. Por qué funciona y sus límites
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional + resumen
 ```
 
 ---
@@ -49,14 +48,15 @@ GITHUB FLOW — 5 REGLAS
        «hecho»
 ```
 
-```text
-DIAGRAMA
-──────────────────────────────────────────────────────
-main ──A───B──────────────M───   (siempre desplegable)
-          \            /
-           fix-1 ──C──D            PR → revisión
-                      \
-                       feature-x ──E──F──G   PR
+```mermaid
+flowchart TD
+    A["Partir de main actualizado"] --> B["Crear rama con nombre descriptivo"]
+    B --> C["Trabajar en commits frecuentes"]
+    C --> D["Push temprano de la rama"]
+    D --> E["Abrir PR con descripción y checks"]
+    E --> F["Revisión y ajustes"]
+    F --> G["Integrar (squash/merge) y borrar rama"]
+    G --> H["main actualizado y desplegable"]
 ```
 
 ---
@@ -345,6 +345,10 @@ El flujo es simple por diseño: la complejidad está en las disciplinas que lo s
 
 ---
 
+### Ejercicio de transferencia
+
+Aplica el GitHub Flow a un contexto diferente al ejemplo guiado: por ejemplo, en un repositorio de documentación donde cada cambio es una página nueva, crea una rama para cada página, abre un PR con revisión de estilo y integra solo cuando la documentación pase los checks de enlaces rotos.
+
 ## 7. Nivel profesional + resumen
 
 ### 7.1. GitHub Flow en equipo
@@ -384,6 +388,16 @@ La idea principal es:
 > **El flujo simple escala por disciplina, no por ceremonia: main verde, ramas de días y PR obligatorio — todo lo demás es ajuste.**
 
 ---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué es necesario que la rama main esté siempre desplegable y qué riesgos implica si no se cumple?
+2. ¿Cómo afecta el tamaño de las ramas (días vs semanas) a la probabilidad de conflictos y al esfuerzo de revisión?
+3. ¿En qué situación sería apropiado usar un PR de borrador temprano y qué ventajas aporta al flujo de trabajo?
+4. ¿Qué métricas podrías usar para evaluar la salud de un equipo que sigue GitHub Flow y por qué son relevantes?
+5. ¿Cómo decidirías entre integrar mediante squash, merge o rebase y qué factores de equipo influyen en esa decisión?
 
 ## Próximo paso
 
