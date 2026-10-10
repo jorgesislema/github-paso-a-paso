@@ -10,17 +10,16 @@ Este capítulo detalla cómo se organiza la ejecución: paralelismo y dependenci
 
 ## Mapa conceptual de este capítulo
 
-```text
-Jobs, steps y ejecución
-       │
-       ├── 1. Jobs: paralelismo y dependencias
-       ├── 2. Steps dentro de un job
-       ├── 3. Matrices (matrix)
-       ├── 4. Artefactos, cachés y entornos
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Jobs, steps y ejecución))
+    1. Jobs paralelismo y dependencias
+    2. Steps dentro de un job
+    3. Matrices matrix
+    4. Artefactos cachés y entornos
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional resumen
 ```
 
 ---
@@ -66,12 +65,13 @@ REGLAS:
        linux en el mismo workflow
 ```
 
-```text
-GRAFO COMÚN DE CI:
-   │
-   ├── paralelo: lint ∥ unit-tests ∥ build
-   └── luego: e2e (needs: build) → informe (needs:
-       todos, if: always())
+```mermaid
+flowchart TD
+    Lint[Lint] --> Informe
+    UnitTests[UnitTests] --> Informe
+    Build[Build] --> E2e
+    Build --> Informe
+    E2e --> Informe
 ```
 
 ---
@@ -419,6 +419,10 @@ El workflow es un grafo que se diseña: paralelo donde no depende, encadenado do
 
 ---
 
+### Ejercicio de transferencia
+
+En un proyecto de desarrollo de una aplicación móvil con backend y frontend, diseña un workflow que compile el frontend y backend en paralelo, ejecute pruebas unitarias en una matriz de versiones de Node y Python, suba los artefactos de compilación y use un entorno de staging con aprobación antes de desplegar a producción.
+
 ## 7. Nivel profesional + resumen
 
 ### 7.1. Patrones de ejecución avanzados
@@ -462,6 +466,17 @@ La idea principal es:
 > **Diseña el grafo antes que el YAML: paralelo donde no hay dependencia, `needs` donde la hay, artefactos para cruzar máquinas y environments para no mezclar lo que no debe mezclarse.**
 
 ---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué es importante paralelizar jobs que no tienen dependencias y cómo afecta eso al tiempo total de ejecución?
+2. ¿Qué ventajas ofrece usar una matriz para probar múltiples versiones de un lenguaje y cuándo es apropiado usar fail-fast: false?
+3. ¿Cómo permiten los artefactos compartir resultados entre jobs y por qué es necesario usar download-artifact y upload-artifact en jobs separados?
+4. ¿De qué manera los caches aceleran la instalación de dependencias y qué riesgos implica usar una clave de caché basada en un lockfile desactualizado?
+5. ¿Cómo influyen los entornos (environments) en la gestión de secretos y aprobaciones para despliegues?
+6. ¿Cuál es la diferencia entre usar needs para encadenar jobs y permitir que jobs corran en paralelo, y cómo afecta eso al grafo de ejecución?
 
 ## Próximo paso
 
