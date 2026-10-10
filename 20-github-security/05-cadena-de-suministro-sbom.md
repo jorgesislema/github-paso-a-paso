@@ -8,19 +8,18 @@ Tu producto no es solo tu código: es un ensamblaje de paquetes, acciones, imág
 
 ## Mapa conceptual de este capítulo
 
-```text
-Cadena de suministro y SBOM
-       │
-       ├── 1. Mapa de la cadena: de dónde viene lo que
-       │   │   corres
-       │   ├── 2. Ataques típicos y superficie real
-       │   ├── 3. Reducir superficie: mínimo y fijado
-       │   ├── 4. SBOM: inventario que puedes mostrar
-       │   └── 5. Firmar y verificar (provenance)
-       │
-       ├── 6. Errores comunes con diagnóstico completo
-       ├── 7. Práctica guiada
-       └── 8. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Cadena de suministro y SBOM))
+    1. Mapa de la cadena: de dónde viene lo que
+       corres
+       2. Ataques típicos y superficie real
+       3. Reducir superficie: mínimo y fijado
+       4. SBOM: inventario que puedes mostrar
+       5. Firmar y verificar (provenance)
+    6. Errores comunes con diagnóstico completo
+    7. Práctica guiada
+    8. Nivel profesional + resumen
 ```
 
 ---
@@ -410,6 +409,9 @@ Pregúntate: «salió un CVE en una librería de moda»
 
 Mapa de cadena escrito, fuentes endurecidas, SBOM en tu primer release y política publicada.
 
+### Ejercicio de transferencia
+En un proyecto personal, genera un SBOM para tu release usando una herramienta como CycloneDX o SPDX, adjúntalo a la release y verifica que se muestra correctamente en la interfaz de GitHub. Entrega el archivo SBOM y una captura de pantalla de la release mostrando el SBOM adjunto.
+
 ### Conclusión esperada
 
 La cadena de suministro se gobierna como inventario: sabes qué entra, qué sales y puedes demostrarlo — el día del incidente, eso es todo lo que importa.
@@ -457,6 +459,17 @@ La idea principal es:
 > **Nadie audita lo que no puede listar: el SBOM y el fijado convierten la confianza ciega en una lista que puedes revisar, y la firma en una respuesta que puedes verificar.**
 
 ---
+
+## Autopreguntas de cierre
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+1. ¿Cuál es la diferencia entre un ataque de instalación y un ataque de distribución en la cadena de suministro?
+2. ¿Cómo ayuda el fijado con lockfiles y digestos a reducir la superficie de ataque?
+3. ¿Qué información contiene un SBOM y por qué es útil durante un incidente de seguridad?
+4. ¿Por qué es importante verificar las firmas de los artefactos en el consumidor y no solo confiar en la presencia de la firma?
+5. ¿Cómo se puede reducir la superficie de ataque mediante el principio de mínimo en dependencias?
+6. ¿Qué papel juegan las acciones de GitHub fijadas por SHA en la seguridad de la cadena de suministro?
+7. ¿Cómo afecta el uso de imágenes base mutables (como `alpine:latest`) a la reproducibilidad y seguridad de los builds?
+8. ¿Qué es un attestation de provenance y cómo se diferencia de una simple firma de artefacto?
 
 ## Próximo paso
 
