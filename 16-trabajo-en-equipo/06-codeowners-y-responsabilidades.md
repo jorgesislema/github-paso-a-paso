@@ -43,20 +43,10 @@ infra/          @infra-team
 *.yml           @infra-team     # pipelines
 ```
 
-```text
-CÓMO FUNCIONA:
-   │
-   ├── última regla que COINCIDE con el archivo manda
-   │   (como .gitignore, de abajo hacia arriba)
-   │
-   ├── al abrir/actualizar un PR: la plataforma
-   │   asigna automáticamente los dueños de los
-   │   archivos tocados
-   │
-   └── no tiene efecto mágico SOLO con el archivo:
-       activas «Require review from Code Owners» en
-       la rama protegida → la aprobación de ese
-       dueño pasa a ser OBLIGATORIA
+```mermaid
+flowchart TD
+    A[última regla que coincide con el archivo manda] --> B[al abrir/actualizar un PR: la plataforma asigna automáticamente los dueños de los archivos tocados]
+    B --> C[activar «Require review from Code Owners» en la rama protegida → la aprobación de ese dueño pasa a ser OBLIGATORIA]
 ```
 
 ```text
@@ -382,6 +372,10 @@ CODEOWNERS solo funciona con la regla de rama activa, dueños en equipo con resp
 
 ---
 
+## Ejercicio de transferencia
+
+En un repositorio de práctica multi-área (backend, frontend, infra), crea un archivo CODEOWNERS que asigne equipos a cada carpeta, activa la regla de rama «Require review from Code Owners» en la rama principal, abre un PR que toque código de frontend y verifica que se solicita aprobación del equipo de frontend, y otro PR que toque infra y verifica que se solicita aprobación del equipo de infra y/o tech-lead. Entrega capturas del archivo CODEOWNERS, la configuración de la rama y los PRs mostrando las asignaciones de revisores.
+
 ## 7. Nivel profesional + resumen
 
 ### 7.1. Responsabilidad a escala
@@ -418,6 +412,22 @@ En este capítulo aprendiste que:
 La idea principal es:
 
 > **La responsabilidad necesita nombre, ruta y relevo: CODEOWNERS dice de quién es cada línea — y la regla de rama obliga a que alguien lo mire.**
+
+---
+
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Cómo determina CODEOWNERS qué revisor se asigna automáticamente a un pull request y qué regla de prioridad utiliza?
+2. ¿Por qué es necesario combinar CODEOWNERS con la regla de rama «Require review from Code Owners» para que tenga efecto en las aprobaciones obligatorias?
+3. ¿De qué manera estructurar los dueños por equipos (en lugar de individuos) y incluir un dueño por defecto mejora la resiliencia frente a cambios de personal?
+4. ¿Qué responsabilidades adicionales implica ser dueño de un área según CODEOWNERS, más allá de revisar pull requests?
+5. ¿Cómo utilizarías CODEOWNERS como mapa de incidentes para determinar rápidamente quién debe ser notificado cuando se modifica un archivo crítico?
+6. ¿Qué pasos seguirías para escalar el uso de CODEOWNERS a nivel de organización, asegurando que los equipos tengan la capacidad real de revisión y que haya relevo definido?
+7. ¿Cómo equilibras la granularidad de las reglas en CODEOWNERS para evitar tanto reglas demasiado específicas como zonas grises sin dueño?
+8. ¿De qué forma integrarías CODEOWNERS con otras prácticas de calidad como pruebas automatizadas y revisiones cruzadas para reforzar la responsabilidad?
 
 ---
 
