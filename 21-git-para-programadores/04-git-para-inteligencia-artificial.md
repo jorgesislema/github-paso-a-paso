@@ -367,6 +367,9 @@ data/raw/
 
 ```markdown
 ## modelo-ejemplo v1
+### Ejercicio de transferencia
+Aplica lo aprendido en este capítulo a un proyecto personal de tu elección. Por ejemplo, si el capítulo trata sobre ramas en Git, crea una nueva rama para una característica que hayas estado pensando y haz un commit inicial. Entregable: captura de pantalla del comando git branch mostrando tu nueva rama.
+## modelo-ejemplo v1
 - código: commit abc123
 - config: configs/2026-10-02-baseline.yaml
 - datos: dataset-X v3 (checksum ...)
@@ -439,6 +442,16 @@ La idea principal es:
 
 ---
 
+## Próximo paso
+## Autopreguntas de cierre
+1. ¿Cómo explicarías con tus propias palabras el concepto de Introducción?
+1. ¿Cuál es la relación entre Mapa conceptual de este capítulo y 1. Mapa de componentes: qué es qué?
+1. ¿Qué pasos seguirías para aplicar 1. Mapa de componentes: qué es qué en un escenario real?
+1. ¿Qué errores comunes debes evitar al trabajar con 2. Código, configs y prompts en Git?
+1. ¿Cómo medirías el éxito al implementar 3. Modelos y artefactos fuera del Git?
+1. ¿Qué herramientas o comandos mencionados en el capítulo son esenciales para 4. Pipelines de IA versionados?
+1. ¿Cómo adaptarías el proceso descrito en 5. Secretos y datos sensibles en IA si tuvieran que trabajar en un entorno distribuido?
+1. ¿Qué principio subyace detrás de la recomendación de 6. Errores comunes con diagnóstico completo?
 ## Próximo paso
 
 Ya sabes qué entra y qué no en un repo de IA.
