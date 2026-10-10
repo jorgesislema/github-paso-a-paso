@@ -10,17 +10,16 @@ Este capítulo conecta la teoría (semver) con la práctica del repositorio (tag
 
 ## Mapa conceptual de este capítulo
 
-```text
-Versionado semántico y ramas de release
-       │
-       ├── 1. Semver: MAJOR.MINOR.PATCH
-       ├── 2. De la decisión al tag
-       ├── 3. Ramas de release en la práctica
-       ├── 4. Soporte de versiones anteriores
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Versionado semántico y ramas de release))
+    1. Semver MAJOR.MINOR.PATCH
+    2. De la decisión al tag
+    3. Ramas de release en la práctica
+    4. Soporte de versiones anteriores
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional + resumen
 ```
 
 ---
@@ -128,13 +127,12 @@ CUÁNDO HACE FALTA RAMA DE RELEASE
    └── ventanas de QA sin frenar main
 ```
 
-```text
-CICLO (variante Git Flow — cap. 02)
-──────────────────────────────────────────────────────
-develop ──► release/1.4.0 (solo fixes/docs)
-                │
-                ├──► main + tag v1.4.0
-                └──► develop (doble merge)
+```mermaid
+flowchart TD
+    A["develop"] --> B["release/1.4.0 (solo fixes/docs)"]
+    B --> C["main + tag v1.4.0"]
+    B --> D["develop (doble merge)"]
+    D --> A
 ```
 
 ```text
@@ -381,6 +379,9 @@ Versión publicada con tag anotado + changelog + notas, y política de soporte e
 ### Conclusión esperada
 
 Semver es contrato y el tag es el ancla: cada release se decide, se documenta y se etiqueta de la misma forma.
+### Ejercicio de transferencia
+
+Aplica el principio de versionado semver a un proyecto de documentación técnica: asigna números de versión a cada guía o manual y describe cómo usarías tags y ramas de release para gestionar cambios y compatibilidad entre versiones.
 
 ---
 
@@ -423,6 +424,16 @@ La idea principal es:
 > **El número de versión es un contrato con quien consume tu software: semver lo firma, el tag lo ancla y las notas lo cuentan — todo lo demás es rutina repetible.**
 
 ---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué es importante que el número de versión siga semver y qué riesgos implica usar un esquema como CalVer sin comunicar compatibilidad?
+2. ¿Cómo afecta la decisión de cuándo crear una rama de release (solo para estabilización versus también para soporte) al flujo de trabajo y a la carga de mantenimiento?
+3. ¿Qué elementos deben incluirse en un checklist de release para garantir que el tag, el changelog y las notas estén presentes y verificados?
+4. ¿Cómo decidirías entre mantener una rama de soporte para una versión antigua versus simplemente recomendar la actualización y qué factores de negocio o técnicos influyen?
+5. ¿Cómo afecta la automatización del bump de versión y la generación de changelog a la probabilidad de errores en el proceso de release?
 
 ## Próximo paso
 
