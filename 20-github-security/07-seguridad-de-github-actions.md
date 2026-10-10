@@ -8,19 +8,19 @@ La sección 19 enseñó a construir y endurecer workflows; este capítulo mira A
 
 ## Mapa conceptual de este capítulo
 
-```text
-Seguridad de GitHub Actions
-       │
-       ├── 1. La amenaza: qué gana quien compromete tu
+```mermaid
+mindmap
+  root((Seguridad de GitHub Actions))
+    1. La amenaza: qué gana quien compromete tu
        │   │   pipeline
-       │   ├── 2. Environments: el control de despliegue
-       │   ├── 3. OIDC: credenciales sin secreto largo
-       │   ├── 4. Artefactos, cachés y ejecución
-       │   └── 5. Auditoría de workflows
-       │
-       ├── 6. Errores comunes con diagnóstico completo
-       ├── 7. Práctica guiada
-       └── 8. Nivel profesional + resumen
+       ├── 2. Environments: el control de despliegue
+       ├── 3. OIDC: credenciales sin secreto largo
+       ├── 4. Artefactos, cachés y ejecución
+       └── 5. Auditoría de workflows
+    │
+    ├── 6. Errores comunes con diagnóstico completo
+    ├── 7. Práctica guiada
+    └── 8. Nivel profesional + resumen
 ```
 
 ---
@@ -389,6 +389,9 @@ git log --oneline -- .github/workflows/   # quién tocó
 
 Despliegue con aprobación, secretos acotados, OIDC donde aplique y workflows auditados.
 
+### Ejercicio de transferencia
+En un repositorio de práctica, crea un workflow que despliegue un artefacto a un environment de producción con aprobación requerida y usa OIDC para obtener credenciales de corta vida de tu proveedor de nube. Luego simula un intento de despliegue sin aprobación y verifica que el workflow se detenga. Entrega el archivo del workflow y capturas de pantalla del intento fallido y del despliegue exitoso con aprobación.
+
 ### Conclusión esperada
 
 La última milla del código es la más sensible: environments, credenciales efímeras y dueño convierten la automatización en algo que también se audita.
@@ -438,6 +441,17 @@ La idea principal es:
 > **Tu pipeline es el último guardián del release: si su secreto, su aprobación o su runner son flojos, todo lo anterior — revisiones, tests, escaneos — se salta de una sola vez.**
 
 ---
+
+## Autopreguntas de cierre
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+1. ¿Cuál es la principal ventaja de usar OIDC en lugar de secretos estáticos de larga duración en GitHub Actions?
+2. ¿Cómo protege un environment con aprobación requerida contra despliegues no autorizados?
+3. ¿Por qué es importante limitar los permisos de los workflows a través de la configuración de permissions?
+4. ¿Qué riesgos implica usar self-hosted runners en repositorios abiertos a PRs externos y cómo se puede mitigar?
+5. ¿Cómo se puede detectar y prevenir el cache poisoning en los workflows de CI/CD?
+6. ¿Qué elementos se deben auditar en un workflow para asegurar su seguridad según la sección 5 del capítulo?
+7. ¿Por qué es recomendable declarar explícitamente las ramas permitidas para el despliegue en un environment?
+8. ¿Cómo se combina la revisión de cambios en workflows con CODEOWNERS para garantizar que cualquier modificación sea revisada?
 
 ## Próximo paso
 
