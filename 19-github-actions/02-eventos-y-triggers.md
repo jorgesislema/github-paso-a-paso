@@ -10,17 +10,16 @@ Este capítulo detalla el sistema de eventos de GitHub Actions: los triggers pri
 
 ## Mapa conceptual de este capítulo
 
-```text
-Eventos y triggers
-       │
-       ├── 1. Triggers principales y sus filtros
-       ├── 2. Eventos especiales (forks, cron, botón)
-       ├── 3. Condiciones: if, paths, contexto
-       ├── 4. Elegir el trigger correcto
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Eventos y triggers))
+    1. Triggers principales y sus filtros
+    2. Eventos especiales forks cron botón
+    3. Condiciones if paths contexto
+    4. Elegir el trigger correcto
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional resumen
 ```
 
 ---
@@ -402,6 +401,10 @@ Cada ejecución debe ser explicable en una frase: qué evento, qué filtro, qué
 
 ---
 
+### Ejercicio de transferencia
+
+En un proyecto de despliegue de aplicaciones web, diseña un conjunto de triggers que ejecuten pruebas de unidad en PRs, pruebas de integración en push a main, y despliegues automáticos solo cuando se cree un tag de versión, usando filtros de paths para limitar la ejecución a cambios en el directorio de la aplicación.
+
 ## 7. Nivel profesional + resumen
 
 ### 7.1. Estrategia de disparo
@@ -439,6 +442,17 @@ La idea principal es:
 > **Dispara cuando haga falta y nada más: cada ejecución debe tener una razón legible — el filtro que no escribiste hoy es el costo que pagarás mañana.**
 
 ---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué es importante limitar los triggers con filtros como `paths` y `branches` en repositorios grandes?
+2. ¿Cómo difiere el comportamiento de `pull_request` y `push` en cuanto al contexto de ejecución y acceso a secretos?
+3. ¿Qué ventajas ofrece usar `workflow_dispatch` con inputs y registro frente a un botón sin parámetros?
+4. ¿Cómo afecta la combinación de `schedule` y la congestión de horario a la fiabilidad de tareas periódicas y qué alternativas existen?
+5. ¿De qué manera el árbol rápido ayuda a seleccionar el trigger adecuado según el cambio de código y el objetivo del workflow?
+6. ¿Por qué es necesario separar los jobs de deploy en PRs usando condicionales `if` y qué riesgos implica omitir esta separación?
 
 ## Próximo paso
 
