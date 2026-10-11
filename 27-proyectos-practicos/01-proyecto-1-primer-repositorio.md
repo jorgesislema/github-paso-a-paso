@@ -8,17 +8,16 @@ La teoría se convierte en práctica con un primer proyecto completo: **un repos
 
 ## Mapa conceptual de este capítulo
 
-```text
-Proyecto 1: primer repositorio
-       │
-       ├── 1. Qué construyes y qué conceptos incorpora
-       ├── 2. Requisitos (los que hará «real» al repo)
-       │   ├── 3. Estructura y primeros pasos
-       │   └── 4. Criterios de entrega (definition of done)
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Proyecto 1: primer repositorio))
+    1. Qué construyes y qué conceptos incorpora
+    2. Requisitos (los que hará «real» al repo)
+      3. Estructura y primeros pasos
+      4. Criterios de entrega (definition of done)
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional + resumen
 ```
 
 ---
@@ -99,20 +98,13 @@ REQUISITOS OPCIONALES (recomendados):
 
 ## 3. Estructura y primeros pasos
 
-```text
-ORDEN RECOMENDADO (cada paso = commits):
-   │
-   ├── 1. crear repo remoto (privado si quieres) + clonar
-   ├── 2. .gitignore + README inicial («en construcción»)
-   ├── 3. código mínimo que funcione (1 commit por pieza
-   │       con mensaje explicando)
-   ├── 4. rama `feature/...` para el siguiente bloque +
-   │       merge cuando esté (Error 4 si nunca rama: el
-   │       repo de un solo día no practica)
-   ├── 5. encontraste un bug → issue → rama `fix/...` →
-   │       merge (el ciclo completo)
-   └── 6. pull de un cambio hecho desde la web (edita
-       README en GitHub) — enseña la doble dirección
+```mermaid
+flowchart TD
+    A["1. crear repo remoto (privado si quieres) + clonar"] --> B["2. .gitignore + README inicial («en construcción»)"]
+    B --> C["3. código mínimo que funcione (1 commit por pieza con mensaje explicando)"]
+    C --> D["4. rama `feature/...` para el siguiente bloque + merge cuando esté"]
+    D --> E["5. encontraste un bug → issue → rama `fix/...` → merge (el ciclo completo)"]
+    E --> F["6. pull de un cambio hecho desde la web (edita README en GitHub) — enseña la doble dirección"]
 ```
 
 ```text
@@ -308,6 +300,9 @@ Explicación de 2 minutos de TU historial
 
 Repo remoto vivo con historial explicable, ramas mergeadas, issues y README.
 
+### Ejercicio de transferencia
+Aplica el mismo concepto de flujo de trabajo con ramas y merge a un proyecto de documentación técnica: crea un repositorio para un manual de usuario, usa ramas para cada sección del manual, mergea cuando cada sección esté completa, y sincroniza con un remoto para colaborar con un compañero de clase.
+
 ### Conclusión esperada
 
 Un repositorio «real» no se parece a un almacén de archivos: se parece a una conversación escrita — cada commit cuenta qué pasó y por qué, y cualquiera puede seguir la historia.
@@ -352,6 +347,15 @@ La idea principal es:
 
 ---
 
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+1. ¿Por qué es importante tener un .gitignore adecuado antes del primer commit?
+2. ¿Qué indica que un repositorio está sincronizado entre local y remoto?
+3. ¿Cuál es la diferencia entre un commit atómico y un commit gigante?
+4. ¿Cómo beneficia practicar el ciclo completo (issue → rama → merge) el flujo de trabajo?
+5. ¿Qué evidencia muestra que un repo es «real» y no solo un almacén de archivos?
+6. ¿Por qué el orden de los pasos (repo → base → código por piezas → ramas → bug → sincronización) es importante para el aprendizaje?
 ## Próximo paso
 
 Repo entregado.
