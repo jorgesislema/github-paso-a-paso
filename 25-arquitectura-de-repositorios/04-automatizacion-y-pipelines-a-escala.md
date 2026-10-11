@@ -8,18 +8,17 @@ Con varios repositorios — o un monorepo grande — aparece la pregunta operati
 
 ## Mapa conceptual de este capítulo
 
-```text
-Automatización y pipelines a escala
-       │
-       ├── 1. El problema de la duplicación
-       ├── 2. Mecanismos de reutilización en GitHub
-       │   ├── 3. Detección de impacto y CI acotado
-       │   ├── 4. Cómo se propaga un cambio de estándar
-       │   └── 5. Lo que NO se estandariza
-       │
-       ├── 6. Errores comunes con diagnóstico completo
-       ├── 7. Práctica guiada
-       └── 8. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Automatización y pipelines a escala))
+    1. El problema de la duplicación
+    2. Mecanismos de reutilización en GitHub
+      3. Detección de impacto y CI acotado
+      4. Cómo se propaga un cambio de estándar
+      5. Lo que NO se estandariza
+    6. Errores comunes con diagnóstico completo
+    7. Práctica guiada
+    8. Nivel profesional + resumen
 ```
 
 ---
@@ -365,6 +364,10 @@ Métrica en la retro: sí / no
 
 Brecha medida, fuente única diseñada con parámetros, presupuesto y ciclo de adopción con dueño.
 
+### Ejercicio de transferencia
+Establece una plantilla de workflow de CI/CD para un conjunto de microservicios que comparten pasos de build y test; describe cómo usar parámetros para variar el entorno de despliegue y cómo versionar la plantilla en el repositorio .github.
+
+
 ### Conclusión esperada
 
 La automatización a escala no es más YAML: es una única fuente versionada, invocada con parámetros, adoptada con reporte — y un CI cuyo reloj alguien mira.
@@ -411,6 +414,18 @@ La idea principal es:
 > **Escalar automatización no es repetir pipelines: es que el estándar tenga una sola fuente versionada y que «está actualizado» sea un reporte, no una suposición.**
 
 ---
+
+## Autopreguntas de cierre
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+1. ¿Qué problema genera duplicar pipelines y cómo afecta al ciclo de liberación?
+2. ¿Qué mecanismos de reutilización ofrece GitHub para workflows y acciones?
+3. ¿Cómo se implementa la detección de impacto y el CI acotado en un monorepo?
+4. ¿Qué pasos siguen para propagar un cambio de estándar a todos los consumidores?
+5. ¿Qué aspectos deliberadamente se dejan fuera de la estandarización y por qué?
+6. ¿Qué tipos de errores comunes se presentan en automatización a escala y cómo se diagnostican?
+7. ¿Qué pasos incluirías en una práctica guiada para crear una pipeline reutilizable y medir su impacto?
+8. ¿Qué aspectos de nivel profesional deberías considerar para escalar la automatización en una organización grande?
+
 
 ## Próximo paso
 
