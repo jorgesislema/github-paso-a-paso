@@ -8,18 +8,16 @@ El Proyecto final no es «un proyecto más»: es la **demostración de que compr
 
 ## Mapa conceptual de este capítulo
 
-```text
-Diseño del proyecto final
-       │
-       ├── 1. Qué debe demostrar el proyecto
-       ├── 2. Alcance: ambición contenida
-       │   ├── 3. Stack y estructura (decisiones
-       │   │   escritas)
-       │   └── 4. Criterios de éxito (rúbrica temprana)
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Diseño del proyecto final))
+    1. Qué debe demostrar el proyecto
+    2. Alcance: ambición contenida
+      3. Stack y estructura (decisiones escritas)
+      4. Criterios de éxito (rúbrica temprana)
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional + resumen
 ```
 
 ---
@@ -333,6 +331,9 @@ Plazo: ____ semanas · colchón: ____
 
 Propuesta de una página, 2 ADRs, rúbrica escrita y primer PR con workflow ya existentes.
 
+### Ejercicio de transferencia
+Aplica el mismo proceso de diseño a la organización de un viaje de fin de semana: escribe una propuesta de una página que defina el alcance (destino, duración, presupuesto), toma decisiones escritas (medio de transporte, alojamiento) y crea una rúbrica temprana que evalúe el éxito del viaje (cumplimiento de presupuesto, tiempo de descanso, actividades realizadas). Entregable: documento de propuesta en markdown.
+​
 ### Conclusión esperada
 
 El proyecto final empieza como cualquier decisión madura: contexto, alcance, consecuencias y criterios — el código llega después, sobre una base que ya sabe a qué responder.
@@ -378,6 +379,15 @@ La idea principal es:
 
 ---
 
+## Autopreguntas de cierre
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+1. ¿Por qué es esencial definir el alcance como «ambición contenida» antes de escribir cualquier línea de código?
+2. ¿Cómo influyen las decisiones escritas (ADRs) en la capacidad de otros para seguir el proyecto sin tu explicación?
+3. ¿De qué manera la rúbrica temprana guiará las decisiones de diseño, documentación y flujo en los capítulos siguientes?
+4. ¿Qué consecuencias tiene permitir que el tamaño del producto supere la amplitud del flujo en términos de evidencias evaluables?
+5. ¿Cómo podrías detectar si estás cometiendo el Error 6 (decisiones orales) en tu repositorio actual?
+6. ¿En qué consiste el principio rector «amplitud del flujo > tamaño del producto» y cómo lo aplicarías a un proyecto de hardware?
+​
 ## Próximo paso
 
 Diseño listo, rúbrica en mano.
