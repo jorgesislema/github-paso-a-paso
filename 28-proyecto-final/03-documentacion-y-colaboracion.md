@@ -8,18 +8,16 @@ Un proyecto sin documentación solo puede ser entendido por su autor; un proyect
 
 ## Mapa conceptual de este capítulo
 
-```text
-Documentación y colaboración
-       │
-       ├── 1. El README como puerto de entrada
-       ├── 2. La carpeta docs/ (lo que sí documentar)
-       │   ├── 3. Issues y plantillas que estructuran
-       │   └── 4. Responsabilidades (CODEOWNERS) y
-       │       contribución
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Documentación y colaboración))
+    1. El README como puerto de entrada
+    2. La carpeta docs/ (lo que sí documentar)
+      3. Issues y plantillas que estructuran
+      4. Responsabilidades (CODEOWNERS) y contribución
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional + resumen
 ```
 
 ---
@@ -376,6 +374,9 @@ Tour con el README solo:
 
 README probado, docs/ limpio, tablero trazable y responsabilidades escritas.
 
+### Ejercicio de transferencia
+Aplica los mismos principios de documentación y colaboración a la creación de una guía de cocina: escribe un README que describa el plato, incluye una carpeta docs/ con la receta paso a paso, fotos y variantes, y establece responsabilidades (quién prueba, quién actualiza). Entregable: un repositorio con README, docs/ y un archivo de responsabilidades.
+​
 ### Conclusión esperada
 
 La documentación del Proyecto final no es adorno: es el protocolo que permite que el flujo, las decisiones y la calidad se VERIFIQUEN sin pedir explicaciones — y eso es exactamente lo que se evalúa.
@@ -420,6 +421,15 @@ La idea principal es:
 
 ---
 
+## Autopreguntas de cierre
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+1. ¿Por qué es importante que el README funcione como «puerto de entrada» para nuevos colaboradores?
+2. ¿Qué secciones esenciales debe incluir un README para que sea útil tanto para usuarios como para contribuyentes?
+3. ¿Cómo contribuyen los archivos en la carpeta docs/ (como decisiones, flujo y guías) a la heredabilidad del proyecto?
+4. ¿De qué manera el uso de plantillas de issues y PRs mejora la consistencia en la colaboración?
+5. ¿Qué papel juega el archivo CODEOWNERS en la responsabilidad y el mantenimiento del repositorio?
+6. ¿Cómo puedes verificar que un recién llegado pueda entender y contribuir al proyecto en menos de 15 minutos?
+​
 ## Próximo paso
 
 Documentación y colaboración listas.
