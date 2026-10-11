@@ -465,7 +465,11 @@ Los mensajes frecuentes reconocidos al vuelo y tu fichero de mensajes funcionand
 
 Un mensaje de Git deja de ser ruido cuando tiene familia y patrón: lo lees completo, lo clasificas, pruebas con un comando y ya sabes el capítulo exacto del curso que resuelve tu caso.
 
----
+### Ejercicio de transferencia
+Aplica el mismo método de 4 pasos (mensaje completo, familia, comprobación, patrón) a un mensaje de error de GitHub Actions que indique "Missing required secret": clasifícalo por familia, verifica con un comando y sugiere la acción correcta. Entrega el mensaje original, tu análisis y la solución propuesta.
+
+
+----
 
 ## 8. Nivel profesional + resumen
 
@@ -504,6 +508,17 @@ La idea principal es:
 > **No memorices errores: memoriza el método — mensaje completo, familia, comprobación y patrón hacen que cualquier mensaje nuevo sea tan legible que ya conoces.**
 
 ---
+
+## Autopreguntas de cierre
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+1. ¿Qué significa la severidad 'fatal', 'error' y 'hint' en un mensaje de Git?
+2. ¿Cómo identificar la familia de un mensaje (repositorio/configuración, remoto/acceso, contenido/historia, operaciones detenidas)?
+3. ¿Qué comando usarías para comprobar si un mensaje de 'rejected' se debe a autenticación?
+4. ¿Qué indica un mensaje '401' y cómo se diferencia de un '403'?
+5. ¿Qué pasos seguirías para resolver un mensaje de 'locked' que indica un proceso vivo?
+6. ¿Cómo evitar confundir familias al diagnosticar un mensaje de error?
+7. ¿Qué es un 'hint' en un mensaje de Git y cómo aprovecharlo para resolver el problema?
+8. ¿Por qué es importante leer el mensaje completo antes de clasificar por familia?
 
 ## Próximo paso
 
