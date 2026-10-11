@@ -7,20 +7,16 @@ Un sistema que funciona hoy tiene dos deudas pendientes con el futuro: **mantene
 ---
 
 ## Mapa conceptual de este capítulo
-
-```text
-Mantenimiento y escalabilidad
-       │
-       ├── 1. Mantenimiento como presupuesto (no heroísmo)
-       ├── 2. Las tres escalas (gente, sistema,
-       │   complejidad)
-       │   ├── 3. Señales: cuándo actuar (deuda visible)
-       │   └── 4. Refactorizar a escala (sin rediseños
-       │       de pánico)
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Mantenimiento y escalabilidad))
+    1. Mantenimiento como presupuesto (no heroísmo)
+    2. Las tres escalas (gente, sistema, complejidad)
+      3. Señales: cuándo actuar (deuda visible)
+      4. Refactorizar a escala (sin rediseños de pánico)
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional + resumen
 ```
 
 ---
@@ -29,35 +25,35 @@ Mantenimiento y escalabilidad
 
 ```text
 LO QUE YA SABES (sección 25 cap. 05 — aquí el giro):
-   │
-   ├── calendario con dueños (dependencias, accesos,
-   │   limpiezas)
-   ├── deuda visible y pagada con % de capacidad
-   └── etapas declaradas por repo
-```
-
-```text`
-EL GIRO SENIOR:
-   │
-   ├── el mantenimiento es PRESUPUESTO: tiene % en el
-   │   plan y se defiende en la planificación (Error
-   │   1 si vive del «excedente» — nunca hay
-   │   excedente)
-   │
-   ├── el mantenimiento es RIESGO: se prioriza por
-   │   impacto (CVE crítico > carpeta fea > renombre)
-   │   (Error 2 si se paga por orden de comodidad)
-   │
-   └── el mantenimiento es VISIBLE: la retro muestra
-       pagado vs. acumulado (sección 24 cap. 06 —
-       Error 3 si nadie lo mira)
+    │
+    ├── calendario con dueños (dependencias, accesos,
+    │   limpiezas)
+    ├── deuda visible y pagada con % de capacidad
+    └── etapas declaradas por repo
 ```
 
 ```text
-   │
-   └── quién NO presupuesta mantenimiento termina
-       pagando con incendios: el presupuesto existe
-       igual, solo que en forma de crisis (Error 1)
+EL GIRO SENIOR:
+    │
+    ├── el mantenimiento es PRESUPUESTO: tiene % en el
+    │   plan y se defiende en la planificación (Error
+    │   1 si vive del «excedente» — nunca hay
+    │   excedente)
+    │
+    ├── el mantenimiento es RIESGO: se prioriza por
+    │   impacto (CVE crítico > carpeta fea > renombre)
+    │   (Error 2 si se paga por orden de comodidad)
+    │
+    └── el mantenimiento es VISIBLE: la retro muestra
+        pagado vs. acumulado (sección 24 cap. 06 —
+        Error 3 si nadie lo mira)
+```
+
+```text
+    │
+    └── quién NO presupuesta mantenimiento termina
+        pagando con incendios: el presupuesto existe
+        igual, solo que en forma de crisis (Error 1)
 ```
 
 ---
@@ -66,46 +62,46 @@ EL GIRO SENIOR:
 
 ```text
 ESCALA DE GENTE (más personas):
-   │
-   ├── síntoma: reuniones para entender cambios,
-   │   conflictos de estilo, PRs que nadie conoce
-   │   enteros
-   │
-   └── remedio: límites y dueños (sección 25 cap. 02),
-       CODEOWNERS, onboarding (sección 16), estándares
-       que evitan discusión (sección 25 cap. 03)
+    │
+    ├── síntoma: reuniones para entender cambios,
+    │   conflictos de estilo, PRs que nadie conoce
+    │   enteros
+    │
+    └── remedio: límites y dueños (sección 25 cap. 02),
+        CODEOWNERS, onboarding (sección 16), estándares
+        que evitan discusión (sección 25 cap. 03)
 ```
 
 ```text
 ESCALA DE SISTEMA (más carga/datos/uso):
-   │
-   ├── síntoma: CI más lento, builds largos, tiempos de
-   │   respuesta que empeoran linealmente
-   │
-   └── remedio: presupuesto de CI (sección 25 cap. 04),
-       cachés, impacto acotado, medición (sección 23
-       cap. 06), rendimiento como métrica
+    │
+    ├── síntoma: CI más lento, builds largos, tiempos de
+    │   respuesta que empeoran linealmente
+    │
+    └── remedio: presupuesto de CI (sección 25 cap. 04),
+        cachés, impacto acotado, medición (sección 23
+        cap. 06), rendimiento como métrica
 ```
 
 ```text
 ESCALA DE COMPLEJIDAD (más piezas entrelazadas):
-   │
-   ├── síntoma: cambios que tocan N componentes, miedo
-   │   a tocar nada, onboarding de meses
-   │
-   └── remedio: desacoplar por interfaces (sección 25
-       cap. 02), decisión de arquitectura registrada
-       (sección 25 cap. 06), retirar lo muerto (sección
-       25 cap. 05)
+    │
+    ├── síntoma: cambios que tocan N componentes, miedo
+    │   a tocar nada, onboarding de meses
+    │
+    └── remedio: desacoplar por interfaces (sección 25
+        cap. 02), decisión de arquitectura registrada
+        (sección 25 cap. 06), retirar lo muerto (sección
+        25 cap. 05)
 ```
 
 ```text
-   │
-   └── el error senior es aplicar el remedio de una
-       escala a otra: más gente no arregla complejidad;
-       rediseñar arquitectura no arregla mala
-       comunicación (Error 4 — Error 1 sección 25 cap. 06: contexto
-       primero)
+    │
+    └── el error senior es aplicar el remedio de una
+        escala a otra: más gente no arregla complejidad;
+        rediseñar arquitectura no arregla mala
+        comunicación (Error 4 — Error 1 sección 25 cap. 06: contexto
+        primero)
 ```
 
 ---
@@ -114,68 +110,56 @@ ESCALA DE COMPLEJIDAD (más piezas entrelazadas):
 
 ```text
 TABLERO DE SEÑALES (las que un senior mira):
-   │
-   ├── personas: ¿el onboarding tarda más? ¿los PRs
-   │   esperan más revisión?
-   │
-   ├── CI/pipeline: ¿duración creciente? ¿flaky
-   │   subiendo? (Error 5 si se normaliza el rojo)
-   │
-   ├── incidentes: ¿frecuencia y MTTR empeoran? ¿se
-   │   repiten? (sección 26 cap. 04 punto 4)
-   │
-   ├── deuda: ¿backlog > 90 días crece? (sección 25
-   │   cap. 05)
-   │
-   └── dependencias: ¿versiones vencidas acumulándose?
-       (sección 20 cap. 03)
+    │
+    ├── personas: ¿el onboarding tarda más? ¿los PRs
+    │   esperan más revisión?
+    │
+    ├── CI/pipeline: ¿duración creciente? ¿flaky
+    │   subiendo? (Error 5 si se normaliza el rojo)
+    │
+    ├── incidentes: ¿frecuencia y MTTR empeoran? ¿se
+    │   repiten? (sección 26 cap. 04 punto 4)
+    │
+    ├── deuda: ¿backlog > 90 días crece? (sección 25
+    │   cap. 05)
+    │
+    └── dependencias: ¿versiones vencidas acumulándose?
+        (sección 20 cap. 03)
 ```
 
 ```text
-   │
-   └── actuar ANTES de que la señal sea crisis: la
-       deuda cuesta más tarde (Error 5 — Error 3
-       sección 25 cap. 05)
+    │
+    └── actuar ANTES de que la señal sea crisis: la
+        deuda cuesta más tarde (Error 5 — Error 3
+        sección 25 cap. 05)
 ```
 
 ```text
 CÓMO SE DECIDE EL ORDEN (priorización senior):
-   │
-   ├── 1. riesgo (seguridad, pérdida de datos)
-   ├── 2. frecuencia de dolor (cuánta gente sufre)
-   └── 3. costo de postergar (interés compuesto de la
-       deuda)
+    │
+    ├── 1. riesgo (seguridad, pérdida de datos)
+    ├── 2. frecuencia de dolor (cuánta gente sufre)
+    └── 3. costo de postergar (interés compuesto de la
+        deuda)
 ```
 
 ---
 
 ## 4. Refactorizar a escala (sin rediseños de pánico)
-
-```text
-REGLAS DEL GRAN CAMBIO (Error 6 si se rompen):
-   │
-   ├── con tests primero (sección 22 cap. 03): lo que
-   │   no está probado no se mueve
-   │
-   ├── por partes, con el sistema VERDE al final de
-   │   cada PR (sección 08 — operaciones delicadas)
-   │
-   ├── expand/contract: cambiar compatible primero,
-   │   limpiar después (sección 22 cap. 06)
-   │
-   ├── desgate: rama corta, integrar a menudo (Error
-   │   6 — Error 5 sección 25 cap. 05: ramas eternas)
-   │
-   └── decisión escrita antes (ADR — sección 25 cap.
-       06 Error 6): «qué cambiamos y por qué»
+```mermaid
+flowchart TD
+    A["con tests primero: lo que no está probado no se mueve"] --> B["por partes, con el sistema VERDE al final de cada PR"]
+    B --> C["expand/contract: cambiar compatible primero, limpiar después"]
+    C --> D["desgate: rama corta, integrar a menudo"]
+    D --> E["decisión escrita antes (ADR): «qué cambiamos y por qué»"]
 ```
 
 ```text
-   │
-   └── el rediseño de pánico («borremos y empecemos»)
-       es el Error 1
-       de la sección 25 cap. 05 punto 5: migra solo si
-       el dolor lo justifica (Error 7)
+    │
+    └── el rediseño de pánico («borremos y empecemos»)
+        es el Error 1
+        de la sección 25 cap. 05 punto 5: migra solo si
+        el dolor lo justifica (Error 7)
 ```
 
 ---
@@ -354,6 +338,9 @@ Partida en el plan, tablero con 4 señales, escala diagnosticada y un refactor p
 
 El largo plazo no se improvisa: se presupuesta, se mide y se divide en trozos verdes — quien hace eso rara vez necesita el rediseño heroico.
 
+### Ejercicio de transferencia
+Toma un sistema heredado que use en tu trabajo (por ejemplo, una aplicación interna o una herramienta de equipo) y analízalo bajo las tres escalas de crecimiento: gente, sistema y complejidad. Identifica qué señales de mantenimiento están presentes y si hay un presupuesto definido. Entregable: un plan que incluya una partida de mantenimiento, un tablero de señales y un refactor controlado aplicando las reglas del gran cambio.
+
 ---
 
 ## 7. Nivel profesional + resumen
@@ -361,25 +348,25 @@ El largo plazo no se improvisa: se presupuesta, se mide y se divide en trozos ve
 ### 7.1. A escala
 
 ```text
-   │
-   ├── mantenimiento como SERVICIO compartido: cola
-   │   única con dueños y SLA por tipo de tarea (Error
-   │   Error 1 prevención)
-   │
-   ├── señales consolidadas: tablero del ecosistema
-   │   (no solo un repo) con alertas de tendencia
-   │
-   ├── escalas diagnosticadas por revisión semestral:
-   │   ¿qué está creciendo y qué remediaremos? (sección
-   │   05 cap. 25 — revisión de cartera)
-   │
-   ├── gran cambio como proyecto: ADR, fases, riesgos,
-   │   fecha, revisión (sección 25 cap. 06 — rigor
-   │   proporcional)
-   │
-   └── métricas: % capacidad de mantenimiento usada,
-       señales en tendencia, edad de mayor deuda, duración
-       de grandes cambios
+    │
+    ├── mantenimiento como SERVICIO compartido: cola
+    │   única con dueños y SLA por tipo de tarea (Error
+    │   Error 1 prevención)
+    │
+    ├── señales consolidadas: tablero del ecosistema
+    │   (no solo un repo) con alertas de tendencia
+    │
+    ├── escalas diagnosticadas por revisión semestral:
+    │   ¿qué está creciendo y qué remediaremos? (sección
+    │   05 cap. 25 — revisión de cartera)
+    │
+    ├── gran cambio como proyecto: ADR, fases, riesgos,
+    │   fecha, revisión (sección 25 cap. 06 — rigor
+    │   proporcional)
+    │
+    └── métricas: % capacidad de mantenimiento usada,
+        señales en tendencia, edad de mayor deuda, duración
+        de grandes cambios
 ```
 
 ### 7.2. Resumen
@@ -399,6 +386,14 @@ La idea principal es:
 
 ---
 
+## Autopreguntas de cierre
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+1. ¿Cuál es la pregunta senior que guía el diseño de workflows y estrategias de ramas?
+2. ¿Cómo se elige la estrategia de ramificación más apropiada para un equipo?
+3. ¿Qué componentes forman el flujo completo desde el issue hasta el despliegue?
+4. ¿Cómo se mide la calidad del flujo y qué se hace para mejorarla?
+5. ¿Por qué es importante incluir el plan de vuelta (rollback) en el diseño del flujo?
+6. ¿Cómo se evita caer en errores comunes como elegir una estrategia sin base real?
 ## Próximo paso
 
 Ya sostienes el presente y preparas el crecimiento.
