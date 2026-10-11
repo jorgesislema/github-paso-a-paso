@@ -1,4 +1,4 @@
-# Proyecto 2: diario digital
+test
 
 ## Introducción
 
@@ -8,17 +8,16 @@ El Proyecto 2 eleva la apuesta: un **diario digital** — un sitio de entradas (
 
 ## Mapa conceptual de este capítulo
 
-```text
-Proyecto 2: diario digital
-       │
-       ├── 1. Qué construyes y qué conceptos incorpora
-       ├── 2. Requisitos del proyecto
-       │   ├── 3. Estructura del contenido (el repo)
-       │   └── 4. Flujo editorial con Git
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Proyecto 2: diario digital))
+    1. Qué construyes y qué conceptos incorpora
+    2. Requisitos del proyecto
+      3. Estructura del contenido (el repo)
+      4. Flujo editorial con Git
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional + resumen
 ```
 
 ---
@@ -142,20 +141,13 @@ CONVENCIONES (escríbelas en el README):
 
 ## 4. Flujo editorial con Git
 
-```text
-EL CICLO DE UNA ENTRADA (practícalo 6 veces):
-   │
-   ├── 1. issue: «entrar tema X» (planifica — sección
-   │   16)
-   ├── 2. rama desde la base actual: `post/...`
-   ├── 3. escribe usando la plantilla (commit con
-   │   mensaje: «Agrega entrada: título»)
-   ├── 4. pulir: revisión propia con distancia o PR si
-   │   tienes «segundo lector» (sección 15)
-   ├── 5. merge a la rama principal
-   └── 6. el workflow publica → verifica en el sitio →
-       cierra el issue (Error 6 si el issue queda
-       abierto: el ciclo no se cerró)
+```mermaid
+flowchart TD
+    A["1. issue: «entrar tema X» (planifica — sección 16)"] --> B["2. rama desde la base actual: `post/...`"]
+    B --> C["3. escribe usando la plantilla (commit con mensaje: «Agrega entrada: título»)"]
+    C --> D["4. pulir: revisión propia con distancia o PR si tienes «segundo lector» (sección 15)"]
+    D --> E["5. merge a la rama principal"]
+    E --> F["6. el workflow publica → verifica en el sitio → cierra el issue (Error 6 si el issue queda abierto: el ciclo no se cerró)"]
 ```
 
 ```text
@@ -327,6 +319,9 @@ Checklist:
 
 Diario publicado con flujo editorial completo y automatización funcionando sin intervención manual.
 
+### Ejercicio de transferencia
+Aplica el mismo concepto de flujo editorial a un proyecto de aprendizaje de un idioma: crea un repositorio para tus notas de vocabulario y gramática, usa ramas para cada tema, mergea cuando domines un tema, y sincroniza con un remoto para acceder desde cualquier dispositivo.
+
 ### Conclusión esperada
 
 Cuando escribir, versionar y publicar se convierte en un ciclo de tres movimientos, has internalizado el verdadero tema del curso: el flujo, no la herramienta.
@@ -373,6 +368,15 @@ La idea principal es:
 
 ---
 
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+1. ¿Por qué es importante usar una plantilla para las entradas en un diario digital?
+2. ¿Cómo beneficia el flujo editorial con ramas y merge la calidad y el historial del contenido?
+3. ¿Qué indica que la publicación automática está funcionando correctamente en un proyecto?
+4. ¿Cómo afecta no cerrar los issues al mergear la experiencia de seguimiento del trabajo?
+5. ¿Por qué es necesario practicar el ciclo completo múltiples veces hasta convertirlo en hábito?
+6. ¿Qué papel juega el README como documentación del flujo en la colaboración?
 ## Próximo paso
 
 Tu diario se publica solo.
