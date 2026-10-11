@@ -8,19 +8,17 @@ Con el repositorio decidido y sus límites dibujados, llega la capa que gobierna
 
 ## Mapa conceptual de este capítulo
 
-```text
-Permisos y gobernanza
-       │
-       ├── 1. Del rol al gobierno (la capa completa)
-       ├── 2. Matriz de permisos por ámbito
-       ├── 3. Políticas y estándares: escribir, aplicar,
-       │   revisar
-       │   ├── 4. Dueños y estructura de decisión
-       │   └── 5. Excepciones: el camino legítimo
-       │
-       ├── 6. Errores comunes con diagnóstico completo
-       ├── 7. Práctica guiada
-       └── 8. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Permisos y gobernanza))
+    1. Del rol al gobierno (la capa completa)
+    2. Matriz de permisos por ámbito
+    3. Políticas y estándares: escribir, aplicar, revisar
+      4. Dueños y estructura de decisión
+      5. Excepciones: el camino legítimo
+    6. Errores comunes con diagnóstico completo
+    7. Práctica guiada
+    8. Nivel profesional + resumen
 ```
 
 ---
@@ -357,6 +355,10 @@ Por cada ámbito:
 
 Matriz con dueños y suplentes, una política aplicada, formulario de excepción y calendario de revisión.
 
+### Ejercicio de transferencia
+Define una matriz de permisos para un entorno de desarrollo donde hay equipos de frontend, backend y seguridad; especifica quién puede leer, escribir y administrar cada repositorio o rama, y documenta el proceso para solicitar excepciones.
+
+
 ### Conclusión esperada
 
 Gobernar no es controlar: es que cada decisión que toca a todos tenga dueño, registro y forma legítima de excepcionarse — todo lo demás son permisos esperando un mal día.
@@ -405,6 +407,18 @@ La idea principal es:
 > **Los permisos impiden lo que no debe pasar; la gobernanza asegura que lo que debe decidirse se decida bien — son dos controles distintos y un repositorio maduro necesita ambos.**
 
 ---
+
+## Autopreguntas de cierre
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+1. ¿Cuál es la diferencia entre un rol y la gobernanza en el contexto de permisos?
+2. ¿Cómo se construye una matriz de permisos por ámbito y qué información debe contener?
+3. ¿Qué elementos deben incluirse en una política de estándares y cómo se aplican y revisan?
+4. ¿Quiénes son los dueños y cómo se estructura la toma de decisiones en gobernanza?
+5. ¿Qué constituye una excepción legítima y qué información debe documentarse?
+6. ¿Qué tipos de errores comunes se presentan en permisos y gobernanza y cómo se diagnostican?
+7. ¿Qué pasos incluirías en una práctica guiada para crear una matriz de permisos y definir políticas?
+8. ¿Qué aspectos de nivel profesional deberías considerar para escalar la gobernanza de permisos en una organización?
+
 
 ## Próximo paso
 
