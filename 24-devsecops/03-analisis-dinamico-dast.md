@@ -8,18 +8,17 @@
 
 ## Mapa conceptual de este capítulo
 
-```text
-Análisis dinámico (DAST)
-       │
-       ├── 1. Qué prueba un DAST (y qué no puede ver)
-       ├── 2. Dónde vive en el flujo (staging)
-       │   ├── 3. Alcance, autenticación y cuidados
-       │   ├── 4. DAST y API (mención)
-       │   └── 5. Complementariedad: SAST + DAST + humo
-       │
-       ├── 6. Errores comunes con diagnóstico completo
-       ├── 7. Práctica guiada
-       └── 8. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Análisis dinámico (DAST)))
+    1. Qué prueba un DAST (y qué no puede ver)
+    2. Dónde vive en el flujo (staging)
+      3. Alcance, autenticación y cuidados
+      4. DAST y API (mención)
+      5. Complementariedad: SAST + DAST + humo
+    6. Errores comunes con diagnóstico completo
+    7. Práctica guiada
+    8. Nivel profesional + resumen
 ```
 
 ---
@@ -73,13 +72,11 @@ POR QUÉ NO EN PRODUCCIÓN (con conclusiones):
        (sección 22 cap. 04 — entornos gemelos)
 ```
 
-```text
-CADENA CORRECTA:
-──────────────────────────────────────────────────────
-PR      → SAST + secretos + deps (rápidos)
-main    → build del artefacto
-staging → despliegue + humo + DAST (profundo)
-release → gate con resultados
+```mermaid
+flowchart TD
+    A["PR SAST secretos deps rápidos"] --> B["main build del artefacto"]
+    B --> C["staging despliegue humo DAST profundo"]
+    C --> D["release gate con resultados"]
 ```
 
 ```text
@@ -388,6 +385,11 @@ DAST es la sonda de tu sistema vivo: funciona cuando el entorno es fiel, el alca
 
 ---
 
+### Ejercicio de transferencia
+
+Extiende la idea de DAST a otro tipo de prueba dinámica, por ejemplo a la seguridad de API usando pruebas de contrato (pact/Postman) o al escaneo de configuración de infraestructura con herramientas como Terraform Scan o Checkov. Define el alcance, la necesidad de autenticación o sesión, y cómo integrar el resultado en el gate de liberación. Entrega un plan breve que incluya los pasos, herramientas y criterios de aceptación.
+
+
 ## 8. Nivel profesional + resumen
 
 ### 8.1. DAST a escala
@@ -430,6 +432,18 @@ La idea principal es:
 > **Probar en vivo solo vale si el vivo es fiel: staging actualizado, alcance tuyo y cuentas de mentira — el resto del valor está en meter su informe en el mismo gate que decide el release.**
 
 ---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué es esencial comprender los límites de DAST (qué no puede ver) y cómo esto influye en la decisión de complementarlo con SAST, análisis de dependencias y pruebas de contrato?
+2. ¿Qué riesgos existen al ejecutar DAST en entornos de staging desactualizados o con alcance mal definido, y cómo se mitigan esos riesgos mediante políticas de entorno y alcance cerrado?
+3. ¿De qué manera la autenticación y la definición de roles en DAST permiten probar áreas protegidas del sistema, y qué ocurre si se omite este aspecto (cobertura de fachada)?
+4. ¿Cómo contribuye la complementariedad entre SAST, secretos, dependencias, DAST y humo a una cobertura de seguridad más completa, y por qué ningún herramienta sola puede cubrir todos los agujeros?
+5. ¿Cuál es la importancia de tener un guion de incidente previo y ensayado para eventos de seguridad relacionados con DAST, y cómo mejora la respuesta frente a un hallazgo en producción?
+6. ¿Cómo se decide la cadencia de escaneo DAST (barrido en main + acotado en cambios) y qué factores influyen en esa decisión (tiempo, riesgo, recursos)?
+
 
 ## Próximo paso
 
