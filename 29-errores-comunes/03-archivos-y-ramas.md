@@ -338,7 +338,11 @@ Todos los borrados y recuperaciones ejecutados con éxito y tu regla de pre-borr
 
 Borrar deja de ser un acto irreversible cuando sabes en qué capa está la cosa y dónde queda su última copia — el diagnóstico de 30 segundos es todo lo que separa el susto de la recuperación.
 
----
+### Ejercicio de transferencia
+Aplica el mismo diagnóstico de capas a una situación de eliminación de tags: supón que borraste un tag ligero y un tag anotado; explica cómo recuperar cada tipo usando reflog y datos del objeto. Entrega un procedimiento paso a paso y la salida de `git show <tag>` tras recuperación.
+
+
+----
 
 ## 7. Nivel profesional + resumen
 
@@ -377,6 +381,17 @@ La idea principal es:
 > **En Git casi nada se borra de verdad: se desplaza de capa — y saber en qué capa está lo que perdiste es la mitad de la recuperación antes de escribir un solo comando.**
 
 ---
+
+## Autopreguntas de cierre
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+1. ¿Cómo determinar si un archivo eliminado está en working tree, staging o historial?
+2. ¿Cuál es la diferencia entre recuperar un archivo del staging y del historial?
+3. ¿Qué comando usarías para restaurar una rama eliminada que todavía está en el reflog?
+4. ¿Qué riesgos implica usar `git branch -D` en una rama con trabajo no mergeado?
+5. ¿Cómo evitar borrar accidentalmente una rama que aún tiene commits únicos?
+6. ¿Qué significa que un archivo esté en el índice pero no en el working tree?
+7. ¿Cómo recuperar un archivo que se eliminó hace varios commits usando `git checkout`?
+8. ¿Por qué es importante usar `git log -- <archivo>` antes de borrar un archivo?
 
 ## Próximo paso
 
