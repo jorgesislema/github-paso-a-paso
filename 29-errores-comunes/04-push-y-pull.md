@@ -363,7 +363,11 @@ Push/pull rechazados resueltos correctamente, URL corregida y checklist en uso.
 
 La sincronización deja de ser magia cuando la tratas como una conversación con reglas: preguntas primero, comando después — y cada rechazo se convierte en una instrucción que ya sabes seguir.
 
----
+### Ejercicio de transferencia
+Aplica el mismo mapa mental (local, remoto, interfaz) a una situación de trabajo con un submodule: describe dónde vive cada componente (working tree, .gitmodules, remoto del submodule) y cómo diagnosticar un push fallido del submodule. Entrega un diagrama de los tres lugares y los comandos de verificación.
+
+
+----
 
 ## 8. Nivel profesional + resumen
 
@@ -403,6 +407,17 @@ La idea principal es:
 > **Un push o pull rechazado no es un error: es Git devolviéndote el control — la solución empieza leyendo el mensaje completo, nunca pulsando repetir.**
 
 ---
+
+## Autopreguntas de cierre
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+1. ¿Qué tres componentes representa el mapa mental (local, remoto, interfaz) y dónde vive cada uno?
+2. ¿Cuál es la diferencia entre push al repositorio equivocado y push rechazado?
+3. ¿Qué pasos seguirías para corregir un push al repositorio equivocado?
+4. ¿Cómo diagnosticar un push rechazado usando las 4 preguntas del mapa mental?
+5. ¿Qué significa que un pull falle debido a 'suciedad' y cómo resolverlo?
+6. ¿Cuándo es apropiado usar pull --rebase en lugar de merge?
+7. ¿Qué riesgos implica usar force push en una rama compartida?
+8. ¿Cómo evitar que un typo en la rama cause un push fallido?
 
 ## Próximo paso
 
