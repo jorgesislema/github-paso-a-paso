@@ -8,17 +8,16 @@ El Proyecto 6 enfrenta la limitación que Git nunca tuvo pensada: **los datos**.
 
 ## Mapa conceptual de este capítulo
 
-```text
-Proyecto 6: proyecto de datos
-       │
-       ├── 1. Qué construyes y qué conceptos incorpora
-       ├── 2. La regla de oro: qué entra y qué no
-       │   ├── 3. Código de datos: notebooks y scripts
-       │   └── 4. Pipeline y artefactos de resultados
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Proyecto 6: proyecto de datos))
+    1. Qué construyes y qué conceptos incorpora
+    2. La regla de oro: qué entra y qué no
+      3. Código de datos: notebooks y scripts
+      4. Pipeline y artefactos de resultados
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional + resumen
 ```
 
 ---
@@ -27,36 +26,36 @@ Proyecto 6: proyecto de datos
 
 ```text
 EL PROYECTO:
-   │
-   ├── un análisis real con datos públicos o generados:
-   │   notebook(s) o scripts que cargan → limpian →
-   │   analizan → producen un reporte (tabla/figura)
-   │
-   └── entregable: el RESULTADO se regenera con un
-       comando (Error 1 si el resultado solo existe en
-       el notebook «ejecutado con suerte»)
+    │
+    ├── un análisis real con datos públicos o generados:
+    │   notebook(s) o scripts que cargan → limpian →
+    │   analizan → producen un reporte (tabla/figura)
+    │
+    └── entregable: el RESULTADO se regenera con un
+        comando (Error 1 si el resultado solo existe en
+        el notebook «ejecutado con suerte»)
 ```
 
 ```text
 CONCEPTOS NUEVOS (secciones 21/22):
-   │
-   ├── qué datos son código y qué no (sección 21 cap.
-   │   05/06)
-   ├── .gitignore inteligente para datos y salidas
-   ├── datasets pequeños versionados vs. grandes
-   │   referenciados (categoría: Git LFS / descargas —
-   │   sección 21 cap. 05)
-   ├── reproducibilidad: fuentes, semillas, versiones
-   └── artefactos de análisis en CI (sección 22 cap.
-       05)
+    │
+    ├── qué datos son código y qué no (sección 21 cap.
+    │   05/06)
+    ├── .gitignore inteligente para datos y salidas
+    ├── datasets pequeños versionados vs. grandes
+    │   referenciados (categoría: Git LFS / descargas —
+    │   sección 21 cap. 05)
+    ├── reproducibilidad: fuentes, semillas, versiones
+    └── artefactos de análisis en CI (sección 22 cap.
+        05)
 ```
 
 ```text
-   │
-   └── el salto: Git guarda TEXTO bien; tu trabajo es
-       diseñar qué parte de un proyecto no-textual
-       merece historial (Error 2 si «entra todo» o
-       «no entra nada»: ambas extremidades fallan)
+    │
+    └── el salto: Git guarda TEXTO bien; tu trabajo es
+        diseñar qué parte de un proyecto no-textual
+        merece historial (Error 2 si «entra todo» o
+        «no entra nada»: ambas extremidades fallan)
 ```
 
 ---
@@ -65,36 +64,36 @@ CONCEPTOS NUEVOS (secciones 21/22):
 
 ```text
 ENTRA (versionado — reproducibilidad):
-   │
-   ├── scripts/notebooks que producen los resultados
-   ├── datos PEQUEÑOS de muestra (si son parte del
-   │   contrato: pocos KB–MB)
-   ├── lista de fuentes + cómo descargar/regenerar
-   │   (URL, fecha de descarga, checksum si aplica)
-   ├── esquemas/configuración de columnas esperadas
-   └── requirements/entorno fijado (sección 04 cap. 04)
+    │
+    ├── scripts/notebooks que producen los resultados
+    ├── datos PEQUEÑOS de muestra (si son parte del
+    │   contrato: pocos KB–MB)
+    ├── lista de fuentes + cómo descargar/regenerar
+    │   (URL, fecha de descarga, checksum si aplica)
+    ├── esquemas/configuración de columnas esperadas
+    └── requirements/entorno fijado (sección 04 cap. 04)
 ```
 
 ```text
 NO ENTRA (Error 3 si entra):
-   │
-   ├── datasets pesados → descarga o almacén externo
-   │   referenciado (sección 21 cap. 05)
-   ├── salidas regenerables (figuras intermedias,
-   │   cache) → gitignore
-   ├── datos personales/sensibles (sección 21 cap. 06
-   │   Error 1 — jamás: es un incidente, no una
-   │   decisión de peso)
-   └── modelos entrenados pesados → artefacto/almacén
-       (sección 21 cap. 04 — el modelo no vive en Git)
+    │
+    ├── datasets pesados → descarga o almacén externo
+    │   referenciado (sección 21 cap. 05)
+    ├── salidas regenerables (figuras intermedias,
+    │   cache) → gitignore
+    ├── datos personales/sensibles (sección 21 cap. 06
+    │   Error 1 — jamás: es un incidente, no una
+    │   decisión de peso)
+    └── modelos entrenados pesados → artefacto/almacén
+        (sección 21 cap. 04 — el modelo no vive en Git)
 ```
 
 ```text
-   │
-   └── el test de la decisión: «¿puede otro regenerar
-       esto desde cero con solo el repo?» — si sí, tu
-       línea está bien (punto Error 4 si la respuesta
-       es no y no documentaste fuentes)
+    │
+    └── el test de la decisión: «¿puede otro regenerar
+        esto desde cero con solo el repo?» — si sí, tu
+        línea está bien (punto Error 4 si la respuesta
+        es no y no documentaste fuentes)
 ```
 
 ---
@@ -103,38 +102,38 @@ NO ENTRA (Error 3 si entra):
 
 ```text
 NOTEBOOKS CON DISCIPLINA (sección 21 cap. 03):
-   │
-   ├── «Restart & Run All» limpio = verde antes de
-   │   mergear (Error 5 sección 03 cap. 21 —
-   │   celda desordenada que solo corre en tu orden)
-   │
-   ├── outputs: decisión explícita (limpiar antes de
-   │   commit si ensucian el diff — convención
-   │   documentada)
-   │
-   └── lógica NO viva solo en notebooks: la parte
-       crítica se extrae a módulos con pruebas (Error
-       4 si «el análisis» es una caja negra de 40
-       celdas)
+    │
+    ├── «Restart & Run All» limpio = verde antes de
+    │   mergear (Error 5 sección 03 cap. 21 —
+    │   celda desordenada que solo corre en tu orden)
+    │
+    ├── outputs: decisión explícita (limpiar antes de
+    │   commit si ensucian el diff — convención
+    │   documentada)
+    │
+    └── lógica NO viva solo en notebooks: la parte
+        crítica se extrae a módulos con pruebas (Error
+        4 si «el análisis» es una caja negra de 40
+        celdas)
 ```
 
 ```text
 PIPELINE DEL ANÁLISIS (reproducible):
-   │
-   ├── 1 comando: cargar (datos de `data/` o
-   │   descargados) → transformar → resultado en
-   │   `resultados/` (gitignore salvo el reporte final
-   │   que quieras conservar)
-   │
-   └── semillas fijadas (random) — resultados
-       comparables entre máquinas
+    │
+    ├── 1 comando: cargar (datos de `data/` o
+    │   descargados) → transformar → resultado en
+    │   `resultados/` (gitignore salvo el reporte final
+    │   que quieras conservar)
+    │
+    └── semillas fijadas (random) — resultados
+        comparables entre máquinas
 ```
 
 ```text
-   │
-   └── «números que cambian al re-ejecutar» es la
-       forma más sutil de no-reproducibilidad (Error 5:
-       lo no verificable no se puede confiar)
+    │
+    └── «números que cambian al re-ejecutar» es la
+        forma más sutil de no-reproducibilidad (Error 5:
+        lo no verificable no se puede confiar)
 ```
 
 ---
@@ -143,37 +142,37 @@ PIPELINE DEL ANÁLISIS (reproducible):
 
 ```text
 CI PARA DATOS (sección 22 — versión acotada):
-   │
-   ├── job «análisis»: entorno fijado → datos de
-   │   muestra → ejecutar pipeline → verificar
-   │   resultados esperados (aserciones: nº filas,
-   │   esquema, totales de control)
-   │
-   ├── el reporte final como ARTEFACTO del run (sección
-   │   22 cap. 05 — Error 6 si solo existe en tu disco:
-   │   nadie más lo tiene)
-   │
-   └── si los datos pesados viven fuera: el CI los
-       descarga con credencial/URL referenciada (sección
-       20 cap. 01 si hay token — secrets de la
-       plataforma)
+    │
+    ├── job «análisis»: entorno fijado → datos de
+    │   muestra → ejecutar pipeline → verificar
+    │   resultados esperados (aserciones: nº filas,
+    │   esquema, totales de control)
+    │
+    ├── el reporte final como ARTEFACTO del run (sección
+    │   22 cap. 05 — Error 6 si solo existe en tu disco:
+    │   nadie más lo tiene)
+    │
+    └── si los datos pesados viven fuera: el CI los
+        descarga con credencial/URL referenciada (sección
+        20 cap. 01 si hay token — secrets de la
+        plataforma)
 ```
 
 ```text
 QUÉ VERIFICA EL CHECK:
-   │
-   ├── el pipeline corre de punta a punta (humo)
-   ├── aserciones de resultados con datos de muestra
-   └── (si aplica) calidad básica: esquema, nulos,
-       duplicados (sección 21 cap. 03 mención)
+    │
+    ├── el pipeline corre de punta a punta (humo)
+    ├── aserciones de resultados con datos de muestra
+    └── (si aplica) calidad básica: esquema, nulos,
+        duplicados (sección 21 cap. 03 mención)
 ```
 
 ```text
-   │
-   └── el entregable del Proyecto 6: «un PR rompió el
-       análisis y el check lo DETECTÓ» — pruébalo (Error
-       6 prevención — Error 5 sección 03 de esta
-       sección)
+    │
+    └── el entregable del Proyecto 6: «un PR rompió el
+        análisis y el check lo DETECTÓ» — pruébalo (Error
+        6 prevención — Error 5 sección 03 de esta
+        sección)
 ```
 
 ---
@@ -327,16 +326,19 @@ resultados/       (gitignore salvo el final)
 
 ```text
 Checklist:
-   [ ] política de datos escrita y cumplida
-   [ ] repo ligero (sin pesados ni sensibles)
-   [ ] análisis regenerable con 1 comando
-   [ ] pruebas de resultados en CI (probadas en rojo)
-   [ ] reporte como artefacto del run
+    [ ] política de datos escrita y cumplida
+    [ ] repo ligero (sin pesados ni sensibles)
+    [ ] análisis regenerable con 1 comando
+    [ ] pruebas de resultados en CI (probadas en rojo)
+    [ ] reporte como artefacto del run
 ```
 
 ### Resultado esperado
 
 Análisis que cualquier persona puede regenerar desde el repo, con resultados verificados automáticamente.
+
+### Ejercicio de transferencia
+Aplica el mismo concepto de reproducibilidad y gestión de datos a un proyecto de aprendizaje automático: crea un repositorio para un experimento de ML que versiona el código, los datos de muestra, las semillas aleatorias y las versiones de librerías, y publica el modelo entrenado como artefacto del pipeline solo si pasa las pruebas de validación.
 
 ### Conclusión esperada
 
@@ -349,23 +351,23 @@ Trabajar con datos en Git no es una trampa: es un ejercicio de diseño — quié
 ### 7.1. De este proyecto a la vida real
 
 ```text
-   │
-   ├── datasets versionados vs. referenciados es la
-   │   decisión de arquitectura de datos más común en
-   │   equipos reales (sección 25 — contexto y
-   │   consecuencias)
-   │
-   ├── sensibilidad de datos = gobernanza (sección 21
-   │   cap. 06 / 24): en empresa hay clasificación y
-   │   dueños — tú ya practicaste la línea base
-   │
-   ├── artefactos y aserciones de resultados = la
-   │   semilla de MLOps del Proyecto 7 (modelos como
-   │   artefacto, métricas como contrato)
-   │
-   └── reproducibilidad es la misma exigencia que
-       release en el Proyecto 5: «¿qué tengo y cómo lo
-       regenero?»
+    │
+    ├── datasets versionados vs. referenciados es la
+    │   decisión de arquitectura de datos más común en
+    │   equipos reales (sección 25 — contexto y
+    │   consecuencias)
+    │
+    ├── sensibilidad de datos = gobernanza (sección 21
+    │   cap. 06 / 24): en empresa hay clasificación y
+    │   dueños — tú ya practicaste la línea base
+    │
+    ├── artefactos y aserciones de resultados = la
+    │   semilla de MLOps del Proyecto 7 (modelos como
+    │   artefacto, métricas como contrato)
+    │
+    └── reproducibilidad es la misma exigencia que
+        release en el Proyecto 5: «¿qué tengo y cómo lo
+        regenero?»
 ```
 
 ### 7.2. Resumen
@@ -385,6 +387,15 @@ La idea principal es:
 
 ---
 
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Cuál es el concepto central que se introduce en este capítulo y por qué es importante para el flujo de trabajo?
+2. ¿Cómo se aplica el concepto práctico descrito en las secciónes de práctica guiada a un escenario real?
+3. ¿Qué errores comunes se destacan en este capítulo y cómo se pueden prevenir siguiendo los pasos recomendados?
+4. ¿De qué manera este capítulo se conecta con el siguiente proyecto en la progresión del aprendizaje?
+5. ¿Qué hábito o práctica clave se debe internalizar al completar este capítulo?
 ## Próximo paso
 
 Tu análisis se regenera solo y verifica sus resultados.
