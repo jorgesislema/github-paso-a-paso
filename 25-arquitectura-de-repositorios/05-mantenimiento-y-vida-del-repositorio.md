@@ -8,20 +8,17 @@ Todo repositorio tiene un ciclo de vida: nace, crece, envejece y — a veces —
 
 ## Mapa conceptual de este capítulo
 
-```text
-Mantenimiento y vida del repositorio
-       │
-       ├── 1. Las etapas de la vida
-       ├── 2. Mantenimiento rutinario (el calendario)
-       │   ├── 3. Deuda técnica: ver, medir, pagar
-       │   └── 4. Estancamientos: ramas, PRs, artefactos
-       │
-       ├── 5. Cómo termina un repositorio (deprecar,
-       │   archivar, borrar)
-       │
-       ├── 6. Errores comunes con diagnóstico completo
-       ├── 7. Práctica guiada
-       └── 8. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Mantenimiento y vida del repositorio))
+    1. Las etapas de la vida
+    2. Mantenimiento rutinario (el calendario)
+      3. Deuda técnica: ver, medir, pagar
+      4. Estancamientos: ramas, PRs, artefactos
+    5. Cómo termina un repositorio (deprecar, archivar, borrar)
+    6. Errores comunes con diagnóstico completo
+    7. Práctica guiada
+    8. Nivel profesional + resumen
 ```
 
 ---
@@ -388,6 +385,10 @@ mantenimiento · retiro?
 
 Etapas declaradas, calendario con dueños, inventario de deuda y un retiro iniciado por la vía correcta.
 
+### Ejercicio de transferencia
+Elabora un plan de mantenimiento trimestral para un repositorio de legado que incluye revisión de dependencias, actualización de documentación y limpieza de ramas obsoletas; define responsables y métricas de cumplimiento.
+
+
 ### Conclusión esperada
 
 Un repositorio no se cuida con arrebatos: se mantiene con calendario, se audita con contabilidad honesta y se retira con respeto a quien aún lo usa.
@@ -437,6 +438,18 @@ La idea principal es:
 > **La salud de un repositorio no se mide en lo que se añade, sino en lo que se mantiene vivo y en lo que se retira a tiempo — ambos con calendario, dueño y registro.**
 
 ---
+
+## Autopreguntas de cierre
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+1. ¿Cuáles son las etapas típicas del ciclo de vida de un repositorio y qué actividades corresponden a cada una?
+2. ¿Qué elementos debería incluir un calendario de mantenimiento rutinario y con qué frecuencia revisarlo?
+3. ¿Cómo se identifica y mide la deuda técnica en un repositorio?
+4. ¿Qué tipos de estancamientos (ramas, PRs, artefactos) deben monitorizarse y cómo se resolvieron?
+5. ¿Qué pasos siguen para deprecarmar, archivar y finalmente borrar un repositorio?
+6. ¿Qué tipos de errores comunes se presentan en mantenimiento y vida del repositorio y cómo se diagnostican?
+7. ¿Qué pasos incluirías en una práctica guiada para crear un calendario de mantenimiento y asignar dueños?
+8. ¿Qué aspectos de nivel profesional deberías considerar para escalar el mantenimiento en una organización con muchos repositorios?
+
 
 ## Próximo paso
 
