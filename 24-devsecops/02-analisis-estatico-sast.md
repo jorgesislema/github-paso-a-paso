@@ -8,19 +8,17 @@
 
 ## Mapa conceptual de este capítulo
 
-```text
-Análisis estático (SAST)
-       │
-       ├── 1. La familia SAST (más allá de un producto)
-       ├── 2. Integración en el PR (volumen y severidad)
-       │   ├── 3. Falsos positivos y tuning
-       │   ├── 4. Reglas propias y estándares de equipo
-       │   └── 5. Estático en otras superficies (IaC,
-       │           Dockerfiles, config)
-       │
-       ├── 6. Errores comunes con diagnóstico completo
-       ├── 7. Práctica guiada
-       └── 8. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Análisis estático (SAST)))
+    1. La familia SAST más allá de un producto
+    2. Integración en el PR volumen y severidad
+      3. Falsos positivos y tuning
+      4. Reglas propias y estándares de equipo
+      5. Estático en otras superficies IaC Dockerfiles config
+    6. Errores comunes con diagnóstico completo
+    7. Práctica guiada
+    8. Nivel profesional + resumen
 ```
 
 ---
@@ -381,6 +379,11 @@ El análisis estático es el guardia del PR: completo por superficie, proporcion
 
 ---
 
+### Ejercicio de transferencia
+
+Aplica el mismo proceso de selección, integración y ajuste de herramientas de análisis a otra capa de seguridad, por ejemplo al escaneo de dependencias (SCA) o al análisis de configuración (IaC). Define qué herramientas usarías, cómo las integrarías en el PR, cómo manejarías los falsos positivos y establecerías un proceso de tuning. Entrega un documento breve que describa el flujo y la política de severidad para esa capa.
+
+
 ## 8. Nivel profesional + resumen
 
 ### 8.1. SAST a escala
@@ -422,6 +425,18 @@ La idea principal es:
 > **Un análisis estático solo protege cuando es completo por superficie, proporcional en el PR y disciplinado en sus excepciones — lo demás es un check verde que nadie lee.**
 
 ---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué es necesario considerar a SAST como una familia de herramientas (lenguaje, dependencias, secretos, IaC, Dockerfiles, workflows) en lugar de depender de un solo producto?
+2. ¿Cómo afecta la falta de una política de severidad acordada al flujo de PR, y qué consecuencias tiene el ruido bloqueante o permisivo en la seguridad del proyecto?
+3. ¿De qué manera el proceso de tuning de falsos positivos convierte cada falso positivo en una oportunidad de mejora y por qué es esencial documentar la excepción en el código?
+4. ¿Qué ventajas aporta tener un estándar de equipo combinado con una regla automática en comparación con tener solo el estándar escrito o solo la regla automática?
+5. ¿Cómo influye la proporcionalidad (rápido en PR, profundo en main) en la efectividad del análisis estático y qué riesgos surgen si se ignora este principio?
+6. ¿De qué forma la integración con el backlog de seguridad y los acuerdos de SLA garantizan que los hallazgos no bloqueantes se aborden oportunamente sin olvidarlos?
+
 
 ## Próximo paso
 
