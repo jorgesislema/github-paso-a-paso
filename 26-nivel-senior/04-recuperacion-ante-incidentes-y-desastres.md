@@ -7,18 +7,16 @@ Dos palabras distintas que la prisa confunde: **incidente** (algo roto ahora: un
 ---
 
 ## Mapa conceptual de este capítulo
-
-```text
-Recuperación ante incidentes y desastres
-       │
-       ├── 1. Incidente vs. desastre (dos mundos)
-       ├── 2. Respuesta a incidentes (ritmo y roles)
-       │   ├── 3. Desastre: respaldo, RTO/RPO, pruebas
-       │   └── 4. Aprendizaje: post-mortem → control
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Recuperación ante incidentes y desastres))
+    1. Incidente vs. desastre (dos mundos)
+    2. Respuesta a incidentes (ritmo y roles)
+      3. Desastre: respaldo, RTO/RPO, pruebas
+      4. Aprendizaje: post-mortem → control
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional + resumen
 ```
 
 ---
@@ -27,80 +25,66 @@ Recuperación ante incidentes y desastres
 
 ```text
 INCIDENTE (algo funciona MAL):
-   │
-   ├── ejemplos: release roto, CI caído, secretos
-   │   filtrados, servicio degradado
-   │
-   ├── objetivo: CONTENER → RESOLVER → normalizar
-   │   (sección 22 cap. 06 / 23 cap. 06 / 24 cap. 05)
-   │
-   └── ritmo: horas
+    │
+    ├── ejemplos: release roto, CI caído, secretos
+    │   filtrados, servicio degradado
+    │
+    ├── objetivo: CONTENER → RESOLVER → normalizar
+    │   (sección 22 cap. 06 / 23 cap. 06 / 24 cap. 05)
+    │
+    └── ritmo: horas
 ```
 
 ```text
 DESASTRE (algo NO ESTÁ):
-   │
-   ├── ejemplos: repo borrado, ransomware, pérdida de
-   │   credenciales maestras, provider caído para
-   │   siempre, devolución de un disco entero
-   │
-   ├── objetivo: RESTAURAR capacidad de operar (desde
-   │   respaldos y espejos) aunque se pierda lo
-   │   reciente
-   │
-   └── ritmo: días — y solo funciona si se PREPARÓ
+    │
+    ├── ejemplos: repo borrado, ransomware, pérdida de
+    │   credenciales maestras, provider caído para
+    │   siempre, devolución de un disco entero
+    │
+    ├── objetivo: RESTAURAR capacidad de operar (desde
+    │   respaldos y espejos) aunque se pierda lo
+    │   reciente
+    │
+    └── ritmo: días — y solo funciona si se PREPARÓ
 ```
 
 ```text
-   │
-   └── confundirlos es caro: tratar un desastre como
-       incidente = improvisar sin respaldo (Error 1);
-       tratar cada incidente como desastre = pánico y
-       coste innecesario (Error 2)
+    │
+    └── confundirlos es caro: tratar un desastre como
+        incidente = improvisar sin respaldo (Error 1);
+        tratar cada incidente como desastre = pánico y
+        coste innecesario (Error 2)
 ```
 
 ---
 
 ## 2. Respuesta a incidentes (ritmo y roles)
-
-```text
-MOMENTOS (ritmo — sección 22 cap. 06 / 24 cap. 05):
-   │
-   ├── 1. DETECTAR: alerta o reporte — quién recibe y
-   │   quién coordina (Error 3 si «el que se dé
-   │   cuenta»)
-   │
-   ├── 2. CONTENER: separar daño de alcance (pausar
-   │   despliegue, rotar credencial, revertir release)
-   │   — ANTES de entenderlo todo (Error 4 si se
-   │   investiga mientras se sangra)
-   │
-   ├── 3. COMUNICAR: canal, dueños, estado (sección 16
-   │   /23 cap. 06 — actualizar, no silencio)
-   │
-   ├── 4. RESOLVER Y VERIFICAR: fix + humo + observar
-   │   (sección 23 cap. 06)
-   │
-   └── 5. NORMALIZAR: post-mortem < 48 h (punto 4)
+```mermaid
+flowchart TD
+    A["1. DETECTAR: alerta o reporte — quién recibe y quién coordina"] --> B["2. CONTENER: separar daño de alcance (pausar despliegue, rotar credencial, revertir release)"]
+    B --> C["3. COMUNICAR: canal, dueños, estado"]
+    C --> D["4. RESOLVER Y VERIFICAR: fix + humo + observar"]
+    D --> E["5. NORMALIZAR: post-mortem < 48 h"]
 ```
 
 ```text
 ROLES DE INCIDENTE (mínimos — Error 3 prevención):
-   │
-   ├── coordinador (dirige, decide prioridades)
-   ├── quien ejecuta (fix/revert)
-   └── quien comunica (fuera del teclado — Error 4
-       prevención: nadie hace las 3 a la vez si el
-       incidente es grande)
+    │
+    ├── coordinador (dirige, decide prioridades)
+    ├── quien ejecuta (fix/revert)
+    └── quien comunica (fuera del teclado — Error 4
+        prevención: nadie hace las 3 a la vez si el
+        incidente es grande)
 ```
 
 ```text
-   │
-   └── los GUIONES preparados cambian el ritmo:
-       secretos (sección 20 cap. 01), suministro
-       (sección 24 cap. 05), rollback (sección 22 cap.
-       06) — se PRACTICAN (Error 5 si solo existen en
-       un doc)
+    │
+    └── los GUIONES preparados cambian el ritmo:
+        secretos (sección 20 cap. 01), suministro
+        (sección 24 cap. 05), rollback (sección 22 cap.
+        06) — se PRACTICAN (Error 5 si solo existen en
+        un doc)
 ```
 
 ---
@@ -110,45 +94,47 @@ ROLES DE INCIDENTE (mínimos — Error 3 prevención):
 ```text
 PREGUNTAS DE DESASTRE (las que hay que responder
 ANTES):
-   │
-   ├── ¿qué respaldamos? (repo, historial, artefactos,
-   │   config, secretos — sección 08/20/22)
-   │
-   ├── ¿dónde y con qué frecuencia? (fuera del mismo
-   │   provider — Error 6: espejo/backup externo)
-   │
-   ├── RTO: cuánto TARDAMOS en volver a operar
-   │   (objetivo escrito)
-   │
-   └── RPO: cuánto PERDEMOS como máximo (último
-       respaldo — cuántos minutos/horas de trabajo)
+    │
+    ├── ¿qué respaldamos? (repo, historial, artefactos,
+    │   config, secretos — sección 08/20/22)
+    │
+    ├── ¿dónde y con qué frecuencia? (fuera del mismo
+    │   provider — Error 6: espejo/backup externo)
+    │
+    ├── RTO: cuánto TARDAMOS en volver a operar
+    │   (objetivo escrito)
+    │
+    └── RPO: cuánto PERDEMOS como máximo (último
+        respaldo — cuántos minutos/horas de trabajo)
 ```
 
 ```text
 LO QUE SE PRUEBA (Error 6 si no):
-   │
-   ├── restauración REAL: clonar desde respaldo, no
-   │   «confiamos en que está»
-   ├── simulacro de desastre en calendario (Error 5 —
-   │   mismo criterio que los de sección 24 cap. 05)
-   └── espejo del repo que sobrevive al provider
-       (Error 7 si todo depende de un solo sitio)
+    │
+    ├── restauración REAL: clonar desde respaldo, no
+    │   «confiamos en que está»
+    │
+    ├── simulacro de desastre en calendario (Error 5 —
+    │   mismo criterio que los de sección 24 cap. 05)
+    │
+    └── espejo del repo que sobrevive al provider
+        (Error 7 si todo depende de un solo sitio)
 ```
 
 ```text
-   │
-   └── «nunca lo hemos restaurado» = no tenemos
-       respaldo, tenemos una FE (Error 6)
+    │
+    └── «nunca lo hemos restaurado» = no tenemos
+        respaldo, tenemos una FE (Error 6)
 ```
 
 ```text
 DESPUÉS DEL DESASTRE:
-   │
-   ├── restaurar por orden: acceso → repo → entorno →
-   │   datos (sección 23 — IaC acelera: sección 23
-   │   cap. 04)
-   └── comunicar expectativas de pérdida (RPO real
-       observado) — Error 7 si se promete «todo»
+    │
+    ├── restaurar por orden: acceso → repo → entorno →
+    │   datos (sección 23 — IaC acelera: sección 23
+    │   cap. 04)
+    └── comunicar expectativas de pérdida (RPO real
+        observado) — Error 7 si se promete «todo»
 ```
 
 ---
@@ -157,18 +143,18 @@ DESPUÉS DEL DESASTRE:
 
 ```text
 CICLO (cierre — sección 24 cap. 06):
-   │
-   ├── post-mortem sin culpa en < 48 h
-   ├── causa raíz que MIRA EL SISTEMA (no a la persona)
-   ├── acciones con dueño + fecha + verificación
-   └── el incidente cierra cuando el CONTROL existe
+    │
+    ├── post-mortem sin culpa en < 48 h
+    ├── causa raíz que MIRA EL SISTEMA (no a la persona)
+    ├── acciones con dueño + fecha + verificación
+    └── el incidente cierra cuando el CONTROL existe
 ```
 
 ```text
-   │
-   └── métrica de aprendizaje: reincidencias (Error 8
-       si se repite lo mismo tres veces — Error 7
-       sección 03 de esta sección)
+    │
+    └── métrica de aprendizaje: reincidencias (Error 8
+        si se repite lo mismo tres veces — Error 7
+        sección 03 de esta sección)
 ```
 
 ---
@@ -329,11 +315,11 @@ Tener respuesta de incidente y preparación de desastre ensayadas — no solo es
 
 ```text
 INCIDENTES (probables en tu proyecto):
-   │ release roto · CI caído · credencial filtrada ·
-   │ dependencia comprometida
+    │ release roto · CI caído · credencial filtrada ·
+    │ dependencia comprometida
 DESASTRES (baja probabilidad, alto impacto):
-   │ repo borrado · pérdida de credenciales maestras ·
-   │ caída/cierre del proveedor
+    │ repo borrado · pérdida de credenciales maestras ·
+    │ caída/cierre del proveedor
 ```
 
 ### Paso 2: guion de incidente
@@ -369,6 +355,9 @@ Guion con roles, RTO/RPO escritos, restauración probada con fecha y simulacro e
 
 La recuperación no se improvisa en el pico: se ensaya en calma — quien ha restaurado alguna vez un respaldo es otra persona en el peor día.
 
+### Ejercicio de transferencia
+Toma un servicio crítico que uses en tu trabajo diario (por ejemplo, un servicio de nube o una herramienta de desarrollo) y examina su plan de respuesta a incidentes y preparación para desastres. Identifica si tiene guiones claros, roles definidos, RTO/RPO escritos y respaldos probados. Entregable: una lista de tres mejoras que aplicarías con criterio senior para convertir su plan en un programa de continuidad sólido.
+
 ---
 
 ## 7. Nivel profesional + resumen
@@ -376,24 +365,24 @@ La recuperación no se improvisa en el pico: se ensaya en calma — quien ha res
 ### 7.1. El programa de continuidad
 
 ```text
-   │
-   ├── incidentes: severidades con guiones proporcionales
-   │   + guardias/turnos + comunicación con audiencias
-   │   definidas (sección 23 cap. 06)
-   │
-   ├── desastres: RTO/RPO por sistema, espejos,
-   │   restauración automática de IaC (sección 23 cap.
-   │   04), simulacro anual medido
-   │
-   ├── tabletop/ejercicios: escenarios inventados con
-   │   el equipo (año completo en calendario)
-   │
-   ├── aprendizaje: post-mortems con acciones
-   │   verificadas + reincidencias como métrica de
-   │   gobierno (sección 03 de esta sección)
-   │
-   └── métricas: MTTD/MTTR, última restauración
-       probada, simulacros hechos, acciones vencidas
+    │
+    ├── incidentes: severidades con guiones proporcionales
+    │   + guardias/turnos + comunicación con audiencias
+    │   definidas (sección 23 cap. 06)
+    │
+    ├── desastres: RTO/RPO por sistema, espejos,
+    │   restauración automática de IaC (sección 23 cap.
+    │   04), simulacro anual medido
+    │
+    ├── tabletop/ejercicios: escenarios inventados con
+    │   el equipo (año completo en calendario)
+    │
+    ├── aprendizaje: post-mortems con acciones
+    │   verificadas + reincidencias como métrica de
+    │   gobierno (sección 03 de esta sección)
+    │
+    └── métricas: MTTD/MTTR, última restauración
+        probada, simulacros hechos, acciones vencidas
 ```
 
 ### 7.2. Resumen
@@ -414,6 +403,14 @@ La idea principal es:
 
 ---
 
+## Autopreguntas de cierre
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+1. ¿Cuál es la pregunta senior que guía el diseño de workflows y estrategias de ramas?
+2. ¿Cómo se elige la estrategia de ramificación más apropiada para un equipo?
+3. ¿Qué componentes forman el flujo completo desde el issue hasta el despliegue?
+4. ¿Cómo se mide la calidad del flujo y qué se hace para mejorarla?
+5. ¿Por qué es importante incluir el plan de vuelta (rollback) en el diseño del flujo?
+6. ¿Cómo se evita caer en errores comunes como elegir una estrategia sin base real?
 ## Próximo paso
 
 Ya sabes responder al peor día.
