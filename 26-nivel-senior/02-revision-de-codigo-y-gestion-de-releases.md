@@ -7,18 +7,16 @@ Dos pilares sostienen la confianza en cualquier flujo: **la revisión de código
 ---
 
 ## Mapa conceptual de este capítulo
-
-```text
-Revisión de código y gestión de releases
-       │
-       ├── 1. La revisión como sistema, no como trámite
-       ├── 2. Qué mira una revisión senior (capas)
-       │   ├── 3. La persona que revisa: ritmo y trato
-       │   └── 4. Releases: del «está listo» al proceso
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Revisión de código y gestión de releases))
+    1. La revisión como sistema, no como trámite
+    2. Qué mira una revisión senior (capas)
+      3. La persona que revisa: ritmo y trato
+      4. Releases: del «está listo» al proceso
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional + resumen
 ```
 
 ---
@@ -27,26 +25,26 @@ Revisión de código y gestión de releases
 
 ```text
 SISTEMA (la revisión ESCALA cuando es sistema):
-   │
-   ├── antes: alguien «echa un ojo» cuando puede
-   │   (Error 1 si no hay dueño ni SLA — sección 15
-   │   cap. 06)
-   │
-   ├── sistema: PR claro (sección 15 cap. 04) →
-   │   revisor asignado → plazo → checklist → gates
-   │   automáticos (sección 19/24) → decisión registrada
-   │
-   └── la revisión MANUAL mira lo que la máquina NO
-       mira: diseño, contexto, riesgo (Error 2 si se
-       usan humanos para lo que un linter hace mejor)
+    │
+    ├── antes: alguien «echa un ojo» cuando puede
+    │   (Error 1 si no hay dueño ni SLA — sección 15
+    │   cap. 06)
+    │
+    ├── sistema: PR claro (sección 15 cap. 04) →
+    │   revisor asignado → plazo → checklist → gates
+    │   automáticos (sección 19/24) → decisión registrada
+    │
+    └── la revisión MANUAL mira lo que la máquina NO
+        mira: diseño, contexto, riesgo (Error 2 si se
+        usa humanos para lo que un linter hace mejor)
 ```
 
 ```text
-   │
-   └── la revisión es EL ÚLTIMO control humano del
-       flujo: si falla, lo demás es automatismo sin
-       criterio (Error 3 si es decorativa — «approbo
-       para que no frene»)
+    │
+    └── la revisión es EL ÚLTIMO control humano del
+        flujo: si falla, lo demás es automatismo sin
+        criterio (Error 3 si es decorativa — «approbo
+        para que no frene»)
 ```
 
 ---
@@ -55,38 +53,38 @@ SISTEMA (la revisión ESCALA cuando es sistema):
 
 ```text
 CAPAS (de arriba abajo — cada una con foco):
-   │
-   ├── 1. ¿Es lo que se pedía? (issue ↔ PR: ¿cierra
-   │   el problema real — Error 4 si se revisa solo
-   │   «estilo» y nadie mira si resuelve)
-   ├── 2. ¿Es correcto? (casos límite, errores,
-   │   seguridad — sección 20/24: secretos, inyección,
-   │   permisos)
-   ├── 3. ¿Es mantenible? (naming, estructura, límites
-   │   — sección 25 cap. 02: ¿toca lo que no debe?)
-   ├── 4. ¿Es observable y reversible? (logs, tests,
-   │   rollback — sección 23/24)
-   └── 5. ¿Está probado? (tests que fallan sin el
-       cambio — sección 22 cap. 03)
+    │
+    ├── 1. ¿Es lo que se pedía? (issue ↔ PR: ¿cierra
+    │   el problema real — Error 4 si se revisa solo
+    │   «estilo» y nadie mira si resuelve)
+    ├── 2. ¿Es correcto? (casos límite, errores,
+    │   seguridad — sección 20/24: secretos, inyección,
+    │   permisos)
+    ├── 3. ¿Es mantenible? (naming, estructura, límites
+    │   — sección 25 cap. 02: ¿toca lo que no debe?)
+    ├── 4. ¿Es observable y reversible? (logs, tests,
+    │   rollback — sección 23/24)
+    └── 5. ¿Está probado? (tests que fallan sin el
+        cambio — sección 22 cap. 03)
 ```
 
 ```text
-   │
-   └── el orden importa: primero SI resuelve, luego
-       CÓMO está hecho (Error 4 — discutir comas en
-       un PR que no pide lo correcto es revisión
-       al revés)
+    │
+    └── el orden importa: primero SI resuelve, luego
+        CÓMO está hecho (Error 4 — discutir comas en
+        un PR que no pide lo correcto es revisión
+        al revés)
 ```
 
 ```text
 MENSAJE DE REVISIÓN (qué aporta valor):
-   │
-   ├── «¿y si…?» y preguntas («¿qué pasa cuando X?»)
-   │   > imposiciones de estilo (el linter decide eso)
-   │
-   └── bloqueante vs. sugerencia DISTINTOS (Error 5
-       si todo es bloqueante: el PR no avanza; si nada
-       es bloqueante: no hay control)
+    │
+    ├── «¿y si…?» y preguntas («¿qué pasa cuando X?»)
+    │   > imposiciones de estilo (el linter decide eso)
+    │
+    └── bloqueante vs. sugerencia DISTINTOS (Error 5
+        si todo es bloqueante: el PR no avanza; si nada
+        es bloqueante: no hay control)
 ```
 
 ---
@@ -95,83 +93,64 @@ MENSAJE DE REVISIÓN (qué aporta valor):
 
 ```text
 RITMO (sección 15 cap. 06 — el equipo lo siente):
-   │
-   ├── SLA de primera revisión (horas/días — según
-   │   flujo) (Error 6 si «cuando pueda»: los PRs se
-   │   enfrían y divergen)
-   │
-   ├── limitar PRs abiertos simultáneos (pull: revisar
-   │   antes de abrir otro — sección 17 cap. 04)
-   │
-   └── el autor reduce la carga: PR pequeños, PR
-       template completo, contexto en la descripción
+    │
+    ├── SLA de primera revisión (horas/días — según
+    │   flujo) (Error 6 si «cuando pueda»: los PRs se
+    │   enfrían y divergen)
+    │
+    ├── limitar PRs abiertos simultáneos (pull: revisar
+    │   antes de abrir otro — sección 17 cap. 04)
+    │
+    └── el autor reduce la carga: PR pequeños, PR
+        template completo, contexto en la descripción
 ```
 
 ```text
 TRATO (la revisión es entre personas):
-   │
-   ├── comentar el CÓDIGO, no a la persona (Error 7
-   │   si es «esto está mal» sin alternativa)
-   │
-   ├── explicar el porqué: la revisión enseña y
-   │   forma (sección 16/23 — la revisión es onboarding
-   │   continuo)
-   │
-   └── el autor: responde con cambios o argumentos, no
-       con molestia (sección 00 — cultura)
+    │
+    ├── comentar el CÓDIGO, no a la persona (Error 7
+    │   si es «esto está mal» sin alternativa)
+    │
+    ├── explicar el porqué: la revisión enseña y
+    │   forma (sección 16/23 — la revisión es onboarding
+    │   continuo)
+    │
+    └── el autor: responde con cambios o argumentos, no
+        con molestia (sección 00 — cultura)
 ```
 
 ```text
-   │
-   └── rotar revisores: el conocimiento no se
-       concentra (Error 7 — factor de bus factor,
-       sección 23 cap. 06)
+    │
+    └── rotar revisores: el conocimiento no se
+        concentra (Error 7 — factor de bus factor,
+        sección 23 cap. 06)
 ```
 
 ---
 
 ## 4. Releases: del «está listo» al proceso
-
-```text
-RELEASE MADURA = ANTES · DURANTE · DESPUÉS:
-   │
-   ├── ANTES:
-   │     · checklist: tests verdes, dependencias,
-   │       seguridad, changelog (Error 8 si «está
-   │       listo» es una impresión)
-   │     · etiqueta/versionado (sección 17 cap. 05)
-   │     · notas para quien consume (sección 14)
-   │
-   ├── DURANTE:
-   │     · tag + release en la plataforma (sección 17
-   │       cap. 06)
-   │     · artefacto reproducible (sección 22 cap. 05)
-   │     · despliegue por etapas (staging → prod —
-   │       sección 22/23)
-   │
-   └── DESPUÉS:
-         · humo + observabilidad (sección 23 cap. 06)
-         · rollback en marcha si hace falta (Error 8
-           prevención — sección 22 cap. 06)
-         · comunicado: qué cambió y cómo se usa
+```mermaid
+flowchart TD
+    A["ANTES:\n- checklist: tests verdes, dependencias, seguridad, changelog\n- etiqueta/versionado\n- notas para quien consume"] --> B["DURANTE:\n- tag + release en la plataforma\n- artefacto reproducible\n- despliegue por etapas (staging → prod)"]
+    B --> C["DESPUÉS:\n- humo + observabilidad\n- rollback en marcha\n- comunicado: qué cambió y cómo se usa"]
 ```
 
 ```text
 CÓMO SE DECIDE «ESTÁ LISTO» (criterio, no corazonada):
-   │
-   ├── definition of done escrito (¿qué incluye?
-   │   código + tests + docs + seguridad — sección 15
-   │   cap. 04/14)
-   │
-   └── quién APRUEBA la release (dueño nominal —
-       Error 8 si «la hace quien esté cerca»)
+    │
+    ├── definition of done escrito (¿qué incluye?
+    │   código + tests + docs + seguridad — sección 15
+    │   cap. 04/14)
+    │
+    └── quién APRUEBA la release (dueño nominal —
+        Error 8 si «la hace quien esté cerca»)
 ```
 
 ```text
-   │
-   └── la release es un PRODUCTO: fecha, dueño,
-       comunicado, y su marcha atrás probada (Error
-       8 — Error 7 de la sección anterior)
+    │
+    └── la release es un PRODUCTO: fecha, dueño,
+        comunicado, y su marcha atrás probada (Error
+        8 — Error 7 de la sección anterior)
 ```
 
 ---
@@ -332,10 +311,10 @@ Convertir tu revisión y tu release en sistemas con capas, plazos y proceso.
 
 ```text
 Últimos 10 PRs:
-   │
-   ├── mediana a primera revisión: ____
-   ├── comentarios por PR: ____ (¿estilo o capas?)
-   └── ¿revisor asignado siempre? sí/no
+    │
+    ├── mediana a primera revisión: ____
+    ├── comentarios por PR: ____ (¿estilo o capas?)
+    └── ¿revisor asignado siempre? sí/no
 ```
 
 ### Paso 2: checklist de capas
@@ -372,6 +351,9 @@ Métricas de revisión, checklist de capas, definition of done y proceso de rele
 
 Revisar y liberar son el mismo oficio en dos momentos: asegurar que lo que entra es pensado y que lo que sale es predecible — ambos con capas, plazos y responsables, no con prisas ni corazonadas.
 
+### Ejercicio de transferencia
+Toma un proyecto de código abierto que uses frecuentemente y examina su proceso de revisión de código y release. Identifica qué capas de revisión están presentes y si hay un sistema claro de plazos y responsables. Entregable: una lista de tres mejoras que aplicarías con criterio senior para convertir su revisión y release en un sistema maduro.
+
 ---
 
 ## 7. Nivel profesional + resumen
@@ -379,25 +361,25 @@ Revisar y liberar son el mismo oficio en dos momentos: asegurar que lo que entra
 ### 7.1. A escala
 
 ```text
-   │
-   ├── revisión como métrica de equipo (no de
-   │   personas): tiempo de PR, capas cubiertas,
-   │   incidentes post-aprobación (Error 3
-   │   prevención)
-   │
-   ├── release train: calendario compartido de
-   │   releases cuando hay muchos componentes
-   │   (sección 25 cap. 04)
-   │
-   ├── release como rol rotativo (el «dueño de
-   │   release» de la semana — Error 8 prevención)
-   │
-   ├── comunicados y notas versionadas como hábito
-   │   (sección 14/17)
-   │
-   └── métricas: frecuencia y fallo de release, MTTR
-       de rollback, sugerencias por PR (calidad de la
-       revisión)
+    │
+    ├── revisión como métrica de equipo (no de
+    │   personas): tiempo de PR, capas cubiertas,
+    │   incidentes post-aprobación (Error 3
+    │   prevención)
+    │
+    ├── release train: calendario compartido de
+    │   releases cuando hay muchos componentes
+    │   (sección 25 cap. 04)
+    │
+    ├── release como rol rotativo (el «dueño de
+    │   release» de la semana — Error 8 prevención)
+    │
+    ├── comunicados y notas versionadas como hábito
+    │   (sección 14/17)
+    │
+    └── métricas: frecuencia y fallo de release, MTTR
+        de rollback, sugerencias por PR (calidad de la
+        revisión)
 ```
 
 ### 7.2. Resumen
@@ -418,6 +400,14 @@ La idea principal es:
 
 ---
 
+## Autopreguntas de cierre
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+1. ¿Cuál es la pregunta senior que guía el diseño de workflows y estrategias de ramas?
+2. ¿Cómo se elige la estrategia de ramificación más apropiada para un equipo?
+3. ¿Qué componentes forman el flujo completo desde el issue hasta el despliegue?
+4. ¿Cómo se mide la calidad del flujo y qué se hace para mejorarla?
+5. ¿Por qué es importante incluir el plan de vuelta (rollback) en el diseño del flujo?
+6. ¿Cómo se evita caer en errores comunes como elegir una estrategia sin base real?
 ## Próximo paso
 
 Ya revisas con capas y liberas con proceso.
