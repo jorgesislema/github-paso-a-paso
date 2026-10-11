@@ -8,17 +8,16 @@ El Proyecto final necesita su fábrica: **un pipeline que verifique cada cambio 
 
 ## Mapa conceptual de este capítulo
 
-```text
-GitHub Actions, CI/CD y seguridad
-       │
-       ├── 1. El pipeline del proyecto (diseño)
-       ├── 2. Jobs y puertas que bloquean
-       │   ├── 3. Seguridad en el flujo (mínimo exigible)
-       │   └── 4. Despliegue: de checks a producción
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((GitHub Actions, CI/CD y seguridad))
+    1. El pipeline del proyecto (diseño)
+    2. Jobs y puertas que bloquean
+      3. Seguridad en el flujo (mínimo exigible)
+      4. Despliegue: de checks a producción
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional + resumen
 ```
 
 ---
@@ -369,6 +368,9 @@ Pipeline completo del Proyecto final: calidad + seguridad + despliegue, todos pr
 
 Pipeline completo con puertas probadas, seguridad ejercida y despliegue con verificación y reversa escrita.
 
+### Ejercicio de transferencia
+Aplica el mismo enfoque de CI/CD y seguridad a la publicación de un blog estático con GitHub Actions: crea un workflow que haga lint de Markdown, pruebas de enlaces rotos, y despliegue a GitHub Pages solo si pasa las pruebas de seguridad (por ejemplo, sin credenciales expuestas). Entregable: el archivo workflow.yml y evidencia de runs exitosos.
+​
 ### Conclusión esperada
 
 La fábrica del Proyecto final no es «un YAML que pasa»: es un conjunto de puertas que efectivamente cierran, seguridad que efectivamente se usó y un despliegue que sabe volver atrás — todo demostrable con runs y evidencias.
@@ -414,6 +416,15 @@ La idea principal es:
 
 ---
 
+## Autopreguntas de cierre
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+1. ¿Cuál es el propósito de tener un pipeline que verifique cada cambio antes de llegar a producción?
+2. ¿Por qué es importante que el job de calidad se ejecute antes del job de seguridad en el pipeline?
+3. ¿Qué tipo de artefactos se generan en el job de calidad y cómo se utilizan posteriormente?
+4. ¿Cómo contribuyen los secretos y la verificación de dependencias a la seguridad del flujo?
+5. ¿Qué condición evita que el job de despliegue se ejecute en paralelo con el job de calidad?
+6. ¿Cómo puedes verificar que el pipeline esté correctamente configurado usando el badge del README?
+​
 ## Próximo paso
 
 Fábrica completa y probada.
