@@ -8,17 +8,16 @@ El Proyecto final necesita un final formal: **una release versionada, con notas 
 
 ## Mapa conceptual de este capítulo
 
-```text
-Release y entrega
-       │
-       ├── 1. Qué es una «entrega» en este proyecto
-       ├── 2. Versionado y changelog
-       │   ├── 3. El artefacto (y qué lo hace confiable)
-       │   └── 4. La release en la plataforma
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Release y entrega))
+    1. Qué es una «entrega» en este proyecto
+    2. Versionado y changelog
+      3. El artefacto (y qué lo hace confiable)
+      4. La release en la plataforma
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional + resumen
 ```
 
 ---
@@ -121,19 +120,13 @@ COMPROBACIÓN DE LA ENTREGA (Error 7 si se omite):
 
 ## 4. La release en la plataforma
 
-```text
-EL PASO A PASO (sección 17 cap. 06 + 22 cap. 06):
-   │
-   ├── 1. main verde (últimos checks OK)
-   ├── 2. changelog actualizado en el mismo PR de release
-   ├── 3. tag `v0.1.0` → la plataforma genera la release
-   │       con notas (Error 8 si no hay notas: el tag
-   │       solo no comunica)
-   ├── 4. artefacto publicado (automático, ligado al tag)
-   ├── 5. release marcada como «latest» si aplica
-   └── 6. README actualizado: versión actual + enlace a
-       la release (Error 9 si el README sigue diciendo
-       otra cosa)
+```mermaid
+flowchart TD
+    A["main verde (últimos checks OK)"] --> B["changelog actualizado en el mismo PR de release"]
+    B --> C["tag v0.1.0 → la plataforma genera la release con notas"]
+    C --> D["artefacto publicado (automático, ligado al tag)"]
+    D --> E["release marcada como «latest» si aplica"]
+    E --> F["README actualizado: versión actual + enlace a la release"]
 ```
 
 ```text
@@ -365,6 +358,9 @@ Checklist final del capítulo:
 
 Release publicada con notas y artefacto reproducible, verificada en limpio y documentada.
 
+### Ejercicio de transferencia
+Aplica el mismo proceso de release y entrega a la publicación de una biblioteca de JavaScript en npm: crea una versión semver, genera notas de cambio, empaqueta el artefacto, y verifica la instalación en un entorno limpio. Entregable: el paquete publicado en npm con su changelog y evidencia de instalación limpia.
+​
 ### Conclusión esperada
 
 La entrega no es el momento de «cerrar y rezar»: es el último ciclo de un proceso que ya funcionó seis veces — versión, notas, artefacto y verificación, con su reversa a mano.
@@ -411,6 +407,15 @@ La idea principal es:
 
 ---
 
+## Autopreguntas de cierre
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+1. ¿Qué significa que una release sea «promesa verificable» y qué elementos debe incluir para serlo?
+2. ¿Por qué es importante que el changelog sea comprensible por un no-autor y qué información debe contener?
+3. ¿Qué condiciones debe cumplir un artefacto para considerarse confiable y funcionando en limpio?
+4. ¿Cómo verificas que la versión publicada en la plataforma coincida con el tag sobre un main verde?
+5. ¿Qué error se comete si se deja la release para «la noche anterior a entregar» y cómo afecta la evidencia?
+6. ¿De qué manera la evidencia del último despliegue o ejecución confirma que la release es correcta?
+​
 ## Próximo paso
 
 Release publicada y verificada.
