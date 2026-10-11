@@ -8,18 +8,17 @@ El pipeline es la fábrica del software: si la fábrica está comprometida, todo
 
 ## Mapa conceptual de este capítulo
 
-```text
-Seguridad de pipelines y despliegues
-       │
-       ├── 1. Por qué el pipeline es un objetivo
-       ├── 2. Controles por eslabón
-       │   ├── 3. Credenciales del camino de entrega
-       │   ├── 4. Entornos y aprobaciones
-       │   └── 5. Verificar antes de publicar
-       │
-       ├── 6. Errores comunes con diagnóstico completo
-       ├── 7. Práctica guiada
-       └── 8. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Seguridad de pipelines y despliegues))
+    1. Por qué el pipeline es un objetivo
+    2. Controles por eslabón
+      3. Credenciales del camino de entrega
+      4. Entornos y aprobaciones
+      5. Verificar antes de publicar
+    6. Errores comunes con diagnóstico completo
+    7. Práctica guiada
+    8. Nivel profesional + resumen
 ```
 
 ---
@@ -341,6 +340,8 @@ Al aprobar un despliegue verifico (30 s):
 
 Lista maestra con estado real, hueco crítico cerrado, regla de dos operativa y procedimiento de emergencia escrito.
 
+### Ejercicio de transferencia
+Aplica los principios de seguridad de la cadena de entrega a un proceso de publicación de un libro electrónico. Identifica los eslabones (escritura, revisión, conversión de formatos, distribución, venta) y asigna controles de seguridad apropiados (revisión de plagio, firmas digitales, registro de cambios, aprobaciones). Entrega una lista maestra de controles para ese proceso.
 ### Conclusión esperada
 
 La protección del camino de entrega no inventa nada nuevo: reúne y verifica los controles que ya conoces — la diferencia es que están en UNA lista que alguien mira.
@@ -390,6 +391,14 @@ La idea principal es:
 > **El último eslabón que protege a tus usuarios no es el test: es la fábrica que los fabrica — si su puerta, sus llaves y su revisor son de mentira, todo lo demás es teatro.**
 
 ---
+## Autopreguntas de cierre
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+1. ¿Por qué el pipeline se considera un objetivo de primer orden para un atacante y qué puede lograr si lo compromete?
+2. ¿Qué controles se aplican a cada eslabón del camino de entrega (código del PR, dependencias de CI, runner, secretos, despliegue, publicación, post-publicación)?
+3. ¿Por qué es esencial tener una lista maestra de controles de entrega y qué riesgos existen si esta lista está dispersa o no existe en un solo sitio?
+4. ¿Cómo se implementa la regla de dos en la aprobación de despliegues y qué ocurre si se omite este control?
+5. ¿Qué componentes forman el gate pre-publicación y por qué es importante no saltarse este gate incluso en emergencias?
+6. ¿Cómo se debe gestionar de forma segura las credenciales de despliegue y qué riesgos existen si se comparten entre equipos o individuos?
 
 ## Próximo paso
 
