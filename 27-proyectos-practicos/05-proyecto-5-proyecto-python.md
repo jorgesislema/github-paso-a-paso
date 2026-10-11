@@ -8,17 +8,16 @@ El Proyecto 5 añade a la fábrica del Proyecto 4 lo que exige un lenguaje de pr
 
 ## Mapa conceptual de este capítulo
 
-```text
-Proyecto 5: proyecto Python
-       │
-       ├── 1. Qué construyes y qué conceptos incorpora
-       ├── 2. Estructura del proyecto
-       │   ├── 3. Pruebas como contrato del pipeline
-       │   └── 4. Versiones y release
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Proyecto 5: proyecto Python))
+    1. Qué construyes y qué conceptos incorpora
+    2. Estructura del proyecto
+      3. Pruebas como contrato del pipeline
+      4. Versiones y release
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional + resumen
 ```
 
 ---
@@ -27,33 +26,33 @@ Proyecto 5: proyecto Python
 
 ```text
 EL PROYECTO:
-   │
-   ├── una herramienta/CLI o biblioteca Python real
-   │   (algo con CLI: procesar archivos, convertir,
-   │   generar reportes — utilidad concreta y
-   │   ejecutable)
-   │
-   └── entregable doble: código con pruebas + PRIMER
-       RELEASE publicado con versión
+    │
+    ├── una herramienta/CLI o biblioteca Python real
+    │   (algo con CLI: procesar archivos, convertir,
+    │   generar reportes — utilidad concreta y
+    │   ejecutable)
+    │
+    └── entregable doble: código con pruebas + PRIMER
+        RELEASE publicado con versión
 ```
 
 ```text
 CONCEPTOS NUEVOS (secciones 17/21/22):
-   │
-   ├── estructura de paquete Python (sección 21 cap. 01)
-   ├── virtualenv/entorno aislado y dependencias fijadas
-   │   (sección 21 cap. 01)
-   ├── pruebas automatizadas en CI (sección 22 cap. 03)
-   ├── semver + tag + changelog (sección 17 cap. 05/06)
-   └── release como artefacto (sección 22 cap. 05)
+    │
+    ├── estructura de paquete Python (sección 21 cap. 01)
+    ├── virtualenv/entorno aislado y dependencias fijadas
+    │   (sección 21 cap. 01)
+    ├── pruebas automatizadas en CI (sección 22 cap. 03)
+    ├── semver + tag + changelog (sección 17 cap. 05/06)
+    └── release como artefacto (sección 22 cap. 05)
 ```
 
 ```text
-   │
-   └── el salto: de «sitio que se publica» a «producto
-       que se VERSIONA» — y eso cambia cómo escribes
-       commits (Error 1 sección 06 cap. 01:
-       atómicos ahora importan más)
+    │
+    └── el salto: de «sitio que se publica» a «producto
+        que se VERSIONA» — y eso cambia cómo escribes
+        commits (Error 1 sección 06 cap. 01:
+        atómicos ahora importan más)
 ```
 
 ---
@@ -63,32 +62,32 @@ CONCEPTOS NUEVOS (secciones 17/21/22):
 ```text
 ÁRBOL SUGERIDO (convención Python — sección 21 cap.
 01):
-   │
-   ├── README.md              → instalación, uso, ejemplos
-   ├── pyproject.toml         → metadatos + dependencias
-   ├── .gitignore             → entornos, __pycache__,
-   │                            .venv (desde el día 1)
-   ├── src/<paquete>/         → código
-   ├── tests/                 → pruebas
-   ├── docs/                  → decisiones/guías (opcional)
-   └── .github/workflows/     → calidad, pruebas, release
+    │
+    ├── README.md              → instalación, uso, ejemplos
+    ├── pyproject.toml         → metadatos + dependencias
+    ├── .gitignore             → entornos, __pycache__,
+    │                            .venv (desde el día 1)
+    ├── src/<paquete>/         → código
+    ├── tests/                 → pruebas
+    ├── docs/                  → decisiones/guías (opcional)
+    └── .github/workflows/     → calidad, pruebas, release
 ```
 
 ```text
 LO QUE NO ENTRA AL REPO (Error 1 si entra):
-   │
-   ├── .venv/ , __pycache__/ , .pytest_cache/ (gitignore)
-   ├── datos grandes de prueba (sección 21 cap. 05:
-   │   muestra pequeña + regeneración)
-   └── secretos/credenciales (sección 20 cap. 01)
+    │
+    ├── .venv/ , __pycache__/ , .pytest_cache/ (gitignore)
+    ├── datos grandes de prueba (sección 21 cap. 05:
+    │   muestra pequeña + regeneración)
+    └── secretos/credenciales (sección 20 cap. 01)
 ```
 
 ```text
-   │
-   └── convención documentada en README: cómo instalar
-       en 3 comandos, cómo ejecutar pruebas en 1 (Error
-       2 si «funciona en mi máquina»: el entorno se
-       describe, no se supone)
+    │
+    └── convención documentada en README: cómo instalar
+        en 3 comandos, cómo ejecutar pruebas en 1 (Error
+        2 si «funciona en mi máquina»: el entorno se
+        describe, no se supone)
 ```
 
 ---
@@ -97,35 +96,35 @@ LO QUE NO ENTRA AL REPO (Error 1 si entra):
 
 ```text
 EL PRINCIPIO (sección 22 cap. 03):
-   │
-   ├── pruebas unitarias del paquete (funciones
-   │   principales + casos límite)
-   │
-   ├── el CI ejecuta: install → lint (si aplica) →
-   │   pruebas — Y el check es requerido (sección 03
-   │   de esta sección — la puerta ya sabes ponerla)
-   │
-   └── «pruebas que fallan sin el cambio»: si tu suite
-       pasaría con el código roto, no prueba nada (Error
-       3)
+    │
+    ├── pruebas unitarias del paquete (funciones
+    │   principales + casos límite)
+    │
+    ├── el CI ejecuta: install → lint (si aplica) →
+    │   pruebas — Y el check es requerido (sección 03
+    │   de esta sección — la puerta ya sabes ponerla)
+    │
+    └── «pruebas que fallan sin el cambio»: si tu suite
+        pasaría con el código roto, no prueba nada (Error
+        3)
 ```
 
 ```text
 CÓMO ELEGIR QUÉ PROBAR:
-   │
-   ├── la lógica, no el framework (Error 4 si solo
-   │   testea imports)
-   ├── casos límite: vacío, mal formato, límites
-   └── el «humo» de la CLI: `--help` funciona, ejemplo
-       real corre
+    │
+    ├── la lógica, no el framework (Error 4 si solo
+    │   testea imports)
+    ├── casos límite: vacío, mal formato, límites
+    └── el «humo» de la CLI: `--help` funciona, ejemplo
+        real corre
 ```
 
 ```text
-   │
-   └── métrica honesta: no «% de cobertura» como
-       trofeo, sino «¿la suite detecta un error
-       deliberado?» — pruébalo rompiendo algo (Error 3
-       prevención)
+    │
+    └── métrica honesta: no «% de cobertura» como
+        trofeo, sino «¿la suite detecta un error
+        deliberado?» — pruébalo rompiendo algo (Error 3
+        prevención)
 ```
 
 ---
@@ -134,34 +133,34 @@ CÓMO ELEGIR QUÉ PROBAR:
 
 ```text
 PRIMER RELEASE (sección 17 + 22 cap. 05):
-   │
-   ├── 1. versión inicial 0.1.0 (semver: sección 17
-   │   cap. 05 — 0.x = API inestable, ¡dílo en el
-   │   README!)
-   ├── 2. changelog: qué incluye y cómo usarla
-   ├── 3. tag `v0.1.0` + release en la plataforma (con
-   │   notas — sección 17 cap. 06)
-   └── 4. artefacto: paquete/zip construido por el
-       pipeline (Error 5 si subes el zip a mano: no
-       practicaste artefactos)
+    │
+    ├── 1. versión inicial 0.1.0 (semver: sección 17
+    │   cap. 05 — 0.x = API inestable, ¡dílo en el
+    │   README!)
+    ├── 2. changelog: qué incluye y cómo usarla
+    ├── 3. tag `v0.1.0` + release en la plataforma (con
+    │   notas — sección 17 cap. 06)
+    └── 4. artefacto: paquete/zip construido por el
+        pipeline (Error 5 si subes el zip a mano: no
+        practicaste artefactos)
 ```
 
 ```text
 DESPUÉS DEL RELEASE (el ciclo que practicas 1 vez más):
-   │
-   ├── main sigue creciendo en «desarrollo»
-   ├── cambio no compatible → lo notas en changelog
-   │   (sección 17 cap. 05)
-   └── siguiente release 0.2.0 con el mismo proceso
-       (Error 6 si el proceso solo funciona «la primera
-       vez»: no es proceso, es ritual)
+    │
+    ├── main sigue creciendo en «desarrollo»
+    ├── cambio no compatible → lo notas en changelog
+    │   (sección 17 cap. 05)
+    └── siguiente release 0.2.0 con el mismo proceso
+        (Error 6 si el proceso solo funciona «la primera
+        vez»: no es proceso, es ritual)
 ```
 
 ```text
-   │
-   └── «¿qué versión tengo en producción?» es la
-       pregunta que este proyecto te enseña a responder
-       para siempre
+    │
+    └── «¿qué versión tengo en producción?» es la
+        pregunta que este proyecto te enseña a responder
+        para siempre
 ```
 
 ---
@@ -302,24 +301,27 @@ Entregar una herramienta Python con pruebas bloqueantes y release 0.1.0 publicad
 
 ```text
 changelog → tag v0.1.0 → release en plataforma
-   │        → artefacto del CI
-   └── verifica: ¿quién hizo el zip?
+    │        → artefacto del CI
+    └── verifica: ¿quién hizo el zip?
 ```
 
 ### Paso 6: entrega
 
 ```text
 Checklist:
-   [ ] estructura + gitignore limpio
-   [ ] pruebas bloqueantes (probadas en negativo)
-   [ ] instalación en limpio verificada
-   [ ] README con uso real
-   [ ] release 0.1.0 con notas y artefacto del CI
+    [ ] estructura + gitignore limpio
+    [ ] pruebas bloqueantes (probadas en negativo)
+    [ ] instalación en limpio verificada
+    [ ] README con uso real
+    [ ] release 0.1.0 con notas y artefacto del CI
 ```
 
 ### Resultado esperado
 
 Herramienta instalable por terceros, suite fiable y primer release reproducible desde el pipeline.
+
+### Ejercicio de transferencia
+Aplica el mismo concepto de pruebas como contrato y release versionado a un proyecto de utilidad de línea de comandos para administración de sistemas: crea un repositorio para un herramienta que monitorice el uso de disco, incluye pruebas unitarias que verifiquen la lógica de detección de umbrales, y usa un pipeline que genere un release versionado cada vez que se taggea un commit.
 
 ### Conclusión esperada
 
@@ -332,20 +334,20 @@ Con el primer release automatizado entiendes algo que cambia tu carrera: un proy
 ### 7.1. De este proyecto a la vida real
 
 ```text
-   │
-   ├── semver + changelog + notas: exactamente lo que
-   │   se exige en un equipo real (sección 17/26 cap.
-   │   02)
-   │
-   ├── dependencias fijadas + Dependabot (Proyecto 4)
-   │   + SAST básico = el arranque de la sección 20
-   │
-   ├── el «release por tag» es la semilla de la entrega
-   │   continua de la sección 22 cap. 04
-   │
-   └── con datos del Proyecto 6 añadirás artefactos no
-       codeables (datasets, reportes) al mismo esquema
-       (sección 21 cap. 05)
+    │
+    ├── semver + changelog + notas: exactamente lo que
+    │   se exige en un equipo real (sección 17/26 cap.
+    │   02)
+    │
+    ├── dependencias fijadas + Dependabot (Proyecto 4)
+    │   + SAST básico = el arranque de la sección 20
+    │
+    ├── el «release por tag» es la semilla de la entrega
+    │   continua de la sección 22 cap. 04
+    │
+    └── con datos del Proyecto 6 añadirás artefactos no
+        codeables (datasets, reportes) al mismo esquema
+        (sección 21 cap. 05)
 ```
 
 ### 7.2. Resumen
@@ -365,6 +367,15 @@ La idea principal es:
 
 ---
 
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Cuál es el concepto central que se introduce en este capítulo y por qué es importante para el flujo de trabajo?
+2. ¿Cómo se aplica el concepto práctico descrito en las secciónes de práctica guiada a un escenario real?
+3. ¿Qué errores comunes se destacan en este capítulo y cómo se pueden prevenir siguiendo los pasos recomendados?
+4. ¿De qué manera este capítulo se conecta con el siguiente proyecto en la progresión del aprendizaje?
+5. ¿Qué hábito o práctica clave se debe internalizar al completar este capítulo?
 ## Próximo paso
 
 Ya liberas versiones con pruebas.
