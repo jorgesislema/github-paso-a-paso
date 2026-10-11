@@ -8,17 +8,16 @@ El Proyecto 3 cambia el foco: de entradas por fecha a una **colección con estru
 
 ## Mapa conceptual de este capítulo
 
-```text
-Proyecto 3: recetario
-       │
-       ├── 1. Qué construyes y qué conceptos incorpora
-       ├── 2. Requisitos del proyecto
-       │   ├── 3. La estructura de una receta (el repo)
-       │   └── 4. El flujo de la colección con Git
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Proyecto 3: recetario))
+    1. Qué construyes y qué conceptos incorpora
+    2. Requisitos del proyecto
+      3. La estructura de una receta (el repo)
+      4. El flujo de la colección con Git
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional + resumen
 ```
 
 ---
@@ -27,38 +26,38 @@ Proyecto 3: recetario
 
 ```text
 EL PROYECTO:
-   │
-   ├── un recetario: 10+ recetas con campos fijos
-   │   (nombre, tiempo, raciones, ingredientes, pasos,
-   │   etiquetas) y carpetas por categoría
-   │
-   └── un índice vivo (README) y un check estructural
-       que garantiza que cada receta cumple la
-       plantilla (secciones 14, 16, 19)
+    │
+    ├── un recetario: 10+ recetas con campos fijos
+    │   (nombre, tiempo, raciones, ingredientes, pasos,
+    │   etiquetas) y carpetas por categoría
+    │
+    └── un índice vivo (README) y un check estructural
+        que garantiza que cada receta cumple la
+        plantilla (secciones 14, 16, 19)
 ```
 
 ```text
 CONCEPTOS NUEVOS (secciones 14, 16, 19):
-   │
-   ├── campos fijos = primer «esquema» de texto
-   │   (sección 14)
-   ├── categorías y etiquetas como convención
-   │   (sección 16)
-   ├── índice como documento vivo (sección 14)
-   ├── búsqueda de código: hallar una receta por
-   │   ingrediente (sección 04 — práctica en la web)
-   └── primer check sobre contenido: script que valida
-       campos + workflow en PR (sección 19)
+    │
+    ├── campos fijos = primer «esquema» de texto
+    │   (sección 14)
+    ├── categorías y etiquetas como convención
+    │   (sección 16)
+    ├── índice como documento vivo (sección 14)
+    ├── búsqueda de código: hallar una receta por
+    │   ingrediente (sección 04 — práctica en la web)
+    └── primer check sobre contenido: script que valida
+        campos + workflow en PR (sección 19)
 ```
 
 ```text
-   │
-   └── el aprendizaje central: ESTRUCTURA es una
-       promesa — cuando cada receta garantiza los
-       mismos campos, el índice y los checks dejan de
-       ser trabajo manual y se vuelven consecuencia
-       del flujo (Error 1 si cada receta tiene su
-       propio formato)
+    │
+    └── el aprendizaje central: ESTRUCTURA es una
+        promesa — cuando cada receta garantiza los
+        mismos campos, el índice y los checks dejan de
+        ser trabajo manual y se vuelven consecuencia
+        del flujo (Error 1 si cada receta tiene su
+        propio formato)
 ```
 
 ---
@@ -67,49 +66,49 @@ CONCEPTOS NUEVOS (secciones 14, 16, 19):
 
 ```text
 CONTENIDO:
-   │
-   ├── 10+ recetas en 3–4 categorías (recetas reales,
-   │   no lorem ipsum — Error 2 si todo queda en una
-   │   sola categoría: no hay taxonomía)
-   ├── plantilla de receta con campos fijos que se
-   │   copia al escribir (Error 3 si cada receta
-   │   inventa sus campos)
-   └── índice por categorías en el README con enlace a
-       cada receta (Error 4 si se desincroniza de las
-       recetas)
+    │
+    ├── 10+ recetas en 3–4 categorías (recetas reales,
+    │   no lorem ipsum — Error 2 si todo queda en una
+    │   sola categoría: no hay taxonomía)
+    ├── plantilla de receta con campos fijos que se
+    │   copia al escribir (Error 3 si cada receta
+    │   inventa sus campos)
+    └── índice por categorías en el README con enlace a
+        cada receta (Error 4 si se desincroniza de las
+        recetas)
 ```
 
 ```text
 CONVENCIONES (escríbelas en el README):
-   │
-   ├── nombres de archivo: kebab-case sin acentos
-   │   (slug: `cenas/pasta-al-pesto.md`)
-   ├── campos obligatorios: tiempo, raciones,
-   │   ingredientes (lista), pasos (numerados),
-   │   etiquetas
-   └── taxonomía: máx. 4 categorías, una carpeta por
-       categoría (Error 5 si las categorías se
-       multiplican «por necesidad»)
+    │
+    ├── nombres de archivo: kebab-case sin acentos
+    │   (slug: `cenas/pasta-al-pesto.md`)
+    ├── campos obligatorios: tiempo, raciones,
+    │   ingredientes (lista), pasos (numerados),
+    │   etiquetas
+    └── taxonomía: máx. 4 categorías, una carpeta por
+        categoría (Error 5 si las categorías se
+        multiplican «por necesidad»)
 ```
 
 ```text
 AUTOMATIZACIÓN (sección 19 cap. 01/02):
-   │
-   ├── script de validación (Python o PowerShell):
-   │   verifica que cada `recetas/**/*.md` trae los
-   │   campos obligatorios
-   ├── workflow que lo corre en PR y en push a main
-   │   (triggers `pull_request` + `push`)
-   └── prueba: receta con campos faltantes → check
-       rojo (Error 6 si nunca demuestras que el check
-       bloquea)
+    │
+    ├── script de validación (Python o PowerShell):
+    │   verifica que cada `recetas/**/*.md` trae los
+    │   campos obligatorios
+    ├── workflow que lo corre en PR y en push a main
+    │   (triggers `pull_request` + `push`)
+    └── prueba: receta con campos faltantes → check
+        rojo (Error 6 si nunca demuestras que el check
+        bloquea)
 ```
 
 ```text
-   │
-   └── el check es tu primera «puerta de calidad»: el
-       Proyecto 4 la convierte en pipeline completo
-       con build y despliegue
+    │
+    └── el check es tu primera «puerta de calidad»: el
+        Proyecto 4 la convierte en pipeline completo
+        con build y despliegue
 ```
 
 ---
@@ -119,77 +118,68 @@ AUTOMATIZACIÓN (sección 19 cap. 01/02):
 ```text
 ESTRUCTURA SUGERIDA (la tuya puede variar, pero
 documenta):
-   │
-   ├── README.md        → índice por categorías + cómo
-   │                      añadir + convenciones
-   ├── plantilla/
-   │     receta.md      → plantilla a copiar
-   ├── recetas/
-   │     01-cenas/      → una carpeta por categoría
-   │     02-postres/
-   │     03-bebidas/
-   ├── scripts/
-   │     validar.py     → validación de campos
-   └── .github/
-         workflows/     → check estructural
+    │
+    ├── README.md        → índice por categorías + cómo
+    │                      añadir + convenciones
+    ├── plantilla/
+    │     receta.md      → plantilla a copiar
+    ├── recetas/
+    │     01-cenas/      → una carpeta por categoría
+    │     02-postres/
+    │     03-bebidas/
+    ├── scripts/
+    │     validar.py     → validación de campos
+    └── .github/
+          workflows/     → check estructural
 ```
 
 ```text
 LA PLANTILLA (campos fijos — Error 3):
-   │
-   ├── título (H1)
-   ├── datos: tiempo, raciones, dificultad
-   ├── ingredientes (lista markdown)
-   ├── pasos (lista numerada)
-   └── etiquetas (para filtros futuros — serán
-       metadatos en el proyecto de datos)
+    │
+    ├── título (H1)
+    ├── datos: tiempo, raciones, dificultad
+    │   ingredientes (lista markdown)
+    ├── pasos (lista numerada)
+    └── etiquetas (para filtros futuros — serán
+        metadatos en el proyecto de datos)
 ```
 
 ```text
-   │
-   └── la plantilla es el contrato: el script, el
-       índice y la búsqueda solo funcionan si todas
-       las recetas la cumplen (sección 14)
+    │
+    └── la plantilla es el contrato: el script, el
+        índice y la búsqueda solo funcionan si todas
+        las recetas la cumplen (sección 14)
 ```
 
 ---
 
 ## 4. El flujo de la colección con Git
 
-```text
-EL CICLO DE UNA RECETA (practícalo 10 veces):
-   │
-   ├── 1. issue: «receta solicitada X» con etiqueta
-   │   de categoría (sección 16)
-   ├── 2. rama desde la base actual:
-   │   `receta/agrega-pasta-pesto`
-   ├── 3. copias la plantilla y escribes la receta
-   │   (commit: «Agrega receta: título»)
-   ├── 4. check local: corres el script de validación
-   │   y pasa (no esperes al CI)
-   ├── 5. PR con contexto (qué receta y por qué) +
-   │   actualización del índice en el MISMO PR
-   ├── 6. revisión con pausa (tú de mañana o segundo
-   │   lector — sección 15)
-   └── 7. merge → check verde → issue cerrado
-       (Error 6 si el issue queda abierto)
+```mermaid
+flowchart TD
+    A["1. issue: «receta solicitada X» con etiqueta de categoría (sección 16)"] --> B["2. rama desde la base actual: `receta/agrega-pasta-pesto`"]
+    B --> C["3. copias la plantilla y escribes la receta (commit: «Agrega receta: título\")"]
+    C --> D["4. check local: corres el script de validación y pasa (no esperes al CI)"]
+    D --> E["5. PR con contexto (qué receta y por qué) + actualización del índice en el MISMO PR"]
+    E --> F["6. revisión con pausa (tú de mañana o segundo lector — sección 15)"]
+    F --> G["7. merge → check verde → issue cerrado (Error 6 si el issue queda abierto)"]
 ```
 
 ```text
-   │
-   └── variación: buscar recetas por ingrediente con
-       code search desde la web — práctica: «¿qué
-       recetas llevan camarón?» con una búsqueda que
-       llega al resultado sin abrir cada archivo
-       (sección 04)
+    │
+    └── variación: buscar recetas por ingrediente con
+        code search desde la web — práctica: «¿qué
+        recetas llevan camarón?» con una búsqueda que
+        llega al resultado sin abrir cada archivo
+        (sección 04)
 ```
 
 ```text
-   │
-   └── con 10 ciclos, el recetario deja de ser «un
-       montón de textos» y se convierte en colección
-       con contrato — y eso es lo que entrega el
-       Proyecto 3
+    │
+    └── con 10 ciclos, el recetario deja de ser «un
+        montón de textos» y se convierte en colección
+        con contrato — y eso es lo que entrega el
+        Proyecto 3
 ```
 
 ---
@@ -280,7 +270,7 @@ EL CICLO DE UNA RECETA (practícalo 10 veces):
 
 **Riesgos:** metadatos que se vuelven ruido.
 
-**Solución:** taxonomía escrita y acotada (punto 2).
+**Solución:** taxonomía escrita y acotada (punto 3).
 
 **Cómo se evita:** elección de etiquetas desde la lista documentada.
 
@@ -325,9 +315,15 @@ Entregar un recetario con 10+ recetas, 3 categorías, índice en sincronía y ch
 
 ### Paso 4: el resto de la colección
 
-```text
-issue → rama → plantilla → script → PR (+ índice) →
-revisión con pausa → merge → issue cerrado
+```mermaid
+flowchart TD
+    A["issue"] --> B["rama"]
+    B --> C["plantilla"]
+    C --> D["script"]
+    D --> E["PR (+ índice)"]
+    E --> F["revisión con pausa"]
+    F --> G["merge"]
+    G --> H["issue cerrado"]
 ```
 
 1. Repite hasta llegar a 10+ recetas en 3 categorías.
@@ -340,16 +336,19 @@ revisión con pausa → merge → issue cerrado
 
 ```text
 Checklist:
-   [ ] 10+ recetas con la plantilla
-   [ ] 3–4 categorías documentadas
-   [ ] índice README en sincronía (sin enlaces rotos)
-   [ ] check estructural requerido (probado en negativo)
-   [ ] issues cerrados con enlace a la receta
+    [ ] 10+ recetas con la plantilla
+    [ ] 3–4 categorías documentadas
+    [ ] índice README en sincronía (sin enlaces rotos)
+    [ ] check estructural requerido (probado en negativo)
+    [ ] issues cerrados con enlace a la receta
 ```
 
 ### Resultado esperado
 
 Colección donde el índice, la búsqueda y el check funcionan porque la estructura está garantizada — no porque alguien la revise a mano.
+
+### Ejercicio de transferencia
+Aplica el mismo concepto de estructura como contrato a un proyecto de gestión de inventario: crea un repositorio para un inventario de productos, define una plantilla fija para cada producto (nombre, SKU, cantidad, ubicación), usa un script para validar la plantilla en cada PR, y mantén un índice en el README que se actualice automáticamente.
 
 ### Conclusión esperada
 
@@ -362,22 +361,23 @@ Cuando cada receta garantiza los mismos campos, la colección deja de ser «text
 ### 7.1. De este proyecto a la vida real
 
 ```text
-   │
-   ├── campos fijos = primer anticipo del modelo de
-   │   datos: en el Proyecto 6 esto se vuelve esquema
-   │   con aserciones (sección 21 cap. 05/06)
-   │
-   ├── el check estructural es el antecesor del
-   │   lint/validación del pipeline que el Proyecto 4
-   │   convierte en fábrica de calidad completa
-   │   (sección 19/22)
-   │
-   ├── categorías + etiquetas = metadatos: la materia
-   │   prima para filtros y estadísticas (anticipo de
-   │   la sección 21)
-   │
-   └── índice + búsqueda = cómo un equipo documenta y
-       recupera su conocimiento (sección 14)
+    │
+    ├── campos fijos = primer anticipo del modelo de
+    │   datos: en el Proyecto 6 esto se vuelve esquema
+    │   con aserciones (sección 21 cap. 05/06)
+    │
+    ├── el check estructural es el antecesor del
+    │   lint/validación del pipeline que el Proyecto 4
+    │   convierte en fábrica de calidad completa
+    │   (sección 19/22)
+    │
+    ├── categorías + etiquetas = metadatos: la materia
+    │   prima para filtros y estadísticas (anticipo de
+    │   la sección 21)
+    │
+    ├── índice + búsqueda = cómo un equipo documenta y
+    │   recupera su conocimiento (sección 14)
+    │
 ```
 
 ### 7.2. Resumen
@@ -397,6 +397,18 @@ La idea principal es:
 
 ---
 
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué es importante que cada receta tenga los mismos campos fijos en un recetario estructurado?
+2. ¿Cómo contribuye el índice vivo en el README a la utilidad del recetario como colección?
+3. ¿Qué papel juega el check estructural en el flujo de trabajo con pull requests?
+4. ¿Cómo asegura el ciclo issue → rama → plantilla → script → PR → revisión → merge → cierre la calidad y la trazabilidad?
+5. ¿De qué manera la progresión del recetario al proyecto de página web refleja la evolución de un producto de texto a un producto con pipeline de calidad?
+6. ¿Qué riesgos existen si cada receta utiliza su propio formato y cómo se mitigan con la plantilla como contrato?
+7. ¿Cómo permite la búsqueda por ingrediente con code search recuperar conocimiento sin abrir cada archivo?
+8. ¿Por qué es necesario practicar el ciclo múltiples veces hasta convertirlo en hábito?
 ## Próximo paso
 
 Tu colección ya tiene estructura que se verifica sola.
