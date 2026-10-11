@@ -8,17 +8,16 @@ Esta sección es un **manual de diagnóstico**: situaciones reales, qué signifi
 
 ## Mapa conceptual de este capítulo
 
-```text
-Contraseñas y acceso
-       │
-       ├── 1. Olvidé mi contraseña de GitHub
-       ├── 2. No me deja clonar/push (autenticación)
-       │   ├── 3. Token o credencial inválida
-       │   └── 4. Segundo factor inaccesible
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Contraseñas y acceso))
+    1. Olvidé mi contraseña de GitHub
+    2. No me deja clonar/push (autenticación)
+      3. Token o credencial inválida
+      4. Segundo factor inaccesible
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional + resumen
 ```
 
 ---
@@ -322,7 +321,11 @@ Acceso verificado con método único claro, credenciales mínimas rotadas y recu
 
 «Olvidé la contraseña» deja de ser una crisis cuando la recuperación, los códigos y los tokens mínimos estaban pensados de antemano — el acceso es parte del diseño de tu entorno, no de la suerte.
 
----
+### Ejercicio de transferencia
+Aplica el plan de recuperación de acceso a un repositorio en GitLab (o Bitbucket): crea un token con scopes mínimos, almacénalo en el gestor de credenciales y verifica clonar/push. Entrega un registro de los pasos y una captura del token activo.
+
+
+----
 
 ## 7. Nivel profesional + resumen
 
@@ -364,6 +367,17 @@ La idea principal es:
 > **Los problemas de acceso se resuelven en minutos cuando sabes qué capa falla — plataforma, credencial o permiso — y en días cuando hay que descubrirlo bajo presión: la preparación es la diferencia.**
 
 ---
+
+## Autopreguntas de cierre
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+1. ¿Cuál es la diferencia entre la contraseña de GitHub y la credencial de Git?
+2. ¿Qué tres preguntas forman el diagnóstico de autenticación?
+3. ¿Qué debes hacer si tu token expiró o tiene scope insuficiente?
+4. ¿Cómo recuperar el acceso si perdiste tu segundo factor y no tienes códigos de recuperación?
+5. ¿Qué riesgos existen al creer que el proyecto se perdió al no poder acceder a GitHub?
+6. ¿Cómo evitar que un token guardado en un archivo del repo siga expuesto en el historial?
+7. ¿Por qué es importante guardar códigos de recuperación de 2FA fuera del dispositivo principal?
+8. ¿Qué indica el error «Permission denied (publickey)» y cómo resolverlo?
 
 ## Próximo paso
 
