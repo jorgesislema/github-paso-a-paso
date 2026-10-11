@@ -8,18 +8,17 @@ La sección 20 cap. 05 mapeó la cadena de suministro y el SBOM; este capítulo 
 
 ## Mapa conceptual de este capítulo
 
-```text
-Cadena de suministro en el flujo
-       │
-       ├── 1. La cadena como política, no como informe
-       ├── 2. Entrada: terceros y dependencias en el PR
-       │   ├── 3. Construcción: identidad del artefacto
-       │   ├── 4. Salida: firmar, publicar, registrar
-       │   └── 5. Incidente de suministro: el guion
-       │
-       ├── 6. Errores comunes con diagnóstico completo
-       ├── 7. Práctica guiada
-       └── 8. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Cadena de suministro en el flujo))
+    1. La cadena como política, no como informe
+    2. Entrada: terceros y dependencias en el PR
+      3. Construcción: identidad del artefacto
+      4. Salida: firmar, publicar, registrar
+      5. Incidente de suministro: el guion
+    6. Errores comunes con diagnóstico completo
+    7. Práctica guiada
+    8. Nivel profesional + resumen
 ```
 
 ---
@@ -122,19 +121,11 @@ REPRODUCCIÓN COMO DEFENSA:
 
 ## 4. Salida: firmar, publicar, registrar
 
-```text
-SALIDA SEGURA:
-   │
-   ├── firmar/attestar el artefacto desde el pipeline
-   │   (identidad de CI — OIDC, sección 20 cap. 07)
-   │
-   ├── publicar solo desde environment con aprobación
-   │   (sección 04 cap. 04)
-   │
-   ├── SBOM adjunto al release (sección 20 cap. 05)
-   │
-   └── registrar: entorno → versión → digest → quién
-       aprobó (sección 22 cap. 05)
+```mermaid
+flowchart TD
+    A["entorno"] --> B["versión"]
+    B --> C["digest"]
+    C --> D["quién aprobado"]
 ```
 
 ```text
@@ -357,6 +348,11 @@ La cadena de suministro se gobierna donde entra (PR), donde sale (release) y don
 
 ---
 
+### Ejercicio de transferencia
+
+Aplica el mismo enfoque de cuatro puertas (entrada, construcción, salida, respuesta) a otro tipo de cadena, por ejemplo la gestión de licencias de código abierto o la seguridad de un servicio de terceros (API). Define los criterios de entrada, cómo garantizas la construcción (por ejemplo, bloqueo de licencias restrictivas), qué verificas en la salida (por ejemplo, atribución y compatibilidad) y cómo preparás un guion de incidente (por ejemplo, vulnerabilidad descubierta en una dependencia). Entrega un breve documento que describa la política y el guion.
+
+
 ## 8. Nivel profesional + resumen
 
 ### 8.1. Cadena gobernada a escala
@@ -401,6 +397,18 @@ La idea principal es:
 > **La confianza no se concede al instalar: se gobierna al entrar, se verifica al salir y se recupera con un guion ya escrito — el día del aviso, lo único que importa es acotar en minutos.**
 
 ---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué es esencial considerar la cadena de suministro como una política de cuatro puertas (entrada, construcción, salida, respuesta) en lugar de centrarse solo en uno de esos aspectos?
+2. ¿Cómo afecta la falta de una checklist de entrada rigurosa al riesgo de incorporar dependencias peligrosas o no verificadas, y qué pasos mitigan ese riesgo?
+3. ¿De qué manera la reproducibilidad de la construcción (receta fija y registro) permite responder eficazmente a un incidente de suministro, y qué ocurre si no se puede reconstruir el artefacto?
+4. ¿Qué ventajas aporta la combinación de firma, SBOM, registro y verificación activa en el consumidor frente a solo firmar o solo generar un SBOM?
+5. ¿Cómo contribuye un guion de incidente previo y ensayado a reducir el tiempo de respuesta y a mejorar la lección aprendida frente a un verdadero incidente de suministro?
+6. ¿De qué forma la integración de métricas y simulacros en un programa profesional garantiza la mejora continua de la política de cadena de suministro?
+
 
 ## Próximo paso
 
