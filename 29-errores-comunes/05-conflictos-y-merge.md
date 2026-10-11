@@ -363,7 +363,11 @@ Tres conflictos resueltos (merge, pull, rebase) y tu regla escrita.
 
 El conflicto deja de dar miedo cuando es un procedimiento numerado: Git detiene, tú decides, Git cierra — y ninguna pausa se parece ya a un error.
 
----
+### Ejercicio de transferencia
+Aplica el mismo procedimiento de 7 pasos a un conflicto que ocurra durante un cherry-pick: simula el conflicto, sigue los pasos (status, leer, mezclar, quitar marcas, add, check, cerrar) y verifica que el cherry-pick continúe. Entrega un registro de los comandos y la salida de `git cherry-pick --continue`.
+
+
+----
 
 ## 7. Nivel profesional + resumen
 
@@ -403,6 +407,17 @@ La idea principal es:
 > **El conflicto no es el problema: es Git señalándote exactamente dónde una decisión humana vale más que cualquier algoritmo — y un procedimiento fijo convierte esa decisión en rutina.**
 
 ---
+
+## Autopreguntas de cierre
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+1. ¿Qué indica la marca 'HEAD' en un conflicto de merge?
+2. ¿Qué indica la marca 'entrante' o 'MERGE_HEAD'?
+3. ¿Cuál es el orden correcto del procedimiento de 7 pasos para resolver un conflicto?
+4. ¿Qué debes hacer si después de resolver un conflicto olvidas ejecutar `git add`?
+5. ¿Cómo evitar que las marcas de conflicto queden en el historial tras un merge?
+6. ¿Qué diferencias hay entre resolver un conflicto en merge vs. rebase?
+7. ¿Por qué es importante ejecutar `git status` antes de intentar resolver un conflicto?
+8. ¿Qué comando usarías para abortar un merge conflictivo y volver al estado anterior?
 
 ## Próximo paso
 
