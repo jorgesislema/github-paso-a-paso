@@ -8,17 +8,16 @@ Manual de diagnóstico, capítulo 2: **el historial**. Escenarios clásicos — 
 
 ## Mapa conceptual de este capítulo
 
-```text
-Commits y historial
-       │
-       ├── 1. El criterio que lo decide todo: ¿publicado?
-       ├── 2. Commit equivocado (y cómo deshacerlo)
-       │   ├── 3. Commit perdido (recuperación)
-       │   └── 4. Reset incorrecto (salir vivo)
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Commits y historial))
+    1. El criterio que lo decide todo: ¿publicado?
+    2. Commit equivocado (y cómo deshacerlo)
+      3. Commit perdido (recuperación)
+      4. Reset incorrecto (salir vivo)
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional + resumen
 ```
 
 ---
@@ -398,7 +397,11 @@ Los tres escenarios ejecutados y recuperados con éxito en práctica, con tu pro
 
 Un error de historial deja de ser pánico cuando tienes un criterio (¿publicado?), una herramienta (reflog) y un protocolo probado: lo practicado en calma se recupera en caliente.
 
----
+### Ejercicio de transferencia
+Aplica el mismo flujo de diagnóstico (publicado vs privado) a una situación de rebase interactivo que haya causado conflictos: intenta abortar el rebase, recupera la rama original mediante reflog y luego realiza un rebase preservando los cambios. Entrega un registro de los comandos usados y la salida de `git status` antes y después.
+
+
+----
 
 ## 7. Nivel profesional + resumen
 
@@ -438,6 +441,17 @@ La idea principal es:
 > **El historial casi nunca se pierde: se esconde — y quien conoce el mapa «publicado/privado» y el reflog convierte un susto en un procedimiento de cinco minutos.**
 
 ---
+
+## Autopreguntas de cierre
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+1. ¿Cuál es el criterio que determina si un cambio en el historial se puede reescribir?
+2. ¿Cómo recuperas un commit que crees perdido tras un reset?
+3. ¿Qué diferencia hay entre reset soft, mixed y hard en cuanto a seguridad y posibilidad de recuperación?
+4. ¿Cuándo es apropiado usar `git revert` en lugar de `git reset` o `git amend`?
+5. ¿Qué riesgos implica ejecutar un `git reset --hard` en una rama pública?
+6. ¿Cómo evitar que un amend público cause problemas a otros colaboradores?
+7. ¿Qué es el reflog y cómo te ayuda a recuperar commits aparentemente perdidos?
+8. ¿Por qué es importante evitar force push en ramas compartidas?
 
 ## Próximo paso
 
