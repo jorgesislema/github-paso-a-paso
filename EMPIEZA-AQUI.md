@@ -885,7 +885,7 @@ Si quieres llegar al nivel avanzado:
 
 Si te interesa saber **por qué** el curso está ordenado así — y no solo **por dónde** empezar:
 
-[`00-orientacion/07-como-fue-disenado-este-curso.md`](00-orientacion/07-como-fue-disenado-este-curso.md)
+[`00-orientacion/17-como-fue-disenado-este-curso.md`](00-orientacion/17-como-fue-disenado-este-curso.md)
 
 ---
 
