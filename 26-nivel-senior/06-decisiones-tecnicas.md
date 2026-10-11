@@ -7,19 +7,16 @@ Todo el curso converge aquí: la pregunta senior no es «¿qué comando?» sino 
 ---
 
 ## Mapa conceptual de este capítulo
-
-```text
-Decisiones técnicas
-       │
-       ├── 1. Qué hace «técnica» a una decisión
-       ├── 2. El método completo (seis pasos)
-       │   ├── 3. Comunicar la decisión (quién y cómo)
-       │   └── 4. Ejecutar y revertir (la decisión vive
-       │       después)
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Decisiones técnicas))
+    1. Qué hace «técnica» a una decisión
+    2. El método completo (seis pasos)
+      3. Comunicar la decisión (quién y cómo)
+      4. Ejecutar y revertir (la decisión vive después)
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional + resumen
 ```
 
 ---
@@ -29,77 +26,69 @@ Decisiones técnicas
 ```text
 DECISIÓN TÉCNICA = elegir entre opciones con
 CONSECUENCIAS técnicas verificables
-   │
-   ├── no es opinión: las opciones se pueden PROBAR
-   │   (piloto, benchmark, spike — Error 1 si «decidir»
-   │   es solo discutir)
-   │
-   ├── no es irreversible por defecto: se valora el
-   │   coste de cambio (Error 2 si se trata igual lo
-   │   reversible que lo irreversible — Error 5
-   │   sección 25 cap. 06)
-   │
-   └── no es individual cuando cruza límites: dueños
-       afectados opinan y deciden con proceso (Error 4 sección 03 cap. 25)
+    │
+    ├── no es opinión: las opciones se pueden PROBAR
+    │   (piloto, benchmark, spike — Error 1 si «decidir»
+    │   es solo discutir)
+    │
+    ├── no es irreversible por defecto: se valora el
+    │   coste de cambio (Error 2 si se trata igual lo
+    │   reversible que lo irreversible — Error 5
+    │   sección 25 cap. 06)
+    │
+    └── no es individual cuando cruza límites: dueños
+        afectados opinan y deciden con proceso (Error 4 sección 03 cap. 25)
 ```
 
 ```text
 DOMINIOS DE ESTA SECCIÓN (dónde decide un senior):
-   │
-   ├── flujo: workflows y ramas (cap. 01)
-   ├── calidad: revisión y releases (cap. 02)
-   ├── gobierno: seguridad y automatización (cap. 03)
-   ├── resiliencia: incidentes y desastres (cap. 04)
-   └── evolución: mantenimiento y escala (cap. 05)
+    │
+    ├── flujo: workflows y ramas (cap. 01)
+    ├── calidad: revisión y releases (cap. 02)
+    ├── gobierno: seguridad y automatización (cap. 03)
+    ├── resiliencia: incidentes y desastres (cap. 04)
+    └── evolución: mantenimiento y escala (cap. 05)
 ```
 
 ```text
-   │
-   └── la decisión técnica madura RESUELVE TENSIÓN:
-       siempre hay un trade-off (velocidad vs. control,
-       estricto vs. simple, ahora vs. después) — el
-       senior no elimina la tensión, la ELIGE con
-       conocimiento (Error 3 si se busca la opción sin
-       pago)
+    │
+    └── la decisión técnica madura RESUELVE TENSIÓN:
+        siempre hay un trade-off (velocidad vs. control,
+        estricto vs. simple, ahora vs. después) — el
+        senior no elimina la tensión, la ELIGE con
+        conocimiento (Error 3 si se busca la opción sin
+        pago)
 ```
 
 ---
 
 ## 2. El método completo (seis pasos)
-
-```text
-LOS SEIS PASOS (síntesis del curso):
-   │
-   ├── 1. DEFINIR: qué problema, para quién, desde
-   │      cuándo duele (Error 1 sección 25 cap. 06)
-   ├── 2. CONTEXTO: factores reales — equipo, riesgo,
-   │      escala, automatización (cap. 01 punto 1)
-   ├── 3. OPCIONES: 2–4 reales + «no hacer nada»
-   ├── 4. CONSECUENCIAS: tabla de ganamos/pagamos en
-   │      términos propios (Error 3 prevención)
-   ├── 5. REVERSIBILIDAD: ¿cuánto cuesta deshacer? →
-   │      rigor proporcional (Error 2 prevención)
-   └── 6. REGISTRO: ADR con «reevaluar si» (sección 25
-          cap. 06 punto 3)
+```mermaid
+flowchart TD
+    A["1. DEFINIR: qué problema, para quién, desde cuándo duele"] --> B["2. CONTEXTO: factores reales — equipo, riesgo, escala, automatización"]
+    B --> C["3. OPCIONES: 2–4 reales + «no hacer nada»"]
+    C --> D["4. CONSECUENCIAS: tabla de ganamos/pagamos en términos propios"]
+    D --> E["5. REVERSIBILIDAD: ¿cuánto cuesta deshacer? → rigor proporcional"]
+    E --> F["6. REGISTRO: ADR con «reevaluar si»"]
 ```
 
 ```text
 DÓNDE ENTRA CADA HERRAMIENTA DEL CURSO:
-   │
-   ├── spike/piloto → probar opciones (Error 1)
-   ├── benchmark → consecuencias en números (CI,
-   │   rendimiento)
-   ├── checklist de puertas → consecuencias de
-   │   seguridad (sección 24)
-   └── métricas → línea base ANTES de decidir (Error 3 — sección 24 cap. 06)
+    │
+    ├── spike/piloto → probar opciones (Error 1)
+    ├── benchmark → consecuencias en números (CI,
+    │   rendimiento)
+    ├── checklist de puertas → consecuencias de
+    │   seguridad (sección 24)
+    └── métricas → línea base ANTES de decidir (Error 3 — sección 24 cap. 06)
 ```
 
 ```text
-   │
-   └── seis pasos en una tarde para lo normal; semanas
-       con RFC y varios dueños para lo irreversible —
-       el MÉTODO es el mismo, el RITMO cambia (Error 2
-       prevención)
+    │
+    └── seis pasos en una tarde para lo normal; semanas
+        con RFC y varios dueños para lo irreversible —
+        el MÉTODO es el mismo, el RITMO cambia (Error 2
+        prevención)
 ```
 
 ---
@@ -108,34 +97,34 @@ DÓNDE ENTRA CADA HERRAMIENTA DEL CURSO:
 
 ```text
 A QUIÉN (los círculos):
-   │
-   ├── ejecutores (a quien tocará hacerlo): PR del ADR,
-   │   explicación de cambios
-   ├── directamente afectados (otros equipos): aviso
-   │   con plazo y migración
-   └── ecosistema (todos): registro público en el repo
-       (Error 4 si se decide en un canal privado)
+    │
+    ├── ejecutores (a quien tocará hacerlo): PR del ADR,
+    │   explicación de cambios
+    ├── directamente afectados (otros equipos): aviso
+    │   con plazo y migración
+    └── ecosistema (todos): registro público en el repo
+        (Error 4 si se decide en un canal privado)
 ```
 
 ```text
 CÓMO (formato senior):
-   │
-   ├── una página: contexto → opciones → decisión →
-   │   pagos → reevaluación
-   │
-   ├── honestidad con los PAGOS (Error 5 si solo se
-   │   comunican ventajas: quien ejecuta descubre el
-   │   precio solo)
-   │
-   └── plazo y dueño de la transición (no «ya»: cuándo
-       y quién)
+    │
+    ├── una página: contexto → opciones → decisión →
+    │   pagos → reevaluación
+    │
+    ├── honestidad con los PAGOS (Error 5 si solo se
+    │   comunican ventajas: quien ejecuta descubre el
+    │   precio solo)
+    │
+    └── plazo y dueño de la transición (no «ya»: cuándo
+        y quién)
 ```
 
 ```text
-   │
-   └── la comunicación es PARTE de la decisión: una
-       decisión correcta mal comunicada se ejecuta mal
-       (Error 4)
+    │
+    └── la comunicación es PARTE de la decisión: una
+        decisión correcta mal comunicada se ejecuta mal
+        (Error 4)
 ```
 
 ---
@@ -144,37 +133,37 @@ CÓMO (formato senior):
 
 ```text
 EJECUCIÓN:
-   │
-   ├── la decisión se convierte en trabajo: ADR →
-   │   tareas con dueño y fecha (Error 6 si el ADR
-   │   «cumplió» al publicarse)
-   ├── piloto primero en lo que se pueda (Error 1)
-   └── verificar: ¿la decisión produce lo esperado?
-       (línea base vs. después — métricas)
+    │
+    ├── la decisión se convierte en trabajo: ADR →
+    │   tareas con dueño y fecha (Error 6 si el ADR
+    │   «cumplió» al publicarse)
+    ├── piloto primero en lo que se pueda (Error 1)
+    └── verificar: ¿la decisión produce lo esperado?
+        (línea base vs. después — métricas)
 ```
 
 ```text
 REVERSIÓN (Error 2 prevención):
-   │
-   ├── para lo irreversible: plan de vuelta escrito
-   │   ANTES (rollback — Error 1 sección 26 cap.
-   │   04)
-   │
-   ├── para lo reversible: ejecutar con más confianza
-   │   (el coste de probar es bajo)
-   │
-   └── y la condición «reevaluar si»: el ADR nuevo que
-       SUPERSEDE al viejo — nunca se borra la historia
-       (Error 7 si la decisión se deshace «de facto»
-       sin registro)
+    │
+    ├── para lo irreversible: plan de vuelta escrito
+    │   ANTES (rollback — Error 1 sección 26 cap.
+    │   04)
+    │
+    ├── para lo reversible: ejecutar con más confianza
+    │   (el coste de probar es bajo)
+    │
+    └── y la condición «reevaluar si»: el ADR nuevo que
+        SUPERSEDE al viejo — nunca se borra la historia
+        (Error 7 si la decisión se deshace «de facto»
+        sin registro)
 ```
 
 ```text
-   │
-   └── cierre: cada decisión se revisa con su
-       condición; quien ejecuta reporta de vuelta si la
-       realidad contradice el ADR — esa es la señal de
-       un equipo maduro (Error 7)
+    │
+    └── cierre: cada decisión se revisa con su
+        condición; quien ejecuta reporta de vuelta si la
+        realidad contradice el ADR — esa es la señal de
+        un equipo maduro (Error 7)
 ```
 
 ---
@@ -352,6 +341,9 @@ ADR completo y aceptado, comunicación enviada, tareas creadas con responsable y
 
 Decidir en nivel senior es un ciclo corto y serio: contexto, opciones con pagos, registro, comunicación y ejecución reversible — repetido muchas veces, es exactamente lo que se llama juicio técnico.
 
+### Ejercicio de transferencia
+Toma una decisión técnica que tengas que tomar en tu trabajo actual (por ejemplo, elegir una nueva herramienta, cambiar una arquitectura o adoptar un nuevo proceso) y aplícale los seis pasos del método de decisión técnica. Entregable: un ADR completo que incluya contexto, tabla de consecuencias, decisión, pagos, condición de reevaluación y plan de ejecución.
+
 ---
 
 ## 7. Nivel profesional + resumen
@@ -359,25 +351,25 @@ Decidir en nivel senior es un ciclo corto y serio: contexto, opciones con pagos,
 ### 7.1. Decisiones a escala
 
 ```text
-   │
-   ├── umbrales: rápido (reversible, un dueño) ·
-   │   normal (ADR + afectados) · alto (RFC, piloto,
-   │   segunda mirada)
-   │
-   ├── cartera de decisiones: índice de ADRs con
-   │   estados y fechas de revisión (sección 25 cap.
-   │   06 Error 7)
-   │
-   ├── decisiones entre equipos: proceso ligero (proposición
-   │   → dueños → registro) (Error 4 sección 03
-   │   cap. 25)
-   │
-   ├── aprendizaje: decisiones revertidas se cuentan
-   │   como aprendizaje, no como fracaso (Error 7 —
-   │   la reversibilidad está para eso)
-   │
-   └── métricas: decisiones sin ejecutar, edad de
-       supersedidas, tiempo decisión→implementación
+    │
+    ├── umbrales: rápido (reversible, un dueño) ·
+    │   normal (ADR + afectados) · alto (RFC, piloto,
+    │   segunda mirada)
+    │
+    ├── cartera de decisiones: índice de ADRs con
+    │   estados y fechas de revisión (sección 25 cap.
+    │   06 Error 7)
+    │
+    ├── decisiones entre equipos: proceso ligero (proposición
+    │   → dueños → registro) (Error 4 sección 03
+    │   cap. 25)
+    │
+    ├── aprendizaje: decisiones revertidas se cuentan
+    │   como aprendizaje, no como fracaso (Error 7 —
+    │   la reversibilidad está para eso)
+    │
+    └── métricas: decisiones sin ejecutar, edad de
+        supersedidas, tiempo decisión→implementación
 ```
 
 ### 7.2. Resumen
@@ -397,6 +389,14 @@ La idea principal es:
 
 ---
 
+## Autopreguntas de cierre
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+1. ¿Cuál es la pregunta senior que guía el diseño de workflows y estrategias de ramas?
+2. ¿Cómo se elige la estrategia de ramificación más apropiada para un equipo?
+3. ¿Qué componentes forman el flujo completo desde el issue hasta el despliegue?
+4. ¿Cómo se mide la calidad del flujo y qué se hace para mejorarla?
+5. ¿Por qué es importante incluir el plan de vuelta (rollback) en el diseño del flujo?
+6. ¿Cómo se evita caer en errores comunes como elegir una estrategia sin base real?
 ## Próximo paso
 
 Has completado la sección de nivel senior.
