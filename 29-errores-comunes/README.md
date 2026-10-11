@@ -45,8 +45,20 @@ Lee los capítulos en orden la primera vez: los criterios del capítulo 01 (acce
 * Git — Documentación oficial: sección de errores y Cookbook (git-scm.com).
 * La comunidad Git (Stack Overflow) como diccionario de mensajes de error.
 
----
+## Checkpoint 29 — Comprobación obligatoria
 
+Antes de avanzar a `../README.md` (o finalizar el curso), demuestra que puedes (en un repositorio de práctica real):
+
+1. Simular un conflicto de merge y resolverlo siguiendo los siete pasos descritos en el capítulo 05.
+2. Recuperar un commit que parece perdido tras un reset utilizando `git reflog` y `git cherry-pick` o `git reset --hard`.
+3. Correger un push enviado a un remoto incorrecto reescribiendo el historial con `git push -f` después de ajustar el remote correcto (o usando `git push origin <branch>`).
+4. Eliminar un archivo y una rama por accidente y restaurarlos usando `git restore` y `git reflog` para ramas.
+5. (Opcional) Practicar la recuperación de credenciales (token/2FA) simulando un token expirado y renovándolo sin pánico.
+
+Si puedes hacerlo **sin mirar instrucciones**, el checkpoint está cerrado.
+
+---
+ 
 ## Autopreguntas de cierre
 
 Sin mirar el material, responde mentalmente y luego compruébalo con los capítulos de la sección:
