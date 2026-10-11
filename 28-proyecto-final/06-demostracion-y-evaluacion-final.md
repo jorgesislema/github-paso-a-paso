@@ -8,40 +8,31 @@ El Proyecto final termina cuando **puedes demostrar, con evidencias, que compren
 
 ## Mapa conceptual de este capítulo
 
-```text
-Demostración y evaluación final
-       │
-       ├── 1. El recorrido de 15 minutos
-       ├── 2. Mapa de evidencias (elemento → dónde)
-       │   ├── 3. Autoevaluación con la rúbrica
-       │   └── 4. El día de la demostración
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Demostración y evaluación final))
+    1. El recorrido de 15 minutos
+    2. Mapa de evidencias (elemento → dónde)
+      3. Autoevaluación con la rúbrica
+      4. El día de la demostración
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional + resumen
 ```
 
 ---
 
 ## 1. El recorrido de 15 minutos
 
-```text
-EL TOUR (prepáralo y ensáyalo — Error 1 si lo
-improvisas):
-   │
-   ├── 1. Qué es y para quién (README) — 1 min
-   ├── 2. Cómo se ejecuta: comando en vivo — 2 min
-   ├── 3. Estructura: árbol y responsabilidades — 2 min
-   ├── 4. Historial: 2–3 commits que cuentan la historia
-   │       — 2 min
-   ├── 5. Un PR ejemplar: descripción, revisión,
-   │       resolución — 3 min
-   ├── 6. El pipeline: qué check hace qué + la prueba
-   │       negativa que guardaste — 2 min
-   ├── 7. Seguridad: scan, alerta resuelta, secretos —
-   │       1 min
-   └── 8. Release: versión, notas, artefacto, reversa —
-       1 min
+```mermaid
+flowchart TD
+    A["Qué es y para quién (README) — 1 min"] --> B["Cómo se ejecuta: comando en vivo — 2 min"]
+    B --> C["Estructura: árbol y responsabilidades — 2 min"]
+    C --> D["Historial: 2–3 commits que cuentan la historia — 2 min"]
+    D --> E["Un PR ejemplar: descripción, revisión, resolución — 3 min"]
+    E --> F["El pipeline: qué check hace qué + la prueba negativa que guardaste — 2 min"]
+    F --> G["Seguridad: scan, alerta resuelta, secretos — 1 min"]
+    G --> H["Release: versión, notas, artefacto, reversa — 1 min"]
 ```
 
 ```text
@@ -375,6 +366,9 @@ Una sola página:
 
 Tabla completa con enlaces, rúbrica puntuada con evidencia y dos ensayos cronometrados del recorrido.
 
+### Ejercicio de transferencia
+Aplica el mismo principio de demostración basada en evidencias a la presentación de un proyecto de investigación: crea un recorrido de 10 minutos que muestre la hipótesis, metodología, resultados y conclusiones, cada uno respaldado por enlaces a datos, código o documentos. Entregable: un video o script de la presentación con los enlaces verificables.
+​
 ### Conclusión esperada
 
 La demostración no añade nada al proyecto: lo REVELA — y un proyecto que se revela solo, en 15 minutos y sin su autor de guía, es exactamente la prueba de que el flujo se comprendió de verdad.
@@ -421,6 +415,15 @@ La idea principal es:
 
 ---
 
+## Autopreguntas de cierre
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+1. ¿Qué elementos debe incluir el recorrido de 15 minutos para demostrar que comprendes el flujo completo?
+2. ¿Cómo se constituye el mapa de evidencias y qué información enlaza cada elemento?
+3. ¿De qué manera la autoevaluación con la rúbrica del capítulo 01 te permite identificar falencias antes de la demostración?
+4. ¿Qué preparativos específicos necesitas para el día de la demostración para asegurar un flujo sin interrupciones?
+5. ¿Por qué es importante anotar enlaces a cada paso del recorrido durante la preparación?
+6. ¿Cómo puedes verificar que tu demostración cumple con el criterio de que cada afirmación se señale con un enlace?
+​
 ## Próximo paso
 
 Has completado el Proyecto final.
