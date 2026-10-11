@@ -8,17 +8,16 @@ Con el diseño escrito, este capítulo ejecuta el corazón del Proyecto final: *
 
 ## Mapa conceptual de este capítulo
 
-```text
-Flujo completo: ramas, PRs y pruebas
-       │
-       ├── 1. El ciclo de trabajo del proyecto
-       ├── 2. Commits que cuentan la historia
-       │   ├── 3. Pull Requests que se revisan de verdad
-       │   └── 4. Pruebas: desde el primer bloque
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Flujo completo: ramas, PRs y pruebas))
+    1. El ciclo de trabajo del proyecto
+    2. Commits que cuentan la historia
+      3. Pull Requests que se revisan de verdad
+      4. Pruebas: desde el primer bloque
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional + resumen
 ```
 
 ---
@@ -350,10 +349,16 @@ Ejecutar 6 ciclos completos del flujo con evidencias de revisión y pruebas bloq
 
 ### Paso 2: ciclo ×6
 
-```text
-issue → rama → commits atómicos → pruebas → PR
-→ revisión (comentarios reales) → verde → merge →
-issue cerrado
+```mermaid
+flowchart TD
+    A["issue"] --> B["rama"]
+    B --> C["commits atómicos"]
+    C --> D["pruebas"]
+    D --> E["PR"]
+    E --> F["revisión (comentarios reales)"]
+    F --> G["verde"]
+    G --> H["merge"]
+    H --> I["issue cerrado"]
 ```
 
 1. Documenta los tiempos (PR→revisión) — métrica futura.
@@ -386,6 +391,9 @@ Checklist:
 
 Seis ciclos completos: historia legible, conversación de revisión y puerta probada en negativo.
 
+### Ejercicio de transferencia
+Aplica el mismo flujo de trabajo a un proyecto de código abierto diferente: mejora una documentación o corrige un bug siguiendo el ciclo issue → rama → commits → PR → revisión → merge, asegurándote de que haya al menos una prueba que bloquee el merge en rojo y luego en verde. Entregable: un Pull Request con evidencia de revisión y pruebas.
+​
 ### Conclusión esperada
 
 Cuando el ciclo se ha repetido seis veces sin saltarse pasos, el flujo deja de ser un requisito del enunciado y se convierte en la manera en que trabajas — que era exactamente lo que el Proyecto final debía demostrar.
@@ -431,6 +439,15 @@ La idea principal es:
 
 ---
 
+## Autopreguntas de cierre
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+1. ¿Qué significa que el flujo de trabajo sea la «unidad de progreso» del Proyecto final?
+2. ¿Cómo contribuyen los commits atómicos con mensajes claros a la trazabilidad del historial?
+3. ¿Por qué es necesario que las pruebas bloqueen el merge en lugar de ejecutarse después?
+4. ¿Qué papel juega la revisión de comentarios reales en la calidad del código?
+5. ¿Cómo afecta un merge verde sin resolver los comentarios a la integridad del flujo?
+6. ¿De qué manera cerrar el issue al hacer el merge proporciona evidencia de cierre de trabajo?
+​
 ## Próximo paso
 
 Flujo ejecutado con evidencias.
