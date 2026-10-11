@@ -8,18 +8,17 @@ El Proyecto 7 aplica el flujo completo a un dominio que genera tentaciones const
 
 ## Mapa conceptual de este capítulo
 
-```text
-Proyecto 7: proyecto de IA
-       │
-       ├── 1. Qué construyes y qué conceptos incorpora
-       ├── 2. Qué entra al repo (y qué NO, siempre)
-       │   ├── 3. Secretos y credenciales de modelos
-       │   └── 4. Pipeline: entrenar/evaluar sin
-       │       romper el flujo
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Proyecto 7: proyecto de IA))
+    1. Qué construyes y qué conceptos incorpora
+    2. Qué entra al repo (y qué NO, siempre)
+      3. Secretos y credenciales de modelos
+      4. Pipeline: entrenar/evaluar sin
+          romper el flujo
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional + resumen
 ```
 
 ---
@@ -28,35 +27,35 @@ Proyecto 7: proyecto de IA
 
 ```text
 EL PROYECTO (elegible según tu interés):
-   │
-   ├── una herramienta que consume un MODELO/API (CLI
-   │   o servicio pequeño: clasificador, generador,
-   │   resumidor) — la vía accesible
-   │
-   └── o un pipeline de entrenamiento/evaluación
-       pequeño con datos públicos — la vía pesada
-       (con los límites del punto 2)
+    │
+    ├── una herramienta que consume un MODELO/API (CLI
+    │   o servicio pequeño: clasificador, generador,
+    │   resumidor) — la vía accesible
+    │
+    └── o un pipeline de entrenamiento/evaluación
+        pequeño con datos públicos — la vía pesada
+        (con los límites del punto 2)
 ```
 
 ```text
 CONCEPTOS NUEVOS (secciones 20/21/22):
-   │
-   ├── API keys en secrets de la plataforma (sección 20
-   │   cap. 01) — Error 1 si «solo para probar» en el
-   │   código
-   ├── modelos y datasets como ARTEFACTOS, no como Git
-   │   (sección 21 cap. 04/05)
-   ├── evaluación como aserción del CI (sección 22 cap.
-   │   03 — métricas con umbral)
-   └── coste de ejecución: pipeline que no gasta sin
-       control (Error 2 si cada CI entrena desde cero)
+    │
+    ├── API keys en secrets de la plataforma (sección 20
+    │   cap. 01) — Error 1 si «solo para probar» en el
+    │   código
+    ├── modelos y datasets como ARTEFACTOS, no como Git
+    │   (sección 21 cap. 04/05)
+    ├── evaluación como aserción del CI (sección 22 cap.
+    │   03 — métricas con umbral)
+    └── coste de ejecución: pipeline que no gasta sin
+        control (Error 2 si cada CI entrena desde cero)
 ```
 
 ```text
-   │
-   └── el salto: en IA, Git versiona la RECETA y el
-       CÓDIGO; el modelo es consecuencia reproducible
-       (Error 3 si confundes modelo con repositorio)
+    │
+    └── el salto: en IA, Git versiona la RECETA y el
+        CÓDIGO; el modelo es consecuencia reproducible
+        (Error 3 si confundes modelo con repositorio)
 ```
 
 ---
@@ -65,41 +64,41 @@ CONCEPTOS NUEVOS (secciones 20/21/22):
 
 ```text
 ENTRA:
-   │
-   ├── código: carga de datos, preproceso, entrenamiento
-   │   o llamada al modelo, evaluación
-   ├── configuración: hiperparámetros, prompts
-   │   versionados (los prompts son código — Error 4 si
-   │   viven en un chat)
-   ├── datos: MUESTRA pequeña + script/descarga de la
-   │   fuente completa (sección 21 cap. 05)
-   ├── métricas de referencia: «la v0.1 obtiene X en el
-   │   set de validación» (contrato de calidad)
-   └── documentación: qué modelo/base se usa, con qué
-       licencia, qué limitaciones conoce (sección 21
-       cap. 04)
+    │
+    ├── código: carga de datos, preproceso, entrenamiento
+    │   o llamada al modelo, evaluación
+    ├── configuración: hiperparámetros, prompts
+    │   versionados (los prompts son código — Error 4 si
+    │   viven en un chat)
+    ├── datos: MUESTRA pequeña + script/descarga de la
+    │   fuente completa (sección 21 cap. 05)
+    ├── métricas de referencia: «la v0.1 obtiene X en el
+    │   set de validación» (contrato de calidad)
+    └── documentación: qué modelo/base se usa, con qué
+        licencia, qué limitaciones conoce (sección 21
+        cap. 04)
 ```
 
 ```text
 NO ENTRA (jamás — Error 5 si entra):
-   │
-   ├── checkpoints/epochs, pesos entrenados pesados →
-   │   artefacto/almacén con versión (sección 21 cap.
-   │   04)
-   ├── datasets completos → fuera (referencia + descarga)
-   ├── datos de entrenamiento con problemas de licencia
-   │   o privacidad (sección 21 cap. 06)
-   └── API keys, tokens, URLs con credenciales →
-       secrets (punto 3)
+    │
+    ├── checkpoints/epochs, pesos entrenados pesados →
+    │   artefacto/almacén con versión (sección 21 cap.
+    │   04)
+    ├── datasets completos → fuera (referencia + descarga)
+    ├── datos de entrenamiento con problemas de licencia
+    │   o privacidad (sección 21 cap. 06)
+    └── API keys, tokens, URLs con credenciales →
+        secrets (punto 3)
 ```
 
 ```text
-   │
-   └── el test: «¿otro puede reproducir el resultado
-       con solo el repo + lo que baja según README?» —
-       mismo criterio que el Proyecto 6, con el modelo
-       como artefacto más (punto 4 — Error 6 si el
-       «resultado final» solo existe en tu disco)
+    │
+    └── el test: «¿otro puede reproducir el resultado
+        con solo el repo + lo que baja según README?» —
+        mismo criterio que el Proyecto 6, con el modelo
+        como artefacto más (punto 4 — Error 6 si el
+        «resultado final» solo existe en tu disco)
 ```
 
 ---
@@ -108,30 +107,30 @@ NO ENTRA (jamás — Error 5 si entra):
 
 ```text
 REGLAS (sección 20 cap. 01 — aplicadas a IA):
-   │
-   ├── la API key NUNCA en código, notebook ni historial
-   │   (Error 1 — y si entró: incidente, no vergüenza:
-   │   rotar YA + limpiar historial si procede)
-   │
-   ├── en local: variables de entorno / archivo no
-   │   versionado (gitignore) (Error 7 si el .env
-   │   «temporal» entra en el primer commit)
-   │
-   ├── en CI: secrets del repositorio (sección 19 cap.
-   │   04/05) — expuestos SOLO a los jobs que los usan
-   │   (mínimo privilegio — sección 20 cap. 05)
-   │
-   └── rotación: si el proyecto vive mucho, programa la
-       rotación (Error 8 si la key es de «siempre»)
+    │
+    ├── la API key NUNCA en código, notebook ni historial
+    │   (Error 1 — y si entró: incidente, no vergüenza:
+    │   rotar YA + limpiar historial si procede)
+    │
+    ├── en local: variables de entorno / archivo no
+    │   versionado (gitignore) (Error 7 si el .env
+    │   «temporal» entra en el primer commit)
+    │
+    ├── en CI: secrets del repositorio (sección 19 cap.
+    │   04/05) — expuestos SOLO a los jobs que los usan
+    │   (mínimo privilegio — sección 20 cap. 05)
+    │
+    └── rotación: si el proyecto vive mucho, programa la
+        rotación (Error 8 si la key es de «siempre»)
 ```
 
 ```text
-   │
-   └── secret scanning + push protection (sección 20
-       cap. 02) es tu red de seguridad: actívalo y
-       PRUEBA que bloquea (Error 1 prevención — Error 5
-       sección 03 de esta sección: los controles se
-       prueban rompiéndolos)
+    │
+    └── secret scanning + push protection (sección 20
+        cap. 02) es tu red de seguridad: actívalo y
+        PRUEBA que bloquea (Error 1 prevención — Error 5
+        sección 03 de esta sección: los controles se
+        prueban rompiéndolos)
 ```
 
 ---
@@ -140,35 +139,35 @@ REGLAS (sección 20 cap. 01 — aplicadas a IA):
 
 ```text
 TRES MODOS (elige con honestidad de coste — Error 2):
-   │
-   ├── A. CI solo EVALÚA (recomendado): el modelo o la
-   │   llamada se versionan/referencian; el CI corre la
-   │   evaluación sobre muestra → aserciones de métrica
-   │
-   ├── B. CI REENTRENA solo en triggers especiales (no
-   │   en cada PR): coste y tiempo controlados
-   │
-   └── C. entrenamiento completo FUERA del CI (local/
-       job dedicado) → sube el artefacto versionado →
-       el CI solo verifica reproducción/evaluación
+    │
+    ├── A. CI solo EVALÚA (recomendado): el modelo o la
+    │   llamada se versionan/referencian; el CI corre la
+    │   evaluación sobre muestra → aserciones de métrica
+    │
+    ├── B. CI REENTRENA solo en triggers especiales (no
+    │   en cada PR): coste y tiempo controlados
+    │
+    └── C. entrenamiento completo FUERA del CI (local/
+        job dedicado) → sube el artefacto versionado →
+        el CI solo verifica reproducción/evaluación
 ```
 
 ```text
 EL CHECK DE IA (contrato de calidad):
-   │
-   ├── la evaluación corre con datos de muestra
-   ├── aserciones: métrica ≥ umbral de referencia
-   │   (Error 8 si «la métrica se mira a mano»: el
-   │   contrato no existe)
-   └── el artefacto del modelo: nombre + versión + de
-       qué datos/pro código viene (sección 22 cap. 05)
+    │
+    ├── la evaluación corre con datos de muestra
+    ├── aserciones: métrica ≥ umbral de referencia
+    │   (Error 8 si «la métrica se mira a mano»: el
+    │   contrato no existe)
+    └── el artefacto del modelo: nombre + versión + de
+        qué datos/pro código viene (sección 22 cap. 05)
 ```
 
 ```text
-   │
-   └── «¿qué modelo produce mi última respuesta?» debe
-       tener respuesta exacta — como «¿qué versión está
-       en producción?» en el Proyecto 5
+    │
+    └── «¿qué modelo produce mi última respuesta?» debe
+        tener respuesta exacta — como «¿qué versión está
+        en producción?» en el Proyecto 5
 ```
 
 ---
@@ -330,7 +329,7 @@ Entregar un proyecto de IA con secretos seguros, artefactos fuera de Git y evalu
 ```text
 A. evaluar en CI (recomendado) · B. reentrenar por
 trigger · C. entrenar fuera + artefacto
-   └── escríbelo en README con su porqué (punto 4)
+    └── escríbelo en README con su porqué (punto 4)
 ```
 
 ### Paso 2: política de artefactos
@@ -353,18 +352,21 @@ trigger · C. entrenar fuera + artefacto
 
 ```text
 Checklist:
-   [ ] cero claves en código/historial (scan activo)
-   [ ] artefactos y datasets fuera de Git, referenciados
-   [ ] prompts versionados con su modelo
-   [ ] modo de pipeline documentado con coste acotado
-   [ ] evaluación bloqueante (probada en rojo)
-   [ ] README: qué modelo, qué datos, qué licencia,
-       qué limitaciones
+    [ ] cero claves en código/historial (scan activo)
+    [ ] artefactos y datasets fuera de Git, referenciados
+    [ ] prompts versionados con su modelo
+    [ ] modo de pipeline documentado con coste acotado
+    [ ] evaluación bloqueante (probada en rojo)
+    [ ] README: qué modelo, qué datos, qué licencia,
+        qué limitaciones
 ```
 
 ### Resultado esperado
 
 Proyecto de IA reproducible, seguro y con calidad verificada automáticamente en cada PR.
+
+### Ejercicio de transferencia
+Aplica el mismo concepto de secretos seguros y artefactos fuera de Git a un proyecto de integración de servicios externos: crea un repositorio para un herramienta que orchestre llamadas a múltiples APIs (como clima, noticias y pagos), almacena las claves en secrets de la plataforma, versiona los contratos de las APIs como código, y publica los resultados de la orquestación como artefactos del pipeline solo si pasa las pruebas de validación.
 
 ### Conclusión esperada
 
@@ -377,22 +379,22 @@ El flujo completo sobrevive al dominio más salvaje: cuando los secretos van a s
 ### 7.1. De este proyecto a la vida real
 
 ```text
-   │
-   ├── lo practicado es la base de MLOps: registro de
-   │   modelos, datos versionados, evaluación continua
-   │   (las secciones 21/22 con vocabulario de IA)
-   │
-   ├── secretos + mínimo privilegio + push protection es
-   │   exactamente la política que exigen las APIs de
-   │   pago en cualquier empresa (sección 20)
-   │
-   ├── documentación de modelo (base, licencia,
-   │   limitaciones) anticipa los temas de gobernanza de
-   │   IA que crecen cada año (sección 24/25 —
-   │   evidencias y dueños)
-   │
-   └── coste acotado de CI: la lección que separa un
-       proyecto sostenible de uno abandonado
+    │
+    ├── lo practicado es la base de MLOps: registro de
+    │   modelos, datos versionados, evaluación continua
+    │   (las secciones 21/22 con vocabulario de IA)
+    │
+    ├── secretos + mínimo privilegio + push protection es
+    │   exactamente la política que exigen las APIs de
+    │   pago en cualquier empresa (sección 20)
+    │
+    ├── documentación de modelo (base, licencia,
+    │   limitaciones) anticipa los temas de gobernanza de
+    │   IA que crecen cada año (sección 24/25 —
+    │   evidencias y dueños)
+    │
+    └── coste acotado de CI: la lección que separa un
+        proyecto sostenible de uno abandonado
 ```
 
 ### 7.2. Resumen
@@ -412,6 +414,15 @@ La idea principal es:
 
 ---
 
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Cuál es el concepto central que se introduce en este capítulo y por qué es importante para el flujo de trabajo?
+2. ¿Cómo se aplica el concepto práctico descrito en las secciónes de práctica guiada a un escenario real?
+3. ¿Qué errores comunes se destacan en este capítulo y cómo se pueden prevenir siguiendo los pasos recomendados?
+4. ¿De qué manera este capítulo se conecta con el siguiente proyecto en la progresión del aprendizaje?
+5. ¿Qué hábito o práctica clave se debe internalizar al completar este capítulo?
 ## Próximo paso
 
 Ya dominas siete proyectos con progresión.
