@@ -8,17 +8,16 @@ El Proyecto 4 convierte el sitio en un proyecto de ingeniería: una **página we
 
 ## Mapa conceptual de este capítulo
 
-```text
-Proyecto 4: página web
-       │
-       ├── 1. Qué construyes y qué conceptos incorpora
-       ├── 2. Requisitos del proyecto
-       │   ├── 3. El pipeline mínimo de calidad
-       │   └── 4. Despliegue como workflow
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Proyecto 4: página web))
+    1. Qué construyes y qué conceptos incorpora
+    2. Requisitos del proyecto
+      3. El pipeline mínimo de calidad
+      4. Despliegue como workflow
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional + resumen
 ```
 
 ---
@@ -27,35 +26,35 @@ Proyecto 4: página web
 
 ```text
 EL PROYECTO:
-   │
-   ├── sitio web (estático o con build: HTML/CSS/JS,
-   │   o framework ligero de tu elección) con varias
-   │   páginas, estilos y contenido propio
-   │
-   └── la diferencia con el Proyecto 3: el VALOR está
-       en el pipeline COMPLETO (build + calidad +
-       despliegue) — el sitio debe pasar pruebas
-       solas antes de publicarse
+    │
+    ├── sitio web (estático o con build: HTML/CSS/JS,
+    │   o framework ligero de tu elección) con varias
+    │   páginas, estilos y contenido propio
+    │
+    └── la diferencia con el Proyecto 3: el VALOR está
+        en el pipeline COMPLETO (build + calidad +
+        despliegue) — el sitio debe pasar pruebas
+        solas antes de publicarse
 ```
 
 ```text
 CONCEPTOS NUEVOS (secciones 19/20/22):
-   │
-   ├── workflow con jobs, steps y triggers (sección 19)
-   ├── checks que BLOQUEAN (status checks — Error 1 si
-   │   son decorativos)
-   ├── lint/validación (sección 19/21)
-   ├── Dependabot: dependencias vigiladas (sección 20
-   │   cap. 03)
-   └── despliegue automático tras checks verdes
-       (sección 22 cap. 04 — CD ligero)
+    │
+    ├── workflow con jobs, steps y triggers (sección 19)
+    ├── checks que BLOQUEAN (status checks — Error 1 si
+    │   son decorativos)
+    ├── lint/validación (sección 19/21)
+    ├── Dependabot: dependencias vigiladas (sección 20
+    │   cap. 03)
+    └── despliegue automático tras checks verdes
+        (sección 22 cap. 04 — CD ligero)
 ```
 
 ```text
-   │
-   └── el salto conceptual: de «publico cuando quiero»
-       a «solo lo VERIFICADO se publica» (Error 2 si
-       el despliegue no espera a los checks)
+    │
+    └── el salto conceptual: de «publico cuando quiero»
+        a «solo lo VERIFICADO se publica» (Error 2 si
+        el despliegue no espera a los checks)
 ```
 
 ---
@@ -64,53 +63,53 @@ CONCEPTOS NUEVOS (secciones 19/20/22):
 
 ```text
 SITIO:
-   │
-   ├── ≥ 4 páginas/pantallas con navegación
-   ├── estilos organizados (archivos separados —
-   │   sección 21 cap. 06: nada de un solo archivo
-   │   monolítico gigante)
-   ├── accesibilidad básica (contraste, textos
-   │   alternativos — sección 14 cap. 03 mención)
-   └── README: arquitectura del sitio + cómo ejecutar
-       en local
+    │
+    ├── ≥ 4 páginas/pantallas con navegación
+    ├── estilos organizados (archivos separados —
+    │   sección 21 cap. 06: nada de un solo archivo
+    │   monolítico gigante)
+    ├── accesibilidad básica (contraste, textos
+    │   alternativos — sección 14 cap. 03 mención)
+    └── README: arquitectura del sitio + cómo ejecutar
+        en local
 ```
 
 ```text
 CALIDAD AUTOMATIZADA (el corazón del proyecto):
-   │
-   ├── workflow que corre en PR y en main (sección 19
-   │   cap. 02: triggers `pull_request` + `push`)
-   ├── pasos: build + lint/validación (+ pruebas si tu
-   │   stack las tiene)
-   ├── el check es OBLIGATORIO para mergear (protege la
-   │   rama con el check requerido — Error 3 si
-   │   cualquiera puede saltárselo)
-   └── ≤ 5 minutos (presupuesto — sección 04 cap. 25)
+    │
+    ├── workflow que corre en PR y en main (sección 19
+    │   cap. 02: triggers `pull_request` + `push`)
+    ├── pasos: build + lint/validación (+ pruebas si tu
+    │   stack las tiene)
+    ├── el check es OBLIGATORIO para mergear (protege la
+    │   rama con el check requerido — Error 3 si
+    │   cualquiera puede saltárselo)
+    └── ≤ 5 minutos (presupuesto — sección 04 cap. 25)
 ```
 
 ```text
 SEGURIDAD MÍNIMA:
-   │
-   ├── Dependabot activado (sección 20 cap. 03)
-   └── sin secretos en el repo (sección 20 cap. 01 —
-       si usas tokens, van a secrets del repo —
-       Error 4 si van en código)
+    │
+    ├── Dependabot activado (sección 20 cap. 03)
+    └── sin secretos en el repo (sección 20 cap. 01 —
+        si usas tokens, van a secrets del repo —
+        Error 4 si van en código)
 ```
 
 ```text
 DESPLIEGUE:
-   │
-   ├── al fusionar a main: build + publicación
-   │   AUTOMÁTICA (sección 19 cap. 04 / 22 cap. 04)
-   └── historial de deploys visible (runs del workflow
-       — sección 19 cap. 03)
+    │
+    ├── al fusionar a main: build + publicación
+    │   AUTOMÁTICA (sección 19 cap. 04 / 22 cap. 04)
+    └── historial de deploys visible (runs del workflow
+        — sección 19 cap. 03)
 ```
 
 ```text
-   │
-   └── requisito de entrega: un PR que NO pasa los
-       checks y NO se puede mergear (Error 5 si nunca
-       lo demuestras: no probaste que la puerta cierra)
+    │
+    └── requisito de entrega: un PR que NO pasa los
+        checks y NO se puede mergear (Error 5 si nunca
+        lo demuestras: no probaste que la puerta cierra)
 ```
 
 ---
@@ -119,32 +118,32 @@ DESPLIEGUE:
 
 ```text
 DISEÑO (aplicable a cualquier stack):
-   │
-   ├── trigger: pull_request + push a main
-   ├── job 1 «calidad»:
-   │     steps: checkout → setup → instalar →
-   │     build → lint/validar
-   └── (opcional job 2 «deploy») depende de «calidad»
-       y solo en main (Error 6 si se pisan: deploy
-       sin esperar)
+    │
+    ├── trigger: pull_request + push a main
+    ├── job 1 «calidad»:
+    │     steps: checkout → setup → instalar →
+    │     build → lint/validar
+    └── (opcional job 2 «deploy») depende de «calidad»
+        y solo en main (Error 6 si se pisan: deploy
+        sin esperar)
 ```
 
 ```text
 LO QUE APRENDES AL CONSTRUIRLO:
-   │
-   ├── a leer un log de workflow (sección 19 cap. 06:
-   │   debugging)
-   ├── a fijar versiones de acciones (sección 19 cap.
-   │   05 Error 1 — referencias a versión)
-   └── a caché de dependencias si el install es lento
-       (sección 22 cap. 02)
+    │
+    ├── a leer un log de workflow (sección 19 cap. 06:
+    │   debugging)
+    ├── a fijar versiones de acciones (sección 19 cap.
+    │   05 Error 1 — referencias a versión)
+    └── a caché de dependencias si el install es lento
+        (sección 22 cap. 02)
 ```
 
 ```text
-   │
-   └── el pipeline es DOCUMENTO: en el README explica
-       qué hace cada job (Error 7 si solo tú lo
-       entiendes)
+    │
+    └── el pipeline es DOCUMENTO: en el README explica
+        qué hace cada job (Error 7 si solo tú lo
+        entiendes)
 ```
 
 ---
@@ -153,30 +152,30 @@ LO QUE APRENDES AL CONSTRUIRLO:
 
 ```text
 DESPUÉS DE LOS CHECKS (sección 22 cap. 04):
-   │
-   ├── build reproducible (mismo comando de siempre)
-   ├── publicación al hosting (el mecanismo que ofrezca
-   │   tu plataforma — categoría)
-   └── verificación post: el sitio responde (humo
-       mínimo — sección 23 cap. 06 en versión pequeña)
+    │
+    ├── build reproducible (mismo comando de siempre)
+    ├── publicación al hosting (el mecanismo que ofrezca
+    │   tu plataforma — categoría)
+    └── verificación post: el sitio responde (humo
+        mínimo — sección 23 cap. 06 en versión pequeña)
 ```
 
 ```text
 QUÉ NO HACES (a propósito, todavía):
-   │
-   ├── entornos múltiples con gates por riesgo (Proyecto
-   │   final / sección 22)
-   └── firma de artefactos (sección 24) — conociendo
-       que existen (Error 8 si los copias sin
-       necesidad: proceso de gigante, Error 4 sección
-       15)
+    │
+    ├── entornos múltiples con gates por riesgo (Proyecto
+    │   final / sección 22)
+    └── firma de artefactos (sección 24) — conociendo
+        que existen (Error 8 si los copias sin
+        necesidad: proceso de gigante, Error 4 sección
+        15)
 ```
 
 ```text
-   │
-   └── con esto tu despliegue tiene HISTORIA: cada
-       publicación es un run con fecha, autor y resultado
-       — «¿cuándo se desplegó X?» tiene respuesta
+    │
+    └── con esto tu despliegue tiene HISTORIA: cada
+        publicación es un run con fecha, autor y resultado
+        — «¿cuándo se desplegó X?» tiene respuesta
 ```
 
 ---
@@ -331,9 +330,9 @@ Entregar un sitio con pipeline de calidad bloqueante y despliegue automático ve
 
 ```text
 PR con error de lint → ¿se bloquea el merge?
-   │
-   ├── sí → la puerta cierra
-   └── no → corrige la configuración y repite
+    │
+    ├── sí → la puerta cierra
+    └── no → corrige la configuración y repite
 ```
 
 ### Paso 5: despliegue
@@ -348,16 +347,19 @@ PR con error de lint → ¿se bloquea el merge?
 
 ```text
 Checklist:
-   [ ] sitio con ≥ 4 páginas + README técnico
-   [ ] pipeline < 5 min en PR y main
-   [ ] check requerido (probado con PR rojo)
-   [ ] deploy automático tras checks
-   [ ] Dependabot activo · cero secretos
+    [ ] sitio con ≥ 4 páginas + README técnico
+    [ ] pipeline < 5 min en PR y main
+    [ ] check requerido (probado con PR rojo)
+    [ ] deploy automático tras checks
+    [ ] Dependabot activo · cero secretos
 ```
 
 ### Resultado esperado
 
 Sitio publicado por pipeline, puerta de calidad probada en negativo y dependencias vigiladas.
+
+### Ejercicio de transferencia
+Aplica el mismo concepto de pipeline de calidad bloqueante a un proyecto de análisis de datos: crea un repositorio para un pipeline de ETL (extracción, transformación, carga) que valide los datos en cada paso, requiera que todas las pruebas pasen antes de desplegar los resultados, y mantenga un historial de ejecuciones verificables.
 
 ### Conclusión esperada
 
@@ -370,21 +372,21 @@ La página web del Proyecto 4 es «otro sitio» solo en apariencia: lo que entre
 ### 7.1. De este proyecto a la vida real
 
 ```text
-   │
-   ├── este pipeline es la versión pequeña del «flujo
-   │   completo» de la sección 22: allí se añaden
-   │   entornos, gates y rollback
-   │
-   ├── lo de Dependabot + sin secretos abre la puerta a
-   │   la sección 20 completa (SAST, scan de secretos,
-   │   CodeQL)
-   │
-   ├── el check requerido es tu primera «puerta» con
-   │   riesgo cero para practicar — en trabajo real es
-   │   la misma mecánica (sección 19 cap. 04/20 cap. 06)
-   │
-   └── presupuesto de CI: la disciplina que en el
-       Proyecto 5 evita el dolor de Python «todo»
+    │
+    ├── este pipeline es la versión pequeña del «flujo
+    │   completo» de la sección 22: allí se añaden
+    │   entornos, gates y rollback
+    │
+    ├── lo de Dependabot + sin secretos abre la puerta a
+    │   la sección 20 completa (SAST, scan de secretos,
+    │   CodeQL)
+    │
+    ├── el check requerido es tu primera «puerta» con
+    │   riesgo cero para practicar — en trabajo real es
+    │   la misma mecánica (sección 19 cap. 04/20 cap. 06)
+    │
+    └── presupuesto de CI: la disciplina que en el
+        Proyecto 5 evita el dolor de Python «todo»
 ```
 
 ### 7.2. Resumen
@@ -404,6 +406,15 @@ La idea principal es:
 
 ---
 
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Cuál es el concepto central que se introduce en este capítulo y por qué es importante para el flujo de trabajo?
+2. ¿Cómo se aplica el concepto práctico descrito en las secciónes de práctica guiada a un escenario real?
+3. ¿Qué errores comunes se destacan en este capítulo y cómo se pueden prevenir siguiendo los pasos recomendados?
+4. ¿De qué manera este capítulo se conecta con el siguiente proyecto en la progresión del aprendizaje?
+5. ¿Qué hábito o práctica clave se debe internalizar al completar este capítulo?
 ## Próximo paso
 
 Ya tienes fábrica automatizada.
