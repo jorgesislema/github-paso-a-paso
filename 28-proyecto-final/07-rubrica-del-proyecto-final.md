@@ -8,17 +8,16 @@ Esta es la **rúbrica pública** del Proyecto final: las seis dimensiones por la
 
 ## Mapa conceptual de este capítulo
 
-```text
-Rúbrica del proyecto final
-       │
-       ├── 1. Cómo se usa (temporalidad)
-       ├── 2. Las seis dimensiones y sus niveles
-       │   ├── 3. Evidencias que cuentan (y las que no)
-       │   └── 4. Criterio mínimo de aprobación
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Rúbrica del proyecto final))
+    1. Cómo se usa (temporalidad)
+    2. Las seis dimensiones y sus niveles
+      3. Evidencias que cuentan (y las que no)
+      4. Criterio mínimo de aprobación
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional + resumen
 ```
 
 ---
@@ -298,6 +297,9 @@ Checklist:
 
 Una rúbrica que gobernó el proyecto desde el diseño y que, al final, se puntúa con enlaces en 10 minutos.
 
+### Ejercicio de transferencia
+Aplica el mismo principio de rúbrica temprana a la evaluación de un proyecto de código abierto que no conoces: descarga el repo, busca un archivo de rúbrica o crea uno basado en dimensiones críticas (funcionalidad, pruebas, documentación, licencia), y puntualo con evidencia. Entregable: una hoja de evaluación con enlaces a los archivos que respaldan cada puntuación.
+​
 ### Conclusión esperada
 
 Cuando la rúbrica existe antes que el código, «terminado» deja de ser una sensación: es un nivel en cada dimensión, cada uno con su evidencia.
@@ -339,9 +341,7 @@ La idea principal es:
 
 > **Una rúbrica escrita antes del código convierte «¿está terminado?» en seis preguntas con niveles y evidencias — y un proyecto que se puntúa solo es un proyecto que se puede demostrar.**
 
----
-
-## Próximo paso
+---\n\n## Autopreguntas de cierre\nSin mirar el material, responde mentalmente y luego compruébalo con este capítulo:\n1. ¿Por qué es esencial escribir la rúbrica antes de comenzar a codificar y cómo afecta eso al resto del proyecto?\n2. ¿Cómo se relacionan las seis dimensiones de la rúbrica con los elementos evaluables del proyecto final?\n3. ¿Qué significa el criterio «sin enlace, sin punto» y por qué es importante para una autoevaluación honesta?\n4. ¿Cómo puedes determinar si tu proyecto cumple con el criterio mínimo de aprobación (nivel 3 en todas las dimensiones)?\n5. ¿Qué papel juegan los ADR en el mantenimiento de una rúbrica viva y versionada?\n6. ¿De qué manera la autoevaluación 48 horas antes de la entrega convierte la rúbrica en un plan de mejora?\n\n## Próximo paso
 
 La rúbrica está lista para gobernar tu proyecto.
 
