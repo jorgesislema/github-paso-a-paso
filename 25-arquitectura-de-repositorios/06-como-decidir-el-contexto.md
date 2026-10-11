@@ -8,18 +8,17 @@ La sección entera ha evitado dar «la respuesta» de arquitectura — a propós
 
 ## Mapa conceptual de este capítulo
 
-```text
-Cómo decidir: contexto y consecuencias
-       │
-       ├── 1. El marco en cinco preguntas
-       ├── 2. Consecuencias: las dos columnas
-       ├── 3. El registro: ADR ligero
-       │   ├── 4. Caso de estudio completo
-       │   └── 5. Revisar: cuándo una decisión caduca
-       │
-       ├── 6. Errores comunes con diagnóstico completo
-       ├── 7. Práctica guiada
-       └── 8. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Cómo decidir: contexto y consecuencias))
+    1. El marco en cinco preguntas
+    2. Consecuencias: las dos columnas
+    3. El registro: ADR ligero
+      4. Caso de estudio completo
+      5. Revisar: cuándo una decisión caduca
+    6. Errores comunes con diagnóstico completo
+    7. Práctica guiada
+    8. Nivel profesional + resumen
 ```
 
 ---
@@ -378,6 +377,10 @@ Duele desde (evidencia): _______________
 
 Un ADR completo: contexto, tabla, decisión, pagos, reversibilidad y condición de revisión — más su disparador en el calendario.
 
+### Ejercicio de transferencia
+Elabora un ADR ligero para decidir si migrar un módulo de lógica de negocio de un monorepo a un servicio independiente; incluye el contexto (acoplamiento, equipos, releases), las consecuencias (ventajas y costos) y la condición de revisión (por ejemplo, cambio en el volumen de tráfico).
+
+
 ### Conclusión esperada
 
 Decidir bien no es acertar siempre: es entender el precio, firmarlo por escrito y saber desde el primer día qué haría cambiar de parecer.
@@ -427,6 +430,18 @@ La idea principal es:
 > **La decisión madura no es la que se acuerda con más entusiasmo, sino la que deja escrito qué se pagó, quién lo firmó y qué la haría caducar.**
 
 ---
+
+## Autopreguntas de cierre
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+1. ¿Qué cinco preguntas forman el marco para decidir sobre arquitectura de repositorios?
+2. ¿Cómo se representan las consecuencias en las dos columnas y qué tipo de información se coloca en cada una?
+3. ¿Qué es un ADR ligero y qué elementos esenciales debe contener?
+4. ¿Qué información debería incluirse en un caso de estudio completo dentro de un ADR?
+5. ¿Cómo se determina cuándo una decisión de arquitectura ha caducado y necesita revisión?
+6. ¿Qué tipos de errores comunes se presentan en el proceso de decisión y cómo se diagnostican?
+7. ¿Qué pasos incluirías en una práctica guiada para crear un ADR y aplicar el marco de cinco preguntas?
+8. ¿Qué aspectos de nivel profesional deberías considerar para institucionalizar la toma de decisiones de arquitectura?
+
 
 ## Próximo paso
 
