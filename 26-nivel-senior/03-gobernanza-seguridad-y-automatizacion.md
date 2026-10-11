@@ -7,19 +7,16 @@ A nivel senior, las tres palabras que más pesan son **sostener**: gobernanza qu
 ---
 
 ## Mapa conceptual de este capítulo
-
-```text
-Gobernanza, seguridad y automatización
-       │
-       ├── 1. Gobernanza que no depende de héroes
-       ├── 2. Seguridad como estado, no como acto
-       │   ├── 3. Automatizar el trabajo repetido (y
-       │   │   qué NO automatizar)
-       │   └── 4. Las tres juntas: el ciclo
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Gobernanza, seguridad y automatización))
+    1. Gobernanza que no depende de héroes
+    2. Seguridad como estado, no como acto
+      3. Automatizar el trabajo repetido (y qué NO automatizar)
+      4. Las tres juntas: el ciclo
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional + resumen
 ```
 
 ---
@@ -28,45 +25,45 @@ Gobernanza, seguridad y automatización
 
 ```text
 LO QUE YA VISTE (y aquí se sintetiza):
-   │
-   ├── dueños por repo y por estándar (sección 16 cap.
-   │   06 / 25 cap. 03)
-   ├── matriz de permisos revisada (sección 25 cap. 03
-   │   punto 2)
-   ├── política escrita + aplicación automática
-   │   (sección 24/25)
-   └── excepciones con caducidad y métrica (sección 25
-       cap. 03 punto 5)
+    │
+    ├── dueños por repo y por estándar (sección 16 cap.
+    │   06 / 25 cap. 03)
+    ├── matriz de permisos revisada (sección 25 cap. 03
+    │   punto 2)
+    ├── política escrita + aplicación automática
+    │   (sección 24/25)
+    └── excepciones con caducidad y métrica (sección 25
+        cap. 03 punto 5)
 ```
 
 ```text
 LA PREGUNTA SENIOR:
-   │
-   └── «si X se va mañana, qué sigue funcionando?»
-       — si la respuesta es «nada», el gobierno está en
-       una cabeza (Error 1 — Error 4 sección 03 cap.
-       03)
+    │
+    └── «si X se va mañana, qué sigue funcionando?»
+        — si la respuesta es «nada», el gobierno está en
+        una cabeza (Error 1 — Error 4 sección 03 cap.
+        03)
 ```
 
 ```text
 SOSTÉN (los tres mecanismos del gobierno invisible):
-   │
-   ├── memoria externa: todo en el repo (decisiones,
-   │   políticas, flujos — sección 25 cap. 06)
-   │
-   ├── roles con suplente: nadie único (Error 2 si el
-   │   dueño no tiene suplente)
-   │
-   └── rutina: lo que se repite está en calendario con
-       checklist (sección 25 cap. 05 punto 2)
+    │
+    ├── memoria externa: todo en el repo (decisiones,
+    │   políticas, flujos — sección 25 cap. 06)
+    │
+    ├── roles con suplente: nadie único (Error 2 si el
+    │   dueño no tiene suplente)
+    │
+    └── rutina: lo que se repite está en calendario con
+        checklist (sección 25 cap. 05 punto 2)
 ```
 
 ```text
-   │
-   └── gobernar bien es aburrir al hacedor de travesuras
-       — el sistema evita el mal día, no depende del
-       buen día (Error 3 si se premia al «apaga
-       incendios»)
+    │
+    └── gobernar bien es aburrir al hacedor de travesuras
+        — el sistema evita el mal día, no depende del
+        buen día (Error 3 si se premia al «apaga
+        incendios»)
 ```
 
 ---
@@ -76,42 +73,42 @@ SOSTÉN (los tres mecanismos del gobierno invisible):
 ```text
 ACTO (insostenible): una auditoría al año, un
 «barrido» cuando asusta la noticia
-   │
-   └── Error 4 si la seguridad solo aparece en
-       calendario de crisis
+    │
+    └── Error 4 si la seguridad solo aparece en
+        calendario de crisis
 ```
 
 ```text
 ESTADO (lo senior): controles dentro del flujo —
-   │
-   ├── en el editor: secretos locales (sección 20
-   │   cap. 01)
-   ├── en el PR: SAST, secretos, deps (sección 20/24)
-   ├── en el build: imágenes, artefactos firmados
-   │   (sección 24 cap. 03/05)
-   ├── en staging: DAST + humo (sección 24 cap. 03)
-   └── en operación: alertas, respaldo, simulacros
-       (sección 23/24)
+    │
+    ├── en el editor: secretos locales (sección 20
+    │   cap. 01)
+    ├── en el PR: SAST, secretos, deps (sección 20/24)
+    ├── en el build: imágenes, artefactos firmados
+    │   (sección 24 cap. 03/05)
+    ├── en staging: DAST + humo (sección 24 cap. 03)
+    └── en operación: alertas, respaldo, simulacros
+        (sección 23/24)
 ```
 
 ```text
 LO QUE MANTIENE EL ESTADO:
-   │
-   ├── inventario vivo: dependencias, accesos,
-   │   integraciones (sección 20 cap. 03/05)
-   ├── métricas: hallazgos por edad, excepciones
-   │   abiertas (sección 24 cap. 06)
-   └── post-mortem → control nuevo (el ciclo que nunca
-       se cierra sin que algo cambie — sección 24 cap.
-       06)
+    │
+    ├── inventario vivo: dependencias, accesos,
+    │   integraciones (sección 20 cap. 03/05)
+    ├── métricas: hallazgos por edad, excepciones
+    │   abiertas (sección 24 cap. 06)
+    └── post-mortem → control nuevo (el ciclo que nunca
+        se cierra sin que algo cambie — sección 24 cap.
+        06)
 ```
 
 ```text
-   │
-   └── la pregunta senior no es «¿estamos seguros?»
-       (nadie lo está) sino «¿cuánto TARDAMOS en
-       detectar y CONTENER?» — y eso se mide (Error 5
-       si la respuesta es una impresión)
+    │
+    └── la pregunta senior no es «¿estamos seguros?»
+        (nadie lo está) sino «¿cuánto TARDAMOS en
+        detectar y CONTENER?» — y eso se mide (Error 5
+        si la respuesta es una impresión)
 ```
 
 ---
@@ -120,74 +117,71 @@ LO QUE MANTIENE EL ESTADO:
 
 ```text
 SÍ (el criterio: repetido + predecible + aburrido):
-   │
-   ├── checks de CI, puertas por riesgo (sección 19/24)
-   ├── renovación de dependencias (Dependabot — sección
-   │   20 cap. 03)
-   ├── publicación de releases y artefactos (sección 22
-   │   cap. 05)
-   ├── limpieza: ramas huérfanas, artefactos vencidos
-   │   (sección 25 cap. 05)
-   └── reportes: conformidad, métricas, inventario
+    │
+    ├── checks de CI, puertas por riesgo (sección 19/24)
+    ├── renovación de dependencias (Dependabot — sección
+    │   20 cap. 03)
+    ├── publicación de releases y artefactos (sección 22
+    │   cap. 05)
+    ├── limpieza: ramas huérfanas, artefactos vencidos
+    │   (sección 25 cap. 05)
+    └── reportes: conformidad, métricas, inventario
 ```
 
 ```text
 NO (el criterio: excepcional + consecuencias + juicio):
-   │
-   ├── decisiones que cambian contratos (Error 6 si
-   │   «el bot decide»)
-   ├── accesos y permisos sensibles (Error 6 —
-   │   revisión humana, sección 20 cap. 05)
-   └── despliegues de alto riesgo sin humo/observación
-       (sección 22/23)
+    │
+    ├── decisiones que cambian contratos (Error 6 si
+    │   «el bot decide»)
+    ├── accesos y permisos sensibles (Error 6 —
+    │   revisión humana, sección 20 cap. 05)
+    └── despliegues de alto riesgo sin humo/observación
+        (sección 22/23)
 ```
 
 ```text
 CÓMO SE ELIGE (senior = lista, no reflejo):
-   │
-   ├── ¿se hace más de X veces/mes? → candidato
-   ├── ¿tiene criterio claro? → automatizable
-   ├── ¿si falla, es barato detectarlo? → automatizable
-   └── si alguna es «no» → deja humana con checklist
+    │
+    ├── ¿se hace más de X veces/mes? → candidato
+    ├── ¿tiene criterio claro? → automatizable
+    ├── ¿si falla, es barato detectarlo? → automatizable
+    └── si alguna es «no» → deja humana con checklist
 ```
 
 ```text
-   │
-   └── automatizar MAL es doble trabajo: también
-       mantienes el robot (Error 6 — Error 2 sección
-       04 cap. 25: toda automatización tiene dueño)
+    │
+    └── automatizar MAL es doble trabajo: también
+        mantienes el robot (Error 6 — Error 2 sección
+        04 cap. 25: toda automatización tiene dueño)
 ```
 
 ---
 
 ## 4. Las tres juntas: el ciclo
-
-```text
-EL CICLO QUE SE AUTO SOSTIENE:
-   │
-   ├── gobernanza define → política y dueños
-   ├── automatización APLICA → puertas y reportes
-   ├── seguridad observa → métricas e incidentes
-   └── post-mortem/retro → gobernanza REVISA → nueva
-       política (sección 23 cap. 01 / 24 cap. 06)
+```mermaid
+flowchart TD
+    A["gobernanza define → política y dueños"] --> B["automatización APLICA → puertas y reportes"]
+    B --> C["seguridad observa → métricas e incidentes"]
+    C --> D["post-mortem/retro → gobernanza REVISA → nueva política"]
+    D --> A
 ```
 
 ```text
-   │
-   └── si un eslabón falta, el ciclo se rompe:
-       política sin aplicación = papel (Error 5
-       sección 03 cap. 25); aplicación sin métricas =
-       robot ciego; métricas sin revisión = dashboard
-       decorativo
+    │
+    └── si un eslabón falta, el ciclo se rompe:
+        política sin aplicación = papel (Error 5
+        sección 03 cap. 25); aplicación sin métricas =
+        robot ciego; métricas sin revisión = dashboard
+        decorativo
 ```
 
 ```text
-   │
-   └── el senior ES el que cierra el ciclo: no el que
-       aplica un control, sino el que asegura que el
-       control que FALLÓ se convierte en regla (Error
-       7 si el incidente no cambia nada — Error 4
-       sección 24 cap. 06)
+    │
+    └── el senior ES el que cierra el ciclo: no el que
+        aplica un control, sino el que asegura que el
+        control que FALLÓ se convierte en regla (Error
+        7 si el incidente no cambia nada — Error 4
+        sección 24 cap. 06)
 ```
 
 ---
@@ -369,6 +363,9 @@ Hueco de sucesión cerrado, controles clasificados acto/estado, una métrica act
 
 A nivel senior, la ventaja no está en saber más controles: está en que los controles se apliquen solos, se midan y se corrijan — un sistema que mejora mientras el equipo duerme.
 
+### Ejercicio de transferencia
+Toma un proyecto de código abierto que uses y examina su gobernanza, seguridad y automatización. Identifica si hay memoria externa, suplentes para roles clave, controles de seguridad en cada puerta del flujo y un ciclo de mejora cerrado. Entregable: un informe que señale una brecha en cada área y una acción concreta para cerrarla con criterio senior.
+
 ---
 
 ## 7. Nivel profesional + resumen
@@ -376,25 +373,25 @@ A nivel senior, la ventaja no está en saber más controles: está en que los co
 ### 7.1. El sistema completo
 
 ```text
-   │
-   ├── gobierno: dueños + suplentes + políticas
-   │   citables + excepciones con caducidad (sección
-   │   03 cap. 25)
-   │
-   ├── seguridad: controles en CADA puerta del flujo +
-   │   inventario vivo + post-mortem → control (sección
-   │   24)
-   │
-   ├── automatización: piso obligatorio por plantilla +
-   │   bots acotados a lo verificable + dueños de todo lo
-   │   que corre (sección 04 cap. 25)
-   │
-   ├── ciclo: retro con métricas → política nueva →
-   │   aplicación (sección 23 cap. 01)
-   │
-   └── métricas de sistema: tiempo de detección y
-       contención, excepciones abiertas, reincidencias,
-       % repos conformes
+    │
+    ├── gobierno: dueños + suplentes + políticas
+    │   citables + excepciones con caducidad (sección
+    │   03 cap. 25)
+    │
+    ├── seguridad: controles en CADA puerta del flujo +
+    │   inventario vivo + post-mortem → control (sección
+    │   24)
+    │
+    ├── automatización: piso obligatorio por plantilla +
+    │   bots acotados a lo verificable + dueños de todo lo
+    │   que corre (sección 04 cap. 25)
+    │
+    ├── ciclo: retro con métricas → política nueva →
+    │   aplicación (sección 23 cap. 01)
+    │
+    └── métricas de sistema: tiempo de detección y
+        contención, excepciones abiertas, reincidencias,
+        % repos conformes
 ```
 
 ### 7.2. Resumen
@@ -402,7 +399,7 @@ A nivel senior, la ventaja no está en saber más controles: está en que los co
 En este capítulo aprendiste que:
 
 * gobernanza sostenible = memoria externa, suplentes y rutina en calendario — no héroes;
-* seguridad como estado: controles dentro de cada puerta, inventario vivo y métricas de tiempos, no impresiones;
+* seguridad como estado: controles en CADA puerta del flujo + inventario vivo + métricas de tiempos, no impresiones;
 * automatizar lo repetido, predecible y barato de detectar; dejar lo excepcional y de juicio en manos humanas con checklist;
 * las tres patas forman un ciclo: política → aplicación → observación → revisión;
 * los errores típicos (gobierno en una cabeza, dueño sin suplente, incentivos al incendio, seguridad de crisis, «¿estamos seguros?», bots con juicio difuso, reincidencia) se previenen con memoria, métricas y ciclo cerrado;
@@ -414,6 +411,14 @@ La idea principal es:
 
 ---
 
+## Autopreguntas de cierre
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+1. ¿Cuál es la pregunta senior que guía el diseño de workflows y estrategias de ramas?
+2. ¿Cómo se elige la estrategia de ramificación más apropiada para un equipo?
+3. ¿Qué componentes forman el flujo completo desde el issue hasta el despliegue?
+4. ¿Cómo se mide la calidad del flujo y qué se hace para mejorarla?
+5. ¿Por qué es importante incluir el plan de vuelta (rollback) en el diseño del flujo?
+6. ¿Cómo se evita caer en errores comunes como elegir una estrategia sin base real?
 ## Próximo paso
 
 Ya gobiernas, aseguras y automatizas el conjunto.
