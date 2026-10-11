@@ -8,20 +8,18 @@ La pregunta clásica de proyectos que crecen: **¿un repositorio para todo o var
 
 ## Mapa conceptual de este capítulo
 
-```text
-Monorepo vs. multirepo
-       │
-       ├── 1. Qué significa cada uno
-       ├── 2. Monorepo: qué gana y qué paga
-       ├── 3. Multirepo: qué gana y qué paga
-       │   ├── 4. Factores de decisión (el contexto)
-       │   ├── 5. Híbridos y migraciones (mención)
-       │   └── 6. La respuesta incómoda: casi nunca es
-       │       «el código»
-       │
-       ├── 7. Errores comunes con diagnóstico completo
-       ├── 8. Práctica guiada
-       └── 9. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Monorepo vs. multirepo))
+    1. Qué significa cada uno
+    2. Monorepo: qué gana y qué paga
+    3. Multirepo: qué gana y qué paga
+      4. Factores de decisión (el contexto)
+      5. Híbridos y migraciones (mención)
+      6. La respuesta incómoda: casi nunca es «el código»
+    7. Errores comunes con diagnóstico completo
+    8. Práctica guiada
+    9. Nivel profesional + resumen
 ```
 
 ---
@@ -404,6 +402,10 @@ Responde (tu proyecto real):
 
 Matriza de contexto llena, decisión (o diagnóstico del estado) documentado con consecuencias y reevaluación.
 
+### Ejercicio de transferencia
+Analiza la arquitectura de un proyecto de código abierto que uses (por ejemplo, un plugin de VS Code) y determina si debería ser monorepo o multirepo basado en los factores de contexto; entrega una matriz y una breve justificación.
+
+
 ### Conclusión esperada
 
 La arquitectura de repositorios no se descubre en un tutorial: se decide con el contexto del equipo y se firma con sus consecuencias — por escrito, para poder revisarla.
@@ -450,6 +452,18 @@ La idea principal es:
 > **No hay arquitectura correcta: hay consecuencias aceptadas conscientemente — la elección madura es la que firma su precio y anota qué la haría cambiar de opinión.**
 
 ---
+
+## Autopreguntas de cierre
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+1. ¿Qué factores de contexto suelen inclinar la decisión hacia monorepo?
+2. ¿Qué convierte un límite entre componentes en un «contrato» y no en una simple carpeta?
+3. ¿Cuándo es legítimo saltarse una regla de gobernanza y qué debe documentarse?
+4. ¿Qué se hace al retirar un repositorio y qué nunca se hace?
+5. ¿Cómo afecta la elección entre monorepo y multirepo a la visibilidad de dependencias y al riesgo de conflictos de versiones?
+6. ¿Qué mecanismos en GitHub ayudan a hacer cumplir los límites de componentes sin crear cuellos de botella?
+7. ¿Por qué es importante documentar excepciones a las políticas de gobernanza?
+8. Al planificar el retiro de un repositorio, ¿qué pasos se deben tomar para asegurar migración y comunicación?
+
 
 ## Próximo paso
 
