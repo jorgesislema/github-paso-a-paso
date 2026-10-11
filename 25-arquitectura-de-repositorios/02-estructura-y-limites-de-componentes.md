@@ -8,18 +8,17 @@ Dentro del repositorio — monorepo o no — aparece la misma pregunta en miniat
 
 ## Mapa conceptual de este capítulo
 
-```text
-Estructura y límites de componentes
-       │
-       ├── 1. Estructura que se lee sola
-       ├── 2. Límites: por qué duele cruzarlos
-       │   ├── 3. Interfaces y contratos entre partes
-       │   ├── 4. Mecanismos que hacen cumplir el límite
-       │   └── 5. Estructura heredada (cuando ya existe)
-       │
-       ├── 6. Errores comunes con diagnóstico completo
-       ├── 7. Práctica guiada
-       └── 8. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Estructura y límites de componentes))
+    1. Estructura que se lee sola
+    2. Límites: por qué duele cruzarlos
+      3. Interfaces y contratos entre partes
+      4. Mecanismos que hacen cumplir el límite
+      5. Estructura heredada (cuando ya existe)
+    6. Errores comunes con diagnóstico completo
+    7. Práctica guiada
+    8. Nivel profesional + resumen
 ```
 
 ---
@@ -380,6 +379,10 @@ Componente → ¿qué importa de otros?
 
 Árbol leído, cruces clasificados, una interfaz definida y una guardia activa.
 
+### Ejercicio de transferencia
+Diseña una estructura de componentes para una biblioteca de UI que se reutiliza en múltiples aplicaciones; define carpetas, interfaces y mecanismos (por ejemplo, usando un archivo CONTRIBUTING.md o un script de validación) que hagan cumplir el límite entre el núcleo de la biblioteca y los temas o plugins.
+
+
 ### Conclusión esperada
 
 La estructura es el primer contrato del repo: si las carpetas se leen, las interfaces se nombran y los límites se verifican solos, el sistema puede crecer sin volverse una pelota de ratoneras.
@@ -425,6 +428,18 @@ La idea principal es:
 > **Los buenos límites no impiden trabajar: hacen que trabajar dentro de cada pieza sea predecible — y los que valen son los que el PR no puede saltarse sin que alguien legítimo lo note.**
 
 ---
+
+## Autopreguntas de cierre
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+1. ¿Qué princpios hacen que una estructura se lee sola y por qué es importante?
+2. ¿Por qué duele cruzar los límites entre componentes y cómo se manifiesta ese dolor?
+3. ¿Qué elementos forman un interfaz o contrato entre componentes?
+4. ¿Qué mecanismos en Git o en el lenguaje pueden hacer cumplir esos límites?
+5. ¿Qué riesgos conlleva mantener una estructura heredada sin actualizar?
+6. ¿Qué tipos de errores comunes se presentan en la estructura y límites y cómo se diagnostican?
+7. ¿Qué pasos incluirías en una práctica guiada para definir límites en un proyecto existente?
+8. ¿Qué aspectos de nivel profesional deberías considerar para escalar la estructura de componentes?
+
 
 ## Próximo paso
 
