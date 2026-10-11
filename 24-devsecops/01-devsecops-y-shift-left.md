@@ -8,38 +8,40 @@
 
 ## Mapa conceptual de este capítulo
 
-```text
-DevSecOps y shift left
-       │
-       ├── 1. Del modelo de túnel al modelo de flujo
-       ├── 2. Shift left: qué significa en la práctica
-       │   ├── 3. Los tres socios (y sus responsabilidades)
-       │   ├── 4. Seguridad como checklist del flujo
-       │   └── 5. Mito del «solo en el final»
-       │
-       ├── 6. Errores comunes con diagnóstico completo
-       ├── 7. Práctica guiada
-       └── 8. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((DevSecOps y shift left))
+    1. Del modelo de túnel al modelo de flujo
+    2. Shift left qué significa en la práctica
+      3. Los tres socios y sus responsabilidades
+      4. Seguridad como checklist del flujo
+      5. Mito del solo en el final
+    6. Errores comunes con diagnóstico completo
+    7. Práctica guiada
+    8. Nivel profesional + resumen
 ```
 
 ---
 
 ## 1. Del modelo de túnel al modelo de flujo
 
-```text
-MODELO ANTIGUO (túnel):
-──────────────────────────────────────────────────────
-desarrolla → desarrolla → desarrolla → "seguridad lo
-revisa" → descubre 40 hallazgos → fricción →
-remendos tardíos → o se publica igual
+```mermaid
+flowchart TD
+    A["desarrolla"] --> B["desarrolla"]
+    B["desarrolla"] --> C["desarrolla"]
+    C["desarrolla"] --> D["seguridad lo revisa"]
+    D["seguridad lo revisa"] --> E["descubre 40 hallazgos"]
+    E["descubre 40 hallazgos"] --> F["fricción"]
+    F["fricción"] --> G["remendos tardíos"]
+    G["remendos tardíos"] --> H["o se publica igual"]
 ```
 
-```text
-DEVSECOPS (flujo integrado):
-──────────────────────────────────────────────────────
-cada paso del flujo (editor → PR → build → deploy →
-operación) lleva SU control de seguridad — pequeño,
-automático, accionable
+```mermaid
+flowchart TD
+    A["editor"] --> B["PR"]
+    B --> C["build"]
+    C --> D["deploy"]
+    D --> E["operación"]
 ```
 
 ```text
@@ -345,6 +347,11 @@ DevSecOps es diseño de flujo: cada momento sabe qué control le corresponde —
 
 ---
 
+### Ejercicio de transferencia
+
+Diseña el mapa de controles de seguridad para un flujo diferente al desarrollo de software, por ejemplo el proceso de publicación de un artículo académico o el despliegue de una infraestructura en la nube. Identifica los momentos clave (como redacción, revisión por pares, aprobación, publicación, monitoreo) y asigna controles de seguridad apropiados (revisión de plagio, verificación de fuentes, firmas digitales, auditoría de configuración, etc.). Entrega un diagrama o lista que muestre los momentos y sus controles.
+
+
 ## 8. Nivel profesional + resumen
 
 ### 8.1. DevSecOps a escala
@@ -385,6 +392,18 @@ La idea principal es:
 > **La seguridad no se añade al proceso: se diseña dentro de él — cada momento del flujo carga su puerta proporcional, y el equipo la ve como ayuda, no como aduana.**
 
 ---
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Por qué el modelo de túnel genera fricción y remediación tardía en comparación con el flujo integrado de DevSecOps?
+2. ¿Cómo define el principio de shift left la ubicación óptima para aplicar controles de seguridad a lo largo del flujo de desarrollo?
+3. ¿Cuáles son las responsabilidades distintas de los tres socios (desarrollo, operaciones, seguridad) en un modelo de DevSecOps efectivo?
+4. ¿De qué manera la seguridad como checklist del flujo mejora la memoria del equipo y permite la automatización y revisión continua?
+5. ¿Qué error común consiste en aplicar shift left solo en el editor y retirar controles en etapas posteriores, y cómo se corrige?
+6. ¿Cómo contribuye el post-mortem de incidentes a la mejora continua del programa de seguridad mediante la creación de nuevos controles?
+
 
 ## Próximo paso
 
