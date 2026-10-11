@@ -1,0 +1,80 @@
+ESPECIFICACIÓN DE MEJORA PARA CAPÍTULOS
+
+APLICAR A CADA CAPÍTULO DEL BLOQUE:
+
+1. MAPA CONCEPTUAL → MERMAID:
+   - Si el capítulo tiene `## Mapa conceptual de este capítulo` seguido de un bloque ```text con árbol ASCII: reemplazar SOLO ese bloque por un bloque ```mermaid con `mindmap` que conserve los mismos conceptos y jerarquía (raíz = título del capítulo; ramas = secciones; hojas = conceptos clave). No borrar información: trasladarla.
+   - Si el capítulo no tiene mapa conceptual, añádelo tras la Introducción con las secciones del archivo.
+
+2. 1-2 FLOWCHART DEL PROCESO PRINCIPAL:
+   - Elegir EL diagrama de proceso MÁS importante del capítulo (bloque ```text con etiqueta DIAGRAMA o un flujo de pasos) y convertirlo a ```mermaid flowchart TD con nodos entre comillas: A["texto"] --> B["texto"].
+   - No convertir tablas ASCII (bloques con columnas tipo TABLA) ni listas con `│ ├──`; esos se quedan como están.
+   - Convertir máximo 2 diagramas por capítulo (el principal y, si aplica, uno secundario clave).
+   - Mermaid debe ser válido: sin acentos problemáticos está bien (mermaid soporta UTF-8), pero evita `#`, `;`, comillas dentro de etiquetas.
+
+3. AUTOPREGUNTAS DE CIERRE (obligatorio):
+   - Añadir antes de `## Próximo paso` (o al final del archivo si no existe) la sección:
+
+   ## Autopreguntas de cierre
+
+   Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+   1. ¿...?
+   2. ¿...?
+   ... (5 a 8 preguntas)
+
+   - Preguntas de comprensión profunda (el porqué, no definitions de memoria), cubriendo las ideas centrales del capítulo.
+   - Si el capítulo ya tiene una sección de autoevaluación con ≥5 preguntas (p. ej. «Cómo saber si lo entendiste»), renombrar esa sección a `## Autopreguntas de cierre` y adaptar el preámbulo, sin duplicar.
+
+4. ⚠️ RIESGO EN COMANDOS DESTRUCTIVOS:
+   - Justo ANTES de cada bloque ```bash que contenga un comando genuinamente destructivo/irreversible (git reset --hard, git push --force/-f, git branch -D, git clean -fd, git stash drop/clear, git filter-repo, rm -rf, etc.): añade una línea:
+   ⚠️ **RIESGO:** <concreto: qué se pierde y si es recuperable>
+   - Solo si es genuinamente destructivo (1-4 por archivo típico). NO marcar comandos seguros (status, log, add, commit, pull, fetch).
+
+5. EJERCICIO DE TRANSFERENCIA (obligatorio):
+   - Al final de la sección de práctica (tras «Práctica guiada»/«Resultado esperado», antes de «## Nivel profesional» o «Resumen»):
+   ### Ejercicio de transferencia
+
+   <2-5 líneas: una tarea CONCRETA que aplique el mismo concepto a un contexto DIFERENTE del ejemplo guiado, con entregable verificable.>
+
+ESPECIFICACIÓN DE MEJORA PARA README DEL BLOQUE
+
+APLICAR AL README DEL BLOQUE:
+
+1. MAPA CONCEPTUAL MERMAID:
+   - Insertar tras la sección "Objetivos de aprendizaje" (antes de "---" y "## ¿Qué aprenderás en esta sección?") esta sección:
+
+   ## Mapa conceptual
+
+   ```mermaid
+   mindmap
+     root((NN · Nombre del bloque))
+       01 Título del capítulo 1
+         concepto clave
+         concepto clave
+       02 Título del capítulo 2
+         ...
+   ```
+
+2. CHECKPOINT:
+   - Insertar justo ANTES de "## Autopreguntas de cierre":
+
+   ## Checkpoint NN — Comprobación obligatoria
+
+   Antes de avanzar a `<siguiente bloque>/`, demuestra que puedes (en un repositorio de práctica real):
+
+   1. **<verbo concreto>** <acción verificable, específica del bloque>.
+   2. ... (4 a 6 puntos)
+
+   Si puedes hacerlo **sin mirar instrucciones**, el checkpoint está cerrado.
+
+3. AUTOPREGUNTAS DE CIERRE:
+   - Asegurar que exista la sección ## Autopreguntas de cierre con 5-8 preguntas de comprensión profunda (preguntas numeradas "1. ¿...?"). Si ya existe, asegurar que tenga 5-8 preguntas.
+
+REGLAS GENERALES:
+- Todo en español, tono del curso (adultos 40+, sin experiencia), sin emojis salvo ⚠️.
+- NO borrar contenido existente salvo la conversión de los bloques indicados. NO reordenar secciones existentes. NO renombrar archivos.
+- No superar ~700 líneas por archivo: si la suma se pasa, reducir a 5 autopreguntas y 1 flowchart.
+- Código/bash intacto.
+- Usar las herramientas read/edit/write. Si reescribe un archivo completo, usar write con el contenido TOTAL (nunca truncar).
+- Archivos UTF-8. NO commit.
