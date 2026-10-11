@@ -8,17 +8,16 @@ Un repositorio individual prueba técnicas; **un repositorio compartido prueba e
 
 ## Mapa conceptual de este capítulo
 
-```text
-Proyecto 8: proyecto colaborativo
-       │
-       ├── 1. Qué construyes (y con quién)
-       ├── 2. Reglas del proyecto (el acuerdo escrito)
-       │   ├── 3. El flujo que practicarán todos
-       │   └── 4. Los papeles (y cómo rotarlos)
-       │
-       ├── 5. Errores comunes con diagnóstico completo
-       ├── 6. Práctica guiada
-       └── 7. Nivel profesional + resumen
+```mermaid
+mindmap
+  root((Proyecto 8: proyecto colaborativo))
+    1. Qué construyes (y con quién)
+    2. Reglas del proyecto (el acuerdo escrito)
+      3. El flujo que practicarán todos
+      4. Los papeles (y cómo rotarlos)
+    5. Errores comunes con diagnóstico completo
+    6. Práctica guiada
+    7. Nivel profesional + resumen
 ```
 
 ---
@@ -27,35 +26,38 @@ Proyecto 8: proyecto colaborativo
 
 ```text
 EL PROYECTO:
-   │
-   ├── un repositorio útil para 2–4 personas (el
-   │   mínimo que crea INTERACCIÓN real): herramienta
-   │   compartida, colección de recetas/notes con
-   │   aportes, sitio de equipo, plantillas comunes…
-   │
-   └── lo que importa: NO el producto, sino que el
-       FLUJO se ejecute con fricción real (comentarios,
-       opiniones, cambios simultáneos)
+    │
+    ├── un repositorio útil para 2–4 personas (el
+    │   mínimo que crea INTERACCIÓN real): herramienta
+    │   compartida, colección de recetas/notes con
+    │   aportes, sitio de equipo, plantillas comunes…
+    │
+    └── lo que importa: NO el producto, sino que el
+        FLUJO se ejecute con fricción real (comentarios,
+        opiniones, cambios simultáneos)
 ```
 
 ```text
 CON QUIÉN (si no tienes equipo):
-   │
-   ├── 1 compañero en el mismo curso (ideal: se
-   │   corrigen mutuamente)
-   ├── o dos «personas» tuyas con roles separados (menos
-   │   ideal, pero practica permisos)
-   │
-   └── regla: mínimo 2 PRs REVISADOS POR ALGUIEN QUE
-       NO ES SU AUTOR (Error 1 si todos revisan lo
-       propio: no es colaboración)
+    │
+    ├── 1 compañero en el mismo curso (ideal: se
+    │   corrigen mutuamente)
+    │
+    │   o dos «personas» tuyas con roles separados (menos
+    │   ideal, pero practica permisos)
+    │
+    │
+    └── regla: mínimo 2 PRs REVISADOS POR ALGUIEN QUE
+        NO ES SU AUTOR (Error 1 si todos revisan lo
+        propio: no es colaboración)
 ```
 
 ```text
-   │
-   └── entregable: 1 release o versión del proyecto con
-       al menos 3 contribuciones cruzadas en el
-       historial
+    │
+    │
+    └── entregable: 1 release o versión del proyecto con
+        al menos 3 contribuciones cruzadas en el
+        historial
 ```
 
 ---
@@ -64,36 +66,44 @@ CON QUIÉN (si no tienes equipo):
 
 ```text
 DOCUMENTO `CONTRIBUTING.md` (sección 14/00 — 1 página):
-   │
-   ├── cómo se estructura (carpetas, convenciones)
-   ├── cómo se pide un cambio: issue → rama → PR
-   ├── convención de commits (sección 06)
-   ├── qué revisa cada PR (checklist — sección 26 cap.
-   │   02 punto 2)
-   ├── cómo se decide (mayoría? dueño? — Error 2 si
-   │   «ya lo hablaremos»: no hay acuerdo)
-   └── qué NO se hace (riesgos: force-push, secrets —
-       sección 07/20)
+    │
+    ├── cómo se estructura (carpetas, convenciones)
+    │
+    ├── cómo se pide un cambio: issue → rama → PR
+    │
+    ├── convención de commits (sección 06)
+    │
+    ├── qué revisa cada PR (checklist — sección 26 cap.
+    │   02 punto 2)
+    │
+    ├── cómo se decide (mayoría? dueño? — Error 2 si
+    │   «ya lo hablaremos»: no hay acuerdo)
+    │
+    └── qué NO se hace (riesgos: force-push, secrets —
+        sección 07/20)
 ```
 
 ```text
 CONTROLES CONFIGURADOS (no pedidos — exigidos):
-   │
-   ├── rama principal protegida: PR obligatorio +
-   │   revisor(es) + checks requeridos (sección 20 cap.
-   │   06 / 19)
-   ├── CODEOWNERS: quién aprueba cada zona (sección 16
-   │   cap. 06)
-   └── issues con etiquetas (bug, tarea, idea) y
-       asignación clara (sección 16)
+    │
+    ├── rama principal protegida: PR obligatorio +
+    │   revisor(es) + checks requeridos (sección 20 cap.
+    │   06 / 19)
+    │
+    ├── CODEOWNERS: quién aprueba cada zona (sección 16
+    │   cap. 06)
+    │
+    └── issues con etiquetas (bug, tarea, idea) y
+        asignación clara (sección 16)
 ```
 
 ```text
-   │
-   └── las reglas se PRUEBAN al montar: un PR sin
-       revisor debe quedar bloqueado (Error 3 si no lo
-       comprobáis: el acuerdo es decoración — Error 5
-       sección 03 de esta sección)
+    │
+    │
+    └── las reglas se PRUEBAN al montar: un PR sin
+        revisor debe quedar bloqueado (Error 3 si no lo
+        comprobáis: el acuerdo es decoración — Error 5
+        sección 03 de esta sección)
 ```
 
 ---
@@ -102,41 +112,50 @@ CONTROLES CONFIGURADOS (no pedidos — exigidos):
 
 ```text
 EL CICLO DEL PROYECTO (cada uno lo ejecuta ≥ 2 veces):
-   │
-   ├── 1. issue: la idea/tarea con criterio de hecho
-   ├── 2. asignación: quién la lleva (sin duplicados)
-   ├── 3. rama `feature/...` desde main actualizada
-   ├── 4. commits pequeños con convención
-   ├── 5. PR: descripción con contexto, enlace al issue,
-   │       checklist
-   ├── 6. REVISIÓN de otro: comentarios de capa (¿resuelve?
-   │       → ¿correcto? → ¿mantenible? — sección 26 cap.
-   │       02 punto 2), resolución de hilos
-   ├── 7. merge según convención (squash/merge —
-   │       decidido en CONTRIBUTING)
-   └── 8. issue cerrado + verificación en main (Error 4
-       si los issues quedan flotando: el tablero miente)
+    │
+    ├── 1. issue: la idea/tarea con criterio de hecho
+    │
+    ├── 2. asignación: quién la lleva (sin duplicados)
+    │
+    ├── 3. rama `feature/...` desde main actualizada
+    │
+    ├── 4. commits pequeños con convención
+    │
+    ├── 5. PR: descripción con contexto, enlace al issue,
+    │       checklist
+    │
+    ├── 6. REVISIÓN de otro: comentarios de capa (¿resuelve?
+    │       → ¿correcto? → ¿mantenible? — sección 26 cap.
+    │       02 punto 2), resolución de hilos
+    │
+    ├── 7. merge según convención (squash/merge —
+    │       decidido en CONTRIBUTING)
+    │
+    └── 8. issue cerrado + verificación en main (Error 4
+        si los issues quedan flotando: el tablero miente)
 ```
 
 ```text
 LOS DOS MOMENTOS QUE MÁS APRENDEN:
-   │
-   ├── el PR con CONFLICTOS (dos tocaron lo mismo): se
-   │   resuelven por diálogo y merge — Error 5 si se
-   │   resuelven «a la fuerza» (sección 07/08: con
-   │   cuidado y verificación)
-   │
-   └── la revisión DESACORDADA: se discute el código,
-       se decide con la regla del CONTRIBUTING (Error
-       6 si se recurre a la autoridad — el acuerdo
-       estaba para eso)
+    │
+    ├── el PR con CONFLICTOS (dos tocaron lo mismo): se
+    │   resuelven por diálogo y merge — Error 5 si se
+    │   resuelven «a la fuerza» (sección 07/08: con
+    │   cuidado y verificación)
+    │
+    │
+    └── la revisión DESACORDADA: se discute el código,
+        se decide con la regla del CONTRIBUTING (Error
+        6 si se recurre a la autoridad — el acuerdo
+        estaba para eso)
 ```
 
 ```text
-   │
-   └── con 3+ contribuciones cruzadas, el historial
-       mostrará el verdadero tema: varios autores,
-       una historia legible
+    │
+    │
+    └── con 3+ contribuciones cruzadas, el historial
+        mostrará el verdadero tema: varios autores,
+        una historia legible
 ```
 
 ---
@@ -145,29 +164,33 @@ LOS DOS MOMENTOS QUE MÁS APRENDEN:
 
 ```text
 PAPELES (pequeños, pero reales):
-   │
-   ├── autor: escribe el cambio con PR claro
-   ├── revisor: capas de revisión + plazo (Error 7 si
-   │   «lo veo mañana»: el flujo se enfría)
-   └── dueño de release: prepara versión/etiqueta,
-       changelog y cierre (sección 26 cap. 02 punto 4)
+    │
+    ├── autor: escribe el cambio con PR claro
+    │
+    ├── revisor: capas de revisión + plazo (Error 7 si
+    │   «lo veo mañana»: el flujo se enfría)
+    │
+    └── dueño de release: prepara versión/etiqueta,
+        changelog y cierre (sección 26 cap. 02 punto 4)
 ```
 
 ```text
 ROTACIÓN (Error 1 sección 25 cap. 03 — sombreros):
-   │
-   ├── cada uno ejerce los 3 papeles alguna vez
-   │
-   └── el «dueño de release» rota por entrega — nadie
-       es siempre el jefe (Error 2 prevención)
+    │
+    ├── cada uno ejerce los 3 papeles alguna vez
+    │
+    │
+    └── el «dueño de release» rota por entrega — nadie
+        es siempre el jefe (Error 2 prevención)
 ```
 
 ```text
-   │
-   └── medición honesta del proyecto: ¿los PRs se
-       revisaron en < 48 h? ¿todos revisaron algo? ¿al
-       menos uno rechazó/comentó en serio? (Error 7 —
-       la colaboración también se MIDE)
+    │
+    │
+    └── medición honesta del proyecto: ¿los PRs se
+        revisaron en < 48 h? ¿todos revisaron algo? ¿al
+        menos uno rechazó/comentó en serio? (Error 7 —
+        la colaboración también se MIDE)
 ```
 
 ---
@@ -236,13 +259,13 @@ ROTACIÓN (Error 1 sección 25 cap. 03 — sombreros):
 
 **Cómo comprobarlo:** contrastar issues vs. merges/realidad.
 
-**Opciones:** limpieza inicial + «cierra en el PR» como regla.
+**OPTIONS:** limpieza inicial + «cierra en el PR» como regla.
 
-**Riesgos:** desconfianza en el tablero (Error 2 sección 16 cap. 05).
+**RISKS:** desconfianza en el tablero (Error 2 sección 16 cap. 05).
 
-**Solución:** cierre en el ciclo (punto 3).
+**SOLUCIÓN:** cierre en el ciclo (punto 3).
 
-**Cómo se evita:** revisión semanal del tablero (10 minutos).
+**CÓMO SE EVITA:** revisión semanal del tablero (10 minutos).
 
 ---
 
@@ -254,13 +277,13 @@ ROTACIÓN (Error 1 sección 25 cap. 03 — sombreros):
 
 **Cómo comprobarlo:** registros: ¿force-push en rama compartida?
 
-**Opciones:** recuperar lo perdido del historial si existe; reconstruir; regla: en ramas compartidas jamás (Error 8 sección 07 cap. 02).
+**OPTIONS:** recuperar lo perdido del historial si existe; reconstruir; regla: en ramas compartidas jamás (Error 8 sección 07 cap. 02).
 
-**Riesgos:** trabajo destruido y desconfianza.
+**RISKS:** trabajo destruido y desconfianza.
 
-**Solución:** conflictos con diálogo y cuidado (punto 3).
+**SOLUCIÓN:** conflictos con diálogo y cuidado (punto 3).
 
-**Cómo se evita:** prohibir force-push en ramas compartidas (protección).
+**CÓMO SE EVITA:** prohibir force-push en ramas compartidas (protección).
 
 ---
 
@@ -272,13 +295,13 @@ ROTACIÓN (Error 1 sección 25 cap. 03 — sombreros):
 
 **Cómo comprobarlo:** ¿el CONTRIBUTING tiene cómo se decide? ¿se citó?
 
-**Opciones:** citar la regla y decidirla con ella; si no existe, añadirla.
+**OPTIONS:** citar la regla y decidirla con ella; si no existe, añadirla.
 
-**Riesgos:** resentimiento y bypass silencioso.
+**RISKS:** resentimiento y bypass silencioso.
 
-**Solución:** el acuerdo desempata (punto 3).
+**SOLUCIÓN:** el acuerdo desempata (punto 3).
 
-**Cómo se evita:** toda decisión de conflicto cita su regla.
+**CÓMO SE EVITA:** toda decisión de conflicto cita su regla.
 
 ---
 
@@ -290,13 +313,13 @@ ROTACIÓN (Error 1 sección 25 cap. 03 — sombreros):
 
 **Cómo comprobarlo:** mediana «PR → primera revisión».
 
-**Opciones:** acordar 48 h, recordatorios, revisor asignado en automático.
+**OPTIONS:** acordar 48 h, recordatorios, revisor asignado en automático.
 
-**Riesgos:** muerte por espera (Error 6 sección 02 cap. 26).
+**RISKS:** muerte por espera (Error 6 sección 02 cap. 26).
 
-**Solución:** plazo y rotación (punto 4).
+**SOLUCIÓN:** plazo y rotación (punto 4).
 
-**Cómo se evita:** métrica de antigüedad en la retro del proyecto.
+**CÓMO SE EVITA:** métrica de antigüedad en la retro del proyecto.
 
 ---
 
@@ -340,18 +363,21 @@ merge → issue cerrado
 
 ```text
 Checklist:
-   [ ] CONTRIBUTING completo
-   [ ] controles probados en negativo
-   [ ] ≥ 3 PRs con revisor ≠ autor
-   [ ] issues abiertos = trabajo real pendiente
-   [ ] release con dueño y notas
-   [ ] retrospectiva: ¿qué fricción dolió y qué regla
-       faltaba?
+    [ ] CONTRIBUTING completo
+    [ ] controles probados en negativo
+    [ ] ≥ 3 PRs con revisor ≠ autor
+    [ ] issues abiertos = trabajo real pendiente
+    [ ] release con dueño y notas
+    [ ] retrospectiva: ¿qué fricción dolió y qué regla
+        faltaba?
 ```
 
 ### Resultado esperado
 
 Release colaborativa con historial multi-autor, controles verificados y acuerdo escrito que funcionó en la práctica.
+
+### Ejercicio de transferencia
+Aplica el mismo concepto de flujo colaborativo y revisión cruzada a un proyecto de documentación técnica: crea un repositorio para un manual de usuario donde múltiples autores contribuyen con secciones, usan ramas para cada sección, revisan los PRs de otros, y aplican un acuerdo escrito para resolver conflictos de estilo o contenido.
 
 ### Conclusión esperada
 
@@ -364,21 +390,21 @@ La colaboración no es «trabajar a la vez en un repo»: es un conjunto de acuer
 ### 7.1. Del proyecto al equipo real
 
 ```text
-   │
-   ├── lo que practicaste es literalmente el onboarding
-   │   de un equipo nuevo: CONTRIBUTING, controles,
-   │   flujo y papeles (sección 16/18)
-   │
-   ├── papeles rotativos = la semilla de CODEOWNERS y
-   │   gobernanza que ya usaste (sección 25 cap. 03)
-   │
-   ├── la retrospectiva de fricciones es la retro real:
-   │   «qué regla faltaba» es la pregunta de mejora
-   │   continua (sección 23 cap. 01)
-   │
-   └── con esto, el Proyecto final (sección 28) solo
-       añade alcance — la forma de trabajar ya la
-       dominas
+    │
+    ├── lo que practicaste es literalmente el onboarding
+    │   de un equipo nuevo: CONTRIBUTING, controles,
+    │   flujo y papeles (sección 16/18)
+    │
+    ├── papeles rotativos = la semilla de CODEOWNERS y
+    │   gobernanza que ya usaste (sección 25 cap. 03)
+    │
+    ├── la retrospectiva de fricciones es la retro real:
+    │   «qué regla faltaba» es la pregunta de mejora
+    │   continua (sección 23 cap. 01)
+    │
+    └── con esto, el Proyecto final (sección 28) solo
+        añade alcance — la forma de trabajar ya la
+        dominas
 ```
 
 ### 7.2. Resumen
@@ -398,6 +424,15 @@ La idea principal es:
 
 ---
 
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
+
+1. ¿Cuál es el concepto central que se introduce en este capítulo y por qué es importante para el flujo de trabajo?
+2. ¿Cómo se aplica el concepto práctico descrito en las secciónes de práctica guiada a un escenario real?
+3. ¿Qué errores comunes se destacan en este capítulo y cómo se pueden prevenir siguiendo los pasos recomendados?
+4. ¿De qué manera este capítulo se conecta con el siguiente bloque (o sección final) en la progresión del aprendizaje?
+5. ¿Qué hábito o práctica clave se debe internalizar al completar este capítulo?
 ## Próximo paso
 
 Has completado la sección de proyectos prácticos.
