@@ -1,28 +1,28 @@
-# GitHub Paso a Paso
+﻿# GitHub Paso a Paso
 
 ## De cero a nivel profesional
 
-Bienvenido a **GitHub Paso a Paso**, un repositorio educativo diseñado para aprender a utilizar **Git y GitHub desde cero hasta un nivel profesional**.
+Bienvenido a **GitHub Paso a Paso**, un repositorio educativo diseÃ±ado para aprender a utilizar **Git y GitHub desde cero hasta un nivel profesional**.
 
-> **Versión del contenido:** 1.1 (octubre 2026) — ver el [CHANGELOG](CHANGELOG.md) para el historial de cambios.
+> **VersiÃ³n del contenido:** 1.1 (octubre 2026) â€” ver el [CHANGELOG](CHANGELOG.md) para el historial de cambios.
 
-Este material está pensado especialmente para personas que están dando sus primeros pasos en programación, independientemente de su edad, experiencia profesional o conocimientos previos de informática.
+Este material estÃ¡ pensado especialmente para personas que estÃ¡n dando sus primeros pasos en programaciÃ³n, independientemente de su edad, experiencia profesional o conocimientos previos de informÃ¡tica.
 
 No necesitas ser programador para comenzar.
 
 Tampoco necesitas conocer Git, GitHub ni la terminal.
 
-Aquí aprenderás progresivamente desde los conceptos más sencillos hasta los utilizados en equipos profesionales de desarrollo de software.
+AquÃ­ aprenderÃ¡s progresivamente desde los conceptos mÃ¡s sencillos hasta los utilizados en equipos profesionales de desarrollo de software.
 
 ---
 
-# ¿Qué vas a aprender?
+# Â¿QuÃ© vas a aprender?
 
-Durante el recorrido aprenderás:
+Durante el recorrido aprenderÃ¡s:
 
-* Conceptos básicos de informática.
-* Qué es Git.
-* Qué es GitHub.
+* Conceptos bÃ¡sicos de informÃ¡tica.
+* QuÃ© es Git.
+* QuÃ© es GitHub.
 * Diferencias entre Git y GitHub.
 * Control de versiones.
 * Repositorios.
@@ -34,18 +34,18 @@ Durante el recorrido aprenderás:
 * `push`, `pull` y `fetch`.
 * Pull Requests.
 * Code Review.
-* Resolución de conflictos.
+* ResoluciÃ³n de conflictos.
 * Trabajo colaborativo.
 * Issues.
 * GitHub Projects.
 * Releases.
 * Tags.
-* Documentación con Markdown.
+* DocumentaciÃ³n con Markdown.
 * `.gitignore`.
 * SSH.
-* Tokens y autenticación.
+* Tokens y autenticaciÃ³n.
 * GitHub Actions.
-* Integración continua.
+* IntegraciÃ³n continua.
 * Entrega continua.
 * Despliegue continuo.
 * Seguridad de repositorios.
@@ -58,18 +58,18 @@ Durante el recorrido aprenderás:
 * Arquitectura de repositorios.
 * Estrategias de branching.
 * Gobernanza.
-* Automatización.
+* AutomatizaciÃ³n.
 * Flujos de trabajo profesionales.
 
-Y, finalmente, aplicarás estos conocimientos en proyectos completos.
+Y, finalmente, aplicarÃ¡s estos conocimientos en proyectos completos.
 
 ---
 
 # La idea principal
 
-Este repositorio no pretende enseñarte simplemente una lista de comandos.
+Este repositorio no pretende enseÃ±arte simplemente una lista de comandos.
 
-Queremos que comprendas **qué estás haciendo, por qué lo haces y qué ocurre detrás de cada operación**.
+Queremos que comprendas **quÃ© estÃ¡s haciendo, por quÃ© lo haces y quÃ© ocurre detrÃ¡s de cada operaciÃ³n**.
 
 Por ejemplo, no queremos que memorices:
 
@@ -79,21 +79,21 @@ git commit -m "cambios"
 git push
 ```
 
-sin saber qué significa.
+sin saber quÃ© significa.
 
 Queremos que entiendas:
 
 ```text
 Modificar archivos
-      ↓
+      â†“
 Seleccionar cambios
-      ↓
+      â†“
 Crear un commit
-      ↓
-Guardar una versión
-      ↓
+      â†“
+Guardar una versiÃ³n
+      â†“
 Enviar los cambios
-      ↓
+      â†“
 Repositorio remoto
 ```
 
@@ -115,20 +115,20 @@ Por ejemplo:
 
 ```text
 Proyecto
-   │
-   ├── Versión 1
-   ├── Versión 2
-   ├── Versión 3
-   └── Versión 4
+   â”‚
+   â”œâ”€â”€ VersiÃ³n 1
+   â”œâ”€â”€ VersiÃ³n 2
+   â”œâ”€â”€ VersiÃ³n 3
+   â””â”€â”€ VersiÃ³n 4
 ```
 
-Git permite conocer cómo evolucionó el proyecto y recuperar versiones anteriores cuando sea necesario.
+Git permite conocer cÃ³mo evolucionÃ³ el proyecto y recuperar versiones anteriores cuando sea necesario.
 
 ---
 
 ## GitHub
 
-**GitHub** es una plataforma que permite alojar repositorios Git y trabajar con ellos mediante herramientas de colaboración y desarrollo.
+**GitHub** es una plataforma que permite alojar repositorios Git y trabajar con ellos mediante herramientas de colaboraciÃ³n y desarrollo.
 
 Entre otras cosas, permite trabajar con:
 
@@ -147,12 +147,12 @@ Una forma sencilla de entenderlo es:
 
 ```text
 Git
-│
-└── Controla las versiones del proyecto
+â”‚
+â””â”€â”€ Controla las versiones del proyecto
 
 GitHub
-│
-└── Aloja repositorios Git y proporciona
+â”‚
+â””â”€â”€ Aloja repositorios Git y proporciona
     herramientas para colaborar y desarrollar
 ```
 
@@ -162,14 +162,14 @@ GitHub utiliza Git como parte fundamental de su funcionamiento.
 
 ---
 
-# ¿Para quién es este repositorio?
+# Â¿Para quiÃ©n es este repositorio?
 
-Este repositorio está pensado para:
+Este repositorio estÃ¡ pensado para:
 
 * Personas que nunca han utilizado Git.
 * Personas que nunca han utilizado GitHub.
-* Personas que están comenzando a programar.
-* Estudiantes de programación.
+* Personas que estÃ¡n comenzando a programar.
+* Estudiantes de programaciÃ³n.
 * Estudiantes de ciencia de datos.
 * Estudiantes de inteligencia artificial.
 * Personas que quieren aprender desarrollo de software.
@@ -177,16 +177,16 @@ Este repositorio está pensado para:
 * Personas que desean aprender a trabajar en equipo.
 * Personas que quieren comprender herramientas de DevOps y DevSecOps.
 
-También es adecuado para estudiantes adultos que están comenzando su formación tecnológica.
+TambiÃ©n es adecuado para estudiantes adultos que estÃ¡n comenzando su formaciÃ³n tecnolÃ³gica.
 
 No asumimos que el estudiante ya conozca:
 
-* Programación.
+* ProgramaciÃ³n.
 * Linux.
 * Git.
 * GitHub.
 * Terminal.
-* Línea de comandos.
+* LÃ­nea de comandos.
 * Control de versiones.
 
 Cada concepto importante se explica antes de utilizarlo.
@@ -195,7 +195,7 @@ Cada concepto importante se explica antes de utilizarlo.
 
 # No tengas miedo de cometer errores
 
-Una de las ideas más importantes de este curso es:
+Una de las ideas mÃ¡s importantes de este curso es:
 
 > **Aprender Git implica aprender a trabajar con cambios, errores y versiones.**
 
@@ -203,129 +203,129 @@ Puedes equivocarte.
 
 Puedes crear una rama incorrectamente.
 
-Puedes modificar un archivo que no debías modificar.
+Puedes modificar un archivo que no debÃ­as modificar.
 
 Puedes hacer un commit equivocado.
 
 Puedes encontrarte con un conflicto.
 
-Puedes necesitar recuperar una versión anterior.
+Puedes necesitar recuperar una versiÃ³n anterior.
 
 Eso no significa necesariamente que hayas destruido el proyecto.
 
 Precisamente una de las funciones principales de Git es ayudarnos a **registrar, comprender y recuperar cambios**.
 
-Por eso, durante el curso aprenderás tanto a realizar operaciones correctamente como a recuperarte cuando algo salga mal.
+Por eso, durante el curso aprenderÃ¡s tanto a realizar operaciones correctamente como a recuperarte cuando algo salga mal.
 
 ---
 
-# ¿Cómo está organizado el repositorio?
+# Â¿CÃ³mo estÃ¡ organizado el repositorio?
 
-El contenido está organizado progresivamente.
+El contenido estÃ¡ organizado progresivamente.
 
 ```text
-00  Orientación
- ↓
-01  Computación desde cero
- ↓
+00  OrientaciÃ³n
+ â†“
+01  ComputaciÃ³n desde cero
+ â†“
 02  GitHub desde cero
- ↓
+ â†“
 03  Tu cuenta de GitHub
- ↓
+ â†“
 04  GitHub desde la web
- ↓
+ â†“
 05  GitHub Desktop
- ↓
+ â†“
 06  Git desde cero
- ↓
-07  Cómo funciona Git
- ↓
+ â†“
+07  CÃ³mo funciona Git
+ â†“
 08  Ramas
- ↓
+ â†“
 09  Repositorios remotos
- ↓
+ â†“
 10  Conflictos
- ↓
+ â†“
 11  Deshacer y recuperar
- ↓
+ â†“
 12  Git avanzado
- ↓
-13  Configuración y archivos especiales
- ↓
-14  Documentación
- ↓
+ â†“
+13  ConfiguraciÃ³n y archivos especiales
+ â†“
+14  DocumentaciÃ³n
+ â†“
 15  Pull Requests
- ↓
+ â†“
 16  Trabajo en equipo
- ↓
+ â†“
 17  Estrategias de Git
- ↓
+ â†“
 18  GitHub profesional
- ↓
+ â†“
 19  GitHub Actions
- ↓
+ â†“
 20  Seguridad
- ↓
+ â†“
 21  Git para programadores
- ↓
+ â†“
 22  CI/CD
- ↓
+ â†“
 23  DevOps
- ↓
+ â†“
 24  DevSecOps
- ↓
+ â†“
 25  Arquitectura de repositorios
- ↓
+ â†“
 26  Nivel senior
- ↓
-27  Proyectos prácticos
- ↓
+ â†“
+27  Proyectos prÃ¡cticos
+ â†“
 28  Proyecto final
- ↓
+ â†“
 29  Errores comunes
 ```
 
 No es obligatorio avanzar a la misma velocidad.
 
-Puedes volver a cualquier capítulo cuando necesites repasar un concepto.
+Puedes volver a cualquier capÃ­tulo cuando necesites repasar un concepto.
 
 ---
 
-# Nuestra metodología
+# Nuestra metodologÃ­a
 
 Cada tema intenta seguir una estructura sencilla.
 
-## 1. ¿Qué es?
+## 1. Â¿QuÃ© es?
 
 Primero explicamos el concepto con palabras sencillas.
 
-## 2. ¿Para qué sirve?
+## 2. Â¿Para quÃ© sirve?
 
-Después explicamos qué problema resuelve.
+DespuÃ©s explicamos quÃ© problema resuelve.
 
 ## 3. Ejemplo de la vida real
 
-Cuando sea posible, relacionamos el concepto con una situación cotidiana.
+Cuando sea posible, relacionamos el concepto con una situaciÃ³n cotidiana.
 
-## 4. Ejemplo técnico
+## 4. Ejemplo tÃ©cnico
 
-Después mostramos cómo se aplica en informática.
+DespuÃ©s mostramos cÃ³mo se aplica en informÃ¡tica.
 
 ## 5. Comando o herramienta
 
 Si corresponde, mostramos el comando o herramienta utilizada.
 
-## 6. ¿Qué está ocurriendo?
+## 6. Â¿QuÃ© estÃ¡ ocurriendo?
 
-Explicamos qué sucede internamente.
+Explicamos quÃ© sucede internamente.
 
-## 7. Práctica
+## 7. PrÃ¡ctica
 
 El estudiante realiza un ejercicio.
 
 ## 8. Errores frecuentes
 
-Mostramos problemas habituales y cómo resolverlos.
+Mostramos problemas habituales y cÃ³mo resolverlos.
 
 ## 9. Resumen
 
@@ -335,60 +335,60 @@ Finalmente repasamos los conceptos importantes.
 
 # De lo visual a la terminal
 
-No comenzaremos obligándote a utilizar la terminal.
+No comenzaremos obligÃ¡ndote a utilizar la terminal.
 
-El aprendizaje será progresivo:
+El aprendizaje serÃ¡ progresivo:
 
 ```text
 GitHub Web
-     ↓
+     â†“
 GitHub Desktop
-     ↓
-Terminal básica
-     ↓
-Git básico
-     ↓
+     â†“
+Terminal bÃ¡sica
+     â†“
+Git bÃ¡sico
+     â†“
 Git avanzado
-     ↓
+     â†“
 Flujos profesionales
 ```
 
 La finalidad no es evitar la terminal.
 
-La finalidad es que, cuando llegues a ella, **entiendas qué estás haciendo**.
+La finalidad es que, cuando llegues a ella, **entiendas quÃ© estÃ¡s haciendo**.
 
 ---
 
 # Nuestro modelo mental
 
-Uno de los conceptos fundamentales del curso será comprender el recorrido de un cambio.
+Uno de los conceptos fundamentales del curso serÃ¡ comprender el recorrido de un cambio.
 
 ```text
              ARCHIVOS
-                │
-                ▼
+                â”‚
+                â–¼
         Working Directory
-                │
+                â”‚
              git add
-                │
-                ▼
+                â”‚
+                â–¼
           Staging Area
-                │
+                â”‚
            git commit
-                │
-                ▼
+                â”‚
+                â–¼
        Repositorio local
-                │
+                â”‚
             git push
-                │
-                ▼
+                â”‚
+                â–¼
       Repositorio remoto
-                │
-                ▼
+                â”‚
+                â–¼
              GitHub
 ```
 
-Más adelante aprenderás que Git tiene un modelo interno mucho más sofisticado.
+MÃ¡s adelante aprenderÃ¡s que Git tiene un modelo interno mucho mÃ¡s sofisticado.
 
 Estudiaremos conceptos como:
 
@@ -413,29 +413,29 @@ Queremos que progresivamente desarrolles una forma profesional de trabajar.
 
 ```text
 Principiante
-     │
-     ▼
+     â”‚
+     â–¼
 Usuario de GitHub
-     │
-     ▼
+     â”‚
+     â–¼
 Usuario de Git
-     │
-     ▼
+     â”‚
+     â–¼
 Programador
-     │
-     ▼
+     â”‚
+     â–¼
 Colaborador
-     │
-     ▼
+     â”‚
+     â–¼
 Desarrollador profesional
-     │
-     ▼
+     â”‚
+     â–¼
 DevOps / DevSecOps
-     │
-     ▼
+     â”‚
+     â–¼
 Nivel avanzado
-     │
-     ▼
+     â”‚
+     â–¼
 Nivel senior
 ```
 
@@ -445,37 +445,37 @@ Cada etapa incorpora nuevos conocimientos y responsabilidades.
 
 # Git como herramienta profesional
 
-En proyectos reales, Git no se utiliza únicamente para guardar copias de archivos.
+En proyectos reales, Git no se utiliza Ãºnicamente para guardar copias de archivos.
 
 Forma parte del proceso completo de desarrollo:
 
 ```text
-Planificación
-     ↓
+PlanificaciÃ³n
+     â†“
 Desarrollo
-     ↓
+     â†“
 Git
-     ↓
+     â†“
 Pull Request
-     ↓
+     â†“
 Code Review
-     ↓
+     â†“
 Pruebas
-     ↓
-Integración
-     ↓
+     â†“
+IntegraciÃ³n
+     â†“
 Despliegue
-     ↓
-Producción
+     â†“
+ProducciÃ³n
 ```
 
-Cuando avancemos hacia CI/CD y DevOps veremos cómo Git puede convertirse en uno de los puntos centrales de este flujo.
+Cuando avancemos hacia CI/CD y DevOps veremos cÃ³mo Git puede convertirse en uno de los puntos centrales de este flujo.
 
 ---
 
 # GitHub y la inteligencia artificial
 
-Los proyectos modernos también utilizan Git y GitHub para desarrollar sistemas de inteligencia artificial.
+Los proyectos modernos tambiÃ©n utilizan Git y GitHub para desarrollar sistemas de inteligencia artificial.
 
 Por eso encontraremos ejemplos relacionados con:
 
@@ -486,32 +486,32 @@ Por eso encontraremos ejemplos relacionados con:
 * Modelos de lenguaje.
 * APIs.
 * Aplicaciones web.
-* Automatización.
+* AutomatizaciÃ³n.
 
-Aprender Git y GitHub es especialmente importante cuando trabajamos con proyectos de IA porque los proyectos suelen incluir código, configuraciones, documentación, experimentos y diferentes versiones de modelos o datos.
+Aprender Git y GitHub es especialmente importante cuando trabajamos con proyectos de IA porque los proyectos suelen incluir cÃ³digo, configuraciones, documentaciÃ³n, experimentos y diferentes versiones de modelos o datos.
 
 ---
 
 # Seguridad
 
-La seguridad no será un tema que dejaremos para el final.
+La seguridad no serÃ¡ un tema que dejaremos para el final.
 
 A medida que avancemos aprenderemos conceptos como:
 
-* No subir contraseñas.
+* No subir contraseÃ±as.
 * No publicar claves API.
 * Utilizar `.gitignore`.
-* Utilizar mecanismos de autenticación adecuados.
+* Utilizar mecanismos de autenticaciÃ³n adecuados.
 * SSH.
 * Tokens.
-* Gestión de secretos.
+* GestiÃ³n de secretos.
 * Secret Scanning.
 * Dependabot.
 * Code Scanning.
 * Seguridad de dependencias.
 * Seguridad de la cadena de suministro de software.
 
-Una regla fundamental será:
+Una regla fundamental serÃ¡:
 
 > **Un repositorio no debe convertirse accidentalmente en un lugar donde se publiquen secretos.**
 
@@ -519,7 +519,7 @@ Una regla fundamental será:
 
 # Aprender haciendo
 
-Este repositorio está diseñado para practicar.
+Este repositorio estÃ¡ diseÃ±ado para practicar.
 
 No recomendamos leer todos los documentos sin ejecutar los ejemplos.
 
@@ -527,57 +527,57 @@ El ciclo de aprendizaje recomendado es:
 
 ```text
 Leer
- ↓
+ â†“
 Comprender
- ↓
+ â†“
 Practicar
- ↓
+ â†“
 Equivocarse
- ↓
+ â†“
 Investigar
- ↓
+ â†“
 Corregir
- ↓
+ â†“
 Repetir
- ↓
+ â†“
 Comprender mejor
 ```
 
-La práctica es una parte fundamental del aprendizaje.
+La prÃ¡ctica es una parte fundamental del aprendizaje.
 
 ---
 
 # Proyectos
 
-A lo largo del recorrido encontrarás proyectos progresivos.
+A lo largo del recorrido encontrarÃ¡s proyectos progresivos.
 
 Comenzaremos con proyectos sencillos:
 
 * Primer repositorio.
 * Diario digital.
 * Recetario.
-* Página web.
+* PÃ¡gina web.
 
-Después avanzaremos hacia:
+DespuÃ©s avanzaremos hacia:
 
 * Proyecto Python.
 * Proyecto de ciencia de datos.
 * Proyecto de inteligencia artificial.
 * Proyecto colaborativo.
 
-Finalmente construiremos un proyecto utilizando herramientas y prácticas profesionales.
+Finalmente construiremos un proyecto utilizando herramientas y prÃ¡cticas profesionales.
 
 ---
 
 # Proyecto final
 
-El objetivo final será construir un proyecto que integre buena parte de los conocimientos aprendidos.
+El objetivo final serÃ¡ construir un proyecto que integre buena parte de los conocimientos aprendidos.
 
 Dependiendo del recorrido del estudiante, puede incluir:
 
 ```text
-Código
-Documentación
+CÃ³digo
+DocumentaciÃ³n
 Git
 GitHub
 Ramas
@@ -590,55 +590,55 @@ Seguridad
 Release
 ```
 
-El proyecto final permitirá comprobar que el estudiante no solamente conoce conceptos aislados, sino que puede utilizarlos dentro de un flujo de trabajo completo.
+El proyecto final permitirÃ¡ comprobar que el estudiante no solamente conoce conceptos aislados, sino que puede utilizarlos dentro de un flujo de trabajo completo.
 
 ---
 
-# ¿Tengo que aprender todos los comandos de Git?
+# Â¿Tengo que aprender todos los comandos de Git?
 
 No.
 
 No es necesario memorizar decenas de comandos.
 
-Es más importante comprender:
+Es mÃ¡s importante comprender:
 
 ```text
-¿Qué quiero hacer?
-       ↓
-¿Qué problema estoy resolviendo?
-       ↓
-¿Qué herramienta necesito?
-       ↓
-¿Qué comando realiza esa operación?
+Â¿QuÃ© quiero hacer?
+       â†“
+Â¿QuÃ© problema estoy resolviendo?
+       â†“
+Â¿QuÃ© herramienta necesito?
+       â†“
+Â¿QuÃ© comando realiza esa operaciÃ³n?
 ```
 
-Con la práctica, los comandos utilizados habitualmente se vuelven naturales.
+Con la prÃ¡ctica, los comandos utilizados habitualmente se vuelven naturales.
 
-Además, aprenderemos a consultar la documentación cuando no recordemos una opción.
+AdemÃ¡s, aprenderemos a consultar la documentaciÃ³n cuando no recordemos una opciÃ³n.
 
 Un profesional no necesita recordar absolutamente todo.
 
-Necesita saber **cómo encontrar, verificar y utilizar correctamente la información que necesita**.
+Necesita saber **cÃ³mo encontrar, verificar y utilizar correctamente la informaciÃ³n que necesita**.
 
 ---
 
-# ¿Y si nunca he programado?
+# Â¿Y si nunca he programado?
 
 No hay problema.
 
-El repositorio comienza desde conceptos básicos.
+El repositorio comienza desde conceptos bÃ¡sicos.
 
-Si algún término resulta desconocido, puedes consultar:
+Si algÃºn tÃ©rmino resulta desconocido, puedes consultar:
 
 **[GLOSARIO.md](GLOSARIO.md)**
 
-También encontrarás explicaciones y ejemplos antes de introducir conceptos más complejos.
+TambiÃ©n encontrarÃ¡s explicaciones y ejemplos antes de introducir conceptos mÃ¡s complejos.
 
 ---
 
-# ¿Y si ya sé programar?
+# Â¿Y si ya sÃ© programar?
 
-Puedes avanzar más rápidamente por las primeras secciones.
+Puedes avanzar mÃ¡s rÃ¡pidamente por las primeras secciones.
 
 Sin embargo, te recomendamos revisar los fundamentos de Git.
 
@@ -664,42 +664,42 @@ pero no comprenden completamente:
 * Estrategias de branching.
 * Flujos colaborativos.
 
-Comprender estos conceptos permite utilizar Git de una manera mucho más profesional.
+Comprender estos conceptos permite utilizar Git de una manera mucho mÃ¡s profesional.
 
 ---
 
 # Una regla para todo el curso
 
-Durante este recorrido encontrarás comandos, botones, herramientas y procedimientos.
+Durante este recorrido encontrarÃ¡s comandos, botones, herramientas y procedimientos.
 
 Pero intenta recordar siempre:
 
-> **No memorices solamente qué hacer. Comprende por qué hacerlo.**
+> **No memorices solamente quÃ© hacer. Comprende por quÃ© hacerlo.**
 
-Ese principio será mucho más importante que memorizar comandos.
+Ese principio serÃ¡ mucho mÃ¡s importante que memorizar comandos.
 
 ---
 
 # Ruta recomendada
 
-Si estás comenzando completamente desde cero:
+Si estÃ¡s comenzando completamente desde cero:
 
 ```text
-00   Orientación
-01   Computación desde cero
+00   OrientaciÃ³n
+01   ComputaciÃ³n desde cero
 02   GitHub desde cero
 03   Tu cuenta
 04   GitHub desde la web
 05   GitHub Desktop
 06   Git desde cero
-07   Cómo funciona Git
+07   CÃ³mo funciona Git
 08   Ramas
 09   Git remoto
 10   Conflictos
-11   Recuperación
+11   RecuperaciÃ³n
 12   Git avanzado
-13   Configuración
-14   Documentación
+13   ConfiguraciÃ³n
+14   DocumentaciÃ³n
 15   Pull Requests
 16   Trabajo en equipo
 17   Estrategias
@@ -719,74 +719,74 @@ Si estás comenzando completamente desde cero:
 
 ---
 
-# ¿Dónde comenzar?
+# Â¿DÃ³nde comenzar?
 
 Si nunca has utilizado Git ni GitHub:
 
-**Comienza aquí:**
+**Comienza aquÃ­:**
 
-→ [`EMPIEZA-AQUI.md`](EMPIEZA-AQUI.md)
+â†’ [`EMPIEZA-AQUI.md`](EMPIEZA-AQUI.md)
 
 Si ya tienes experiencia con Git:
 
-→ Comienza por [`06-git-desde-cero`](06-git-desde-cero/)
+â†’ Comienza por [`06-git-desde-cero`](06-git-desde-cero/)
 
-Si ya conoces Git y quieres mejorar tus prácticas profesionales:
+Si ya conoces Git y quieres mejorar tus prÃ¡cticas profesionales:
 
-→ Comienza por [`15-pull-requests`](15-pull-requests/)
+â†’ Comienza por [`15-pull-requests`](15-pull-requests/)
 
-Si quieres aprender automatización:
+Si quieres aprender automatizaciÃ³n:
 
-→ Ve a [`19-github-actions`](19-github-actions/)
+â†’ Ve a [`19-github-actions`](19-github-actions/)
 
 Si te interesa DevOps:
 
-→ Ve a [`23-devops`](23-devops/)
+â†’ Ve a [`23-devops`](23-devops/)
 
 Si quieres profundizar en seguridad:
 
-→ Ve a [`20-github-security`](20-github-security/)
+â†’ Ve a [`20-github-security`](20-github-security/)
 
 Si buscas conocimientos avanzados:
 
-→ Ve a [`26-nivel-senior`](26-nivel-senior/)
+â†’ Ve a [`26-nivel-senior`](26-nivel-senior/)
 
 ---
 
-# Filosofía del repositorio
+# FilosofÃ­a del repositorio
 
 Este proyecto se basa en una idea sencilla:
 
-> **La tecnología debe poder aprenderse paso a paso.**
+> **La tecnologÃ­a debe poder aprenderse paso a paso.**
 
-No importa si tienes 20, 40, 60 o 70 años.
+No importa si tienes 20, 40, 60 o 70 aÃ±os.
 
-No importa si nunca has escrito una línea de código.
+No importa si nunca has escrito una lÃ­nea de cÃ³digo.
 
-No importa si vienes de otra profesión.
+No importa si vienes de otra profesiÃ³n.
 
 La experiencia previa puede ayudarte, pero comenzar desde cero no significa que no puedas llegar lejos.
 
-Lo importante es avanzar progresivamente, practicar y comprender lo que estás haciendo.
+Lo importante es avanzar progresivamente, practicar y comprender lo que estÃ¡s haciendo.
 
 ---
 
 # Objetivo final
 
-Al terminar el recorrido, el estudiante debería ser capaz de comprender y participar en un flujo moderno de desarrollo de software basado en Git y GitHub.
+Al terminar el recorrido, el estudiante deberÃ­a ser capaz de comprender y participar en un flujo moderno de desarrollo de software basado en Git y GitHub.
 
 Desde:
 
 ```text
-"¿Qué es GitHub?"
+"Â¿QuÃ© es GitHub?"
 ```
 
 hasta:
 
 ```text
-"¿Cómo diseño y mantengo un flujo
-profesional de desarrollo, colaboración,
-automatización y seguridad?"
+"Â¿CÃ³mo diseÃ±o y mantengo un flujo
+profesional de desarrollo, colaboraciÃ³n,
+automatizaciÃ³n y seguridad?"
 ```
 
 Ese es el objetivo de **GitHub Paso a Paso**.
@@ -795,9 +795,9 @@ Ese es el objetivo de **GitHub Paso a Paso**.
 
 ## Licencia
 
-Este material está destinado a fines educativos.
+Este material estÃ¡ destinado a fines educativos.
 
-Consulta el archivo [`LICENSE`](LICENSE) para conocer las condiciones completas de uso, modificación y distribución del contenido.
+Consulta el archivo [`LICENSE`](LICENSE) para conocer las condiciones completas de uso, modificaciÃ³n y distribuciÃ³n del contenido.
 
 ---
 
@@ -805,22 +805,22 @@ Consulta el archivo [`LICENSE`](LICENSE) para conocer las condiciones completas 
 
 Si encuentras:
 
-* Errores ortográficos.
-* Errores técnicos.
+* Errores ortogrÃ¡ficos.
+* Errores tÃ©cnicos.
 * Enlaces rotos.
 * Explicaciones confusas.
 * Ejemplos incorrectos.
-* Información desactualizada.
+* InformaciÃ³n desactualizada.
 
-puedes consultar [`CONTRIBUTING.md`](CONTRIBUTING.md) para conocer cómo contribuir al proyecto.
+puedes consultar [`CONTRIBUTING.md`](CONTRIBUTING.md) para conocer cÃ³mo contribuir al proyecto.
 
 ---
 
-## ¿Encontraste un problema?
+## Â¿Encontraste un problema?
 
 No tengas miedo de reportarlo.
 
-Encontrar un error también forma parte del proceso de aprendizaje y mejora del software.
+Encontrar un error tambiÃ©n forma parte del proceso de aprendizaje y mejora del software.
 
 Consulta:
 
