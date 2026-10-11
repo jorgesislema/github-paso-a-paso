@@ -18,14 +18,70 @@ La teoría se convierte en práctica con ocho proyectos progresivos. Cada uno in
 ## Objetivos de aprendizaje
 
 Al terminar esta sección serás capaz de:
-
 * ejecutar el flujo completo (ramas, PRs, revisión, merge) en ocho proyectos progresivos;
 * aplicar la definition of done con checklists verificables en lugar de sensaciones;
 * documentar y mantener un repositorio como un producto;
 * automatizar la publicación y los checks estructurales de contenido;
 * colaborar con otras personas: acuerdos escritos, controles probados y papeles rotativos.
 
+## Mapa conceptual
+
+```mermaid
+mindmap
+  root((27 · Proyectos prácticos))
+    01 Proyecto 1: primer repositorio
+      concepto clave
+      concepto clave
+    02 Proyecto 2: diario digital
+      concepto clave
+      concepto clave
+    03 Proyecto 3: recetario
+      concepto clave
+      concepto clave
+    04 Proyecto 4: página web
+      concepto clave
+      concepto clave
+    05 Proyecto 5: proyecto Python
+      concepto clave
+      concepto clave
+    06 Proyecto 6: proyecto de datos
+      concepto clave
+      concepto clave
+    07 Proyecto 7: proyecto de inteligencia artificial
+      concepto clave
+      concepto clave
+    08 Proyecto 8: proyecto colaborativo
+      concepto clave
+      concepto clave
+```
 ---
+## Checkpoint 27 — Comprobación obligatoria
+
+Antes de avanzar a `<siguiente bloque>/`, demuestra que puedes (en un repositorio de práctica real):
+
+1. **Crear** un repositorio con historial significativo y ramas.
+2. **Aplicar** definition of done mediante checklist verificable.
+3. **Documentar** el flujo de trabajo en un README claro.
+4. **Automatizar** publicación y checks estructurales de contenido.
+5. **Colaborar** con otras personas usando acuerdos escritos y controles probados.
+6. **Utilizar** releases versionados para seguimiento a largo plazo.
+
+## Autopreguntas de cierre
+
+Sin mirar el material, responde mentalmente y luego compruébalo con los capítulos de la sección:
+
+1. ¿Qué diferencia hay entre «el proyecto está terminado» y «el flujo se ejecutó»?
+2. ¿Qué mide la checklist de entrega que el producto por sí solo no muestra?
+3. ¿Por qué cada proyecto hereda la automatización del anterior?
+4. ¿Qué evidencia en el historial demuestra que un PR fue revisado por alguien distinto al autor?
+5. ¿Cómo definirías un flujo de trabajo que sea reproducible en diferentes proyectos?
+6. ¿Qué papel juegan los releases versionados en la colaboración a largo plazo?
+---
+## Próximo paso
+
+Cuando termines los ocho proyectos, continúa con la siguiente sección:
+
+[`../28-proyecto-final/`](../28-proyecto-final/)
 
 ## ¿Qué aprenderás en esta sección?
 
@@ -58,7 +114,8 @@ Sin mirar el material, responde mentalmente y luego compruébalo con los capítu
 2. ¿Qué mide la checklist de entrega que el producto por sí solo no muestra?
 3. ¿Por qué cada proyecto hereda la automatización del anterior?
 4. ¿Qué evidencia en el historial demuestra que un PR fue revisado por alguien distinto al autor?
-
+5. ¿Cómo definirías un flujo de trabajo que sea reproducible en diferentes proyectos?
+6. ¿Qué papel juegan los releases versionados en la colaboración a largo plazo?
 ---
 
 ## Próximo paso
