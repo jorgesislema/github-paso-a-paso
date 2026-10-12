@@ -3,21 +3,21 @@
 
 ## Autopreguntas de cierre
 
-Sin mirar el material, responde mentalmente y luego compru�balo con este cap�tulo:
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
 
-1. �Por qu� es importante que la documentaci�n est� en texto llano y versionable como cualquier otro c�digo?
-2. �C�mo afecta el uso de encabezados consistentes (h1, h2, h3) a la generaci�n autom�tica de �ndices y la navegaci�n en documentos largos?
-3. �Qu� criterios debes seguir para decidir si un bloque de informaci�n debe ir en un bloque de c�digo, una tabla o una lista en Markdown?
-4. �C�mo ayuda un linter de Markdown (como markdownlint) a mantener la calidad y consistencia de la documentaci�n en un equipo?
-5. �Qu� consecuencias tiene mezclar Markdown con HTML sin conocer el soporte de la plataforma de destino?
-6. �C�mo aplicar�as la regla de extracci�n (m�s de ~300 l�neas) para dividir un documento grande manteniendo la usabilidad?
+1. ¿Por qué es importante que la documentación esté en texto llano y versionable como cualquier otro código?
+2. ¿Cómo afecta el uso de encabezados consistentes (h1, h2, h3) a la generación automática de índices y la navegación en documentos largos?
+3. ¿Qué criterios debes seguir para decidir si un bloque de información debe ir en un bloque de código, una tabla o una lista en Markdown?
+4. ¿Cómo ayuda un linter de Markdown (como markdownlint) a mantener la calidad y consistencia de la documentación en un equipo?
+5. ¿Qué consecuencias tiene mezclar Markdown con HTML sin conocer el soporte de la plataforma de destino?
+6. ¿Cómo aplicarías la regla de extracción (más de ~300 líneas) para dividir un documento grande manteniendo la usabilidad?
 
 [`02-el-readme.md`](02-el-readme.md)
 # Markdown
 
 ## Introducción
 
-Casi todo lo que leerán de tu proyecto — README, mensajes de GitHub, documentación, plantillas — está escrito en Markdown: texto llano con marcas ligeras que el navegador convierte en formato.
+Casi todo lo que leerán de tu proyecto â README, mensajes de GitHub, documentación, plantillas â está escrito en Markdown: texto llano con marcas ligeras que el navegador convierte en formato.
 
 No hace falta ser diseñador: con una decena de reglas escribes documentos profesionales. Este capítulo es el manual mínimo para este repositorio y para cualquier proyecto.
 
@@ -40,17 +40,17 @@ mindmap
 ## 1. Por qué texto llano
 
 ```text
-    │
-    ├── vive en el repositorio: versionable, con diff,
-    │   con revisión como cualquier código
-    │
-    ├── escribe en cualquier editor (sin herramientas
-    │   propias)
-    │
-    ├── GitHub/GitLab lo renderizan en README, issues,
-    │   PRs y páginas
-    │
-    └── el «formato» se mantiene en el texto: no hay
+    â
+    âââ vive en el repositorio: versionable, con diff,
+    â   con revisión como cualquier código
+    â
+    âââ escribe en cualquier editor (sin herramientas
+    â   propias)
+    â
+    âââ GitHub/GitLab lo renderizan en README, issues,
+    â   PRs y páginas
+    â
+    âââ el Â«formatoÂ» se mantiene en el texto: no hay
         archivos binarios de documentación
 ```
 
@@ -58,22 +58,22 @@ mindmap
 ## 2. Sintaxis esencial
 
 ```text
-# Título        → h1 (solo uno por documento)
-## Sección      → h2
-### Subsección  → h3
+# Título        â h1 (solo uno por documento)
+## Sección      â h2
+### Subsección  â h3
 
-**negrita**     → negrita
-*cursiva*       → cursiva
-`código`        → código en línea
+**negrita**     â negrita
+*cursiva*       â cursiva
+`código`        â código en línea
 
-- ítem          → lista
-* ítem          → también lista
-1. ítem         → numerada
+- ítem          â lista
+* ítem          â también lista
+1. ítem         â numerada
 
-> cita          → bloque de cita
----             → separador (en algunos render)
-[texto](url)    → enlace
-![alt](ruta)    → imagen
+> cita          â bloque de cita
+---             â separador (en algunos render)
+[texto](url)    â enlace
+![alt](ruta)    â imagen
 ```
 
 ```markdown
@@ -88,11 +88,11 @@ mindmap
 
 ```text
 Sangría (indentación) = jerarquía:
-    │
-    ├── 4 espacios (o tabulador) bajo un ítem crea
-    │   sub-lista
-    │
-    └── las listas se «continúan» con la misma
+    â
+    âââ 4 espacios (o tabulador) bajo un ítem crea
+    â   sub-lista
+    â
+    âââ las listas se Â«continúanÂ» con la misma
         sangría
 ```
 
@@ -119,15 +119,15 @@ git log --oneline
 
 ```text
 Notas:
-    │
-    ├── el triple acento grave con lenguaje (`bash`,
-    │   `text`, `json`) coloreado y copiable
-    │
-    ├── en tablas, la primera línea separa encabezado
-    │   y contenido (los guiones son obligatorios)
-    │
-    └── GitHub añade extensiones (autolink de #issue,
-        @usuario, emoji…): útiles y conocidas
+    â
+    âââ el triple acento grave con lenguaje (`bash`,
+    â   `text`, `json`) coloreado y copiable
+    â
+    âââ en tablas, la primera línea separa encabezado
+    â   y contenido (los guiones son obligatorios)
+    â
+    âââ GitHub añade extensiones (autolink de #issue,
+        @usuario, emojiâ¦): útiles y conocidas
 ```
 
 ---
@@ -135,32 +135,32 @@ Notas:
 
 ```text
 Documento técnico bien formado:
-    │
-    ├── 1. un título claro (h1)
-    │
-    ├── 2. párrafo inicial: qué es esto y para quién
-    │
-    ├── 3. secciones con h2 en orden lógico
-    │
-    ├── 4. ejemplos ANTES de teoría cuando el lector
-    │       ejecuta
-    │
-    ├── 5. avisos con **Negrita:** o cita (>)
-    │
-    └── 6. enlaces relativos dentro del repo
+    â
+    âââ 1. un título claro (h1)
+    â
+    âââ 2. párrafo inicial: qué es esto y para quién
+    â
+    âââ 3. secciones con h2 en orden lógico
+    â
+    âââ 4. ejemplos ANTES de teoría cuando el lector
+    â       ejecuta
+    â
+    âââ 5. avisos con **Negrita:** o cita (>)
+    â
+    âââ 6. enlaces relativos dentro del repo
             (../seccion/)
 ```
 
 ```text
 Reglas de estilo:
-    │
-    ├── líneas cortas (mejor diff)
-    │
-    ├── frases que se leen en pantalla
-    │
-    ├── código entre comillas de acento SIEMPRE
-    │
-    └── nada de texto pegado con formato de Word (pega
+    â
+    âââ líneas cortas (mejor diff)
+    â
+    âââ frases que se leen en pantalla
+    â
+    âââ código entre comillas de acento SIEMPRE
+    â
+    âââ nada de texto pegado con formato de Word (pega
         como texto plano)
 ```
 
@@ -169,14 +169,14 @@ Reglas de estilo:
 
 ### Error 1: código sin delimitador (se rompe el formato)
 
-**Qué ocurrió:** un bloque de comandos se mezcla con el texto o «escapa» hacia el resto del documento.
+**Qué ocurrió:** un bloque de comandos se mezcla con el texto o Â«escapaÂ» hacia el resto del documento.
 
 **Por qué posibles:**
 * faltan los tres acentos graves;
 * falta el cierre;
 * anidado sin sangría correcta.
 
-**Cómo comprobarlo:** vista previa en el editor o en GitHub (editar el archivo → vista previa).
+**Cómo comprobarlo:** vista previa en el editor o en GitHub (editar el archivo â vista previa).
 
 **Opciones:** delimitar con ```` ``` ```` y, si hay acentos dentro, usar cuatro ```` ```` ````.
 
@@ -259,7 +259,7 @@ Reglas de estilo:
 
 **Solución:** un documento = una pregunta del lector.
 
-**Cómo se evita:** criterio de extracción (más de ~300 líneas → considerar dividir).
+**Cómo se evita:** criterio de extracción (más de ~300 líneas â considerar dividir).
 
 ---
 
@@ -319,7 +319,7 @@ MIT
 
 ### Paso 2: vistas previas
 
-1. Abre el archivo en tu editor (vista previa) y en GitHub (editar → preview).
+1. Abre el archivo en tu editor (vista previa) y en GitHub (editar â preview).
 
 ### Paso 3: enlaces relativos
 
@@ -359,15 +359,15 @@ Elige un proyecto pequeño (incluso uno de tus hobbies) y escribe su README sigu
 ### 7.1. Markdown en equipo
 
 ```text
-    │
-    ├── linter en CI (consistencia de estilo)
-    │
-    ├── plantillas de documento (README, ADR, guías)
-    │
-    ├── enlaces relativos + revisión de enlaces al
-    │   reorganizar
-    │
-    └── plataforma de referencia = donde se publica
+    â
+    âââ linter en CI (consistencia de estilo)
+    â
+    âââ plantillas de documento (README, ADR, guías)
+    â
+    âââ enlaces relativos + revisión de enlaces al
+    â   reorganizar
+    â
+    âââ plataforma de referencia = donde se publica
         (GitHub render)
 ```
 
