@@ -3,21 +3,21 @@
 
 ## Autopreguntas de cierre
 
-Sin mirar el material, responde mentalmente y luego compru�balo con este cap�tulo:
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
 
-1. �Por qu� es cr�tico decidir y colocar una licencia en el repositorio antes de aceptar contribuciones externas, y qu� riesgos legales se asumen al publicar c�digo sin licencia?
-2. �C�mo afecta elegir una licencia permisiva (como MIT) versus una copyleft (como GPL) a la posibilidad de que empresas privadas usen, modifiquen y distribuyan el software, y qu� implicaciones tiene esto para la estrategia de adopci�n del proyecto?
-3. �Qu� elementos esenciales debe incluir un archivo CONTRIBUTING para reducir la fricci�n con nuevos colaboradores, y c�mo influye la claridad del flujo de trabajo (fork/rama ? PR ? revisi�n) en la calidad y rapidez de las contribuciones aceptadas?
-4. �Por qu� es necesario que un c�digo de conducta incluya un mecanismo de denuncia real y un contacto responsable, y qu� consecuencias tiene la falta de estos elementos en la capacidad de gestionar incidentes de acoso o discriminaci�n en el proyecto?
-5. �C�mo decidir qu� informaci�n pertenece en una plantilla de issue o de PR, y qu� principio gu�a la inclusi�n de solo los campos que se verifican realmente (por ejemplo, mediante checks de CI) para evitar listas decorativas que generan falsa confianza?
-6. �Qu� pasos seguir�as para asegurarte de que las dependencias de tu proyecto no introduzcan licencias incompatibles, y c�mo integrar un escaneo de licencias en la cadena de CI para detectar problemas antes de que lleguen a producci�n?
+1. ¿Por qué es crítico decidir y colocar una licencia en el repositorio antes de aceptar contribuciones externas, y qué riesgos legales se asumen al publicar código sin licencia?
+2. ¿Cómo afecta elegir una licencia permisiva (como MIT) versus una copyleft (como GPL) a la posibilidad de que empresas privadas usen, modifiquen y distribuyan el software, y qué implicaciones tiene esto para la estrategia de adopción del proyecto?
+3. ¿Qué elementos esenciales debe incluir un archivo CONTRIBUTING para reducir la fricción con nuevos colaboradores, y cómo influye la claridad del flujo de trabajo (fork/rama ? PR ? revisión) en la calidad y rapidez de las contribuciones aceptadas?
+4. ¿Por qué es necesario que un código de conducta incluya un mecanismo de denuncia real y un contacto responsable, y qué consecuencias tiene la falta de estos elementos en la capacidad de gestionar incidentes de acoso o discriminación en el proyecto?
+5. ¿Cómo decidir qué información pertenece en una plantilla de issue o de PR, y qué principio guía la inclusión de solo los campos que se verifican realmente (por ejemplo, mediante checks de CI) para evitar listas decorativas que generan falsa confianza?
+6. ¿Qué pasos seguirías para asegurarte de que las dependencias de tu proyecto no introduzcan licencias incompatibles, y cómo integrar un escaneo de licencias en la cadena de CI para detectar problemas antes de que lleguen a producción?
 
 [`README.md`](README.md)
 # Licencia, contribución y convivencia
 
 ## Introducción
 
-Un repositorio es jurídicamente un «todos los derechos reservados» por defecto: sin licencia, nadie puede usar, modificar ni redistribuir tu código legalmente — ni siquiera con buena intención. Y cuando llegan contribuciones, hace falta un acuerdo de convivencia: cómo se propone, revisa y acepta el trabajo de otros.
+Un repositorio es jurídicamente un Â«todos los derechos reservadosÂ» por defecto: sin licencia, nadie puede usar, modificar ni redistribuir tu código legalmente â ni siquiera con buena intención. Y cuando llegan contribuciones, hace falta un acuerdo de convivencia: cómo se propone, revisa y acepta el trabajo de otros.
 
 Este capítulo cubre la licencia (qué elegir y por qué), el CONTRIBUTING, el código de conducta y las plantillas de issues/PR: el marco que convierte un repo personal en un proyecto con comunidad.
 
@@ -41,60 +41,60 @@ mindmap
 
 ```text
 SIN licencia:
-    │
-    └── copyright total: otros NO pueden usarlo
-        legalmente (ni forks «útiles»), aunque el
+    â
+    âââ copyright total: otros NO pueden usarlo
+        legalmente (ni forks Â«útilesÂ»), aunque el
         código sea visible
 ```
 
 ```text
 OPCIONES POPULARES (criterios, no asesoría legal)
-──────────────────────────────────────────────────────
+ââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 MIT
-   · permisiva, mínimo texto
-   · uso comercial, modificación, distribución
-   · sin garantía; conserva el aviso de copyright
-   · el más usado para librerías pequeñas
+   Â· permisiva, mínimo texto
+   Â· uso comercial, modificación, distribución
+   Â· sin garantía; conserva el aviso de copyright
+   Â· el más usado para librerías pequeñas
 
 Apache-2.0
-   · permisiva como MIT +
-   · patentes explícitas (cesión de licencia de
+   Â· permisiva como MIT +
+   Â· patentes explícitas (cesión de licencia de
      patentes de los contribuidores)
-   · aviso de cambios
-   · común en proyectos corporativos/ grandes
+   Â· aviso de cambios
+   Â· común en proyectos corporativos/ grandes
 
 GPL (v3)
-   · copyleft: derivados deben abrir su código bajo
+   Â· copyleft: derivados deben abrir su código bajo
      la misma licencia
-   · «contagio» intencional para preservar libertades
+   Â· Â«contagioÂ» intencional para preservar libertades
 
 BSD / MPL / ISC / otros
-   · variantes permissivas o copyleft «por archivo»
-   · comparar según caso
+   Â· variantes permissivas o copyleft Â«por archivoÂ»
+   Â· comparar según caso
 ```
 
 ```text
 Dónde va:
-    │
-    ├── archivo LICENSE (o COPYING) en la raíz —
-    │   GitHub lo detecta y lo muestra
-    │
-    ├── cabecera en README: «Licencia: MIT»
-    │
-    └── dependencias: la licencia de TU proyecto no
+    â
+    âââ archivo LICENSE (o COPYING) en la raíz â
+    â   GitHub lo detecta y lo muestra
+    â
+    âââ cabecera en README: Â«Licencia: MITÂ»
+    â
+    âââ dependencias: la licencia de TU proyecto no
         cambia la de las de terceros (compatibilidad:
         p. ej. no puedes meter GPL en un binario
         propietario)
 ```
 
 ```text
-    │
-    ├── © años y titular: `Copyright (c) 2026 Nombre`
-    │
-    ├── licencias de contenido/docs: puede ser otra
-    │   (decisión explícita)
-    │
-    └── esto NO es asesoría legal: para producto con
+    â
+    âââ © años y titular: `Copyright (c) 2026 Nombre`
+    â
+    âââ licencias de contenido/docs: puede ser otra
+    â   (decisión explícita)
+    â
+    âââ esto NO es asesoría legal: para producto con
         patentes/empresa, consulta profesional
 ```
 
@@ -103,25 +103,25 @@ Dónde va:
 
 ```text
 CONTENIDO DEL ARCHIVO CONTRIBUTING.md
-    │
-    ├── qué tipo de contribuciones se aceptan (y qué
-    │   NO se acepta)
-    ├── flujo: fork/rama → PR → revisión → merge
-    ├── reglas de commits (convención, cap. 03)
-    ├── cómo ejecutar el proyecto y los tests
-    ├── estilo y linters (si los hay)
-    ├── procesado de bugs (plantilla de issue)
-    ├── DCO/CLA si el proyecto los exige (mención)
-    └── a quién preguntar (discusiones, issues)
+    â
+    âââ qué tipo de contribuciones se aceptan (y qué
+    â   NO se acepta)
+    âââ flujo: fork/rama â PR â revisión â merge
+    âââ reglas de commits (convención, cap. 03)
+    âââ cómo ejecutar el proyecto y los tests
+    âââ estilo y linters (si los hay)
+    âââ procesado de bugs (plantilla de issue)
+    âââ DCO/CLA si el proyecto los exige (mención)
+    âââ a quién preguntar (discusiones, issues)
 ```
 
 ```text
-    │
-    ├── un buen CONTRIBUTING reduce PRs que se
-    │   cierran por mal formato
-    │
-    └── guía de revisión: qué se espera en un PR
-        (tamaño, tests, docs) — clave en la sección
+    â
+    âââ un buen CONTRIBUTING reduce PRs que se
+    â   cierran por mal formato
+    â
+    âââ guía de revisión: qué se espera en un PR
+        (tamaño, tests, docs) â clave en la sección
         15
 ```
 
@@ -130,21 +130,21 @@ CONTENIDO DEL ARCHIVO CONTRIBUTING.md
 
 ```text
 CODE_OF_CONDUCT.md
-    │
-    ├── conducta esperada (respeto, colaboración)
-    ├── conducta inaceptable (acoso, discriminación)
-    ├── mecanismo de denuncia y contacto responsable
-    └── consecuencias aplicadas
+    â
+    âââ conducta esperada (respeto, colaboración)
+    âââ conducta inaceptable (acoso, discriminación)
+    âââ mecanismo de denuncia y contacto responsable
+    âââ consecuencias aplicadas
 ```
 
 ```text
 Por qué importa técnicamente:
-    │
-    ├── sin reglas, la moderación se vuelve arbitraria
-    │   (incidentes mal resueltos ahuyentan
-    │   contribuidores)
-    │
-    └── proyectos «con casa en orden» atraen más
+    â
+    âââ sin reglas, la moderación se vuelve arbitraria
+    â   (incidentes mal resueltos ahuyentan
+    â   contribuidores)
+    â
+    âââ proyectos Â«con casa en ordenÂ» atraen más
         colaboración sostenible
 ```
 
@@ -158,12 +158,12 @@ Covenant (mención); el texto se adapta al proyecto.
 
 ```text
 .github/
-├── ISSUE_TEMPLATE/
-│   ├── bug.yml            → formulario: pasos,
-│   │                        esperado, obtenido, SO
-│   └── feature.yml        → propuesta
-├── PULL_REQUEST_TEMPLATE.md → checklist
-└── config.yml             → enlaces (docs, FAQ,
+âââ ISSUE_TEMPLATE/
+â   âââ bug.yml            â formulario: pasos,
+â   â                        esperado, obtenido, SO
+â   âââ feature.yml        â propuesta
+âââ PULL_REQUEST_TEMPLATE.md â checklist
+âââ config.yml             â enlaces (docs, FAQ,
                               discusiones)
 ```
 
@@ -177,15 +177,15 @@ Covenant (mención); el texto se adapta al proyecto.
 ```
 
 ```text
-    │
-    ├── el formulario (issues en YAML) guía al
-    │   reportante y ahorra idas y vueltas
-    │
-    ├── la checklist del PR estandariza la revisión
-    │   (sección 15)
-    │
-    └── GitHub también permite configurar el repo
-        (.github) con reglas de seguridad/gobernanza —
+    â
+    âââ el formulario (issues en YAML) guía al
+    â   reportante y ahorra idas y vueltas
+    â
+    âââ la checklist del PR estandariza la revisión
+    â   (sección 15)
+    â
+    âââ GitHub también permite configurar el repo
+        (.github) con reglas de seguridad/gobernanza â
         sección 18
 ```
 
@@ -196,7 +196,7 @@ Covenant (mención); el texto se adapta al proyecto.
 
 **Qué ocurrió:** el código es visible pero nadie puede usarlo (ni forks legales, ni empresas interesadas).
 
-**Por qué:** desconocimiento («si está en GitHub se puede usar»).
+**Por qué:** desconocimiento (Â«si está en GitHub se puede usarÂ»).
 
 **Cómo comprobarlo:** existe LICENSE en raíz; GitHub muestra el badge de licencia.
 
@@ -204,19 +204,19 @@ Covenant (mención); el texto se adapta al proyecto.
 
 **Riesgos:** fricción legal y cero adopción.
 
-**Solución:** elegir licencia al crear el proyecto, no «algún día».
+**Solución:** elegir licencia al crear el proyecto, no Â«algún díaÂ».
 
 **Cómo se evita:** plantilla de repositorio con LICENSE (sección 18).
 
 ---
 
-### Error 2: elegir licencia «por moda» sin entender copyleft
+### Error 2: elegir licencia Â«por modaÂ» sin entender copyleft
 
-**Qué ocurrió:** proyecto bajo GPL sin querer obligar a abrir derivados (o al revés: Apache pensando que «es libre como GPL»).
+**Qué ocurrió:** proyecto bajo GPL sin querer obligar a abrir derivados (o al revés: Apache pensando que Â«es libre como GPLÂ»).
 
 **Por qué:** se copió la licencia de otro repo.
 
-**Cómo comprobarlo:** leer la licencia; preguntar «¿qué pasa si mi cliente…?».
+**Cómo comprobarlo:** leer la licencia; preguntar Â«¿qué pasa si mi clienteâ¦?Â».
 
 **Opciones:** cambiar de licencia ANES de contribuciones de terceros (con ellos); después es más difícil.
 
@@ -224,13 +224,13 @@ Covenant (mención); el texto se adapta al proyecto.
 
 **Solución:** decidir con criterio (permisiva vs. copyleft) antes del primer contribuyente.
 
-**Cómo se evita:** documento breve de «por qué esta licencia» en la doc del proyecto.
+**Cómo se evita:** documento breve de Â«por qué esta licenciaÂ» en la doc del proyecto.
 
 ---
 
 ### Error 3: CONTRIBUTING que no refleja el proceso real
 
-**Qué ocurrió:** dice «haz fork y rama larga» pero el equipo trabaja con ramas cortas y PRs atados a issues.
+**Qué ocurrió:** dice Â«haz fork y rama largaÂ» pero el equipo trabaja con ramas cortas y PRs atados a issues.
 
 **Por qué:** se copió una plantilla y nadie la actualizó.
 
@@ -248,13 +248,13 @@ Covenant (mención); el texto se adapta al proyecto.
 
 ### Error 4: checklist de PR decorativa
 
-**Qué ocurrió:** las casillas se marcan sin leerse («tests: ✓» con tests rotos).
+**Qué ocurrió:** las casillas se marcan sin leerse (Â«tests: âÂ» con tests rotos).
 
 **Por qué:** checklist sin revisión; demasiadas casillas irrelevantes.
 
 **Cómo comprobarlo:** PR con casillas marcadas y CI rojo.
 
-**Opciones:** reducir a lo que se verifica; hacer cumplir lo automatizable en CI (casillas → checks reales).
+**Opciones:** reducir a lo que se verifica; hacer cumplir lo automatizable en CI (casillas â checks reales).
 
 **Riesgos:** falsa confianza.
 
@@ -303,20 +303,20 @@ Covenant (mención); el texto se adapta al proyecto.
 
 ### Objetivo
 
-Dejar un repo «con casa en orden»: licencia, CONTRIBUTING, COC y plantillas.
+Dejar un repo Â«con casa en ordenÂ»: licencia, CONTRIBUTING, COC y plantillas.
 
 ### Paso 1: licencia
 
 1. Elige licencia (MIT/Apache-2.0/GPL según criterio del punto 1).
 2. Crea `LICENSE` con el texto íntegro + copyright.
-3. Menciónalo en README («Licencia: …»).
+3. Menciónalo en README (Â«Licencia: â¦Â»).
 
 ### Paso 2: CONTRIBUTING
 
 ```markdown
 # Cómo contribuir
 1. Abre una issue antes de PR grande.
-2. Rama: `feat/…` o `fix/…` desde main.
+2. Rama: `feat/â¦` o `fix/â¦` desde main.
 3. Commits según convención (ver 03).
 4. Tests y docs actualizados.
 5. PR con checklist; revisión en 48h.
@@ -335,11 +335,11 @@ Dejar un repo «con casa en orden»: licencia, CONTRIBUTING, COC y plantillas.
 
 ```text
 Comprueba en la plataforma:
-    │
-    ├── la licencia aparece en «About»
-    ├── abrir una issue muestra el formulario
-    ├── abrir un PR muestra la checklist
-    └── los enlaces de CONTRIBUTING funcionan
+    â
+    âââ la licencia aparece en Â«AboutÂ»
+    âââ abrir una issue muestra el formulario
+    âââ abrir un PR muestra la checklist
+    âââ los enlaces de CONTRIBUTING funcionan
 ```
 
 ### Resultado esperado
@@ -361,25 +361,25 @@ Imagina que estás incorporando una nueva dependencia de bajo nivel (por ejemplo
 
 ```text
 NIVELES
-    │
-    ├── repositorio personal: LICENSE + CONTRIBUTING
-    │   básico + plantilla de issue
-    │
-    ├── proyecto con comunidad: COC + revisores por
-    │   área + CODEOWNERS + normas de release
-    │   (sección 18)
-    │
-    └── organización: políticas de licencia aprobadas,
+    â
+    âââ repositorio personal: LICENSE + CONTRIBUTING
+    â   básico + plantilla de issue
+    â
+    âââ proyecto con comunidad: COC + revisores por
+    â   área + CODEOWNERS + normas de release
+    â   (sección 18)
+    â
+    âââ organización: políticas de licencia aprobadas,
         escaneo de dependencias (SBOM), CLA/DCO según
         legal, SECURITY.md para reportes (sección 20)
 ```
 
 ```text
 Documentos clave (raíz o .github/):
-    │
-    ├── LICENSE · CONTRIBUTING · CODE_OF_CONDUCT
-    ├── SECURITY.md · SUPPORT.md (mención)
-    └── plantillas de issue/PR
+    â
+    âââ LICENSE Â· CONTRIBUTING Â· CODE_OF_CONDUCT
+    âââ SECURITY.md Â· SUPPORT.md (mención)
+    âââ plantillas de issue/PR
 ```
 
 ### 7.2. Resumen
@@ -391,7 +391,7 @@ En este capítulo aprendiste que:
 * CONTRIBUTING documenta el flujo real (rama, commits, tests, PR) y se mantiene como doc viva;
 * el COC exige canal de denuncia real; plantillas de issue/PR estandarizan la entrada;
 * los errores típicos (sin licencia, licencia por moda, CONTRIBUTING desfasado, checklist decorativa, COC incompleto, dependencias sin revisar) se previenen con revisión y automatización;
-* a nivel profesional: gobernanza por niveles (repositorio → comunidad → organización).
+* a nivel profesional: gobernanza por niveles (repositorio â comunidad â organización).
 
 La idea principal es:
 
