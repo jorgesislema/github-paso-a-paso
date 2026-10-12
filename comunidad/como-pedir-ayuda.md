@@ -1,6 +1,6 @@
 # Cómo pedir ayuda
 
-Pedir ayuda bien es una habilidad técnica. Este documento es la guía práctica y breve: la fórmula, la plantilla y los criterios. La versión completa, con los cincuenta y cuatro apartados y ejercicios, está en [`../00-orientacion/04-como-pedir-ayuda.md`](../00-orientacion/04-como-pedir-ayuda.md).
+Pedir ayuda bien es una habilidad técnica. Este documento es la guía práctica y breve: la fórmula, la plantilla y los criterios. La versión completa, con los cincuenta y cuatro apartados y ejercicios, está en [`../00-orientacion/10-como-pedir-ayuda-formula-y-contexto.md`](../00-orientacion/10-como-pedir-ayuda-formula-y-contexto.md).
 
 ---
 
@@ -196,4 +196,4 @@ La idea principal es:
 Guía aplicada:
 
 * [`como-reportar-un-error.md`](como-reportar-un-error.md) — si encontraste un fallo en el material.
-* [`../00-orientacion/04-como-pedir-ayuda.md`](../00-orientacion/04-como-pedir-ayuda.md) — la versión completa con ejercicios.
+* [`../00-orientacion/10-como-pedir-ayuda-formula-y-contexto.md`](../00-orientacion/10-como-pedir-ayuda-formula-y-contexto.md) — la versión completa con ejercicios.
