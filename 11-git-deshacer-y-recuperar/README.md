@@ -1,4 +1,4 @@
-﻿ + # 11 ù Git: deshacer y recuperar
+ + # 11 ù Git: deshacer y recuperar
 
 ## Bienvenido a esta secci≤n
 
@@ -78,23 +78,26 @@ Primero el terreno com·n (01: las ßreas de Git y `restore`), luego la correcci
 ---
 
 ## Autopreguntas de cierre
-## Checkpoint 11 â€” ComprobaciÃ³n obligatoria
-1. Usa git restore --staged <file> para desechar cambios en el Ã­ndice sin tocar el working directory.
+## Checkpoint 11 —” Comprobación obligatoria
+1. Usa git restore --staged <file> para desechar cambios en el índice sin tocar el working directory.
 2. Ejecuta git revert <commit> para crear un commit que revierta un commit compartido.
-3. Utiliza git reset --soft HEAD~1 para mover la rama manteniendo los cambios en el Ã­ndice.
-4. Guarda trabajo a medias con git stash push -m "mensaje" y rÃ©cupelo con git stash pop.
+3. Utiliza git reset --soft HEAD~1 para mover la rama manteniendo los cambios en el índice.
+4. Guarda trabajo a medias con git stash push -m "mensaje" y récupelo con git stash pop.
 5. Recupera un commit "perdido" usando git reflog y git reset --hard <hash>.
-6. Si puedes hacerlo **sin mirar instrucciones**, el checkpoint estÃ¡ cerrado.
+6. Si puedes hacerlo **sin mirar instrucciones**, el checkpoint está cerrado.
 ## Autopreguntas de cierre
 
-Sin mirar el material, responde mentalmente y luego compruÃ©balo con los capÃ­tulos de la secciÃ³n:
+Sin mirar el material, responde mentalmente y luego compruébalo con los capítulos de la sección:
 
-1. Cometiste un error en una rama compartida: Â¿quÃ© comando usas y por quÃ© no eset?
-2. Â¿QuÃ© diferencia hay entre eset --hard y estore?
-3. Tienes trabajo a medias y necesitas cambiar de rama: Â¿quÃ© haces?
-4. â€œPerdisteâ€ un commit con un reset: Â¿dÃ³nde estÃ¡ y cÃ³mo lo recuperas?
-5. Â¿CuÃ¡ndo es apropiado usar git reset --soft en lugar de --mixed o --hard?
-6. Â¿CÃ³mo puedes recuperar un stash eliminado accidentalmente con git stash drop?
+1. Cometiste un error en una rama compartida: ¿qué comando usas y por qué no 
+eset?
+2. ¿Qué diferencia hay entre 
+eset --hard y 
+estore?
+3. Tienes trabajo a medias y necesitas cambiar de rama: ¿qué haces?
+4. “Perdiste” un commit con un reset: ¿dónde está y cómo lo recuperas?
+5. ¿Cuándo es apropiado usar git reset --soft en lugar de --mixed o --hard?
+6. ¿Cómo puedes recuperar un stash eliminado accidentalmente con git stash drop?
 
 ## Pr≤ximo paso
 
