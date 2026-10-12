@@ -3,14 +3,14 @@
 
 ## Autopreguntas de cierre
 
-Sin mirar el material, responde mentalmente y luego compru�balo con este cap�tulo:
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
 
-1. �Por qu� es importante definir una regla de ubicaci�n clara (por ejemplo, ��lo busca alguien que ya entr�?� ? docs/; ��lo busca quien llega?� ? README) y c�mo afecta esto a la experiencia de usuarios nuevos versus desarrolladores que ya est�n familiarizados con el proyecto?
-2. �C�mo influye la presencia de un �ndice enlazado desde el README ra�z en la capacidad de encontrar documentaci�n t�cnica espec�fica, y qu� riesgos existen si el �ndice falta o est� desactualizado?
-3. �Qu� ventajas ofrece utilizar ADRs (Architectural Decision Records) para documentar decisiones de arquitectura frente a simplemente incluir el �c�mo� en la documentaci�n de implementaci�n, y c�mo se evita que los ADRs se vuelvan obsoletos?
-4. �De qu� manera integrar revisiones de documentaci�n en los PRs (por ejemplo, mediante checklists que verifiquen que los diagramas afectados est�n actualizados) contribuye a mantener la documentaci�n sincronizada con el c�digo y a reducir la pudrici�n?
-5. �Qu� consecuencias tiene almacenar credenciales o informaci�n sensible en archivos de documentaci�n dentro de un repositorio p�blico, y c�mo mitigarlo utilizando placeholders y referencias a gestores de secretos?
-6. �C�mo dise�ar�as un proceso de revisi�n peri�dica de documentaci�n que combine el uso de linters de Markdown, verificaciones de enlaces y builds de sitio est�tico para asegurar que la documentaci�n permanezca �til y accesible a lo largo del tiempo?
+1. ¿Por qué es importante definir una regla de ubicación clara (por ejemplo, «¿lo busca alguien que ya entró?» ? docs/; «¿lo busca quien llega?» ? README) y cómo afecta esto a la experiencia de usuarios nuevos versus desarrolladores que ya están familiarizados con el proyecto?
+2. ¿Cómo influye la presencia de un índice enlazado desde el README raíz en la capacidad de encontrar documentación técnica específica, y qué riesgos existen si el índice falta o está desactualizado?
+3. ¿Qué ventajas ofrece utilizar ADRs (Architectural Decision Records) para documentar decisiones de arquitectura frente a simplemente incluir el «cómo» en la documentación de implementación, y cómo se evita que los ADRs se vuelvan obsoletos?
+4. ¿De qué manera integrar revisiones de documentación en los PRs (por ejemplo, mediante checklists que verifiquen que los diagramas afectados estén actualizados) contribuye a mantener la documentación sincronizada con el código y a reducir la pudrición?
+5. ¿Qué consecuencias tiene almacenar credenciales o información sensible en archivos de documentación dentro de un repositorio público, y cómo mitigarlo utilizando placeholders y referencias a gestores de secretos?
+6. ¿Cómo diseñarías un proceso de revisión periódica de documentación que combine el uso de linters de Markdown, verificaciones de enlaces y builds de sitio estático para asegurar que la documentación permanezca útil y accesible a lo largo del tiempo?
 
 [`README.md`](README.md)
 # Documentación técnica en `docs/`
@@ -41,33 +41,33 @@ mindmap
 
 ```text
 VA a docs/:
-    │
-    ├── guías (primeros pasos, recetas, troubleshooting)
-    ├── arquitectura y diagramas de sistema
-    ├── decisiones (ADR: arquitectónicas y de proceso)
-    ├── referencia de API/CLI (generada o escrita)
-    ├── convenciones del proyecto (estilo, seguridad)
-    └── runbooks (operación, incidentes)
+    â
+    âââ guías (primeros pasos, recetas, troubleshooting)
+    âââ arquitectura y diagramas de sistema
+    âââ decisiones (ADR: arquitectónicas y de proceso)
+    âââ referencia de API/CLI (generada o escrita)
+    âââ convenciones del proyecto (estilo, seguridad)
+    âââ runbooks (operación, incidentes)
 ```
 
 ```text
 NO va (está en otro sitio):
-    │
-    ├── README        → puerta de entrada (cap. 02)
-    ├── CHANGELOG     → entregas (cap. 04)
-    ├── CONTRIBUTING  → contribuir (cap. 05)
-    └── código/comentarios → en el código, lo
-        inseparable (docs «junto al código» para
+    â
+    âââ README        â puerta de entrada (cap. 02)
+    âââ CHANGELOG     â entregas (cap. 04)
+    âââ CONTRIBUTING  â contribuir (cap. 05)
+    âââ código/comentarios â en el código, lo
+        inseparable (docs Â«junto al códigoÂ» para
         detalles micro)
 ```
 
 ```text
-    │
-    ├── regla de ubicación: «¿lo busca alguien que
-    │   ya entró?» → docs/; «¿lo busca quien llega?»
-    │   → README
-    │
-    └── documentos CORTOS con un objetivo; los
+    â
+    âââ regla de ubicación: Â«¿lo busca alguien que
+    â   ya entró?Â» â docs/; Â«¿lo busca quien llega?Â»
+    â   â README
+    â
+    âââ documentos CORTOS con un objetivo; los
         gordos se dividen y se indexan
 ```
 
@@ -76,36 +76,36 @@ NO va (está en otro sitio):
 
 ```text
 docs/
-├── README.md          → índice de la documentación
-├── primeros-pasos.md
-├── guias/
-│   ├── flujo-de-trabajo.md
-│   └── troubleshooting.md
-├── arquitectura/
-│   ├── README.md      → vista general + diagramas
-│   └── modulos.md
-├── decisiones/
-│   ├── 0001-usar-postgres.md
-│   └── 0002-versionado-semver.md
-├── referencia/
-│   └── cli.md
-└── operacion/
-    └── runbook-despliegue.md
+âââ README.md          â índice de la documentación
+âââ primeros-pasos.md
+âââ guias/
+â   âââ flujo-de-trabajo.md
+â   âââ troubleshooting.md
+âââ arquitectura/
+â   âââ README.md      â vista general + diagramas
+â   âââ modulos.md
+âââ decisiones/
+â   âââ 0001-usar-postgres.md
+â   âââ 0002-versionado-semver.md
+âââ referencia/
+â   âââ cli.md
+âââ operacion/
+    âââ runbook-despliegue.md
 ```
 
 ```text
 Convenciones:
-    │
-    ├── índice (docs/README.md) enlazado desde el
-    │   README raíz
-    │
-    ├── nombres en minúsculas-guion (coherente con el
-    │   resto del repo)
-    │
-    ├── numeración solo en decisiones (ADR):
-    │   0001, 0002…
-    │
-    └── fechas ISO (2026-10-02) cuando ayuden
+    â
+    âââ índice (docs/README.md) enlazado desde el
+    â   README raíz
+    â
+    âââ nombres en minúsculas-guion (coherente con el
+    â   resto del repo)
+    â
+    âââ numeración solo en decisiones (ADR):
+    â   0001, 0002â¦
+    â
+    âââ fechas ISO (2026-10-02) cuando ayuden
 ```
 
 ---
@@ -113,9 +113,9 @@ Convenciones:
 
 ```text
 MARKDOWN
-    │
-    ├── base de todo (cap. 01 de esta sección)
-    └── plantillas por tipo (guía, runbook, ADR)
+    â
+    âââ base de todo (cap. 01 de esta sección)
+    âââ plantillas por tipo (guía, runbook, ADR)
 ```
 
 ```markdown
@@ -125,40 +125,40 @@ MARKDOWN
 ## Estado: Aceptada (2026-10-02)
 
 ## Contexto
-Necesitamos transacciones y consultas ad-hoc…
+Necesitamos transacciones y consultas ad-hocâ¦
 
 ## Decisión
-Usamos PostgreSQL 16…
+Usamos PostgreSQL 16â¦
 
 ## Consecuencias
 + ecosistema, + SQL conocido
-- operación del servidor propio…
+- operación del servidor propioâ¦
 ```
 
 ```text
 DIAGRAMAS
-    │
-    ├── ASCII en Markdown (portable, versionable,
-    │   como en este curso) para esquemas simples
-    │
-    ├── Mermaid/PlantUML: bloques de código que la
-    │   plataforma renderiza → orden de magnitud para
-    │   diagramas grandes (mención: elegir uno y
-    │   mantenerlo)
-    │
-    └── arquitectura: cajas y flechas con la
+    â
+    âââ ASCII en Markdown (portable, versionable,
+    â   como en este curso) para esquemas simples
+    â
+    âââ Mermaid/PlantUML: bloques de código que la
+    â   plataforma renderiza â orden de magnitud para
+    â   diagramas grandes (mención: elegir uno y
+    â   mantenerlo)
+    â
+    âââ arquitectura: cajas y flechas con la
         frontera de datos y confianza visible (sección
         25)
 ```
 
 ```text
 RECUERDA:
-    │
-    ├── el formato sigue al lector: runbook debe ser
-    │   copiable en incidente (paso a paso, comandos)
-    │
-    └── ADR = «por qué decidimos», no «cómo está
-        hecho» (ese es el doc de arquitectura)
+    â
+    âââ el formato sigue al lector: runbook debe ser
+    â   copiable en incidente (paso a paso, comandos)
+    â
+    âââ ADR = Â«por qué decidimosÂ», no Â«cómo está
+        hechoÂ» (ese es el doc de arquitectura)
 ```
 
 ---
@@ -166,28 +166,28 @@ RECUERDA:
 
 ```text
 Señales de pudrición:
-    │
-    ├── comandos/paths que ya no existen
-    ├── contradicción entre README y docs/
-    └── ADRs sin actualizar estado («Propuesta» de
+    â
+    âââ comandos/paths que ya no existen
+    âââ contradicción entre README y docs/
+    âââ ADRs sin actualizar estado (Â«PropuestaÂ» de
         hace dos años)
 ```
 
 ```text
 Higiene:
-    │
-    ├── los PR que cambian comportamiento tocan docs/
-    │   (checklist, sección 05)
-    │
-    ├── docs con «dueño» (CODEOWNERS por carpeta,
-    │   sección 18)
-    │
-    ├── ADRs: solo se cambia el estado con nuevo ADR
-    │   (superseded por ADR-NNNN) — el pasado no se
-    │   reescribe
-    │
-    └── revisión periódica: «¿seguiría siendo cierto
-        este documento hoy?»
+    â
+    âââ los PR que cambian comportamiento tocan docs/
+    â   (checklist, sección 05)
+    â
+    âââ docs con Â«dueñoÂ» (CODEOWNERS por carpeta,
+    â   sección 18)
+    â
+    âââ ADRs: solo se cambia el estado con nuevo ADR
+    â   (superseded por ADR-NNNN) â el pasado no se
+    â   reescribe
+    â
+    âââ revisión periódica: Â«¿seguiría siendo cierto
+        este documento hoy?Â»
 ```
 
 ---
@@ -203,7 +203,7 @@ Higiene:
 
 **Opciones:** estructura del punto 2; mover, fusionar o eliminar.
 
-**Riesgos:** nadie encuentra nada → docs muertos.
+**Riesgos:** nadie encuentra nada â docs muertos.
 
 **Solución:** índice obligatorio y criterio de ubicación (punto 1).
 
@@ -211,13 +211,13 @@ Higiene:
 
 ---
 
-### Error 2: documentar el «cómo» y olvidar el «por qué»
+### Error 2: documentar el Â«cómoÂ» y olvidar el Â«por quéÂ»
 
-**Qué ocurrió:** docs que describen la implementación actual pero no las razones → cada lector reinterpreta y «mejora» lo que ya se decidió.
+**Qué ocurrió:** docs que describen la implementación actual pero no las razones â cada lector reinterpreta y Â«mejoraÂ» lo que ya se decidió.
 
 **Por qué:** no hay ADRs.
 
-**Cómo comprobarlo:** buscar en la doc palabras como «decidimos», «porque»; si no hay, falta contexto.
+**Cómo comprobarlo:** buscar en la doc palabras como Â«decidimosÂ», Â«porqueÂ»; si no hay, falta contexto.
 
 **Opciones:** crear ADRs para las decisiones vivas (a posteriori, con fecha honesta).
 
@@ -243,7 +243,7 @@ Higiene:
 
 **Solución:** diagramas como texto en el repo, actualizados en el mismo PR.
 
-**Cómo se evita:** casilla «diagrama afectado actualizado» en PRs de arquitectura.
+**Cómo se evita:** casilla Â«diagrama afectado actualizadoÂ» en PRs de arquitectura.
 
 ---
 
@@ -255,7 +255,7 @@ Higiene:
 
 **Cómo comprobarlo:** intentar simular: leer en frío y ejecutar los pasos.
 
-**Opciones:** reescribir paso a paso con comandos copiables, verificación por paso y «si falla →…».
+**Opciones:** reescribir paso a paso con comandos copiables, verificación por paso y Â«si falla ââ¦Â».
 
 **Riesgos:** MTTR peor; pánico.
 
@@ -267,7 +267,7 @@ Higiene:
 
 ### Error 5: docs duplicados con versiones distintas
 
-**Qué ocurrió:** el «cómo desplegar» aparece en README, en docs/ y en un wiki, con diferencias.
+**Qué ocurrió:** el Â«cómo desplegarÂ» aparece en README, en docs/ y en un wiki, con diferencias.
 
 **Por qué:** crecimiento sin dueño.
 
@@ -291,7 +291,7 @@ Higiene:
 
 **Cómo comprobarlo:** escaneo de secretos (sección 13/20); revisar qué contiene cada doc.
 
-**Opciones:** externalizar credenciales (referencias a gestor de secretos); clasificar acceso; si se publicó → flujo de incidente (cap. 05 sección 13).
+**Opciones:** externalizar credenciales (referencias a gestor de secretos); clasificar acceso; si se publicó â flujo de incidente (cap. 05 sección 13).
 
 **Riesgos:** incidente de seguridad.
 
@@ -313,7 +313,7 @@ Crear un `docs/` ordenado con índice, una guía, un ADR y un runbook corto.
 
 ### Paso 2: guía
 
-1. `docs/guias/troubleshooting.md`: 3 problemas frecuentes con «síntoma → diagnóstico → arreglo».
+1. `docs/guias/troubleshooting.md`: 3 problemas frecuentes con Â«síntoma â diagnóstico â arregloÂ».
 
 ### Paso 3: ADR
 
@@ -354,20 +354,20 @@ Imagina que debes documentar el proceso de despliegue de una aplicación web en 
 ### 7.1. Doc como sistema
 
 ```text
-    │
-    ├── índice + plantillas + dueños (CODEOWNERS)
-    │
-    ├── ADR obligatorio para cambios de arquitectura
-    │   (proceso del equipo, sección 15/25)
-    │
-    ├── diagramas como código (fuente en repo, revisión
-    │   en PR, render en CI si aplica)
-    │
-    ├── docs como código: linter de Markdown, enlaces
-    │   verificados en CI, builds de sitio estático
-    │   (categoría: docs-as-code)
-    │
-    └── clasificación y escaneo: nada de credenciales
+    â
+    âââ índice + plantillas + dueños (CODEOWNERS)
+    â
+    âââ ADR obligatorio para cambios de arquitectura
+    â   (proceso del equipo, sección 15/25)
+    â
+    âââ diagramas como código (fuente en repo, revisión
+    â   en PR, render en CI si aplica)
+    â
+    âââ docs como código: linter de Markdown, enlaces
+    â   verificados en CI, builds de sitio estático
+    â   (categoría: docs-as-code)
+    â
+    âââ clasificación y escaneo: nada de credenciales
         en docs (secciones 20/24)
 ```
 
@@ -375,16 +375,16 @@ Imagina que debes documentar el proceso de despliegue de una aplicación web en 
 
 En este capítulo aprendiste que:
 
-* `docs/` recibe guías, arquitectura, decisiones (ADR), referencia y operación — con índice enlazado desde el README;
+* `docs/` recibe guías, arquitectura, decisiones (ADR), referencia y operación â con índice enlazado desde el README;
 * formatos por propósito: guía corta, ADR de contexto/decisión/consecuencias, runbook paso a paso, diagramas versionados (ASCII/Mermaid);
-* los ADRs preservan el «por qué» y no se reescriben: se superseden con nuevos ADRs;
+* los ADRs preservan el Â«por quéÂ» y no se reescriben: se superseden con nuevos ADRs;
 * la vida de los docs depende de dueños, checklist en PRs y revisión periódica;
-* los errores típicos (cajón desastre, solo «cómo», diagramas-foto, runbooks de ensayo, duplicados, credenciales en doc) se previenen con convención y automatización;
+* los errores típicos (cajón desastre, solo Â«cómoÂ», diagramas-foto, runbooks de ensayo, duplicados, credenciales en doc) se previenen con convención y automatización;
 * a nivel profesional: docs-as-code con linter, enlaces y CI.
 
 La idea principal es:
 
-> **La documentación es infraestructura del conocimiento: se versiona, se revisa y tiene dueño — porque lo que no se mantiene, engaña.**
+> **La documentación es infraestructura del conocimiento: se versiona, se revisa y tiene dueño â porque lo que no se mantiene, engaña.**
 
 ---
 ## Próximo paso
