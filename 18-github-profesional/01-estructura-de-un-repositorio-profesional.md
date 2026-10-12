@@ -1,24 +1,24 @@
-﻿# Estructura de un repositorio profesional
+# Estructura de un repositorio profesional
 
-## IntroducciÃ³n
+## Introducción
 
-Un repositorio profesional se reconoce antes de leer una lÃ­nea de cÃ³digo: estÃ¡ ordenado, tiene su documentaciÃ³n en el sitio esperado, sus automatizaciones donde las busca la plataforma y sus archivos de gobernanza en la raÃ­z. La estructura no es estÃ©tica â€” es el contrato que permite a un reciÃ©n llegado encontrar, ejecutar y contribuir sin guÃ­a.
+Un repositorio profesional se reconoce antes de leer una línea de código: está ordenado, tiene su documentación en el sitio esperado, sus automatizaciones donde las busca la plataforma y sus archivos de gobernanza en la raíz. La estructura no es estética —” es el contrato que permite a un recién llegado encontrar, ejecutar y contribuir sin guía.
 
-Este capÃ­tulo diseÃ±a la estructura completa de un repo de producciÃ³n: raÃ­z, `src`, `tests`, `docs`, `.github`, scripts y los archivos de contrato (README, LICENSE, CONTRIBUTING, SECURITY).
+Este capítulo diseña la estructura completa de un repo de producción: raíz, `src`, `tests`, `docs`, `.github`, scripts y los archivos de contrato (README, LICENSE, CONTRIBUTING, SECURITY).
 
 ---
 
-## Mapa conceptual de este capÃ­tulo
+## Mapa conceptual de este capítulo
 
 ```mermaid
 mindmap
   root((Estructura de un repositorio profesional))
     01 Principios de la estructura
     02 Mapa de carpetas modelo
-    03 Archivos de contrato en la raÃ­z
+    03 Archivos de contrato en la raíz
     04 .github/ el directorio del equipo
-    05 Errores comunes con diagnÃ³stico completo
-    06 PrÃ¡ctica guiada
+    05 Errores comunes con diagnóstico completo
+    06 Práctica guiada
     07 Nivel profesional + resumen
 ```
 
@@ -28,12 +28,12 @@ mindmap
 
 ```text
 PRINCIPIOS
-â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-1. convenciÃ³n sobre invenciÃ³n: los estÃ¡ndares del
-   lenguaje/ecosistema (secciÃ³n 21) primero
-2. separaciÃ³n por propÃ³sito: fuente, pruebas, docs,
-   automatizaciÃ³n, scripts
-3. la raÃ­z es un Ã­ndice: 5-7 entradas, no un cajÃ³n
+──────────────────────────────────────────────────────
+1. convención sobre invención: los estándares del
+   lenguaje/ecosistema (sección 21) primero
+2. separación por propósito: fuente, pruebas, docs,
+   automatización, scripts
+3. la raíz es un índice: 5-7 entradas, no un cajón
 4. todo lo que el equipo necesita repetir vive en
    el repo (scripts, configs)
 5. lo que la plataforma busca en sitios conocidos
@@ -41,13 +41,13 @@ PRINCIPIOS
 ```
 
 ```text
-   â”‚
-   â”œâ”€â”€ un reciÃ©n llegado debe poder, en 10 minutos:
-   â”‚   encontrar el cÃ³digo, ejecutar las pruebas y
-   â”‚   saber cÃ³mo contribuir
-   â”‚
-   â””â”€â”€ si algo no encaja en ninguna carpeta y se
-       repite â†’ merece carpeta propia (decisiÃ³n
+   │
+   ├── un recién llegado debe poder, en 10 minutos:
+   │   encontrar el código, ejecutar las pruebas y
+   │   saber cómo contribuir
+   │
+   ┼”── si algo no encaja en ninguna carpeta y se
+       repite → merece carpeta propia (decisión
        escrita)
 ```
 
@@ -57,76 +57,76 @@ PRINCIPIOS
 
 ```text
 repositorio/
-â”œâ”€â”€ README.md            â† puerta (secciÃ³n 14)
-â”œâ”€â”€ LICENSE
-â”œâ”€â”€ CONTRIBUTING.md
-â”œâ”€â”€ CODE_OF_CONDUCT.md
-â”œâ”€â”€ SECURITY.md          â† canal de reportes (secciÃ³n 20)
-â”œâ”€â”€ CHANGELOG.md
-â”œâ”€â”€ .gitignore
-â”œâ”€â”€ .gitattributes       (si aplica â€” secciÃ³n 13)
-â”‚
-â”œâ”€â”€ src/  (o el paquete/raÃ­z del cÃ³digo)
-â”‚   â””â”€â”€ â€¦
-â”œâ”€â”€ tests/ (o *.test.* junto al cÃ³digo: convenciÃ³n
-â”‚           del ecosistema)
-â”œâ”€â”€ docs/
-â”‚   â”œâ”€â”€ README.md        â† Ã­ndice
-â”‚   â”œâ”€â”€ guias/
-â”‚   â”œâ”€â”€ arquitectura/
-â”‚   â””â”€â”€ decisiones/      (ADRs â€” secciÃ³n 14)
-â”œâ”€â”€ scripts/             â† operaciÃ³n repetible
-â”œâ”€â”€ config/  (si aplica)
-â”‚
-â”œâ”€â”€ .github/
-â”‚   â”œâ”€â”€ CODEOWNERS
-â”‚   â”œâ”€â”€ PULL_REQUEST_TEMPLATE.md
-â”‚   â”œâ”€â”€ ISSUE_TEMPLATE/
-â”‚   â”œâ”€â”€ workflows/       (Actions â€” secciÃ³n 19)
-â”‚   â””â”€â”€ dependabot.yml   (secciÃ³n 20)
-â”‚
-â””â”€â”€ (monorepo: paquetes/ o apps/ â€” menciÃ³n)
+├── README.md            ← puerta (sección 14)
+├── LICENSE
+├── CONTRIBUTING.md
+├── CODE_OF_CONDUCT.md
+├── SECURITY.md          ← canal de reportes (sección 20)
+├── CHANGELOG.md
+├── .gitignore
+├── .gitattributes       (si aplica —” sección 13)
+│
+├── src/  (o el paquete/raíz del código)
+│   ┼”── …
+├── tests/ (o *.test.* junto al código: convención
+│           del ecosistema)
+├── docs/
+│   ├── README.md        ← índice
+│   ├── guias/
+│   ├── arquitectura/
+│   ┼”── decisiones/      (ADRs —” sección 14)
+├── scripts/             ← operación repetible
+├── config/  (si aplica)
+│
+├── .github/
+│   ├── CODEOWNERS
+│   ├── PULL_REQUEST_TEMPLATE.md
+│   ├── ISSUE_TEMPLATE/
+│   ├── workflows/       (Actions —” sección 19)
+│   ┼”── dependabot.yml   (sección 20)
+│
+┼”── (monorepo: paquetes/ o apps/ —” mención)
 ```
 
 ```text
-VARIANTES HONESTAS POR ECOSISTEMA (secciÃ³n 21):
-   â”‚
-   â”œâ”€â”€ Python: src/ o raÃ­z del paquete + pyproject.toml
-   â”œâ”€â”€ JavaScript: src/ + package.json en raÃ­z
-   â”œâ”€â”€ datos/IA: data/ (Â¡sin datos sensibles en el
-   â”‚   repo!) + notebooks/ + entornos documentados
-   â””â”€â”€ lo IMPORTANTE: el equipo lo reconoce al
+VARIANTES HONESTAS POR ECOSISTEMA (sección 21):
+   │
+   ├── Python: src/ o raíz del paquete + pyproject.toml
+   ├── JavaScript: src/ + package.json en raíz
+   ├── datos/IA: data/ (¡sin datos sensibles en el
+   │   repo!) + notebooks/ + entornos documentados
+   ┼”── lo IMPORTANTE: el equipo lo reconoce al
        instante
 ```
 
 ---
 
-## 3. Archivos de contrato en la raÃ­z
+## 3. Archivos de contrato en la raíz
 
 ```text
 ARCHIVO              RESPONDE A
-â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-README.md            Â¿quÃ© es y cÃ³mo empiezo?
-LICENSE              Â¿puedo usarlo?
-CONTRIBUTING.md      Â¿cÃ³mo contribuyo?
-CODE_OF_CONDUCT.md   Â¿cÃ³mo convivimos?
-SECURITY.md          Â¿envejezco un fallo de seguridad?
-CHANGELOG.md         Â¿quÃ© cambiÃ³ por versiÃ³n?
-SUPPORT.md (opc.)    Â¿dÃ³nde pido ayuda?
+──────────────────────────────────────────────────────
+README.md            ¿qué es y cómo empiezo?
+LICENSE              ¿puedo usarlo?
+CONTRIBUTING.md      ¿cómo contribuyo?
+CODE_OF_CONDUCT.md   ¿cómo convivimos?
+SECURITY.md          ¿envejezco un fallo de seguridad?
+CHANGELOG.md         ¿qué cambió por versión?
+SUPPORT.md (opc.)    ¿dónde pido ayuda?
 ```
 
 ```text
-   â”‚
-   â”œâ”€â”€ CONTRACTOS VIVOS: se revisan cuando cambia el
-   â”‚   proceso (secciÃ³n 14/15)
-   â”‚
-   â”œâ”€â”€ SECURITY.md en repo pÃºblico es asunto serio:
-   â”‚   canal privado + tiempo de respuesta (secciÃ³n
-   â”‚   20)
-   â”‚
-   â””â”€â”€ TODO fichero de raÃ­z debe enlazar a los
-       otros (README â†’ CONTRIBUTING â†’ SECURITY): la
-       red de enlaces es la navegaciÃ³n
+   │
+   ├── CONTRACTOS VIVOS: se revisan cuando cambia el
+   │   proceso (sección 14/15)
+   │
+   ├── SECURITY.md en repo público es asunto serio:
+   │   canal privado + tiempo de respuesta (sección
+   │   20)
+   │
+   ┼”── TODO fichero de raíz debe enlazar a los
+       otros (README → CONTRIBUTING → SECURITY): la
+       red de enlaces es la navegación
 ```
 
 ---
@@ -135,168 +135,168 @@ SUPPORT.md (opc.)    Â¿dÃ³nde pido ayuda?
 
 ```text
 .github/
-â”œâ”€â”€ workflows/          â† Actions (secciÃ³n 19)
-â”œâ”€â”€ ISSUE_TEMPLATE/     â† formularios (secciÃ³n 14)
-â”œâ”€â”€ PULL_REQUEST_TEMPLATE.md
-â”œâ”€â”€ CODEOWNERS          â† dueÃ±os (secciÃ³n 16)
-â”œâ”€â”€ dependabot.yml      â† actualizaciones (secciÃ³n 20)
-â”œâ”€â”€ FUNDING.yml (opc.)
-â””â”€â”€ config.yml          â† enlaces del formulario de
+├── workflows/          ← Actions (sección 19)
+├── ISSUE_TEMPLATE/     ← formularios (sección 14)
+├── PULL_REQUEST_TEMPLATE.md
+├── CODEOWNERS          ← dueños (sección 16)
+├── dependabot.yml      ← actualizaciones (sección 20)
+├── FUNDING.yml (opc.)
+┼”── config.yml          ← enlaces del formulario de
                           issues
 ```
 
 ```text
-POR QUÃ‰ AQUÃ:
-   â”‚
-   â”œâ”€â”€ la plataforma lo reconoce sin configuraciÃ³n
-   â”œâ”€â”€ vive con el cÃ³digo â†’ se revisa en PR
-   â””â”€â”€ en organizaciÃ³n: se CLONA de plantillas
-       (cap. 02) â†’ consistencia entre repos
+POR QUÆ AQUÜ:
+   │
+   ├── la plataforma lo reconoce sin configuración
+   ├── vive con el código → se revisa en PR
+   ┼”── en organización: se CLONA de plantillas
+       (cap. 02) → consistencia entre repos
 ```
 
 ```text
-   â”‚
-   â””â”€â”€ regla: si un equipo necesita repetirlo en
-       todos los repos â†’ `.github/` de plantilla de
+   │
+   ┼”── regla: si un equipo necesita repetirlo en
+       todos los repos → `.github/` de plantilla de
        la org (cap. 02)
 ```
 
 ---
 
-## 5. Errores comunes con diagnÃ³stico completo
+## 5. Errores comunes con diagnóstico completo
 
-### Error 1: la raÃ­z es un cajÃ³n de sastre
+### Error 1: la raíz es un cajón de sastre
 
-**QuÃ© ocurriÃ³:** 40 archivos sueltos (notas, backups, `test2.py`, `nuevo-final.zip`).
+**Qué ocurrió:** 40 archivos sueltos (notas, backups, `test2.py`, `nuevo-final.zip`).
 
-**Por quÃ© posibles:**
+**Por qué posibles:**
 * crecimiento sin reglas;
 * merges de archivos no versionados.
 
-**CÃ³mo comprobarlo:** listar la raÃ­z; contar entradas.
+**Cómo comprobarlo:** listar la raíz; contar entradas.
 
-**Opciones:** mover a carpetas por propÃ³sito; eliminar basura; `.gitignore` para lo local (secciÃ³n 13).
+**Opciones:** mover a carpetas por propósito; eliminar basura; `.gitignore` para lo local (sección 13).
 
 **Riesgos:** nadie encuentra nada; el repo parece abandono.
 
-**SoluciÃ³n:** Ã­ndice de raÃ­z (punto 2) + regla de entrada.
+**Solución:** índice de raíz (punto 2) + regla de entrada.
 
-**CÃ³mo se evita:** revisiÃ³n de estructura en PRs grandes.
+**Cómo se evita:** revisión de estructura en PRs grandes.
 
 ---
 
-### Error 2: documentaciÃ³n fuera del repo (o en el wiki solo)
+### Error 2: documentación fuera del repo (o en el wiki solo)
 
-**QuÃ© ocurriÃ³:** docs importantes viven en un wiki externo que se desincronizÃ³; el repo no las enlaza.
+**Qué ocurrió:** docs importantes viven en un wiki externo que se desincronizó; el repo no las enlaza.
 
-**Por quÃ© posibles:**
+**Por qué posibles:**
 * costumbre de plataforma;
 * miedo a engordar el repo.
 
-**CÃ³mo comprobarlo:** buscar Â«documentaciÃ³n oficialÂ» y ver si estÃ¡ versionada.
+**Cómo comprobarlo:** buscar Â«documentación oficialÂ» y ver si está versionada.
 
-**Opciones:** migrar lo crÃ­tico a `docs/` (secciÃ³n 14); dejar el wiki como borrador o eliminarlo.
+**Opciones:** migrar lo crítico a `docs/` (sección 14); dejar el wiki como borrador o eliminarlo.
 
-**Riesgos:** doc sin historia ni revisiÃ³n.
+**Riesgos:** doc sin historia ni revisión.
 
-**SoluciÃ³n:** docs-as-code en el repo; wiki solo si el equipo lo mantiene.
+**Solución:** docs-as-code en el repo; wiki solo si el equipo lo mantiene.
 
-**CÃ³mo se evita:** Ã­ndice en README hacia `docs/`.
+**Cómo se evita:** índice en README hacia `docs/`.
 
 ---
 
 ### Error 3: tests enterrados o ausentes
 
-**QuÃ© ocurriÃ³:** pruebas en `misc/pruebas-ana/` o en una rama antigua; el CI no las encuentra.
+**Qué ocurrió:** pruebas en `misc/pruebas-ana/` o en una rama antigua; el CI no las encuentra.
 
-**Por quÃ©:** sin convenciÃ³n de ubicaciÃ³n (secciÃ³n 21).
+**Por qué:** sin convención de ubicación (sección 21).
 
-**CÃ³mo comprobarlo:** ejecutar la suite documentada; Â¿cubre lo crÃ­tico?
+**Cómo comprobarlo:** ejecutar la suite documentada; ¿cubre lo crítico?
 
-**Opciones:** mover a la convenciÃ³n del ecosistema; aÃ±adir ejecuciÃ³n al CI (secciÃ³n 19).
+**Opciones:** mover a la convención del ecosistema; añadir ejecución al CI (sección 19).
 
 **Riesgos:** Â«tenemos testsÂ» que nadie ejecuta.
 
-**SoluciÃ³n:** convenciÃ³n + runner obligatorio en PR.
+**Solución:** convención + runner obligatorio en PR.
 
-**CÃ³mo se evita:** checklist de PR: Â«tests afectados actualizadosÂ».
+**Cómo se evita:** checklist de PR: Â«tests afectados actualizadosÂ».
 
 ---
 
 ### Error 4: archivos de contrato copiados sin adaptar
 
-**QuÃ© ocurriÃ³:** CONTRIBUTING habla de comandos que no existen aquÃ­; SECURITY.md con correo de otra empresa.
+**Qué ocurrió:** CONTRIBUTING habla de comandos que no existen aquí; SECURITY.md con correo de otra empresa.
 
-**Por quÃ©:** se copiÃ³ plantilla sin revisar.
+**Por qué:** se copió plantilla sin revisar.
 
-**CÃ³mo comprobarlo:** ejecutar los comandos del CONTRIBUTING; leer el SECURITY.
+**Cómo comprobarlo:** ejecutar los comandos del CONTRIBUTING; leer el SECURITY.
 
-**Opciones:** personalizar; o empezar mÃ­nimo y crecer.
+**Opciones:** personalizar; o empezar mínimo y crecer.
 
 **Riesgos:** contratos que mienten (peor que no tener).
 
-**SoluciÃ³n:** plantillas + revisiÃ³n de contenido (secciÃ³n 14 cap. 05).
+**Solución:** plantillas + revisión de contenido (sección 14 cap. 05).
 
-**CÃ³mo se evita:** al clonar plantilla, checklist Â«adaptarÂ».
+**Cómo se evita:** al clonar plantilla, checklist Â«adaptarÂ».
 
 ---
 
 ### Error 5: `.github/` incompleto o roto
 
-**QuÃ© ocurriÃ³:** workflows con rutas que no existen, plantillas mal formadas, CODEOWNERS obsoleto.
+**Qué ocurrió:** workflows con rutas que no existen, plantillas mal formadas, CODEOWNERS obsoleto.
 
-**Por quÃ©:** se fue aÃ±adiendo sin pruebas.
+**Por qué:** se fue añadiendo sin pruebas.
 
-**CÃ³mo comprobarlo:** ejecutar workflows; abrir la pestaÃ±a de issues/PR y ver las plantillas; revisar dueÃ±os.
+**Cómo comprobarlo:** ejecutar workflows; abrir la pestaña de issues/PR y ver las plantillas; revisar dueños.
 
-**Opciones:** corregir; probar cada pieza al aÃ±adirla (secciÃ³n 19/16).
+**Opciones:** corregir; probar cada pieza al añadirla (sección 19/16).
 
-**Riesgos:** automatizaciÃ³n fantasma (nadie sabe si funciona).
+**Riesgos:** automatización fantasma (nadie sabe si funciona).
 
-**SoluciÃ³n:** `.github/` se prueba como cÃ³digo.
+**Solución:** `.github/` se prueba como código.
 
-**CÃ³mo se evita:** revisiÃ³n de platform-config en PR.
+**Cómo se evita:** revisión de platform-config en PR.
 
 ---
 
 ### Error 6: estructura que no evoluciona (o evoluciona sin avisar)
 
-**QuÃ© ocurriÃ³:** el proyecto creciÃ³ a monorepo/de paquete y la estructura vieja quedÃ³ mitad vacÃ­a; o alguien reorganizÃ³ en un PR gigante y todos perdieron referencias.
+**Qué ocurrió:** el proyecto creció a monorepo/de paquete y la estructura vieja quedó mitad vacía; o alguien reorganizó en un PR gigante y todos perdieron referencias.
 
-**Por quÃ© posibles:**
-* crecimiento sin rediseÃ±o;
-* reorganizaciÃ³n sin coordinaciÃ³n.
+**Por qué posibles:**
+* crecimiento sin rediseño;
+* reorganización sin coordinación.
 
-**CÃ³mo comprobarlo:** carpetas vacÃ­as, docs apuntando a rutas viejas, enlaces rotos.
+**Cómo comprobarlo:** carpetas vacías, docs apuntando a rutas viejas, enlaces rotos.
 
-**Opciones:** rediseÃ±o en PR dedicado con enlaces actualizados y aviso (secciÃ³n 14 cap. 01).
+**Opciones:** rediseño en PR dedicado con enlaces actualizados y aviso (sección 14 cap. 01).
 
 **Riesgos:** enlaces rotos por doquier.
 
-**SoluciÃ³n:** mudanzas anunciadas y verificadas (linter de enlaces).
+**Solución:** mudanzas anunciadas y verificadas (linter de enlaces).
 
-**CÃ³mo se evita:** revisiÃ³n de estructura cuando cambia la fase (secciÃ³n 25).
+**Cómo se evita:** revisión de estructura cuando cambia la fase (sección 25).
 
 ---
 
-## 6. PrÃ¡ctica guiada
+## 6. Práctica guiada
 
 ### Objetivo
 
 Transformar un repositorio desordenado en la estructura modelo.
 
-### Paso 1: diagnÃ³stico
+### Paso 1: diagnóstico
 
 ```text
-Lista la raÃ­z actual y clasifica:
-   â”‚
-   â”œâ”€â”€ contrato (README, LICENSEâ€¦)
-   â”œâ”€â”€ cÃ³digo fuente
-   â”œâ”€â”€ pruebas
-   â”œâ”€â”€ docs
-   â”œâ”€â”€ scripts/configs
-   â”œâ”€â”€ automatizaciÃ³n (.github)
-   â””â”€â”€ basura/local (Â¿por quÃ© estÃ¡ versionado?)
+Lista la raíz actual y clasifica:
+   │
+   ├── contrato (README, LICENSE…)
+   ├── código fuente
+   ├── pruebas
+   ├── docs
+   ├── scripts/configs
+   ├── automatización (.github)
+   ┼”── basura/local (¿por qué está versionado?)
 ```
 
 ### Paso 2: crea el esqueleto
@@ -317,30 +317,30 @@ git add -A && git commit -m "chore: reorganiza estructura del repo"
 
 ### Paso 4: contratos
 
-1. RaÃ­z: README (enlaces), LICENSE, CONTRIBUTING, SECURITY, CHANGELOG (secciÃ³n 14).
-2. `.github/`: CODEOWNERS, plantillas de issue/PR (secciÃ³n 14/16).
+1. Raíz: README (enlaces), LICENSE, CONTRIBUTING, SECURITY, CHANGELOG (sección 14).
+2. `.github/`: CODEOWNERS, plantillas de issue/PR (sección 14/16).
 
 ### Paso 5: verifica enlaces
 
 ```text
 Recorre README y docs/:
-   â”‚
-   â”œâ”€â”€ Â¿todos los enlaces relativos resuelven?
-   â”œâ”€â”€ Â¿los comandos del CONTRIBUTING funcionan?
-   â””â”€â”€ Â¿SECURITY.md tiene canal real?
+   │
+   ├── ¿todos los enlaces relativos resuelven?
+   ├── ¿los comandos del CONTRIBUTING funcionan?
+   ┼”── ¿SECURITY.md tiene canal real?
 ```
 
-### Paso 6: escribe la convenciÃ³n
+### Paso 6: escribe la convención
 
-1. AÃ±ade al CONTRIBUTING un bloque Â«Estructura del repoÂ» con el mapa (punto 2) y la regla de entrada de archivos.
+1. Añade al CONTRIBUTING un bloque Â«Estructura del repoÂ» con el mapa (punto 2) y la regla de entrada de archivos.
 
 ### Resultado esperado
 
-RaÃ­z con 6-7 entradas, carpetas por propÃ³sito, `.github/` completo y convenciÃ³n escrita.
+Raíz con 6-7 entradas, carpetas por propósito, `.github/` completo y convención escrita.
 
-### ConclusiÃ³n esperada
+### Conclusión esperada
 
-La estructura es el primer documento que lee un colaborador â” y se mantiene como se mantiene el cÃ³digo.
+La estructura es el primer documento que lee un colaborador ┼ y se mantiene como se mantiene el código.
 La estructura es el primer documento que lee un colaborador — y se mantiene como se mantiene el código.
 ### Ejercicio de transferencia
 
@@ -353,57 +353,57 @@ Entrega una captura del árbol de carpetas o un archivo `ESTRUCTURA.md` que list
 ### 7.1. Repos como producto
 
 ```text
-   â”‚
-   â”œâ”€â”€ plantilla de organizaciÃ³n: estructura +
-   â”‚   `.github/` + contratos clonables (cap. 02)
-   â”‚
-   â”œâ”€â”€ linter de enlaces y docs en CI (secciÃ³n 19)
-   â”‚
-   â”œâ”€â”€ revisiÃ³n periÃ³dica: enlaces, contratos,
-   â”‚   obsolescencia
-   â”‚
-   â”œâ”€â”€ monorepos: raÃ­z con paquetes/apps claros +
-   â”‚   filtros de CI por path (secciÃ³n 19/25)
-   â”‚
-   â””â”€â”€ mÃ©trica informal: Â«tiempo de onboarding de un
-       repo nuevoÂ» (secciÃ³n 26)
+   │
+   ├── plantilla de organización: estructura +
+   │   `.github/` + contratos clonables (cap. 02)
+   │
+   ├── linter de enlaces y docs en CI (sección 19)
+   │
+   ├── revisión periódica: enlaces, contratos,
+   │   obsolescencia
+   │
+   ├── monorepos: raíz con paquetes/apps claros +
+   │   filtros de CI por path (sección 19/25)
+   │
+   ┼”── métrica informal: Â«tiempo de onboarding de un
+       repo nuevoÂ» (sección 26)
 ```
 
 ### 7.2. Resumen
 
-En este capÃ­tulo aprendiste que:
+En este capítulo aprendiste que:
 
-* la estructura se diseÃ±a por propÃ³sito con convenciÃ³n de ecosistema: raÃ­z como Ã­ndice, `src`/`tests`/`docs`/`scripts`/`.github`;
-* la raÃ­z contiene los contratos (README, LICENSE, CONTRIBUTING, COC, SECURITY, CHANGELOG) enlazados entre sÃ­;
-* `.github/` es el directorio del equipo: workflows, plantillas, CODEOWNERS, dependabot â€” clonable desde plantillas de org;
-* los errores tÃ­picos (raÃ­z caÃ³tica, docs fuera, tests enterrados, contratos sin adaptar, `.github/` roto, mudanzas sin avisar) se previenen con convenciÃ³n y verificaciÃ³n;
-* a nivel profesional: plantillas de org, linter de enlaces y mÃ©trica de onboarding.
+* la estructura se diseña por propósito con convención de ecosistema: raíz como índice, `src`/`tests`/`docs`/`scripts`/`.github`;
+* la raíz contiene los contratos (README, LICENSE, CONTRIBUTING, COC, SECURITY, CHANGELOG) enlazados entre sí;
+* `.github/` es el directorio del equipo: workflows, plantillas, CODEOWNERS, dependabot —” clonable desde plantillas de org;
+* los errores típicos (raíz caótica, docs fuera, tests enterrados, contratos sin adaptar, `.github/` roto, mudanzas sin avisar) se previenen con convención y verificación;
+* a nivel profesional: plantillas de org, linter de enlaces y métrica de onboarding.
 
 La idea principal es:
 
-> **Un repo profesional se entiende de pie: raÃ­z como Ã­ndice, cada cosa en su propÃ³sito y los contratos donde la plataforma â€” y las personas â€” los buscan.**
+> **Un repo profesional se entiende de pie: raíz como índice, cada cosa en su propósito y los contratos donde la plataforma —” y las personas —” los buscan.**
 
 ---
 
 ## Autopreguntas de cierre
 
-Sin mirar el material, responde mentalmente y luego compruÃ©balo con este capÃ­tulo:
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
 
-1. Â¿Por quÃ© es importante que la raÃ­z de un repositorio profesional tenga solo 5-7 entradas claramente definidas?
-2. Â¿QuÃ© problemas pueden surgir si los archivos de contrato (README, LICENSE, etc.) se encuentran fuera de la raÃ­z del repositorio?
-3. Â¿CÃ³mo afecta la separaciÃ³n por propÃ³sito (src, tests, docs, .github) a la escalabilidad de un proyecto a medida que crece?
-4. Â¿QuÃ© consecuencias tiene mantener documentaciÃ³n externa (como en un wiki) en lugar de dentro del repositorio bajo docs/?
-5. Â¿Por quÃ© es necesario probar los workflows de .github/ como cÃ³digo antes de fusionarlos en la rama principal?
-6. Â¿CÃ³mo influye una estructura de repositorio bien definida en el tiempo de incorporaciÃ³n de un nuevo colaborador?
-7. Â¿QuÃ© riesgos existen al copiar plantillas de contrato sin adaptarlas al contexto especÃ­fico del proyecto?
+1. ¿Por qué es importante que la raíz de un repositorio profesional tenga solo 5-7 entradas claramente definidas?
+2. ¿Qué problemas pueden surgir si los archivos de contrato (README, LICENSE, etc.) se encuentran fuera de la raíz del repositorio?
+3. ¿Cómo afecta la separación por propósito (src, tests, docs, .github) a la escalabilidad de un proyecto a medida que crece?
+4. ¿Qué consecuencias tiene mantener documentación externa (como en un wiki) en lugar de dentro del repositorio bajo docs/?
+5. ¿Por qué es necesario probar los workflows de .github/ como código antes de fusionarlos en la rama principal?
+6. ¿Cómo influye una estructura de repositorio bien definida en el tiempo de incorporación de un nuevo colaborador?
+7. ¿Qué riesgos existen al copiar plantillas de contrato sin adaptarlas al contexto específico del proyecto?
 
-## PrÃ³ximo paso
+## Próximo paso
 
 Ya tienes el mapa del repositorio.
 
 El siguiente paso: convertir ese mapa en plantilla reutilizable para todo el equipo.
 
-ContinÃºa con:
+Continúa con:
 
 [`02-plantillas-de-repositorio-y-starter-workflows.md`](02-plantillas-de-repositorio-y-starter-workflows.md)
 
