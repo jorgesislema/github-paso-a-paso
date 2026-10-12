@@ -3,14 +3,14 @@
 
 ## Autopreguntas de cierre
 
-Sin mirar el material, responde mentalmente y luego compru�balo con este cap�tulo:
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
 
-1. �Por qu� es importante distinguir entre un changelog (registro acumulado en el repo) y las release notes (narraci�n de una entrega) y c�mo afecta esto a la forma en que los usuarios eval�an una actualizaci�n?
-2. �C�mo influye la relaci�n entre Conventional Commits y el versionado semver (feat ? MINOR, fix ? PATCH, breaking ? MAJOR) en la automatizaci�n de la generaci�n de changelogs y la toma de decisiones sobre el n�mero de versi�n?
-3. En el flujo semiautom�tico de generaci�n de changelog, �qu� papel juega la edici�n humana despu�s de que la herramienta propone un borrador, y por qu� es esencial reescribir en lenguaje de usuario en lugar de dejar el output crudo?
-4. �Qu� elementos deben incluirse siempre en las release notes para comunicar efectivamente a los usuarios qu� deben saber antes de actualizar, y por qu� es recomendable colocar los breaking changes y deprecaciones al principio con instrucciones de migraci�n?
-5. �Qu� riesgos conlleva publicar un tag sin asociarle release notes ni actualizar el changelog, y c�mo puede un checklist de release prevenir estos errores t�picos?
-6. �C�mo dise�ar�as un proceso de release que garantice que cada versi�n sea trazable a commits espec�ficos, issues y decisiones de compatibilidad, y qu� papel juega la auditor�a en ese proceso?
+1. ¿Por qué es importante distinguir entre un changelog (registro acumulado en el repo) y las release notes (narración de una entrega) y cómo afecta esto a la forma en que los usuarios evalúan una actualización?
+2. ¿Cómo influye la relación entre Conventional Commits y el versionado semver (feat ? MINOR, fix ? PATCH, breaking ? MAJOR) en la automatización de la generación de changelogs y la toma de decisiones sobre el número de versión?
+3. En el flujo semiautomático de generación de changelog, ¿qué papel juega la edición humana después de que la herramienta propone un borrador, y por qué es esencial reescribir en lenguaje de usuario en lugar de dejar el output crudo?
+4. ¿Qué elementos deben incluirse siempre en las release notes para comunicar efectivamente a los usuarios qué deben saber antes de actualizar, y por qué es recomendable colocar los breaking changes y deprecaciones al principio con instrucciones de migración?
+5. ¿Qué riesgos conlleva publicar un tag sin asociarle release notes ni actualizar el changelog, y cómo puede un checklist de release prevenir estos errores típicos?
+6. ¿Cómo diseñarías un proceso de release que garantice que cada versión sea trazable a commits específicos, issues y decisiones de compatibilidad, y qué papel juega la auditoría en ese proceso?
 
 [`05-license-y-contributing.md`](05-license-y-contributing.md)
 # Changelog y release notes
@@ -41,28 +41,28 @@ mindmap
 
 ```text
 CHANGELOG (archivo en el repo, ej. CHANGELOG.md)
-    │
-    ├── registro cronológico de versiones
-    ├── lo leen: usuarios que evalúan actualizar,
-    │   mantenedores, auditoría
-    └── sobrevive a la plataforma: está en el repo
+    â
+    âââ registro cronológico de versiones
+    âââ lo leen: usuarios que evalúan actualizar,
+    â   mantenedores, auditoría
+    âââ sobrevive a la plataforma: está en el repo
 ```
 
 ```text
 RELEASE NOTES (por entrega)
-    │
-    ├── narración de UNA versión: qué cambió, cómo
-    │   actualizar, qué rompe
-    ├── se publican: GitHub Releases, blog, mails
-    └── incluyen: destacados, breaking changes,
+    â
+    âââ narración de UNA versión: qué cambió, cómo
+    â   actualizar, qué rompe
+    âââ se publican: GitHub Releases, blog, mails
+    âââ incluyen: destacados, breaking changes,
         deprecaciones, agradecimientos, enlaces
 ```
 
 ```text
-    │
-    ├── el changelog ACUMULA; las notas CONTAN
-    │
-    └── las herramientas generan borradores del
+    â
+    âââ el changelog ACUMULA; las notas CONTAN
+    â
+    âââ las herramientas generan borradores del
         changelog; el humano redacta las notas (lo que
         le importa al lector, en su idioma)
 ```
@@ -72,36 +72,36 @@ RELEASE NOTES (por entrega)
 
 ```text
 KEEP A CHANGELOG (estilo, popular):
-    │
-    ├── cabecera por versión: [1.4.0] - 2026-10-01
-    ├── secciones: Añadido / Corregido /
-    │   Cambiado (breaking) / Obsoleto / Eliminado
-    ├── enlaces a comparaciones al pie
-    └── sin entradas para cada commit: por entregas
+    â
+    âââ cabecera por versión: [1.4.0] - 2026-10-01
+    âââ secciones: Añadido / Corregido /
+    â   Cambiado (breaking) / Obsoleto / Eliminado
+    âââ enlaces a comparaciones al pie
+    âââ sin entradas para cada commit: por entregas
 ```
 
 ```text
 SEMVER (versión: MAJOR.MINOR.PATCH)
-    │
-    ├── MAJOR: cambios incompatibles (breaking)
-    ├── MINOR: funcionalidad nueva, compatible
-    └── PATCH: correcciones, compatible
+    â
+    âââ MAJOR: cambios incompatibles (breaking)
+    âââ MINOR: funcionalidad nueva, compatible
+    âââ PATCH: correcciones, compatible
 ```
 
 ```text
 Relación con Conventional Commits (cap. 03):
-    │
-    ├── feat  → MINOR (o MAJOR con !)
-    ├── fix   → PATCH
-    └── BREAKING CHANGE → MAJOR
+    â
+    âââ feat  â MINOR (o MAJOR con !)
+    âââ fix   â PATCH
+    âââ BREAKING CHANGE â MAJOR
     (así el changelog y el número de versión se
     derivan del historial)
 ```
 
 ```text
 Estado del proyecto sin versión estable:
-    │
-    └── 0.x: el cambio compatible también puede romper;
+    â
+    âââ 0.x: el cambio compatible también puede romper;
         anúncialo igualmente
 ```
 
@@ -109,12 +109,12 @@ Estado del proyecto sin versión estable:
 ## 3. De commits a changelog (semiauto)
 
 ```text
-FLUJO TÍPICO
-──────────────────────────────────────────────────────
+FLUJO TÜPICO
+ââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 1. convención en commits (cap. 03)
 2. herramienta genera borrador desde los commits
     desde el último tag (categoría: git-cliff,
-    standard-version — como ejemplos)
+    standard-version â como ejemplos)
 3. humano edita: agrupa, reescribe en lenguaje de
     usuario (no jerga interna), corrige ruido
 4. commit del changelog + tag + release
@@ -127,12 +127,12 @@ git log --oneline v1.3.0..HEAD --no-merges
 ```
 
 ```text
-    │
-    ├── los commits de rama («fusiona») no aportan:
+    â
+    âââ los commits de rama (Â«fusionaÂ») no aportan:
         se omiten
-    │
-    └── si los mensajes son malos (cap. 03), la
-        herramienta produce basura → la calidad del
+    â
+    âââ si los mensajes son malos (cap. 03), la
+        herramienta produce basura â la calidad del
         changelog es la calidad del historial
 ```
 
@@ -140,7 +140,7 @@ git log --oneline v1.3.0..HEAD --no-merges
 ## 4. Release notes que comunican
 
 ```markdown
-# v1.4.0 — 2026-10-01
+# v1.4.0 â 2026-10-01
 
 ## Destacado
 - Exportación a CSV (nuevo comando `export`).
@@ -161,26 +161,26 @@ Comparación completa: v1.3.0...v1.4.0
 
 ```text
 Reglas:
-    │
-    ├── escribe para el USUARIO de esa versión, no
-    │   para el equipo interno
-    │
-    ├── breaking changes y deprecaciones ARRIBA y
-    │   con instrucción de migración
-    │
-    ├── enlaces: issue, PR, comparación
-    │
-    └── honestidad: si hay riesgos conocidos, dilo
+    â
+    âââ escribe para el USUARIO de esa versión, no
+    â   para el equipo interno
+    â
+    âââ breaking changes y deprecaciones ARRIBA y
+    â   con instrucción de migración
+    â
+    âââ enlaces: issue, PR, comparación
+    â
+    âââ honestidad: si hay riesgos conocidos, dilo
 ```
 
 ```text
-DÓNDE SE PUBLICAN:
-    │
-    ├── GitHub Releases (vinculado al tag: el tag es
-    │   ancla en el historial; la release es la
-    │   entrega con artefactos y notas)
-    │
-    └── el changelog vive en el repo; las notas, en
+DÜNDE SE PUBLICAN:
+    â
+    âââ GitHub Releases (vinculado al tag: el tag es
+    â   ancla en el historial; la release es la
+    â   entrega con artefactos y notas)
+    â
+    âââ el changelog vive en el repo; las notas, en
         la release (y opcionalmente enlazadas desde
         el changelog)
 ```
@@ -194,7 +194,7 @@ DÓNDE SE PUBLICAN:
 
 **Por qué posibles:**
 * no hay dueño del proceso;
-* se decide «al final» y se olvida.
+* se decide Â«al finalÂ» y se olvida.
 
 **Cómo comprobarlo:** comparar tags con entradas: `git tag --sort=-v:refname` vs. cabeceras del changelog.
 
@@ -210,7 +210,7 @@ DÓNDE SE PUBLICAN:
 
 ### Error 2: volcado de commits sin editar
 
-**Qué ocurrió:** el changelog es una lista de «fix fix refactor» incomprensible para usuarios.
+**Qué ocurrió:** el changelog es una lista de Â«fix fix refactorÂ» incomprensible para usuarios.
 
 **Por qué:** se usó la herramienta en crudo.
 
@@ -218,7 +218,7 @@ DÓNDE SE PUBLICAN:
 
 **Opciones:** editar/reagrupar; reescribir en lenguaje de producto.
 
-**Riesgos:** nadie lo lee → inútil.
+**Riesgos:** nadie lo lee â inútil.
 
 **Solución:** borrador automático + redacción humana (punto 3).
 
@@ -232,13 +232,13 @@ DÓNDE SE PUBLICAN:
 
 **Por qué:** prisa o desconocimiento de semver.
 
-**Cómo comprobarlo:** leer diff de release vs. etiqueta; comprobar casillas «breaking».
+**Cómo comprobarlo:** leer diff de release vs. etiqueta; comprobar casillas Â«breakingÂ».
 
 **Opciones:** corregir versión (si aún no se comunicó), o comunicar claramente y corregir política.
 
 **Riesgos:** automatizaciones de actualización se rompen en silencio.
 
-**Solución:** regla feat→MINOR, fix→PATCH, breaking→MAJOR (o proyecto con política propia DOCUMENTADA).
+**Solución:** regla featâMINOR, fixâPATCH, breakingâMAJOR (o proyecto con política propia DOCUMENTADA).
 
 **Cómo se evita:** decisión semántica en la revisión de release, no a última hora.
 
@@ -258,7 +258,7 @@ DÓNDE SE PUBLICAN:
 
 **Solución:** breaking changes primero y con instrucción.
 
-**Cómo se evita:** checklist «¿algo deja de funcionar?».
+**Cómo se evita:** checklist Â«¿algo deja de funcionar?Â».
 
 ---
 
@@ -274,7 +274,7 @@ DÓNDE SE PUBLICAN:
 
 **Riesgos:** historial sin narración por entrega.
 
-**Solución:** flujo único de release: changelog → commit → tag → publicación.
+**Solución:** flujo único de release: changelog â commit â tag â publicación.
 
 **Cómo se evita:** script/checklist de release del equipo.
 
@@ -282,7 +282,7 @@ DÓNDE SE PUBLICAN:
 
 ### Error 6: agradecimientos y métricas falsos
 
-**Qué ocurrió:** «+1000 commits, 50 colaboradores» inflados; agradecimientos a quien no aportó.
+**Qué ocurrió:** Â«+1000 commits, 50 colaboradoresÂ» inflados; agradecimientos a quien no aportó.
 
 **Por qué:** automatización sin revisión.
 
@@ -316,11 +316,11 @@ git log --oneline v0.1.0..HEAD
 
 ```text
 Clasa los commits del rango:
-    │
-    ├── feat  → Añadido
-    ├── fix   → Corregido
-    ├── docs/chore → normalmente NO entran
-    └── breaking → Cambiado (arriba del todo)
+    â
+    âââ feat  â Añadido
+    âââ fix   â Corregido
+    âââ docs/chore â normalmente NO entran
+    âââ breaking â Cambiado (arriba del todo)
 ```
 
 ### Paso 3: escribe CHANGELOG.md
@@ -354,7 +354,7 @@ git tag -a v0.2.0 -m "v0.2.0"
 ```text
 Configura en tu proyecto una herramienta de
 generación desde Conventional Commits (elige según
-tu lenguaje) y acordad: herramienta propone →
+tu lenguaje) y acordad: herramienta propone â
 humano redacta.
 ```
 
@@ -364,7 +364,7 @@ CHANGELOG con dos versiones, tag anotado y notas publicadas con breaking visible
 
 ### Conclusión esperada
 
-El flujo release = historial limpio → borrador → redacción → tag → publicación; la herramienta acelera, el humano comunica.
+El flujo release = historial limpio â borrador â redacción â tag â publicación; la herramienta acelera, el humano comunica.
 
 ### Ejercicio de transferencia
 
@@ -377,7 +377,7 @@ Imagina que estás preparando la versión 2.0.0 de una biblioteca de procesamien
 
 ```text
 PIPELINE DE RELEASE
-──────────────────────────────────────────────────────
+ââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 1. congelar (rama/ventana) y revisar commits
 2. decidir semver (¿breaking? ¿feat?)
 3. changelog: borrador auto + redacción
@@ -387,14 +387,14 @@ PIPELINE DE RELEASE
 ```
 
 ```text
-    │
-    ├── la plataforma es display; el repo es fuente
-    │   (changelog y tags viajan con el código)
-    │
-    ├── notas en el idioma del usuario (aquí, español
-    │   cuando el público lo es)
-    │
-    └── auditoría: cada versión rastreable a commits,
+    â
+    âââ la plataforma es display; el repo es fuente
+    â   (changelog y tags viajan con el código)
+    â
+    âââ notas en el idioma del usuario (aquí, español
+    â   cuando el público lo es)
+    â
+    âââ auditoría: cada versión rastreable a commits,
         issues y decisión de compatibilidad
 ```
 
@@ -403,7 +403,7 @@ PIPELINE DE RELEASE
 En este capítulo aprendiste que:
 
 * el changelog es registro acumulado en el repo; las release notes narran una entrega y se publican con el tag;
-* semver (MAJOR/MINOR/PATCH) y Conventional Commits se refuerzan: feat→MINOR, fix→PATCH, breaking→MAJOR;
+* semver (MAJOR/MINOR/PATCH) y Conventional Commits se refuerzan: featâMINOR, fixâPATCH, breakingâMAJOR;
 * el flujo es semiautomático: herramienta propone desde `git log v-tag..HEAD`, la persona redacta en lenguaje de usuario;
 * las notas comunican: destacados, cambios, breaking/deprecaciones con migración, agradecimientos, enlaces;
 * los errores típicos (changelog ausente, volcado crudo, semver desalineada, breaking escondido, tags sin notas, métricas infladas) se previenen con checklist de release;
