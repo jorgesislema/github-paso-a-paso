@@ -3,21 +3,21 @@
 
 ## Autopreguntas de cierre
 
-Sin mirar el material, responde mentalmente y luego compru�balo con este cap�tulo:
+Sin mirar el material, responde mentalmente y luego compruébalo con este capítulo:
 
-1. �Por qu� es esencial que el README responda primero al �qu�, luego al �por qu� y finalmente al �c�mo� en la experiencia de un nuevo visitante?
-2. �C�mo afecta la decisi�n de colocar documentaci�n extensiva (como manuales de API) en docs/ en lugar de saturar el README a la usabilidad y al mantenimiento del proyecto?
-3. �Qu� criterios debes usar para determinar si un bloque de informaci�n (por ejemplo, una tabla de configuraci�n) pertenece al README o debe moverse a un documento separado en docs/?
-4. �C�mo contribuyen los badges honesto y la pr�ctica de �clon limpio� a la confianza de los usuarios potenciales y a la calidad percibida del proyecto?
-5. �Qu� consecuencias tiene omitir la secci�n de licencia o usar una licencia inadecuada para el tipo de proyecto y su audiencia?
-6. �C�mo implementar�as un proceso de revisi�n de PR que asegure que el README se mantenga sincronizado con los cambios en la interfaz de uso o instalaci�n?
+1. ¿Por qué es esencial que el README responda primero al «qué», luego al «por qué» y finalmente al «cómo» en la experiencia de un nuevo visitante?
+2. ¿Cómo afecta la decisión de colocar documentación extensiva (como manuales de API) en docs/ en lugar de saturar el README a la usabilidad y al mantenimiento del proyecto?
+3. ¿Qué criterios debes usar para determinar si un bloque de información (por ejemplo, una tabla de configuración) pertenece al README o debe moverse a un documento separado en docs/?
+4. ¿Cómo contribuyen los badges honesto y la práctica de «clon limpio» a la confianza de los usuarios potenciales y a la calidad percibida del proyecto?
+5. ¿Qué consecuencias tiene omitir la sección de licencia o usar una licencia inadecuada para el tipo de proyecto y su audiencia?
+6. ¿Cómo implementarías un proceso de revisión de PR que asegure que el README se mantenga sincronizado con los cambios en la interfaz de uso o instalación?
 
 [`03-mensajes-de-commit.md`](03-mensajes-de-commit.md)
 # El README
 
 ## Introducción
 
-El README es la primera — y muchas veces única — página que leerán de tu proyecto. Responde tres preguntas en menos de un minuto: ¿qué es esto?, ¿por qué me importa? y ¿cómo empiezo?
+El README es la primera â y muchas veces única â página que leerán de tu proyecto. Responde tres preguntas en menos de un minuto: ¿qué es esto?, ¿por qué me importa? y ¿cómo empiezo?
 
 Un README profesional no es un dumping ground de todo lo que sabes: es una puerta de entrada con enlaces al resto. Este capítulo enseña su estructura, su contenido mínimo y cómo mantenerlo vivo.
 
@@ -41,18 +41,18 @@ mindmap
 
 ```text
 Cualquier lector (usuario, reclutador, compañero) hace:
-    │
-    ├── ¿QUÉ es?          → título + descripción
-    ├── ¿POR QUÉ?         → problema que resuelve
-    └── ¿CÓMO empiezo?    → instalación y primer uso
+    â
+    âââ ¿QUÜ es?          â título + descripción
+    âââ ¿POR QUÜ?         â problema que resuelve
+    âââ ¿CÜMO empiezo?    â instalación y primer uso
 ```
 
 ```text
 El orden de lectura real es de arriba abajo:
-    │
-    ├── los primeros 10 renglones deciden si siguen
-    │
-    └── por eso: beneficio ANTES que arquitectura
+    â
+    âââ los primeros 10 renglones deciden si siguen
+    â
+    âââ por eso: beneficio ANTES que arquitectura
 ```
 
 ---
@@ -69,25 +69,25 @@ Uno o dos párrafos: qué hace y para quién.
 ## Características
 ## Requisitos
 ## Instalación
-## Uso rápido          ← ejemplo copiable
+## Uso rápido          â ejemplo copiable
 ## Configuración       (si aplica)
-## Documentación       ← enlaces a docs/
-## Desarrollo          ← cómo contribuir (enlace)
+## Documentación       â enlaces a docs/
+## Desarrollo          â cómo contribuir (enlace)
 ## Estado / Roadmap    (si aplica)
 ## Licencia
 ```
 
 ```text
 Ajustes según tipo de proyecto:
-    │
-    ├── librería → uso con snippets por lenguaje
-    ├── app     → instalación + capturas
-    ├── doc     → índice de guías
-    └── portfolio → qué demuestra + enlaces
+    â
+    âââ librería â uso con snippets por lenguaje
+    âââ app     â instalación + capturas
+    âââ doc     â índice de guías
+    âââ portfolio â qué demuestra + enlaces
 ```
 
 ```bash
-# ejemplo de bloque de uso que SÍ funciona:
+# ejemplo de bloque de uso que SÜ funciona:
 git clone https://...
 cd mi-proyecto
 # seguir docs/PRIMEROS-PASOS.md
@@ -97,29 +97,29 @@ cd mi-proyecto
 ## 3. Qué sí y qué no incluir
 
 ```text
-SÍ (puerta de entrada):
-    │
-    ├── promesa clara y verificable
-    ├── ejemplo mínimo EJECUTABLE (copiar y pegar)
-    ├── estado real («en desarrollo» / «estable»)
-    ├── badges honestos (build, versión, licencia)
-    └── enlaces: docs, contributing, glosario, FAQ
+SÜ (puerta de entrada):
+    â
+    âââ promesa clara y verificable
+    âââ ejemplo mínimo EJECUTABLE (copiar y pegar)
+    âââ estado real (Â«en desarrolloÂ» / Â«estableÂ»)
+    âââ badges honestos (build, versión, licencia)
+    âââ enlaces: docs, contributing, glosario, FAQ
 ```
 
 ```text
 NO (pertenece en docs/):
-    │
-    ├── manual completo del API (→ docs/)
-    ├── historial entero del equipo (→ CHANGELOG/ADRs)
-    ├── esquemas internos extensos (→ docs/arquitectura)
-    └── textos de marketing vacíos sin evidencia
+    â
+    âââ manual completo del API (â docs/)
+    âââ historial entero del equipo (â CHANGELOG/ADRs)
+    âââ esquemas internos extensos (â docs/arquitectura)
+    âââ textos de marketing vacíos sin evidencia
 ```
 
 ```text
-    │
-    ├── el README crece por ENLACES, no por absorción
-    │
-    └── si una sección supera ~50-80 líneas: extraer
+    â
+    âââ el README crece por ENLACES, no por absorción
+    â
+    âââ si una sección supera ~50-80 líneas: extraer
         y enlazar
 ```
 
@@ -128,24 +128,24 @@ NO (pertenece en docs/):
 
 ```text
 Señales de README muerto:
-    │
-    ├── los comandos del ejemplo ya no existen
-    │
-    ├── menciona archivos/ramas que cambiaron de nombre
-    │
-    └── nadie lo revisa en los PRs que tocan «cómo se
-        usa»
+    â
+    âââ los comandos del ejemplo ya no existen
+    â
+    âââ menciona archivos/ramas que cambiaron de nombre
+    â
+    âââ nadie lo revisa en los PRs que tocan Â«cómo se
+        usaÂ»
 ```
 
 ```text
 Higiene:
-    │
-    ├── revisar el README en PRs que cambian interfaz
-    │   o instalación (checklist del equipo)
-    │
-    ├── badges con estado real (no decorativos)
-    │
-    └── «actualizado: …» no hace falta si el repo
+    â
+    âââ revisar el README en PRs que cambian interfaz
+    â   o instalación (checklist del equipo)
+    â
+    âââ badges con estado real (no decorativos)
+    â
+    âââ Â«actualizado: â¦Â» no hace falta si el repo
         tiene historia viva: el README se revisa como
         código
 ```
@@ -155,7 +155,7 @@ Higiene:
 
 ### Error 1: asumir conocimiento del lector
 
-**Qué ocurrió:** el README dice «ejecuta `make deploy`» sin decir qué es make, ni requisitos, ni de dónde sale.
+**Qué ocurrió:** el README dice Â«ejecuta `make deploy`Â» sin decir qué es make, ni requisitos, ni de dónde sale.
 
 **Por qué posibles:**
 * escrito por quien ya entendía todo;
@@ -167,7 +167,7 @@ Higiene:
 
 **Riesgos:** el 90% de lectores se va en el paso 2.
 
-**Solución:** prueba de «clon limpio» periódica.
+**Solución:** prueba de Â«clon limpioÂ» periódica.
 
 **Cómo se evita:** onboarding de cada release.
 
@@ -181,7 +181,7 @@ Higiene:
 
 **Cómo comprobarlo:** ejecutar el ejemplo literalmente.
 
-**Opciones:** corregir; añadir «resultado esperado» tras cada bloque.
+**Opciones:** corregir; añadir Â«resultado esperadoÂ» tras cada bloque.
 
 **Riesgos:** pérdida de confianza inmediata.
 
@@ -193,7 +193,7 @@ Higiene:
 
 ### Error 3: README gigante y desordenado
 
-**Qué ocurrió:** 1000 líneas; nadie encuentra «cómo instalar».
+**Qué ocurrió:** 1000 líneas; nadie encuentra Â«cómo instalarÂ».
 
 **Por qué:** absorción de todo (punto 3).
 
@@ -211,7 +211,7 @@ Higiene:
 
 ### Error 4: promesas no verificables / badges rotos
 
-**Qué ocurrió:** «la librería más rápida» sin datos; badge de build que lleva meses roto o apunta a otro sitio.
+**Qué ocurrió:** Â«la librería más rápidaÂ» sin datos; badge de build que lleva meses roto o apunta a otro sitio.
 
 **Por qué:** marketing sin evidencia; badges olvidados.
 
@@ -241,9 +241,9 @@ Higiene:
 
 **Riesgos:** nuevos usuarios con la guía equivocada.
 
-**Solución:** README incluido en la definición de «terminado».
+**Solución:** README incluido en la definición de Â«terminadoÂ».
 
-**Cómo se evita:** plantillas de PR con casilla «README actualizado».
+**Cómo se evita:** plantillas de PR con casilla Â«README actualizadoÂ».
 
 ---
 
@@ -255,7 +255,7 @@ Higiene:
 
 **Cómo comprobarlo:** comparar con el roadmap y la madurez real.
 
-**Opciones:** sección de estado honesta («experimental», «uso en producción con…»).
+**Opciones:** sección de estado honesta (Â«experimentalÂ», Â«uso en producción conâ¦Â»).
 
 **Riesgos:** decisiones equivocadas de los usuarios.
 
@@ -274,10 +274,10 @@ Reescribir un README siguiendo las tres preguntas y probarlo en clon limpio.
 
 ```text
 Toma el README de tu proyecto de práctica y responde:
-    │
-    ├── ¿en 30 segundos se entiende qué es?
-    ├── ¿el primer ejemplo se puede copiar?
-    └── ¿hay enlaces a docs sin engordar?
+    â
+    âââ ¿en 30 segundos se entiende qué es?
+    âââ ¿el primer ejemplo se puede copiar?
+    âââ ¿hay enlaces a docs sin engordar?
 Marca lo que falte.
 ```
 
@@ -305,7 +305,7 @@ cd ../readme-test
 
 ### Paso 6: checklist de PR
 
-1. Añade al CONTRIBUTING la casilla «README y docs afectadas actualizados».
+1. Añade al CONTRIBUTING la casilla Â«README y docs afectadas actualizadosÂ».
 
 ### Resultado esperado
 
@@ -325,16 +325,16 @@ Imagina que debes documentación para una biblioteca de funciones matemáticas d
 ### 7.1. README como producto
 
 ```text
-    │
-    ├── métrica informal: «¿puede alguien ejecutar el
-    │   ejemplo en 5 minutos?»
-    │
-    ├── revisión explícita en PRs de interfaz
-    │
-    ├── plantilla por tipo de proyecto (la organización
-    │   tiene su README estándar)
-    │
-    └── en portafolios/reclutamiento: el README es tu
+    â
+    âââ métrica informal: Â«¿puede alguien ejecutar el
+    â   ejemplo en 5 minutos?Â»
+    â
+    âââ revisión explícita en PRs de interfaz
+    â
+    âââ plantilla por tipo de proyecto (la organización
+    â   tiene su README estándar)
+    â
+    âââ en portafolios/reclutamiento: el README es tu
         carta de presentación técnica (sección 26)
 ```
 
@@ -342,7 +342,7 @@ Imagina que debes documentación para una biblioteca de funciones matemáticas d
 
 En este capítulo aprendiste que:
 
-* el README responde qué es, por qué importa y cómo empezar — en ese orden, en la parte superior;
+* el README responde qué es, por qué importa y cómo empezar â en ese orden, en la parte superior;
 * estructura estándar: promesa, características, requisitos, instalación, uso copiable, enlaces a docs, licencia;
 * el contenido crece por enlaces, no por absorción: manual/API van a `docs/`;
 * se mantiene vivo: prueba en clon limpio, badges honestos, revisión en PRs de interfaz;
@@ -351,7 +351,7 @@ En este capítulo aprendiste que:
 
 La idea principal es:
 
-> **Un README se escribe para el que llega mañana y se prueba como código hoy: promesa clara, ejemplo copiable y enlaces — nada más en la puerta.**
+> **Un README se escribe para el que llega mañana y se prueba como código hoy: promesa clara, ejemplo copiable y enlaces â nada más en la puerta.**
 
 ---
 ## Próximo paso
