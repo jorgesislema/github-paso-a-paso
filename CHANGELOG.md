@@ -20,11 +20,11 @@ Formato: `[YYYY-MM-DD] versión — resumen`. De más reciente a menos reciente.
 
 ### Diseño académico
 
-* **Nuevo:** `00-orientacion/07-como-fue-disenado-este-curso.md` — el marco pedagógico del curso (andamiaje/espiral, worked examples, error-based learning, ABP, transferencia situada), sus decisiones de diseño y una propuesta de evaluación pre/post.
+* **Nuevo:** `00-orientacion/17-como-fue-disenado-este-curso.md` — el marco pedagógico del curso (andamiaje/espiral, worked examples, error-based learning, ABP, transferencia situada), sus decisiones de diseño y una propuesta de evaluación pre/post.
 * **Nuevo:** bloques «Objetivos de aprendizaje», «Referencias» y «Autopreguntas de cierre» en los 30 README de sección (00–29), con verbos de dominio y fuentes canónicas por tema.
 * **Nuevo:** `28-proyecto-final/07-rubrica-del-proyecto-final.md` — rúbrica pública de 6 dimensiones × 4 niveles, con temporalidad de uso (temprana / continua / autoevaluada) y errores comunes; enlazada desde `28/01` (diseño) y `28/06` (demostración).
 * **Nuevo:** `recursos/sandboxes/` — cuatro entornos de práctica controlados (scripts PowerShell + docs) para las secciones 06, 08, 10 y 11; enlazados desde sus README y desde `recursos/README.md`.
-* **Nuevo:** subsección de accesibilidad de diagramas en `00-orientacion/05-como-leer-los-ejemplos.md`.
+* **Nuevo:** subsección de accesibilidad de diagramas en `00-orientacion/14-leer-diagramas-terminales-y-capturas.md`.
 
 ### Gestión del contenido
 
